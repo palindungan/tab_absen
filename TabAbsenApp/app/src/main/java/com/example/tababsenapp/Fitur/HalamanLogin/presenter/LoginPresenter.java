@@ -12,7 +12,7 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public void onLogin(String username, String Password) {
-        String base_url = "http://192.168.83.2/project_smtr4/api/";
+        String base_url = "http://localhost/tab_absen/web/api/";
         String URL_LOGIN = base_url+"login/"; // url http request
     }
 }
