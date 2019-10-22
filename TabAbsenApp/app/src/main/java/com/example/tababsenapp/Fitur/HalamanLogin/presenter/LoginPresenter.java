@@ -1,6 +1,7 @@
 package com.example.tababsenapp.Fitur.HalamanLogin.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -10,6 +11,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tababsenapp.Controllers.SessionManager;
+import com.example.tababsenapp.Fitur.HalamanHome.Admin.HalamanHomeAdminActivity;
+import com.example.tababsenapp.Fitur.HalamanHome.Pengajar.HalamanHomePengajarActivity;
+import com.example.tababsenapp.Fitur.HalamanHome.WaliMurid.HalamanHomeWaliMuridActivity;
 import com.example.tababsenapp.Fitur.HalamanLogin.view.ILoginView;
 
 import org.json.JSONArray;
@@ -53,21 +57,33 @@ public class LoginPresenter implements ILoginPresenter {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     String id_user = "";
+                                    String nama = object.getString("nama").trim();
+                                    String username = object.getString("username").trim();
+
+                                    Intent intent = new Intent();
 
                                     if (hakAkses.equals("wali_murid")) {
+
                                         id_user = object.getString("id_wali_murid").trim();
+                                        intent = new Intent(context, HalamanHomeWaliMuridActivity.class);
+
                                     } else if (hakAkses.equals("pengajar")) {
+
                                         id_user = object.getString("id_pengajar").trim();
+                                        intent = new Intent(context, HalamanHomePengajarActivity.class);
+
                                     } else if (hakAkses.equals("admin")) {
+
                                         id_user = object.getString("id_admin").trim();
+                                        intent = new Intent(context, HalamanHomeAdminActivity.class);
+
                                     } else {
                                         sessionManager.logout();
                                     }
 
-                                    String nama = object.getString("nama").trim();
-                                    String username = object.getString("username").trim();
-
+                                    sessionManager.setSessionLogin(id_user,nama,username);
                                     loginView.onLoginSuccess("Selamat Datang " + nama + " , " + id_user + " , " + username);
+                                    context.startActivity(intent);
                                 }
                             }
 
