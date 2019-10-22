@@ -22,6 +22,8 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
 
     ILoginPresenter loginPresenter;
 
+    String EXTRA_HAK_AKSES = "EXTRA_HAK_AKSES";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,14 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
                 String password = edtPassword.getText().toString().trim();
 
                 loginPresenter.onLogin(username, password);
+
             }
         });
+
+        // test
+        String hakAkses = getIntent().getStringExtra(EXTRA_HAK_AKSES);
+        String info = "berhasil login "+hakAkses;
+        Toasty.info(this, info, Toast.LENGTH_SHORT).show();
 
     }
 
