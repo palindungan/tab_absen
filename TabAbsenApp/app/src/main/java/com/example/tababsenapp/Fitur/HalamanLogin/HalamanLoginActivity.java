@@ -33,7 +33,7 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btn_login);
 
-        loginPresenter = new LoginPresenter(this,this);
+        loginPresenter = new LoginPresenter(this, this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -44,14 +44,14 @@ public class SessionManager {
     }
 
     public HashMap<String, String> getDataUser() {
-        HashMap<String,String> user = new HashMap<>();
+        HashMap<String, String> user = new HashMap<>();
 
         String data_default = "Data Kosong";
-        user.put(ID_USER,sharedPreferences.getString(ID_USER,data_default));
-        user.put(NAMA,sharedPreferences.getString(NAMA,data_default));
-        user.put(USERNAME,sharedPreferences.getString(USERNAME,data_default));
+        user.put(ID_USER, sharedPreferences.getString(ID_USER, data_default));
+        user.put(NAMA, sharedPreferences.getString(NAMA, data_default));
+        user.put(USERNAME, sharedPreferences.getString(USERNAME, data_default));
 
-        return  user;
+        return user;
     }
 
     public void checkLogin() {
@@ -63,15 +63,15 @@ public class SessionManager {
         }
     }
 
-    public void logout(){
+    public void logout() {
         editor.clear();
         editor.commit();
 
-        Intent intent = new Intent(context,MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
-    public String getBaseUrl(){
+    public String getBaseUrl() {
         String base_url = "http://192.168.137.1/tab_absen/web/api/";
         return base_url;
     }
