@@ -1,7 +1,5 @@
 package com.example.tababsenapp.Fitur.HalamanUtama.presenter;
 
-import android.content.Intent;
-
 import com.example.tababsenapp.Fitur.HalamanUtama.view.IUtamaView;
 
 public class UtamaPresenter implements IUtamaPresenter {

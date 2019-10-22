@@ -33,7 +33,7 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btn_login);
 
-        loginPresenter = new LoginPresenter(this);
+        loginPresenter = new LoginPresenter(this,this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,9 +42,7 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
                 String password = edtPassword.getText().toString().trim();
 
                 String hakAkses = getIntent().getStringExtra(EXTRA_HAK_AKSES);
-
                 loginPresenter.onLogin(username, password, hakAkses);
-
             }
         });
     }
