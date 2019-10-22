@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Fitur.HalamanLogin.HalamanLoginActivity"></activity>
+        <activity android:name=".Fitur.HalamanHome.WaliMurid.HalamanHomeWaliMuridActivity"></activity>
+        <activity android:name=".Fitur.HalamanHome.Pengajar.HalamanHomePengajarActivity" />
+        <activity android:name=".Fitur.HalamanHome.Admin.HalamanHomeAdminActivity" />
+        <activity android:name=".Fitur.HalamanLogin.HalamanLoginActivity" />
         <activity android:name=".Fitur.HalamanUtama.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
