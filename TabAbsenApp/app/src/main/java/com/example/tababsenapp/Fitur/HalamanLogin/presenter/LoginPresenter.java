@@ -11,8 +11,10 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onLogin(String username, String Password) {
-        String base_url = "http://localhost/tab_absen/web/api/";
-        String URL_LOGIN = base_url+"login/"; // url http request
+    public void onLogin(String username, String password, String hakAkses) {
+        String base_url = "";
+        String URL_LOGIN = base_url + "login/"; // url http request
+
+
     }
 }

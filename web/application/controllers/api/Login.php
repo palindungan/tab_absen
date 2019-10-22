@@ -49,8 +49,7 @@ class Login extends REST_Controller
                     $data = array(
                         'id_admin' => $row["id_admin"],
                         'nama' => $row["nama"],
-                        'username' => $row["username"],
-                        'foto' => $row["foto"]
+                        'username' => $row["username"]
                     );
 
                     array_push($result['login'], $data);

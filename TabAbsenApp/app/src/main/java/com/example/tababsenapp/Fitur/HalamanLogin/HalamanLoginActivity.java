@@ -41,16 +41,12 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
                 String username = edtUsername.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
 
-                loginPresenter.onLogin(username, password);
+                String hakAkses = getIntent().getStringExtra(EXTRA_HAK_AKSES);
+
+                loginPresenter.onLogin(username, password, hakAkses);
 
             }
         });
-
-        // test
-        String hakAkses = getIntent().getStringExtra(EXTRA_HAK_AKSES);
-        String info = "berhasil login "+hakAkses;
-        Toasty.info(this, info, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
