@@ -14,25 +14,26 @@ import com.google.android.material.navigation.NavigationView;
 
 public class HalamanHomeAdminActivity extends AppCompatActivity {
 
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_home_admin);
 
-        dl = (DrawerLayout) findViewById(R.id.activity_main);
-        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_admin);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view_admin);
 
-        dl.addDrawerListener(t);
-        t.syncState();
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView) findViewById(R.id.nv);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
@@ -57,7 +58,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (t.onOptionsItemSelected(item))
+        if (actionBarDrawerToggle.onOptionsItemSelected(item))
             return true;
 
         return super.onOptionsItemSelected(item);
