@@ -47,7 +47,7 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
     public class DaftarPengajarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public DaftarPengajarViewHolder(@NonNull View itemView) {
             super(itemView);
-            
+
             itemView.setOnClickListener(this);
         }
 

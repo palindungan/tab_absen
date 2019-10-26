@@ -3,6 +3,7 @@ package com.example.tababsenapp.Fitur.HalamanHome.Admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -29,9 +30,10 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
 
-    // untuk icon cart
     NotificationBadge badge;
     ImageView notificationIcon;
+
+    CardView linkAdminPengajar, linkAdminMurid, linkAdminWaliMurid, linkAdminMataPelajaran, linkAdminKelas, linkAdminKelasAktif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,13 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
                 return true;
             }
         });
+
+        linkAdminPengajar = findViewById(R.id.link_admin_pengajar);
+        linkAdminMurid = findViewById(R.id.link_admin_murid);
+        linkAdminWaliMurid = findViewById(R.id.link_admin_wali_murid);
+        linkAdminMataPelajaran = findViewById(R.id.link_admin_mata_pelajaran);
+        linkAdminKelas = findViewById(R.id.link_admin_kelas);
+        linkAdminKelasAktif = findViewById(R.id.link_admin_kelas_aktif);
     }
 
     @Override

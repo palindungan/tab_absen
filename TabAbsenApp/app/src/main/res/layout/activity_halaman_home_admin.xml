@@ -78,7 +78,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_pengajar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="3dp"
@@ -129,7 +129,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_murid"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
@@ -189,7 +189,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_wali_murid"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="3dp"
@@ -240,7 +240,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_mata_pelajaran"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
@@ -301,7 +301,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_kelas"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="3dp"
@@ -352,7 +352,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-
+                        android:id="@+id/link_admin_kelas_aktif"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
