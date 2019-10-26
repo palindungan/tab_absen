@@ -13,7 +13,7 @@ import com.example.tababsenapp.Fitur.HalamanUtama.presenter.UtamaPresenter;
 import com.example.tababsenapp.Fitur.HalamanUtama.view.IUtamaView;
 import com.example.tababsenapp.R;
 
-public class MainActivity extends AppCompatActivity implements IUtamaView {
+public class HalamanUtamaActivity extends AppCompatActivity implements IUtamaView {
 
     Button btnMasukWaliMurid, btnMasukPengajar, btnMasukAdmin;
     String EXTRA_HAK_AKSES = "EXTRA_HAK_AKSES";
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements IUtamaView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_halaman_utama);
 
         btnMasukWaliMurid = findViewById(R.id.btn_masuk_wali_murid);
         btnMasukPengajar = findViewById(R.id.btn_masuk_pengajar);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements IUtamaView {
 
     @Override
     public void onPindahHalaman(String hakAkses) {
-        Intent intent = new Intent(MainActivity.this, HalamanLoginActivity.class);
+        Intent intent = new Intent(HalamanUtamaActivity.this, HalamanLoginActivity.class);
         intent.putExtra(EXTRA_HAK_AKSES, hakAkses);
         startActivity(intent);
     }

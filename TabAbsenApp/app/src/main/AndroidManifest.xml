@@ -22,7 +22,7 @@
             android:name=".Fitur.HalamanLogin.HalamanLoginActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
-            android:name=".Fitur.HalamanUtama.MainActivity"
+            android:name=".Fitur.HalamanUtama.HalamanUtamaActivity"
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

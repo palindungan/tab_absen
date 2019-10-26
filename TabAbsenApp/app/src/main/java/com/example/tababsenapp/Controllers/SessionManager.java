@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.example.tababsenapp.Fitur.HalamanUtama.MainActivity;
+import com.example.tababsenapp.Fitur.HalamanUtama.HalamanUtamaActivity;
 
 import java.util.HashMap;
 
@@ -67,7 +67,7 @@ public class SessionManager {
         editor.clear();
         editor.commit();
 
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, HalamanUtamaActivity.class);
         context.startActivity(intent);
     }
 
