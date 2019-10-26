@@ -5,15 +5,21 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
+import com.example.tababsenapp.Fitur.HalamanNotificationList.HalamanNotificationListActivity;
 import com.example.tababsenapp.R;
 import com.google.android.material.navigation.NavigationView;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 public class HalamanHomeAdminActivity extends AppCompatActivity implements IHomeAdminView {
 
@@ -22,6 +28,10 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
+
+    // untuk icon cart
+    NotificationBadge badge;
+    ImageView cart_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,5 +76,42 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+
+        View view = menu.findItem(R.id.cart_menu).getActionView();
+        badge = view.findViewById(R.id.badge);
+        cart_icon = view.findViewById(R.id.cart_icon);
+
+        cart_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanNotificationListActivity.class));
+            }
+        });
+
+        updateCartCount();
+
+        return true;
+    }
+
+    // untuk icon cart
+    private void updateCartCount() {
+        if (badge == null) return;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                if (Common.cartRepository.countCartItems() == 0)
+//                    badge.setVisibility(View.INVISIBLE);
+//                else {
+//                    badge.setVisibility(View.VISIBLE);
+//                    badge.setText(String.valueOf(Common.cartRepository.countCartItems()));
+//                }
+            }
+        });
+
     }
 }
