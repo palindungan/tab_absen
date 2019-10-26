@@ -31,7 +31,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
 
     // untuk icon cart
     NotificationBadge badge;
-    ImageView cart_icon;
+    ImageView notificationIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,48 +70,47 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (actionBarDrawerToggle.onOptionsItemSelected(item))
-            return true;
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+        getMenuInflater().inflate(R.menu.action_bar_menu_admin, menu);
 
-        View view = menu.findItem(R.id.cart_menu).getActionView();
+        View view = menu.findItem(R.id.menu_notification).getActionView();
         badge = view.findViewById(R.id.badge);
-        cart_icon = view.findViewById(R.id.cart_icon);
+        notificationIcon = view.findViewById(R.id.notification_icon);
 
-        cart_icon.setOnClickListener(new View.OnClickListener() {
+        notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanNotificationListActivity.class));
             }
         });
 
-        updateCartCount();
-
         return true;
     }
 
-    // untuk icon cart
-    private void updateCartCount() {
-        if (badge == null) return;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-//                if (Common.cartRepository.countCartItems() == 0)
-//                    badge.setVisibility(View.INVISIBLE);
-//                else {
-//                    badge.setVisibility(View.VISIBLE);
-//                    badge.setText(String.valueOf(Common.cartRepository.countCartItems()));
-//                }
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        int id = item.getItemId();
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        if (id == R.id.menu_notification) {
+            return true;
+        }
+        if (id == R.id.menu_akun_saya) {
+            Toast.makeText(HalamanHomeAdminActivity.this, "akun saya", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (id == R.id.menu_tentang_kami) {
+            Toast.makeText(HalamanHomeAdminActivity.this, "tentang kami", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (id == R.id.menu_keluar) {
+            Toast.makeText(HalamanHomeAdminActivity.this, "Keluar", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
