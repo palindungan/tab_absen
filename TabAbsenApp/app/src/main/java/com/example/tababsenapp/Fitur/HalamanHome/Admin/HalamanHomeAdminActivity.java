@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
-import com.example.tababsenapp.Fitur.HalamanNotificationList.HalamanNotificationListActivity;
+import com.example.tababsenapp.Fitur.HalamanListNotification.HalamanListNotificationActivity;
 import com.example.tababsenapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -80,7 +80,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanNotificationListActivity.class));
+                startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanListNotificationActivity.class));
             }
         });
 

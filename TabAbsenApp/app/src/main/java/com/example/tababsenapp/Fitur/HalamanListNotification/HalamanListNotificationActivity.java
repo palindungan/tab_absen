@@ -1,4 +1,4 @@
-package com.example.tababsenapp.Fitur.HalamanNotificationList;
+package com.example.tababsenapp.Fitur.HalamanListNotification;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,14 +8,14 @@ import android.view.MenuItem;
 
 import com.example.tababsenapp.R;
 
-public class HalamanNotificationListActivity extends AppCompatActivity {
+public class HalamanListNotificationActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_halaman_notification_list);
+        setContentView(R.layout.activity_halaman_list_notification);
 
         toolbar = findViewById(R.id.toolbar);
 

@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Fitur.HalamanListPengajar.HalamanListPengajarActivity"></activity>
         <activity
-            android:name=".Fitur.HalamanNotificationList.HalamanNotificationListActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+            android:name=".Fitur.HalamanListNotification.HalamanListNotificationActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".Fitur.HalamanHome.WaliMurid.HalamanHomeWaliMuridActivity" />
         <activity android:name=".Fitur.HalamanHome.Pengajar.HalamanHomePengajarActivity" />
         <activity android:name=".Fitur.HalamanHome.Admin.HalamanHomeAdminActivity" />
