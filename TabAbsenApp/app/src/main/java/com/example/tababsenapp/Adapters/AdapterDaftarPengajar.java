@@ -12,8 +12,6 @@ import com.example.tababsenapp.Model.pengajar.Pengajar;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
-
 public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPengajar.DaftarPengajarViewHolder> {
 
     Context context;
@@ -49,8 +47,7 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
     public class DaftarPengajarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public DaftarPengajarViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            ButterKnife.bind(this, itemView);
+            
             itemView.setOnClickListener(this);
         }
 
