@@ -19,5 +19,6 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         setContentView(R.layout.activity_halaman_list_pengajar);
 
         listPengajarPresenter = new ListPengajarPresenter(this,this);
+        listPengajarPresenter.onLoadSemuaListPengajar();
     }
 }
