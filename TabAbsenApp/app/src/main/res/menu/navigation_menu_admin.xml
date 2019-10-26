@@ -2,13 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/account"
-        android:title="My Account" />
+        android:id="@+id/bayar_spp"
+        android:title="Pembayaran SPP" />
     <item
-        android:id="@+id/settings"
-        android:title="Settings" />
-    <item
-        android:id="@+id/mycart"
-        android:title="My Cart" />
+        android:id="@+id/gaji_pengajar"
+        android:title="Penggajian Pengajar" />
 
 </menu>

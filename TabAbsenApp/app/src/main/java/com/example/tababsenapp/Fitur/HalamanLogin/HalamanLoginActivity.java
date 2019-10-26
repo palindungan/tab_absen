@@ -3,10 +3,13 @@ package com.example.tababsenapp.Fitur.HalamanLogin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.tababsenapp.Fitur.HalamanLogin.presenter.ILoginPresenter;
 import com.example.tababsenapp.Fitur.HalamanLogin.presenter.LoginPresenter;
@@ -19,6 +22,7 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
 
     EditText edtUsername, edtPassword;
     Button btnLogin;
+    Toolbar toolbar;
 
     ILoginPresenter loginPresenter;
 
@@ -28,6 +32,8 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_login);
+
+        toolbar = findViewById(R.id.toolbar);
 
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
@@ -45,6 +51,26 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
                 loginPresenter.onLogin(username, password, hakAkses);
             }
         });
+
+        initActionBar();
+    }
+
+    private void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 
     @Override

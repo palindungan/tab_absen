@@ -28,10 +28,10 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_home_admin);
 
-        homeAdminPresenter = new HomeAdminPresenter(this,this);
+        homeAdminPresenter = new HomeAdminPresenter(this, this);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_admin);
-        navigationView = (NavigationView) findViewById(R.id.navigation_view_admin);
+        drawerLayout = findViewById(R.id.drawerLayout_admin);
+        navigationView = findViewById(R.id.navigation_view_admin);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
 
@@ -45,14 +45,11 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
-                    case R.id.account:
-                        Toast.makeText(HalamanHomeAdminActivity.this, "My Account", Toast.LENGTH_SHORT).show();
+                    case R.id.bayar_spp:
+                        Toast.makeText(HalamanHomeAdminActivity.this, "SPP", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.settings:
-                        Toast.makeText(HalamanHomeAdminActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.mycart:
-                        Toast.makeText(HalamanHomeAdminActivity.this, "My Cart", Toast.LENGTH_SHORT).show();
+                    case R.id.gaji_pengajar:
+                        Toast.makeText(HalamanHomeAdminActivity.this, "Gaji", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         return true;
