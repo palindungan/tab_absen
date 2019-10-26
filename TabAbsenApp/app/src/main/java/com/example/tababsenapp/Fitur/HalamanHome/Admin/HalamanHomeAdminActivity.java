@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
+import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPresenter;
+import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
 import com.example.tababsenapp.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class HalamanHomeAdminActivity extends AppCompatActivity {
+public class HalamanHomeAdminActivity extends AppCompatActivity implements IHomeAdminView {
+
+    IHomeAdminPresenter homeAdminPresenter;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -22,6 +27,8 @@ public class HalamanHomeAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_home_admin);
+
+        homeAdminPresenter = new HomeAdminPresenter(this,this);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_admin);
         navigationView = (NavigationView) findViewById(R.id.navigation_view_admin);
