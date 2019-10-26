@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Fitur.HalamanListPengajar.HalamanListPengajarActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_list_pengajar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:clipToPadding="false"
+        android:scrollbars="none">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
