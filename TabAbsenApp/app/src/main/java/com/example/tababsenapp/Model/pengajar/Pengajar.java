@@ -1,45 +1,54 @@
 package com.example.tababsenapp.Model.pengajar;
 
-public class Pengajar implements IPengajar {
+public class Pengajar {
 
     String id_pengajar, nama, username, alamat, no_hp, foto;
 
-    public Pengajar(String id_pengajar, String nama, String username, String alamat, String no_hp, String foto) {
-        this.id_pengajar = id_pengajar;
-        this.nama = nama;
-        this.username = username;
-        this.alamat = alamat;
-        this.no_hp = no_hp;
-        this.foto = foto;
-    }
-
-    @Override
-    public String getIdPengajar() {
+    public String getId_pengajar() {
         return id_pengajar;
     }
 
-    @Override
+    public void setId_pengajar(String id_pengajar) {
+        this.id_pengajar = id_pengajar;
+    }
+
     public String getNama() {
         return nama;
     }
 
-    @Override
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
     public String getUsername() {
         return username;
     }
 
-    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getAlamat() {
         return alamat;
     }
 
-    @Override
-    public String getNoHP() {
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getNo_hp() {
         return no_hp;
     }
 
-    @Override
+    public void setNo_hp(String no_hp) {
+        this.no_hp = no_hp;
+    }
+
     public String getFoto() {
         return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

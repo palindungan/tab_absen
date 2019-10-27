@@ -1,7 +1,7 @@
 package com.example.tababsenapp.Fitur.HalamanListPengajar.presenter;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,18 +38,23 @@ public class ListPengajarPresenter implements IListPengajarPresenter {
 
         sessionManager = new SessionManager(context);
         String base_url = sessionManager.getBaseUrl();
-        String URLstring = base_url + "login/"; // url http request
+        String URLstring = base_url + "list_pengajar/pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Log.d("strrrrr", ">>" + response);
+                // Log.d("strrrrr", ">>" + response);
                 try {
+
                     JSONObject obj = new JSONObject(response);
+
                     if (obj.optString("success").equals("1")) {
+
                         dataModelArrayList = new ArrayList<>();
-                        JSONArray dataArray = obj.getJSONArray("data");
+                        JSONArray dataArray = obj.getJSONArray("pengajar");
                         for (int i = 0; i < dataArray.length(); i++) {
+
+                            Pengajar playerModel = new Pengajar();
                             JSONObject dataobj = dataArray.getJSONObject(i);
 
                             String id_pengajar = dataobj.getString("id_pengajar");
@@ -59,26 +64,31 @@ public class ListPengajarPresenter implements IListPengajarPresenter {
                             String no_hp = dataobj.getString("no_hp");
                             String foto = dataobj.getString("foto");
 
-                            Pengajar playerModel = new Pengajar(id_pengajar, nama, username, alamat, no_hp, foto);
+                            playerModel.setId_pengajar(id_pengajar);
+                            playerModel.setNama(nama);
+                            playerModel.setUsername(username);
+                            playerModel.setAlamat(alamat);
+                            playerModel.setNo_hp(no_hp);
+                            playerModel.setFoto(foto);
+
                             dataModelArrayList.add(playerModel);
+
                         }
-                        setupListview();
+
+                        listPengajarView.onSetupListView(dataModelArrayList);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-
-                    Toast.makeText(getApplicationContext(), "Error Request " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    listPengajarView.onErrorMessage("Gagal Menerima Data : " + e);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //displaying the error in toast if occurrs
-                Toast.makeText(getApplicationContext(), "Error Volley " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                listPengajarView.onErrorMessage("Volley Error : " + error);
             }
         });
 
-        // request queue
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
