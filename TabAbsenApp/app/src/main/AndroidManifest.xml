@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Fitur.HalamanFormPengajar.Edit.HalamanFormEditPengajarActivity"></activity>
-        <activity android:name=".Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity" />
+        <activity
+            android:name=".Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Fitur.HalamanListPengajar.HalamanListPengajarActivity"
             android:theme="@style/AppThemeNoActionBar" />

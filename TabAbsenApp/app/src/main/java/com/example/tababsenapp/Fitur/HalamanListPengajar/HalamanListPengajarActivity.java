@@ -5,17 +5,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Adapters.AdapterDaftarPengajar;
+import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.presenter.IListPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.presenter.ListPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.view.IListPengajarView;
 import com.example.tababsenapp.Model.pengajar.Pengajar;
 import com.example.tababsenapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -42,6 +46,14 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
 
         toolbar = findViewById(R.id.toolbar);
         initActionBar();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HalamanListPengajarActivity.this, HalamanFormTambahPengajarActivity.class));
+            }
+        });
     }
 
     @Override
