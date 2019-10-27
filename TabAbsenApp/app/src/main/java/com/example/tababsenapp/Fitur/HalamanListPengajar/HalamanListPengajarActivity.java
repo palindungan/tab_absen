@@ -1,10 +1,12 @@
 package com.example.tababsenapp.Fitur.HalamanListPengajar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
     private AdapterDaftarPengajar adapterDaftarPengajar;
     private RecyclerView recyclerView;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,9 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         listPengajarPresenter.onLoadSemuaListPengajar();
 
         recyclerView = findViewById(R.id.recycle_list_pengajar);
+
+        toolbar = findViewById(R.id.toolbar);
+        initActionBar();
     }
 
     @Override
@@ -64,5 +71,23 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
     @Override
     public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 }
