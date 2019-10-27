@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Fitur.HalamanFormPengajar.Edit.HalamanFormEditPengajarActivity"></activity>
+        <activity android:name=".Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity" />
         <activity
             android:name=".Fitur.HalamanListPengajar.HalamanListPengajarActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Fitur.HalamanListNotification.HalamanListNotificationActivity"
             android:theme="@style/AppThemeNoActionBar" />
