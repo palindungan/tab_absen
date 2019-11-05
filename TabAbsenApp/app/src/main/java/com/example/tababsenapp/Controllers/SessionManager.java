@@ -72,7 +72,7 @@ public class SessionManager {
     }
 
     public String getBaseUrl() {
-        String base_url = "http://192.168.43.112/tab_absen/web/api/";
+        String base_url = "http://192.168.137.1/tab_absen/web/api/";
         return base_url;
     }
 }

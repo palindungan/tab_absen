@@ -52,4 +52,39 @@ class Pengajar extends REST_Controller
             $this->response($result, 502);
         }
     }
+
+    function tambah_pengajar_post()
+    {
+        // ambil data
+        $id_pengajar = $this->M_pengajar->get_no();
+        $nama = $this->post('nama');
+        $username = $this->post('username');
+        $password = $this->post('password');
+        $alamat = $this->post('alamat');
+        $no_hp = $this->post('no_hp');
+        $foto = $this->post('foto');
+
+        $data = array(
+            'id_pengajar'   => $id_pengajar,
+            'nama'          => $nama,
+            'username'      => $username,
+            'password'      => password_hash($password, PASSWORD_DEFAULT),
+            'alamat'        => $alamat,
+            'no_hp'         => $no_hp,
+            'foto'          => $foto
+        );
+
+        $insert =  $this->M_pengajar->input_data('pengajar', $data);
+        if ($insert) {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error";
+            $this->response(array($result, 502));
+        }
+    }
 }

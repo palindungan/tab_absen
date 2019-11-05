@@ -5,10 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.presenter.IFormTambahPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.view.IFormTambahPengajarView;
 import com.example.tababsenapp.R;
+
+import es.dmoral.toasty.Toasty;
 
 public class HalamanFormTambahPengajarActivity extends AppCompatActivity implements IFormTambahPengajarView {
 
@@ -31,6 +34,16 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public void onSubmitSuccess(String message) {
+        Toasty.success(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSubmitError(String message) {
+        Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

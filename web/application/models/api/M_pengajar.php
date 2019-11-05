@@ -8,7 +8,8 @@ class M_pengajar extends CI_Model
 
     function input_data($table, $data)
     {
-        $this->db->insert($table, $data);
+        $status = $this->db->insert($table, $data);
+        return $status;
     }
 
     function hapus_data($table, $where)
@@ -29,5 +30,26 @@ class M_pengajar extends CI_Model
     {
         $this->db->where($where);
         $this->db->update($table, $data);
+    }
+
+    // autogenerate kode / ID
+    function get_no()
+    {
+        $field = "id_pengajar";
+        $tabel = "pengajar";
+        $digit = "3";
+        $kode = "PE";
+
+        $q = $this->db->query("SELECT MAX(RIGHT($field,$digit)) AS kd_max FROM $tabel");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int) $k->kd_max) + 1;
+                $kd = $kode . sprintf('%0' . $digit . 's',  $tmp);
+            }
+        } else {
+            $kd = "PE001";
+        }
+        return $kd;
     }
 }

@@ -4,4 +4,6 @@ import android.view.MenuItem;
 
 public interface IFormTambahPengajarView {
     void initActionBar();
+    void onSubmitSuccess(String message);
+    void onSubmitError(String message);
 }
