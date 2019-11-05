@@ -57,6 +57,25 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
     }
 
     @Override
+    public void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public void onSetupListView(ArrayList<Pengajar> dataModelArrayList) {
 
         adapterDaftarPengajar = new AdapterDaftarPengajar(this, dataModelArrayList);
@@ -85,21 +104,4 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void initActionBar() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
-    }
 }

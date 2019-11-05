@@ -28,6 +28,11 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,21 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="2"
-                android:text="Upload Foto" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1">
-
-            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

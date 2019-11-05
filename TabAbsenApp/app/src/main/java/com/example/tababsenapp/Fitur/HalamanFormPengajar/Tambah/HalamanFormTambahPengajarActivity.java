@@ -6,9 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.presenter.IFormTambahPengajarPresenter;
+import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.view.IFormTambahPengajarView;
 import com.example.tababsenapp.R;
 
-public class HalamanFormTambahPengajarActivity extends AppCompatActivity {
+public class HalamanFormTambahPengajarActivity extends AppCompatActivity implements IFormTambahPengajarView {
+
+    IFormTambahPengajarPresenter formTambahPengajarPresenter;
 
     Toolbar toolbar;
 
@@ -21,7 +25,8 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity {
         initActionBar();
     }
 
-    private void initActionBar() {
+    @Override
+    public void initActionBar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
