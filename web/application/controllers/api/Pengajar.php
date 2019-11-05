@@ -5,20 +5,19 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class List_pengajar extends REST_Controller
+class Pengajar extends REST_Controller
 {
 
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_list_pengajar");
+        $this->load->model("api/M_pengajar");
     }
 
-    function pengajar_get()
+    function list_pengajar_get()
     {
-
         // mengambil data dari database
-        $query = $this->M_list_pengajar->tampil_data('pengajar');
+        $query = $this->M_pengajar->tampil_data('pengajar');
 
         // variable array
         $result = array();
@@ -47,7 +46,6 @@ class List_pengajar extends REST_Controller
                 $this->response($result, 200);
             }
         } else {
-
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "error data tidak ada";

@@ -1,5 +1,5 @@
 <?php
-class M_list_pengajar extends CI_Model
+class M_pengajar extends CI_Model
 {
     function tampil_data($table)
     {

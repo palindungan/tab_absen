@@ -38,7 +38,7 @@ public class ListPengajarPresenter implements IListPengajarPresenter {
 
         sessionManager = new SessionManager(context);
         String base_url = sessionManager.getBaseUrl();
-        String URLstring = base_url + "list_pengajar/pengajar"; // url http request
+        String URLstring = base_url + "pengajar/list_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring, new Response.Listener<String>() {
             @Override
