@@ -55,13 +55,6 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
         initActionBar();
     }
 
-    private void initActionBar() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -71,6 +64,14 @@ public class HalamanLoginActivity extends AppCompatActivity implements ILoginVie
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

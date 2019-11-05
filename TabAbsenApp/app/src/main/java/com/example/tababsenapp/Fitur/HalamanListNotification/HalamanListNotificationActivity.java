@@ -6,9 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.tababsenapp.Fitur.HalamanListNotification.view.IListNotificationView;
 import com.example.tababsenapp.R;
 
-public class HalamanListNotificationActivity extends AppCompatActivity {
+public class HalamanListNotificationActivity extends AppCompatActivity implements IListNotificationView {
 
     Toolbar toolbar;
 
@@ -22,13 +23,6 @@ public class HalamanListNotificationActivity extends AppCompatActivity {
         initActionBar();
     }
 
-    private void initActionBar() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -38,5 +32,13 @@ public class HalamanListNotificationActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }
