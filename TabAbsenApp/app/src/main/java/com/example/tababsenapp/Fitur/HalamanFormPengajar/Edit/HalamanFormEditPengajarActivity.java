@@ -21,7 +21,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
     Toolbar toolbar;
 
-    EditText edtNama,edtUsername,edtPassword,edtAlamat,edtNoHp;
+    EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword, edtAlamat, edtNoHp;
     ImageView ivFoto;
     Button btnUpdate;
 
@@ -38,6 +38,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtNama = findViewById(R.id.edt_nama);
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
+        edtKonfirmasiPassword = findViewById(R.id.edt_konfirmasi_password);
         edtAlamat = findViewById(R.id.edt_alamat);
         edtNoHp = findViewById(R.id.edt_no_hp);
         ivFoto = findViewById(R.id.iv_foto);

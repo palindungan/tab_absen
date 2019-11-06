@@ -55,6 +55,13 @@
             android:inputType="textPassword" />
 
         <EditText
+            android:id="@+id/edt_konfirmasi_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Konfirmasi Password ..."
+            android:inputType="textPassword" />
+
+        <EditText
             android:id="@+id/edt_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

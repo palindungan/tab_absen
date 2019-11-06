@@ -34,7 +34,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
     Toolbar toolbar;
 
     ImageView ivFoto;
-    EditText edtNama, edtUsername, edtPassword, edtAlamat, edtNoHp;
+    EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword, edtAlamat, edtNoHp;
     Button btnSubmit;
 
     private Bitmap bitmap;
@@ -54,6 +54,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
         edtNama = findViewById(R.id.edt_nama);
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
+        edtKonfirmasiPassword = findViewById(R.id.edt_konfirmasi_password);
         edtAlamat = findViewById(R.id.edt_alamat);
         edtNoHp = findViewById(R.id.edt_no_hp);
         btnSubmit = findViewById(R.id.btn_submit);
@@ -108,12 +109,13 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
                         String nama = edtNama.getText().toString().trim();
                         String username = edtUsername.getText().toString().trim();
                         String password = edtPassword.getText().toString().trim();
+                        String konfirmasi_password = edtKonfirmasiPassword.getText().toString().trim();
                         String alamat = edtAlamat.getText().toString().trim();
                         String no_hp = edtNoHp.getText().toString().trim();
                         String foto = data_photo;
 
                         try {
-                            formTambahPengajarPresenter.onSubmitPengajar(nama, username, password, alamat, no_hp, foto);
+                            formTambahPengajarPresenter.onSubmitPengajar(nama, username, password, konfirmasi_password, alamat, no_hp, foto);
                         } catch (Exception e) {
                             onSubmitError("Terjadi Kesalahan Submit " + e.toString());
                         }
