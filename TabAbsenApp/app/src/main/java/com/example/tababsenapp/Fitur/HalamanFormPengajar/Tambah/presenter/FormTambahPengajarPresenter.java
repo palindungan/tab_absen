@@ -1,6 +1,9 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.presenter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Base64;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,6 +18,7 @@ import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.view.IFormTambah
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,5 +78,16 @@ public class FormTambahPengajarPresenter implements IFormTambahPengajarPresenter
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public String getStringImage(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+        byte[] imageByteArray = byteArrayOutputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
+
+        return encodedImage;
     }
 }
