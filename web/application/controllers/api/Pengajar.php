@@ -62,6 +62,8 @@ class Pengajar extends REST_Controller
         $password = $this->post('password');
         $alamat = $this->post('alamat');
         $no_hp = $this->post('no_hp');
+
+        $nama_foto = 'F' . $id_pengajar;
         $foto = $this->post('foto');
 
         $data = array(
@@ -71,15 +73,19 @@ class Pengajar extends REST_Controller
             'password'      => password_hash($password, PASSWORD_DEFAULT),
             'alamat'        => $alamat,
             'no_hp'         => $no_hp,
-            'foto'          => $foto
+            'foto'          => $nama_foto
         );
 
         $insert =  $this->M_pengajar->input_data('pengajar', $data);
         if ($insert) {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "success";
-            $this->response($result, 200);
+
+            $path = "./upload/image/pengajar/$nama_foto.jpeg";
+            if (file_put_contents($path, base64_decode($foto))) {
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "success";
+                $this->response($result, 200);
+            }
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
