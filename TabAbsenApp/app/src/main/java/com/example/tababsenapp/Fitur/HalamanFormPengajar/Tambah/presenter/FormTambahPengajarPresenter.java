@@ -1,7 +1,6 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.presenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Base64;
 
@@ -39,45 +38,62 @@ public class FormTambahPengajarPresenter implements IFormTambahPengajarPresenter
     }
 
     @Override
-    public void onSubmitPengajar() {
+    public void onSubmitPengajar(String nama, String username, String password, String alamat, String no_hp, String foto) {
 
-        String URL_LOGIN = base_url + "pengajar/tambah_pengajar"; // url http request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+        if (nama.isEmpty()) {
+            formTambahPengajarView.onSubmitError("Isi Nama Anda !");
+        } else if (username.isEmpty()) {
+            formTambahPengajarView.onSubmitError("Isi Username Anda !");
+        } else if (password.isEmpty()) {
+            formTambahPengajarView.onSubmitError("Isi Passowrd Anda !");
+        } else if (alamat.isEmpty()) {
+            formTambahPengajarView.onSubmitError("Isi Alamat Anda !");
+        } else if (foto.isEmpty()) {
+            formTambahPengajarView.onSubmitError("Pilih Foto Profil Anda !");
+        } else {
 
-                            if (success.equals("1")) {
-                                formTambahPengajarView.onSubmitSuccess("Berhasil Menambah Data Pengajar Baru");
+            String URL_LOGIN = base_url + "pengajar/tambah_pengajar"; // url http request
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String success = jsonObject.getString("success");
+
+                                if (success.equals("1")) {
+                                    formTambahPengajarView.onSubmitSuccess("Berhasil Menambah Data Pengajar Baru");
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                formTambahPengajarView.onSubmitError("Kesalahan Menerima Data : " + e.toString());
                             }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            formTambahPengajarView.onSubmitError("Kesalahan Menerima Data : " + e.toString());
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        formTambahPengajarView.onSubmitError("Volley Error : "+error.toString());
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-//                params.put("username", username);
-//                params.put("password", password);
-                return params;
-            }
-        };
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            formTambahPengajarView.onSubmitError("Volley Error : " + error.toString());
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("nama", nama);
+                    params.put("username", username);
+                    params.put("password", password);
+                    params.put("alamat", alamat);
+                    params.put("no_hp", no_hp);
+                    params.put("foto", foto);
+                    return params;
+                }
+            };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+            requestQueue.add(stringRequest);
 
+        }
     }
 
     @Override

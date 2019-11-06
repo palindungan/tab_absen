@@ -1,16 +1,16 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +23,6 @@ import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.presenter.IFormT
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.view.IFormTambahPengajarView;
 import com.example.tababsenapp.R;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import es.dmoral.toasty.Toasty;
@@ -40,7 +39,6 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
 
     private Bitmap bitmap;
     String data_photo;
-    private static final String TAG = HalamanFormTambahPengajarActivity.class.getSimpleName(); // getting the info
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +71,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showDialog();
             }
         });
 
@@ -98,6 +96,41 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
     }
 
     @Override
+    public void showDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk melakukan input !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        String nama = txtNama.getText().toString().trim();
+                        String username = txtUsername.getText().toString().trim();
+                        String password = txtPassword.getText().toString().trim();
+                        String alamat = txtAlamat.getText().toString().trim();
+                        String no_hp = txtNoHp.getText().toString().trim();
+                        String foto = data_photo;
+
+                        try {
+                            formTambahPengajarPresenter.onSubmitPengajar(nama, username, password, alamat, no_hp, foto);
+                        } catch (Exception e) {
+                            onSubmitError("Terjadi Kesalahan Submit " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -119,6 +152,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
 
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 ivFoto.setImageBitmap(bitmap);
+
             } catch (IOException e) {
                 e.printStackTrace();
                 onSubmitError("Gambar Error " + e.toString());
