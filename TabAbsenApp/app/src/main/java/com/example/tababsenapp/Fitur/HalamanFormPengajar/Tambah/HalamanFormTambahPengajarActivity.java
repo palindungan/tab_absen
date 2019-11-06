@@ -34,7 +34,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
     Toolbar toolbar;
 
     ImageView ivFoto;
-    EditText txtNama, txtUsername, txtPassword, txtAlamat, txtNoHp;
+    EditText edtNama, edtUsername, edtPassword, edtAlamat, edtNoHp;
     Button btnSubmit;
 
     private Bitmap bitmap;
@@ -51,11 +51,11 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
         initActionBar();
 
         ivFoto = findViewById(R.id.iv_foto);
-        txtNama = findViewById(R.id.txt_nama);
-        txtUsername = findViewById(R.id.txt_username);
-        txtPassword = findViewById(R.id.txt_password);
-        txtAlamat = findViewById(R.id.txt_alamat);
-        txtNoHp = findViewById(R.id.txt_no_hp);
+        edtNama = findViewById(R.id.edt_nama);
+        edtUsername = findViewById(R.id.edt_username);
+        edtPassword = findViewById(R.id.edt_password);
+        edtAlamat = findViewById(R.id.edt_alamat);
+        edtNoHp = findViewById(R.id.edt_no_hp);
         btnSubmit = findViewById(R.id.btn_submit);
 
         ivFoto.setOnClickListener(new View.OnClickListener() {
@@ -105,11 +105,11 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String nama = txtNama.getText().toString().trim();
-                        String username = txtUsername.getText().toString().trim();
-                        String password = txtPassword.getText().toString().trim();
-                        String alamat = txtAlamat.getText().toString().trim();
-                        String no_hp = txtNoHp.getText().toString().trim();
+                        String nama = edtNama.getText().toString().trim();
+                        String username = edtUsername.getText().toString().trim();
+                        String password = edtPassword.getText().toString().trim();
+                        String alamat = edtAlamat.getText().toString().trim();
+                        String no_hp = edtNoHp.getText().toString().trim();
                         String foto = data_photo;
 
                         try {
