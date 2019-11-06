@@ -39,7 +39,7 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
     @NonNull
     @Override
     public DaftarPengajarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_pengajar,parent,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_pengajar, parent, false);
         return new DaftarPengajarViewHolder(itemView);
     }
 
@@ -48,7 +48,10 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
         holder.txtNama.setText(dataModelArrayList.get(position).getNama());
         holder.txtUsername.setText(dataModelArrayList.get(position).getUsername());
         holder.txtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
-        Picasso.get().load(dataModelArrayList.get(position).getFoto()).placeholder(R.drawable.ic_circle).into(holder.ivFoto);
+
+        String alamat = sessionManager.getUploadUrl() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpeg";
+        holder.txtNoHP.setText(alamat);
+        Picasso.get().load(alamat).placeholder(R.drawable.ic_circle).into(holder.ivFoto);
     }
 
     @Override
@@ -58,8 +61,9 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
 
     public class DaftarPengajarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView txtNama, txtUsername,txtNoHP;
+        protected TextView txtNama, txtUsername, txtNoHP;
         protected ImageView ivFoto;
+
         public DaftarPengajarViewHolder(@NonNull View itemView) {
             super(itemView);
 
