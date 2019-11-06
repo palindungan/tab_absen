@@ -1,8 +1,10 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.FormEditPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEditPengajarPresenter;
@@ -13,6 +15,8 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
     IFormEditPengajarPresenter formEditPengajarPresenter;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +24,27 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
         formEditPengajarPresenter = new FormEditPengajarPresenter(this, this);
 
+        toolbar = findViewById(R.id.toolbar);
+        initActionBar();
+
+    }
+
+    @Override
+    public void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 }

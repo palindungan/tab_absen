@@ -63,6 +63,8 @@ public class FormTambahPengajarPresenter implements IFormTambahPengajarPresenter
 
                                 if (success.equals("1")) {
                                     formTambahPengajarView.onSubmitSuccess("Berhasil Menambah Data Pengajar Baru");
+                                } else {
+                                    formTambahPengajarView.onSubmitError("Gagal Menambah Data");
                                 }
 
                             } catch (JSONException e) {
