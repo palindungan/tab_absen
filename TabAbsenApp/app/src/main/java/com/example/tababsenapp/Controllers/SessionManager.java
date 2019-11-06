@@ -24,6 +24,8 @@ public class SessionManager {
     private static final String NAMA = "NAMA";
     private static final String USERNAME = "USERNAME";
 
+    String ipAddress = "http://192.168.137.1/";
+
     public SessionManager(Context context) {
         this.context = context;
 
@@ -72,7 +74,12 @@ public class SessionManager {
     }
 
     public String getBaseUrl() {
-        String base_url = "http://192.168.137.1/tab_absen/web/api/";
+        String base_url = ipAddress + "tab_absen/web/api/";
         return base_url;
+    }
+
+    public String getUploadUrl() {
+        String upload_url = ipAddress + "tab_absen/web/upload/";
+        return upload_url;
     }
 }

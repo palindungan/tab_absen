@@ -93,4 +93,47 @@ class Pengajar extends REST_Controller
             $this->response(array($result, 502));
         }
     }
+
+    function ambil_data_pengajar_post()
+    {
+        $id_pengajar = $this->post('id_pengajar');
+
+        // variable array
+        $result = array();
+        $result['pengajar'] = array();
+
+        $data_id = array(
+            'id_pengajar' => $id_pengajar
+        );
+
+        // mengambil data dari database
+        $query = $this->M_pengajar->get_data('pengajar', $data_id);
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'nama' => $row["nama"],
+                    'username' => $row["username"],
+                    'alamat' => $row["alamat"],
+                    'no_hp' => $row["no_hp"],
+                    'foto' => $row["foto"]
+                );
+
+                array_push($result['pengajar'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "success berhasil mengambil data";
+                $this->response($result, 200);
+            }
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error data tidak ada";
+            $this->response($result, 502);
+        }
+    }
 }

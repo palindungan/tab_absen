@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.FormEditPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEditPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.view.IFormEditPengajarView;
 import com.example.tababsenapp.R;
 import com.squareup.picasso.Picasso;
+
+import es.dmoral.toasty.Toasty;
 
 public class HalamanFormEditPengajarActivity extends AppCompatActivity implements IFormEditPengajarView {
 
@@ -47,6 +50,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         ivFoto = findViewById(R.id.iv_foto);
 
         String id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
+        formEditPengajarPresenter.inisiasiAwal(id_pengajar);
 
         btnUpdate = findViewById(R.id.btn_update);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +71,22 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     }
 
     @Override
-    public void setNilaiDefault(String nama, String username, String password, String alamat, String no_hp, String foto) {
+    public void setNilaiDefault(String nama, String username, String alamat, String no_hp, String foto) {
         edtNama.setText(nama);
         edtUsername.setText(username);
-        edtPassword.setText(password);
         edtAlamat.setText(alamat);
         edtNoHp.setText(no_hp);
         Picasso.get().load(foto).placeholder(R.drawable.ic_circle).into(ivFoto);
+    }
+
+    @Override
+    public void onSucceessMessage(String message) {
+        Toasty.success(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onErrorMessage(String message) {
+        Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

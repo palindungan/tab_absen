@@ -57,8 +57,8 @@ public class FormTambahPengajarPresenter implements IFormTambahPengajarPresenter
         } else {
 
             if (password.equals(konfirmasi_password)) {
-                String URL_LOGIN = base_url + "pengajar/tambah_pengajar"; // url http request
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+                String URLstring = base_url + "pengajar/tambah_pengajar"; // url http request
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLstring,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
