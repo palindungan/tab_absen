@@ -14,6 +14,7 @@ import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.FormEdit
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEditPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.view.IFormEditPengajarView;
 import com.example.tababsenapp.R;
+import com.squareup.picasso.Picasso;
 
 public class HalamanFormEditPengajarActivity extends AppCompatActivity implements IFormEditPengajarView {
 
@@ -24,6 +25,8 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword, edtAlamat, edtNoHp;
     ImageView ivFoto;
     Button btnUpdate;
+
+    String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtNoHp = findViewById(R.id.edt_no_hp);
         ivFoto = findViewById(R.id.iv_foto);
 
+        String id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
+
         btnUpdate = findViewById(R.id.btn_update);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +64,16 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public void setNilaiDefault(String nama, String username, String password, String alamat, String no_hp, String foto) {
+        edtNama.setText(nama);
+        edtUsername.setText(username);
+        edtPassword.setText(password);
+        edtAlamat.setText(alamat);
+        edtNoHp.setText(no_hp);
+        Picasso.get().load(foto).placeholder(R.drawable.ic_circle).into(ivFoto);
     }
 
     @Override

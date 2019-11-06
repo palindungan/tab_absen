@@ -20,4 +20,9 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
         sessionManager = new SessionManager(context);
         base_url = sessionManager.getBaseUrl();
     }
+
+    @Override
+    public void inisiasiAwal(String id_pengajar) {
+
+    }
 }

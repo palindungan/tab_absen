@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Adapters.AdapterDaftarPengajar;
+import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.HalamanFormEditPengajarActivity;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.presenter.IListPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.presenter.ListPengajarPresenter;
@@ -33,6 +34,8 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
+
+    String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,9 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         adapterDaftarPengajar.setOnItemClickListener(new AdapterDaftarPengajar.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                Intent intent = new Intent(HalamanListPengajarActivity.this, HalamanFormEditPengajarActivity.class);
+                intent.putExtra(EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                startActivity(intent);
             }
         });
 
