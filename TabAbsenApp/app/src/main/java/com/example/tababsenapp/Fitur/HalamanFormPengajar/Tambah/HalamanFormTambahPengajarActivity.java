@@ -38,7 +38,7 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
     Button btnSubmit;
 
     private Bitmap bitmap;
-    String data_photo;
+    String data_photo ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
