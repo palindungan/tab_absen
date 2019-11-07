@@ -109,4 +109,11 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    // untuk icon cart
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listPengajarPresenter.onLoadSemuaListPengajar();
+    }
+
 }
