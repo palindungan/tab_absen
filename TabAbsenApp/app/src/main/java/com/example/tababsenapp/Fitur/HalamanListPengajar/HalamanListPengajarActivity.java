@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -37,6 +39,8 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
 
     String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,26 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HalamanListPengajarActivity.this, HalamanFormTambahPengajarActivity.class));
+            }
+        });
+
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to make your refresh action
+                listPengajarPresenter.onLoadSemuaListPengajar();
+                
+                // CallYourRefreshingMethod();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefreshLayout.isRefreshing()) {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 1000);
             }
         });
     }
@@ -115,5 +139,4 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         super.onResume();
         listPengajarPresenter.onLoadSemuaListPengajar();
     }
-
 }
