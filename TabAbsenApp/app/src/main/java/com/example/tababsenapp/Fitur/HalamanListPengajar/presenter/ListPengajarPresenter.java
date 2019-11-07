@@ -81,13 +81,13 @@ public class ListPengajarPresenter implements IListPengajarPresenter {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    listPengajarView.onErrorMessage("Gagal Menerima Data : " + e);
+                    listPengajarView.onErrorMessage("Gagal Menerima Data : " + e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                listPengajarView.onErrorMessage("Volley Error : " + error);
+                listPengajarView.onErrorMessage("Volley Error : " + error.toString());
             }
         });
 
