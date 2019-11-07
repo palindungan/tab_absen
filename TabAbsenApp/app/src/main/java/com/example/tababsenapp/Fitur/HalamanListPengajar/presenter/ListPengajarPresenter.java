@@ -76,6 +76,8 @@ public class ListPengajarPresenter implements IListPengajarPresenter {
                         }
 
                         listPengajarView.onSetupListView(dataModelArrayList);
+                    } else {
+                        listPengajarView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

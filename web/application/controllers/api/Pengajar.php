@@ -49,7 +49,7 @@ class Pengajar extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "error data tidak ada";
-            $this->response($result, 502);
+            $this->response($result, 200);
         }
     }
 
