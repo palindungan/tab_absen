@@ -68,7 +68,7 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
             public void onRefresh() {
                 // Your code to make your refresh action
                 listPengajarPresenter.onLoadSemuaListPengajar();
-                
+
                 // CallYourRefreshingMethod();
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
