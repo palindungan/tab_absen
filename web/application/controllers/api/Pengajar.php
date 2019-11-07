@@ -66,7 +66,7 @@ class Pengajar extends REST_Controller
 
         $nama_foto = "DEFFPE";
 
-        if ($foto != "") {
+        if (!empty($foto)) {
             $nama_foto = 'F' . $id_pengajar;
         }
 
@@ -83,7 +83,7 @@ class Pengajar extends REST_Controller
         $insert =  $this->M_pengajar->input_data('pengajar', $data);
         if ($insert) {
 
-            if ($foto != "") {
+            if (!empty($foto)) {
                 $path = "./upload/image/pengajar/$nama_foto.jpg";
                 file_put_contents($path, base64_decode($foto));
             }
@@ -156,7 +156,7 @@ class Pengajar extends REST_Controller
 
         $data = array();
 
-        if ($password = "") {
+        if (empty($password)) {
             $data = array(
                 'id_pengajar'   => $id_pengajar,
                 'nama'          => $nama,
@@ -184,7 +184,7 @@ class Pengajar extends REST_Controller
         $update =  $this->M_pengajar->update_data($where, 'pengajar', $data);
         if ($update) {
 
-            if ($foto != "") {
+            if (!empty($foto)) {
 
                 // lokasi gambar berada
                 $path = './upload/image/pengajar/';
