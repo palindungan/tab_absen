@@ -95,7 +95,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
     }
 
     @Override
-    public void onUpdatePengajar(String nama, String username, String password, String konfirmasi_password, String alamat, String no_hp, String foto) {
+    public void onUpdatePengajar(String id_pengajar, String nama, String username, String password, String konfirmasi_password, String alamat, String no_hp, String foto) {
         if (nama.isEmpty()) {
             formEditPengajarView.onErrorMessage("Nama Tidak Boleh Kosong !");
         } else if (username.isEmpty()) {
@@ -141,6 +141,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<>();
+                        params.put("id_pengajar", id_pengajar);
                         params.put("nama", nama);
                         params.put("username", username);
                         params.put("password", password);

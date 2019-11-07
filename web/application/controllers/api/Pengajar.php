@@ -154,16 +154,6 @@ class Pengajar extends REST_Controller
         $foto = $this->post('foto');
         $nama_foto = 'F' . $id_pengajar;
 
-        if ($foto != "") {
-
-            // lokasi gambar berada
-            $path = './upload/image/pengajar/';
-            unlink($path . $nama_foto); // hapus data di folder dimana data tersimpan
-
-            $path2 = "./upload/image/pengajar/$nama_foto.jpg";
-            file_put_contents($path2, base64_decode($foto));
-        }
-
         $data = array(
             'id_pengajar'   => $id_pengajar,
             'nama'          => $nama,
@@ -180,6 +170,16 @@ class Pengajar extends REST_Controller
 
         $update =  $this->M_pengajar->update_data($where, 'pengajar', $data);
         if ($update) {
+
+            if ($foto != "") {
+
+                // lokasi gambar berada
+                $path = './upload/image/pengajar/';
+                unlink($path . $nama_foto); // hapus data di folder dimana data tersimpan
+
+                $path2 = "./upload/image/pengajar/$nama_foto.jpg";
+                file_put_contents($path2, base64_decode($foto));
+            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";

@@ -39,6 +39,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     Button btnUpdate;
 
     String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+    String id_pengajar = "";
 
     private Bitmap bitmap;
     String data_photo = "";
@@ -61,7 +62,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtNoHp = findViewById(R.id.edt_no_hp);
         ivFoto = findViewById(R.id.iv_foto);
 
-        String id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
+        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
         formEditPengajarPresenter.inisiasiAwal(id_pengajar);
 
         ivFoto.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +79,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showDialog();
             }
         });
 
@@ -130,7 +131,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                         String foto = data_photo;
 
                         try {
-                            formEditPengajarPresenter.onUpdatePengajar(nama, username, password, konfirmasi_password, alamat, no_hp, foto);
+                            formEditPengajarPresenter.onUpdatePengajar(id_pengajar, nama, username, password, konfirmasi_password, alamat, no_hp, foto);
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
                         }
