@@ -100,10 +100,6 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
             formEditPengajarView.onErrorMessage("Nama Tidak Boleh Kosong !");
         } else if (username.isEmpty()) {
             formEditPengajarView.onErrorMessage("Username Tidak Boleh Kosong !");
-        } else if (password.isEmpty()) {
-            formEditPengajarView.onErrorMessage("Passowrd Tidak Boleh Kosong !");
-        } else if (konfirmasi_password.isEmpty()) {
-            formEditPengajarView.onErrorMessage("Konfirmasi Password Tidak Boleh Kosong !");
         } else if (alamat.isEmpty()) {
             formEditPengajarView.onErrorMessage("Alamat Tidak Boleh Kosong !");
         } else if (no_hp.isEmpty()) {

@@ -51,14 +51,14 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password ..."
+            android:hint="Password Baru ..."
             android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/edt_konfirmasi_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Konfirmasi Password ..."
+            android:hint="Konfirmasi Password Baru ..."
             android:inputType="textPassword" />
 
         <EditText

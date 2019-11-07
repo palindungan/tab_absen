@@ -154,15 +154,28 @@ class Pengajar extends REST_Controller
         $foto = $this->post('foto');
         $nama_foto = 'F' . $id_pengajar;
 
-        $data = array(
-            'id_pengajar'   => $id_pengajar,
-            'nama'          => $nama,
-            'username'      => $username,
-            'password'      => password_hash($password, PASSWORD_DEFAULT),
-            'alamat'        => $alamat,
-            'no_hp'         => $no_hp,
-            'foto'          => $nama_foto
-        );
+        $data = array();
+
+        if ($password = "") {
+            $data = array(
+                'id_pengajar'   => $id_pengajar,
+                'nama'          => $nama,
+                'username'      => $username,
+                'alamat'        => $alamat,
+                'no_hp'         => $no_hp,
+                'foto'          => $nama_foto
+            );
+        } else {
+            $data = array(
+                'id_pengajar'   => $id_pengajar,
+                'nama'          => $nama,
+                'username'      => $username,
+                'password'      => password_hash($password, PASSWORD_DEFAULT),
+                'alamat'        => $alamat,
+                'no_hp'         => $no_hp,
+                'foto'          => $nama_foto
+            );
+        }
 
         $where = array(
             'id_pengajar' => $id_pengajar
