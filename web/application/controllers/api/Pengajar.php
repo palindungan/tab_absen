@@ -151,9 +151,18 @@ class Pengajar extends REST_Controller
         $password = $this->post('password');
         $alamat = $this->post('alamat');
         $no_hp = $this->post('no_hp');
-
-        $nama_foto = 'F' . $id_pengajar;
         $foto = $this->post('foto');
+        $nama_foto = 'F' . $id_pengajar;
+
+        if ($foto != "") {
+
+            // lokasi gambar berada
+            $path = './upload/image/pengajar/';
+            unlink($path . $nama_foto); // hapus data di folder dimana data tersimpan
+
+            $path2 = "./upload/image/pengajar/$nama_foto.jpg";
+            file_put_contents($path2, base64_decode($foto));
+        }
 
         $data = array(
             'id_pengajar'   => $id_pengajar,
@@ -165,24 +174,23 @@ class Pengajar extends REST_Controller
             'foto'          => $nama_foto
         );
 
-        $data_id = array(
+        $where = array(
             'id_pengajar' => $id_pengajar
         );
 
-        // mengambil data dari database
-        $query = $this->M_pengajar->get_data('pengajar', $data_id);
+        $update =  $this->M_pengajar->update_data($where, 'pengajar', $data);
+        if ($update) {
 
-        // mengeluarkan data dari database
-        foreach ($query->result_array() as $row) {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
+        } else {
 
-            // ambil detail data db
-            $data = array(
-                'nama' => $row["nama"],
-                'username' => $row["username"],
-                'alamat' => $row["alamat"],
-                'no_hp' => $row["no_hp"],
-                'foto' => $row["foto"]
-            );
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error";
+            $this->response(array($result, 502));
         }
     }
 }
