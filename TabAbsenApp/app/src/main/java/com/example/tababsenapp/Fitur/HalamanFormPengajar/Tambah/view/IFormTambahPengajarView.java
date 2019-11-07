@@ -10,4 +10,6 @@ public interface IFormTambahPengajarView {
     void onSubmitError(String message);
 
     void showDialog();
+
+    void backPressed();
 }

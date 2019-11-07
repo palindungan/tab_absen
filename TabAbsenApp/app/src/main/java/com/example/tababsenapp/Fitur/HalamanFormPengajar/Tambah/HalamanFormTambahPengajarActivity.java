@@ -133,6 +133,11 @@ public class HalamanFormTambahPengajarActivity extends AppCompatActivity impleme
     }
 
     @Override
+    public void backPressed() {
+        onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 

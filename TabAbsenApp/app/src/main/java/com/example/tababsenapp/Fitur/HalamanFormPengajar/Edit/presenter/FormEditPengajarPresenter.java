@@ -118,6 +118,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
 
                                     if (success.equals("1")) {
                                         formEditPengajarView.onSucceessMessage("Berhasil Mengupdate Data");
+                                        formEditPengajarView.backPressed();
                                     } else {
                                         formEditPengajarView.onErrorMessage("Gagal Mengupdate Data !");
                                     }
