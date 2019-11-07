@@ -1,6 +1,8 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Base64;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -16,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,5 +92,81 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onUpdatePengajar(String nama, String username, String password, String konfirmasi_password, String alamat, String no_hp, String foto) {
+        if (nama.isEmpty()) {
+            formEditPengajarView.onErrorMessage("Nama Tidak Boleh Kosong !");
+        } else if (username.isEmpty()) {
+            formEditPengajarView.onErrorMessage("Username Tidak Boleh Kosong !");
+        } else if (password.isEmpty()) {
+            formEditPengajarView.onErrorMessage("Passowrd Tidak Boleh Kosong !");
+        } else if (konfirmasi_password.isEmpty()) {
+            formEditPengajarView.onErrorMessage("Konfirmasi Password Tidak Boleh Kosong !");
+        } else if (alamat.isEmpty()) {
+            formEditPengajarView.onErrorMessage("Alamat Tidak Boleh Kosong !");
+        } else if (no_hp.isEmpty()) {
+            formEditPengajarView.onErrorMessage("No Hp Tidak Boleh Kosong !");
+        } else {
+
+            if (password.equals(konfirmasi_password)) {
+                String URLstring = base_url + "pengajar/update_pengajar"; // url http request
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URLstring,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String success = jsonObject.getString("success");
+
+                                    if (success.equals("1")) {
+                                        formEditPengajarView.onSucceessMessage("Berhasil Mengupdate Data");
+                                    } else {
+                                        formEditPengajarView.onErrorMessage("Gagal Mengupdate Data !");
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    formEditPengajarView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                formEditPengajarView.onErrorMessage("Volley Error : " + error.toString());
+                            }
+                        }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("nama", nama);
+                        params.put("username", username);
+                        params.put("password", password);
+                        params.put("alamat", alamat);
+                        params.put("no_hp", no_hp);
+                        params.put("foto", foto);
+                        return params;
+                    }
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(stringRequest);
+            } else {
+                formEditPengajarView.onErrorMessage("Kesalahan Konfirmasi Password !");
+            }
+        }
+    }
+
+    @Override
+    public String getStringImage(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+
+        byte[] imageByteArray = byteArrayOutputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
+
+        return encodedImage;
     }
 }

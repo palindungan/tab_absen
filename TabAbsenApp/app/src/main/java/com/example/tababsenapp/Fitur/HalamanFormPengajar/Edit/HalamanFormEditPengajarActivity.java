@@ -1,9 +1,16 @@
 package com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +23,8 @@ import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEdi
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.view.IFormEditPengajarView;
 import com.example.tababsenapp.R;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 import es.dmoral.toasty.Toasty;
 
@@ -30,6 +39,9 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     Button btnUpdate;
 
     String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+
+    private Bitmap bitmap;
+    String data_photo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +63,16 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
         String id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
         formEditPengajarPresenter.inisiasiAwal(id_pengajar);
+
+        ivFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 1);
+            }
+        });
 
         btnUpdate = findViewById(R.id.btn_update);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +112,42 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     }
 
     @Override
+    public void showDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk melakukan input !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        String nama = edtNama.getText().toString().trim();
+                        String username = edtUsername.getText().toString().trim();
+                        String password = edtPassword.getText().toString().trim();
+                        String konfirmasi_password = edtKonfirmasiPassword.getText().toString().trim();
+                        String alamat = edtAlamat.getText().toString().trim();
+                        String no_hp = edtNoHp.getText().toString().trim();
+                        String foto = data_photo;
+
+                        try {
+                            formEditPengajarPresenter.onUpdatePengajar(nama, username, password, konfirmasi_password, alamat, no_hp, foto);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -98,5 +156,26 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                 break;
         }
         return true;
+    }
+
+    // proses pengolahan gambar
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                ivFoto.setImageBitmap(bitmap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                onErrorMessage("Gambar Error " + e.toString());
+            }
+
+            data_photo = formEditPengajarPresenter.getStringImage(bitmap);
+        }
     }
 }
