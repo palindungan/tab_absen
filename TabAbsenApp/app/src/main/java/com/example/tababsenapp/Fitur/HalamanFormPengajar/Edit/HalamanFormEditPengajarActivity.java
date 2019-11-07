@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -155,17 +156,6 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         onBackPressed();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
-    }
-
     // proses pengolahan gambar
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -185,5 +175,28 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
             data_photo = formEditPengajarPresenter.getStringImage(bitmap);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar_halaman_form_edit_pengajar, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_hapus_akun:
+                onSucceessMessage("hapus");
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
