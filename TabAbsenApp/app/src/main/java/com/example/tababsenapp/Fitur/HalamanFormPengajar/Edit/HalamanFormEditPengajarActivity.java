@@ -186,14 +186,14 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        
+
         switch (item.getItemId()) {
 
             case android.R.id.home:
                 onBackPressed();
                 break;
             case R.id.menu_hapus_akun:
-                onSucceessMessage("hapus");
+                formEditPengajarPresenter.hapusAkun(id_pengajar);
                 break;
         }
 

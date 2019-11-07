@@ -8,4 +8,6 @@ public interface IFormEditPengajarPresenter {
     void onUpdatePengajar(String id_pengajar, String nama, String username, String password, String konfirmasi_password, String alamat, String no_hp, String foto);
 
     String getStringImage(Bitmap bitmap);
+
+    void hapusAkun(String id);
 }

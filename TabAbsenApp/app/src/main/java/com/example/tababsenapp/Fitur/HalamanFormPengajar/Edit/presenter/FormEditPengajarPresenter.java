@@ -42,7 +42,6 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
     public void inisiasiAwal(String id_pengajar) {
 
         String URLstring = base_url + "pengajar/ambil_data_pengajar"; // url http request
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLstring,
                 new Response.Listener<String>() {
                     @Override
@@ -166,5 +165,47 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
         String encodedImage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
 
         return encodedImage;
+    }
+
+    @Override
+    public void hapusAkun(String id) {
+        String URLstring = base_url + "pengajar/hapus_data_pengajar"; // url http request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLstring,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            if (success.equals("1")) {
+                                formEditPengajarView.onSucceessMessage("Berhasil Menghapus Data");
+                                formEditPengajarView.backPressed();
+                            } else {
+                                formEditPengajarView.onErrorMessage("Gagal Menghapus Data !");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            formEditPengajarView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        formEditPengajarView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }
