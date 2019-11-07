@@ -186,10 +186,19 @@ class Pengajar extends REST_Controller
 
             if (!empty($foto)) {
 
-                // lokasi gambar berada
-                $path = './upload/image/pengajar/';
-                $format = '.jpg';
-                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+                // mengambil data dari database
+                $query = $this->M_pengajar->get_data('pengajar', $where);
+                foreach ($query->result_array() as $row) {
+
+                    $cek_foto = $row["foto"];
+                }
+
+                if ($cek_foto == "DEFFPE") {
+                    // lokasi gambar berada
+                    $path = './upload/image/pengajar/';
+                    $format = '.jpg';
+                    unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+                }
 
                 $path2 = "./upload/image/pengajar/$nama_foto.jpg";
                 file_put_contents($path2, base64_decode($foto));
