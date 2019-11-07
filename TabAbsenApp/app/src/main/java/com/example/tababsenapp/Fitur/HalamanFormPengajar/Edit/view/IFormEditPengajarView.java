@@ -9,7 +9,9 @@ public interface IFormEditPengajarView {
 
     void onErrorMessage(String message);
 
-    void showDialog();
+    void showDialogUpdate();
+
+    void showDialogDelete();
 
     void backPressed();
 }

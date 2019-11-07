@@ -82,7 +82,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showDialogUpdate();
             }
         });
 
@@ -116,7 +116,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     }
 
     @Override
-    public void showDialog() {
+    public void showDialogUpdate() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
         alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
@@ -137,6 +137,34 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                             formEditPengajarPresenter.onUpdatePengajar(id_pengajar, nama, username, password, konfirmasi_password, alamat, no_hp, foto);
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void showDialogDelete() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Akun Ini ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Menghapus !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            formEditPengajarPresenter.hapusAkun(id_pengajar);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
                         }
 
                     }
@@ -193,7 +221,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                 onBackPressed();
                 break;
             case R.id.menu_hapus_akun:
-                formEditPengajarPresenter.hapusAkun(id_pengajar);
+                showDialogDelete();
                 break;
         }
 

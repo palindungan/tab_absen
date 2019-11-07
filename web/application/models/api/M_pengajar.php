@@ -12,13 +12,11 @@ class M_pengajar extends CI_Model
         return $status;
     }
 
-    function hapus_data($table, $where)
+    function hapus_data($where, $table)
     {
-        // idnya
         $this->db->where($where);
-
-        // tabelnya
-        $this->db->delete($table);
+        $status = $this->db->delete($table);
+        return $status;
     }
 
     function get_data($table, $where)

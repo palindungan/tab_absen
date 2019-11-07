@@ -169,7 +169,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
 
     @Override
     public void hapusAkun(String id) {
-        String URLstring = base_url + "pengajar/hapus_data_pengajar"; // url http request
+        String URLstring = base_url + "pengajar/delete_pengajar"; // url http request
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLstring,
                 new Response.Listener<String>() {
                     @Override
@@ -187,7 +187,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            formEditPengajarView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                            formEditPengajarView.onErrorMessage("Kesalahan Menerima Data : " + response);
                         }
                     }
                 },

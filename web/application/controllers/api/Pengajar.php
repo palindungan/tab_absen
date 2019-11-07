@@ -186,6 +186,8 @@ class Pengajar extends REST_Controller
 
             if (!empty($foto)) {
 
+                $cek_foto = "";
+
                 // mengambil data dari database
                 $query = $this->M_pengajar->get_data('pengajar', $where);
                 foreach ($query->result_array() as $row) {
@@ -202,6 +204,48 @@ class Pengajar extends REST_Controller
 
                 $path2 = "./upload/image/pengajar/$nama_foto.jpg";
                 file_put_contents($path2, base64_decode($foto));
+            }
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error";
+            $this->response(array($result, 502));
+        }
+    }
+
+    function delete_pengajar_post()
+    {
+        $id_pengajar = $this->post('id');
+
+        $where = array(
+            'id_pengajar' => $id_pengajar
+        );
+
+        $hapus =  $this->M_pengajar->hapus_data($where, "pengajar");
+        if ($hapus) {
+
+            $cek_foto = "";
+
+            // mengambil data dari database
+            $query = $this->M_pengajar->get_data('pengajar', $where);
+            foreach ($query->result_array() as $row) {
+                $cek_foto = $row["foto"];
+            }
+
+            if ($cek_foto != "DEFFPE") {
+
+                $nama_foto = 'F' . $id_pengajar;
+
+                // lokasi gambar berada
+                $path = './upload/image/pengajar/';
+                $format = '.jpg';
+                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
             }
 
             // membuat array untuk di transfer ke API
