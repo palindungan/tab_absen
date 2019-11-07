@@ -22,6 +22,8 @@ import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.FormEdit
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEditPengajarPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.view.IFormEditPengajarView;
 import com.example.tababsenapp.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -99,7 +101,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtUsername.setText(username);
         edtAlamat.setText(alamat);
         edtNoHp.setText(no_hp);
-        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).into(ivFoto);
+        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     @Override

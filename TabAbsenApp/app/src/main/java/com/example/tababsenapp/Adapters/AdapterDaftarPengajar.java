@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tababsenapp.Controllers.SessionManager;
 import com.example.tababsenapp.Model.pengajar.Pengajar;
 import com.example.tababsenapp.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
         holder.txtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
 
         String alamat = sessionManager.getUploadUrl() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
-        Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).into(holder.ivFoto);
+        Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
     }
 
     @Override
