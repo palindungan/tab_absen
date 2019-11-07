@@ -49,8 +49,8 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
         holder.txtUsername.setText(dataModelArrayList.get(position).getUsername());
         holder.txtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
 
-        String alamat = sessionManager.getUploadUrl() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpeg";
-        Picasso.get().load(alamat).placeholder(R.drawable.ic_circle).into(holder.ivFoto);
+        String alamat = sessionManager.getUploadUrl() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
+        Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).into(holder.ivFoto);
     }
 
     @Override

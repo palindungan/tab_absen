@@ -62,9 +62,13 @@ class Pengajar extends REST_Controller
         $password = $this->post('password');
         $alamat = $this->post('alamat');
         $no_hp = $this->post('no_hp');
-
-        $nama_foto = 'F' . $id_pengajar;
         $foto = $this->post('foto');
+
+        $nama_foto = "DEFFPE";
+
+        if ($foto != "") {
+            $nama_foto = 'F' . $id_pengajar;
+        }
 
         $data = array(
             'id_pengajar'   => $id_pengajar,
@@ -79,13 +83,15 @@ class Pengajar extends REST_Controller
         $insert =  $this->M_pengajar->input_data('pengajar', $data);
         if ($insert) {
 
-            $path = "./upload/image/pengajar/$nama_foto.jpeg";
-            if (file_put_contents($path, base64_decode($foto))) {
-                // membuat array untuk di transfer ke API
-                $result["success"] = "1";
-                $result["message"] = "success";
-                $this->response($result, 200);
+            if ($foto != "") {
+                $path = "./upload/image/pengajar/$nama_foto.jpg";
+                file_put_contents($path, base64_decode($foto));
             }
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
@@ -134,6 +140,49 @@ class Pengajar extends REST_Controller
             $result["success"] = "0";
             $result["message"] = "error data tidak ada";
             $this->response($result, 502);
+        }
+    }
+
+    function update_pengajar_post()
+    {
+        $id_pengajar = $this->post('id_pengajar');
+        $nama = $this->post('nama');
+        $username = $this->post('username');
+        $password = $this->post('password');
+        $alamat = $this->post('alamat');
+        $no_hp = $this->post('no_hp');
+
+        $nama_foto = 'F' . $id_pengajar;
+        $foto = $this->post('foto');
+
+        $data = array(
+            'id_pengajar'   => $id_pengajar,
+            'nama'          => $nama,
+            'username'      => $username,
+            'password'      => password_hash($password, PASSWORD_DEFAULT),
+            'alamat'        => $alamat,
+            'no_hp'         => $no_hp,
+            'foto'          => $nama_foto
+        );
+
+        $data_id = array(
+            'id_pengajar' => $id_pengajar
+        );
+
+        // mengambil data dari database
+        $query = $this->M_pengajar->get_data('pengajar', $data_id);
+
+        // mengeluarkan data dari database
+        foreach ($query->result_array() as $row) {
+
+            // ambil detail data db
+            $data = array(
+                'nama' => $row["nama"],
+                'username' => $row["username"],
+                'alamat' => $row["alamat"],
+                'no_hp' => $row["no_hp"],
+                'foto' => $row["foto"]
+            );
         }
     }
 }

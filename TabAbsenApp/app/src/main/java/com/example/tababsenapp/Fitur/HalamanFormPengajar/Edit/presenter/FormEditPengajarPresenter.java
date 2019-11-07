@@ -60,7 +60,7 @@ public class FormEditPengajarPresenter implements IFormEditPengajarPresenter {
                                     String no_hp = object.getString("no_hp").trim();
                                     String foto = object.getString("foto").trim();
 
-                                    String alamat_foto = sessionManager.getUploadUrl() + "image/pengajar/" + foto + ".jpeg";
+                                    String alamat_foto = sessionManager.getUploadUrl() + "image/pengajar/" + foto + ".jpg";
 
                                     formEditPengajarView.setNilaiDefault(nama, username, alamat, no_hp, alamat_foto);
 

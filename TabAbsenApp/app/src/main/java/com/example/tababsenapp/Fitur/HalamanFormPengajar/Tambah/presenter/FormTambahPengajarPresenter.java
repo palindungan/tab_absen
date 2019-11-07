@@ -52,8 +52,6 @@ public class FormTambahPengajarPresenter implements IFormTambahPengajarPresenter
             formTambahPengajarView.onSubmitError("Alamat Tidak Boleh Kosong !");
         } else if (no_hp.isEmpty()) {
             formTambahPengajarView.onSubmitError("No Hp Tidak Boleh Kosong !");
-        } else if (foto.isEmpty()) {
-            formTambahPengajarView.onSubmitError("Pilih Foto Profil Anda !");
         } else {
 
             if (password.equals(konfirmasi_password)) {

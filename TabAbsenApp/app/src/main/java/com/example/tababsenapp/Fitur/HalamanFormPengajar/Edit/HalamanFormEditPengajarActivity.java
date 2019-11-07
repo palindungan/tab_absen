@@ -76,7 +76,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtUsername.setText(username);
         edtAlamat.setText(alamat);
         edtNoHp.setText(no_hp);
-        Picasso.get().load(foto).placeholder(R.drawable.ic_circle).into(ivFoto);
+        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).into(ivFoto);
     }
 
     @Override
