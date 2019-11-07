@@ -175,7 +175,7 @@ class Pengajar extends REST_Controller
 
                 // lokasi gambar berada
                 $path = './upload/image/pengajar/';
-                unlink($path . $nama_foto); // hapus data di folder dimana data tersimpan
+                unlink($path . $nama_foto.'.jpg'); // hapus data di folder dimana data tersimpan
 
                 $path2 = "./upload/image/pengajar/$nama_foto.jpg";
                 file_put_contents($path2, base64_decode($foto));
