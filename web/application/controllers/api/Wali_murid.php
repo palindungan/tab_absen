@@ -51,4 +51,38 @@ class Wali_murid extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function tambah_wali_murid_post()
+    {
+        // ambil data
+        $id_wali_murid = $this->M_wali_murid->get_no();
+        $nama = $this->post('nama');
+        $username = $this->post('username');
+        $password = $this->post('password');
+        $alamat = $this->post('alamat');
+        $no_hp = $this->post('no_hp');
+
+        $data = array(
+            'id_wali_murid'   => $id_wali_murid,
+            'nama'          => $nama,
+            'username'      => $username,
+            'password'      => password_hash($password, PASSWORD_DEFAULT),
+            'alamat'        => $alamat,
+            'no_hp'         => $no_hp
+        );
+
+        $insert =  $this->M_wali_murid->input_data('wali_murid', $data);
+        if ($insert) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error";
+            $this->response(array($result, 502));
+        }
+    }
 }

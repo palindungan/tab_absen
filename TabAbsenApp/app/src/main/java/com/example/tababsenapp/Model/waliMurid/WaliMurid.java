@@ -1,7 +1,7 @@
 package com.example.tababsenapp.Model.waliMurid;
 
 public class WaliMurid {
-    String id_wali_murid, nama, username, password, alamat, no_hp, status_verifikasi;
+    String id_wali_murid, nama, username, password, alamat, no_hp;
 
     public String getId_wali_murid() {
         return id_wali_murid;
@@ -49,13 +49,5 @@ public class WaliMurid {
 
     public void setNo_hp(String no_hp) {
         this.no_hp = no_hp;
-    }
-
-    public String getStatus_verifikasi() {
-        return status_verifikasi;
-    }
-
-    public void setStatus_verifikasi(String status_verifikasi) {
-        this.status_verifikasi = status_verifikasi;
     }
 }
