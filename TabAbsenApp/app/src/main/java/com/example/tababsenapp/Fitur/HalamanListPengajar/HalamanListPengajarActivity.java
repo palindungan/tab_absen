@@ -40,6 +40,7 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
     String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,16 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         toolbar = findViewById(R.id.toolbar);
         initActionBar();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HalamanListPengajarActivity.this, HalamanFormTambahPengajarActivity.class));
             }
         });
-
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -89,17 +91,6 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
     }
 
     @Override
@@ -133,7 +124,17 @@ public class HalamanListPengajarActivity extends AppCompatActivity implements IL
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    // untuk icon cart
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public interface IListWaliMuridView {
     void initActionBar();
 
-    void onSetupLisView(ArrayList<WaliMurid> dataModelArrayList);
+    void onSetupListView(ArrayList<WaliMurid> dataModelArrayList);
 
-    void onSuccessMessage();
+    void onSuccessMessage(String message);
 
-    void onErrorMessage();
+    void onErrorMessage(String message);
 }
