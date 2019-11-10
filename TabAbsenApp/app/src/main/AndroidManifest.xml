@@ -16,9 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Fitur.HalamanFormWaliMurid.Tambah.HalamanFormTambahWaliMuridActivity"></activity>
+        <activity android:name=".Fitur.HalamanListWaliMurid.HalamanListWaliMuridActivity" />
         <activity
             android:name=".Fitur.HalamanFormPengajar.Edit.HalamanFormEditPengajarActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Fitur.HalamanFormPengajar.Tambah.HalamanFormTambahPengajarActivity"
             android:theme="@style/AppThemeNoActionBar" />
