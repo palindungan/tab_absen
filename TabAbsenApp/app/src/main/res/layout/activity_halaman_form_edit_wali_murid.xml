@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fitur.HalamanFormPengajar.Edit.HalamanFormEditPengajarActivity">
+    tools:context=".Fitur.HalamanFormWaliMurid.Edit.HalamanFormEditWaliMuridActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -27,13 +27,6 @@
         android:layout_below="@id/app_bar_layout"
         android:layout_margin="10dp"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/iv_foto"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_circle" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -108,7 +101,7 @@
                 android:hint="No Hp ..." />
 
         </com.google.android.material.textfield.TextInputLayout>
-        
+
         <Button
             android:id="@+id/btn_update"
             android:layout_width="match_parent"

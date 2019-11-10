@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Adapters.AdapterDaftarWaliMurid;
+import com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Edit.HalamanFormEditWaliMuridActivity;
 import com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Tambah.HalamanFormTambahWaliMuridActivity;
 import com.example.tababsenapp.Fitur.HalamanListWaliMurid.presenter.IListWaliMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanListWaliMurid.presenter.ListWaliMuridPresenter;
@@ -104,9 +105,9 @@ public class HalamanListWaliMuridActivity extends AppCompatActivity implements I
         adapterDaftarWaliMurid.setOnItemClickListener(new AdapterDaftarWaliMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListPengajarActivity.this, HalamanFormEditPengajarActivity.class);
-//                intent.putExtra(EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                startActivity(intent);
+                Intent intent = new Intent(HalamanListWaliMuridActivity.this, HalamanFormEditWaliMuridActivity.class);
+                intent.putExtra(EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                startActivity(intent);
             }
         });
     }

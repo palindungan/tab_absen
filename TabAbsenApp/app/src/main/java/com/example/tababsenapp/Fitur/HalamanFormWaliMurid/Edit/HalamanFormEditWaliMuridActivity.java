@@ -1,56 +1,40 @@
-package com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit;
+package com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Edit;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.FormEditPengajarPresenter;
-import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.presenter.IFormEditPengajarPresenter;
-import com.example.tababsenapp.Fitur.HalamanFormPengajar.Edit.view.IFormEditPengajarView;
+import com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Edit.presenter.FormEditWaliMuridPresenter;
+import com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Edit.presenter.IFormEditWaliMuridPresenter;
+import com.example.tababsenapp.Fitur.HalamanFormWaliMurid.Edit.view.IFormEditWaliMuridView;
 import com.example.tababsenapp.R;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
 
 import es.dmoral.toasty.Toasty;
 
-public class HalamanFormEditPengajarActivity extends AppCompatActivity implements IFormEditPengajarView {
+public class HalamanFormEditWaliMuridActivity extends AppCompatActivity implements IFormEditWaliMuridView {
 
-    IFormEditPengajarPresenter formEditPengajarPresenter;
+    IFormEditWaliMuridPresenter formEditWaliMuridPresenter;
 
     Toolbar toolbar;
-
     EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword, edtAlamat, edtNoHp;
-    ImageView ivFoto;
     Button btnUpdate;
 
-    String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
-    String id_pengajar = "";
-
-    private Bitmap bitmap;
-    String data_photo = "";
+    String EXTRA_ID_WALI_MURID = "EXTRA_ID_WALI_MURID";
+    String id_wali_murid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_halaman_form_edit_pengajar);
+        setContentView(R.layout.activity_halaman_form_edit_wali_murid);
 
         toolbar = findViewById(R.id.toolbar);
         initActionBar();
@@ -61,22 +45,11 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
         edtKonfirmasiPassword = findViewById(R.id.edt_konfirmasi_password);
         edtAlamat = findViewById(R.id.edt_alamat);
         edtNoHp = findViewById(R.id.edt_no_hp);
-        ivFoto = findViewById(R.id.iv_foto);
         btnUpdate = findViewById(R.id.btn_update);
 
-        formEditPengajarPresenter = new FormEditPengajarPresenter(this, this);
-        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
-        formEditPengajarPresenter.inisiasiAwal(id_pengajar);
-
-        ivFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 1);
-            }
-        });
+        formEditWaliMuridPresenter = new FormEditWaliMuridPresenter(this, this);
+        id_wali_murid = getIntent().getStringExtra(EXTRA_ID_WALI_MURID);
+        formEditWaliMuridPresenter.inisiasiAwal(id_wali_murid);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,12 +69,11 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     }
 
     @Override
-    public void setNilaiDefault(String nama, String username, String alamat, String no_hp, String foto) {
+    public void setNilaiDefault(String nama, String username, String alamat, String no_hp) {
         edtNama.setText(nama);
         edtUsername.setText(username);
         edtAlamat.setText(alamat);
         edtNoHp.setText(no_hp);
-        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     @Override
@@ -130,10 +102,9 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                         String konfirmasi_password = edtKonfirmasiPassword.getText().toString().trim();
                         String alamat = edtAlamat.getText().toString().trim();
                         String no_hp = edtNoHp.getText().toString().trim();
-                        String foto = data_photo;
 
                         try {
-                            formEditPengajarPresenter.onUpdatePengajar(id_pengajar, nama, username, password, konfirmasi_password, alamat, no_hp, foto);
+                            formEditWaliMuridPresenter.onUpdateWaliMurid(id_wali_murid, nama, username, password, konfirmasi_password, alamat, no_hp);
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
                         }
@@ -161,7 +132,7 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
                     public void onClick(DialogInterface dialog, int id) {
 
                         try {
-                            formEditPengajarPresenter.hapusAkun(id_pengajar);
+                            formEditWaliMuridPresenter.hapusAkun(id_wali_murid);
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
                         }
@@ -181,27 +152,6 @@ public class HalamanFormEditPengajarActivity extends AppCompatActivity implement
     @Override
     public void backPressed() {
         onBackPressed();
-    }
-
-    // proses pengolahan gambar
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri filePath = data.getData();
-            try {
-
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                ivFoto.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                onErrorMessage("Gambar Error " + e.toString());
-            }
-
-            data_photo = formEditPengajarPresenter.getStringImage(bitmap);
-        }
     }
 
     @Override
