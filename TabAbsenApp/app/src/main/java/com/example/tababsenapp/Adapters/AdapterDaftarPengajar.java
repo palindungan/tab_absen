@@ -47,9 +47,9 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
 
     @Override
     public void onBindViewHolder(@NonNull DaftarPengajarViewHolder holder, int position) {
-        holder.edtNama.setText(dataModelArrayList.get(position).getNama());
-        holder.edtUsername.setText(dataModelArrayList.get(position).getUsername());
-        holder.edtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
+        holder.txtNama.setText(dataModelArrayList.get(position).getNama());
+        holder.txtUsername.setText(dataModelArrayList.get(position).getUsername());
+        holder.txtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
 
         String alamat = sessionManager.getUploadUrl() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
         Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
@@ -62,15 +62,15 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
 
     public class DaftarPengajarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView edtNama, edtUsername, edtNoHP;
+        protected TextView txtNama, txtUsername, txtNoHP;
         protected ImageView ivFoto;
 
         public DaftarPengajarViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            edtNama = itemView.findViewById(R.id.edt_nama);
-            edtUsername = itemView.findViewById(R.id.edt_username);
-            edtNoHP = itemView.findViewById(R.id.edt_no_hp);
+            txtNama = itemView.findViewById(R.id.txt_nama);
+            txtUsername = itemView.findViewById(R.id.txt_username);
+            txtNoHP = itemView.findViewById(R.id.txt_no_hp);
             ivFoto = itemView.findViewById(R.id.iv_foto);
 
             ButterKnife.bind(this, itemView);

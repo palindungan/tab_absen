@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,9 +43,9 @@ public class AdapterDaftarWaliMurid extends RecyclerView.Adapter<AdapterDaftarWa
 
     @Override
     public void onBindViewHolder(@NonNull DaftarWaliMuridViewHolder holder, int position) {
-        holder.edtNama.setText(dataModelArrayList.get(position).getNama());
-        holder.edtUsername.setText(dataModelArrayList.get(position).getUsername());
-        holder.edtNoHp.setText(dataModelArrayList.get(position).getNo_hp());
+        holder.txtNama.setText(dataModelArrayList.get(position).getNama());
+        holder.txtUsername.setText(dataModelArrayList.get(position).getUsername());
+        holder.txtNoHp.setText(dataModelArrayList.get(position).getNo_hp());
     }
 
     @Override
@@ -54,14 +55,14 @@ public class AdapterDaftarWaliMurid extends RecyclerView.Adapter<AdapterDaftarWa
 
     public class DaftarWaliMuridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected EditText edtNama, edtUsername, edtNoHp;
+        protected TextView txtNama, txtUsername, txtNoHp;
 
         public DaftarWaliMuridViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            edtNama = itemView.findViewById(R.id.edt_nama);
-            edtUsername = itemView.findViewById(R.id.edt_username);
-            edtNoHp = itemView.findViewById(R.id.edt_no_hp);
+            txtNama = itemView.findViewById(R.id.txt_nama);
+            txtUsername = itemView.findViewById(R.id.txt_username);
+            txtNoHp = itemView.findViewById(R.id.txt_no_hp);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

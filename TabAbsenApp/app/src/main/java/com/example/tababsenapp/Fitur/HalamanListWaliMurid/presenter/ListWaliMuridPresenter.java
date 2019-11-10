@@ -39,7 +39,7 @@ public class ListWaliMuridPresenter implements IListWaliMuridPresenter {
 
     @Override
     public void onLoadSemuaListWaliMurid() {
-        String URLstring = base_url + "pengajar/list_pengajar"; // url http request
+        String URLstring = base_url + "wali_murid/list_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring, new Response.Listener<String>() {
             @Override

@@ -19,6 +19,7 @@ import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPrese
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
 import com.example.tababsenapp.Fitur.HalamanListNotification.HalamanListNotificationActivity;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.HalamanListPengajarActivity;
+import com.example.tababsenapp.Fitur.HalamanListWaliMurid.HalamanListWaliMuridActivity;
 import com.example.tababsenapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -84,6 +85,14 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
                 startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanListPengajarActivity.class));
             }
         });
+
+        linkAdminWaliMurid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanListWaliMuridActivity.class));
+            }
+        });
+
     }
 
     @Override
