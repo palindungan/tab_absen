@@ -24,7 +24,7 @@ public class SessionManager {
     private static final String NAMA = "NAMA";
     private static final String USERNAME = "USERNAME";
 
-    String ipAddress = "http://192.168.137.1/";
+    String ipAddress = "http://192.168.43.112/";
 
     public SessionManager(Context context) {
         this.context = context;

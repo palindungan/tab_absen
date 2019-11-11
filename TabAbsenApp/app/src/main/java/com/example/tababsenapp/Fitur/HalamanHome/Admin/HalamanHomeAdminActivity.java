@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
+import com.example.tababsenapp.Fitur.HalamanListMatapelajaran.HalamanListMataPelajaranActivity;
 import com.example.tababsenapp.Fitur.HalamanListNotification.HalamanListNotificationActivity;
 import com.example.tababsenapp.Fitur.HalamanListPengajar.HalamanListPengajarActivity;
 import com.example.tababsenapp.Fitur.HalamanListWaliMurid.HalamanListWaliMuridActivity;
@@ -90,6 +91,13 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanListWaliMuridActivity.class));
+            }
+        });
+
+        linkAdminMataPelajaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HalamanHomeAdminActivity.this, HalamanListMataPelajaranActivity.class));
             }
         });
 
