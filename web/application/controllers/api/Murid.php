@@ -56,23 +56,30 @@ class Murid extends REST_Controller
     {
         // ambil data
         $id_murid = $this->M_murid->get_no();
+        $id_wali_murid = $this->post('id_wali_murid');
         $nama = $this->post('nama');
-        $username = $this->post('username');
-        $password = $this->post('password');
-        $alamat = $this->post('alamat');
-        $no_hp = $this->post('no_hp');
+        $foto = $this->post('foto');
+
+        $nama_foto = "DEFFMR";
+
+        if (!empty($foto)) {
+            $nama_foto = 'F' . $id_murid;
+        }
 
         $data = array(
             'id_murid'   => $id_murid,
-            'nama'          => $nama,
-            'username'      => $username,
-            'password'      => password_hash($password, PASSWORD_DEFAULT),
-            'alamat'        => $alamat,
-            'no_hp'         => $no_hp
+            'id_wali_murid'   => $id_wali_murid,
+            'nama'   => $nama,
+            'foto'          => $nama_foto
         );
 
         $insert =  $this->M_murid->input_data('murid', $data);
         if ($insert) {
+
+            if (!empty($foto)) {
+                $path = "./upload/image/murid/$nama_foto.jpg";
+                file_put_contents($path, base64_decode($foto));
+            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";

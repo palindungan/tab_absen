@@ -75,7 +75,7 @@ public class HalamanFormTambahWaliMuridActivity extends AppCompatActivity implem
     public void showDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
+        alertDialogBuilder.setTitle("Ingin Menambah Data Wali Murid Baru ?");
         alertDialogBuilder
                 .setMessage("Klik Ya untuk melakukan input !")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {

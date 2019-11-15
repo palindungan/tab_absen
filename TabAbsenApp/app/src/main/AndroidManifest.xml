@@ -17,8 +17,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Fitur.HalamanListMurid.HalamanListMuridActivity"
+            android:name=".Fitur.HalamanFormMurid.List.HalamanFormListWaliMuridActivity"
             android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity
+            android:name=".Fitur.HalamanFormMurid.Tambah.HalamanFormTambahMuridActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Fitur.HalamanListMurid.HalamanListMuridActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Fitur.HalamanFormMataPelajaran.Edit.HalamanFormEditMataPelajaranActivity"
             android:theme="@style/AppThemeNoActionBar" />
