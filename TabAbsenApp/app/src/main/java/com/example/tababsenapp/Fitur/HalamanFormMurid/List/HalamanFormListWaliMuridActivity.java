@@ -99,7 +99,7 @@ public class HalamanFormListWaliMuridActivity extends AppCompatActivity implemen
         adapterDaftarWaliMuridOnFormMurid.setOnItemClickListener(new AdapterDaftarWaliMuridOnFormMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                showDialog(dataModelArrayList.get(position).getId_wali_murid());
+                showDialog(dataModelArrayList.get(position).getId_wali_murid(), dataModelArrayList.get(position).getNama(), dataModelArrayList.get(position).getAlamat());
             }
         });
     }
@@ -120,18 +120,17 @@ public class HalamanFormListWaliMuridActivity extends AppCompatActivity implemen
     }
 
     @Override
-    public void showDialog(String id_wali_murid) {
+    public void showDialog(String id_wali_murid, String nama_wali_murid, String alamat) {
+        String nama = getIntent().getStringExtra(EXTRA_NAMA);
+        String foto = getIntent().getStringExtra(EXTRA_FOTO);
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
         alertDialogBuilder.setTitle("Ingin Menambah Data Murid Baru ?");
         alertDialogBuilder
-                .setMessage("Klik Ya untuk melakukan input !")
+                .setMessage("Nama Murid : " + nama + "\n" + "Nama Wali Murid : " + nama_wali_murid + "\n" + "Alamat  : " + alamat)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        String nama = getIntent().getStringExtra(EXTRA_NAMA);
-                        String foto = getIntent().getStringExtra(EXTRA_FOTO);
-
                         try {
                             formListWaliMuridPresenter.onSendData(id_wali_murid, nama, foto);
                         } catch (Exception e) {
