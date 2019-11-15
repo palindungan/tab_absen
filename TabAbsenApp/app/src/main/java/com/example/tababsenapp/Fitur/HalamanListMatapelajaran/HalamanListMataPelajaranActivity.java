@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Adapters.AdapterDaftarMataPelajaran;
+import com.example.tababsenapp.Fitur.HalamanFormMataPelajaran.Edit.HalamanFormEditMataPelajaranActivity;
 import com.example.tababsenapp.Fitur.HalamanFormMataPelajaran.Tambah.HalamanFormTambahMataPelajaranActivity;
 import com.example.tababsenapp.Fitur.HalamanListMatapelajaran.presenter.IListMataPelajaranPresenter;
 import com.example.tababsenapp.Fitur.HalamanListMatapelajaran.presenter.ListMataPelajaranPresenter;
@@ -94,21 +95,6 @@ public class HalamanListMataPelajaranActivity extends AppCompatActivity implemen
 
     @Override
     public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
-//         adapterDaftarWaliMurid = new AdapterDaftarWaliMurid(this, dataModelArrayList);
-//        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-//        recyclerView.setAdapter(adapterDaftarWaliMurid);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setNestedScrollingEnabled(true);
-//        adapterDaftarWaliMurid.notifyDataSetChanged();
-//
-//        adapterDaftarWaliMurid.setOnItemClickListener(new AdapterDaftarWaliMurid.ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListWaliMuridActivity.this, HalamanFormEditWaliMuridActivity.class);
-//                intent.putExtra(EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
-//                startActivity(intent);
-//            }
-//        });
 
         adapterDaftarMataPelajaran = new AdapterDaftarMataPelajaran(this,dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false);
@@ -120,7 +106,9 @@ public class HalamanListMataPelajaranActivity extends AppCompatActivity implemen
         adapterDaftarMataPelajaran.setOnItemClickListener(new AdapterDaftarMataPelajaran.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListMataPelajaranActivity.this,Halam)
+                Intent intent = new Intent(HalamanListMataPelajaranActivity.this, HalamanFormEditMataPelajaranActivity.class);
+                intent.putExtra(EXTRA_ID_MATA_PELAJARAN,dataModelArrayList.get(position).getId_mata_pelajaran());
+                startActivity(intent);
             }
         });
 
