@@ -2,10 +2,12 @@ package com.example.tababsenapp.Fitur.HalamanHome.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -143,6 +145,34 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
     }
 
     @Override
+    public void showDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Logout ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Keluar Aplikasi !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            sessionManager.logout();
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_menu_admin, menu);
 
@@ -180,7 +210,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             return true;
         }
         if (id == R.id.menu_keluar) {
-            sessionManager.logout();
+            showDialog();
             return true;
         }
 

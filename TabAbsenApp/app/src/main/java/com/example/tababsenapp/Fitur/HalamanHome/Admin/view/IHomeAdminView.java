@@ -6,4 +6,6 @@ public interface IHomeAdminView {
     void onSucceessMessage(String message);
 
     void onErrorMessage(String message);
+
+    void showDialog();
 }
