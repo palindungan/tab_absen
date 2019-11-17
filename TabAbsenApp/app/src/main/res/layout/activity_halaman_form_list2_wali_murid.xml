@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HalamanFormList2WaliMuridActivity">
+    tools:context=".Fitur.HalamanFormMurid.List2.HalamanFormList2WaliMuridActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

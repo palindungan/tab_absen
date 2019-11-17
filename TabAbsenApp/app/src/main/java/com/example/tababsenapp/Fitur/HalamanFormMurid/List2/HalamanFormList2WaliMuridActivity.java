@@ -1,8 +1,10 @@
-package com.example.tababsenapp;
+package com.example.tababsenapp.Fitur.HalamanFormMurid.List2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.tababsenapp.R;
 
 public class HalamanFormList2WaliMuridActivity extends AppCompatActivity {
 

@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.tababsenapp.Adapters.AdapterDaftarWaliMuridOnFormMurid;
+import com.example.tababsenapp.Adapters.AdapterDaftarWaliMurid;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.List.presenter.FormListWaliMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.List.presenter.IFormListWaliMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.List.view.IFormListWaliMuridView;
@@ -31,7 +31,7 @@ public class HalamanFormListWaliMuridActivity extends AppCompatActivity implemen
 
     IFormListWaliMuridPresenter formListWaliMuridPresenter;
 
-    private AdapterDaftarWaliMuridOnFormMurid adapterDaftarWaliMuridOnFormMurid;
+    private AdapterDaftarWaliMurid adapterDaftarWaliMurid;
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
@@ -89,14 +89,14 @@ public class HalamanFormListWaliMuridActivity extends AppCompatActivity implemen
     @Override
     public void onSetupListView(ArrayList<WaliMurid> dataModelArrayList) {
 
-        adapterDaftarWaliMuridOnFormMurid = new AdapterDaftarWaliMuridOnFormMurid(this, dataModelArrayList);
+        adapterDaftarWaliMurid = new AdapterDaftarWaliMurid(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-        recyclerView.setAdapter(adapterDaftarWaliMuridOnFormMurid);
+        recyclerView.setAdapter(adapterDaftarWaliMurid);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        adapterDaftarWaliMuridOnFormMurid.notifyDataSetChanged();
+        adapterDaftarWaliMurid.notifyDataSetChanged();
 
-        adapterDaftarWaliMuridOnFormMurid.setOnItemClickListener(new AdapterDaftarWaliMuridOnFormMurid.ClickListener() {
+        adapterDaftarWaliMurid.setOnItemClickListener(new AdapterDaftarWaliMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 showDialog(dataModelArrayList.get(position).getId_wali_murid(), dataModelArrayList.get(position).getNama(), dataModelArrayList.get(position).getAlamat());
