@@ -74,11 +74,12 @@ public class FormListWaliMuridPresenter implements IFormListWaliMuridPresenter {
                             playerModel.setNo_hp(no_hp);
 
                             dataModelArrayList.add(playerModel);
-
                         }
-
+                        
                         formListWaliMuridView.onSetupListView(dataModelArrayList);
                     } else {
+                        dataModelArrayList = new ArrayList<>();
+                        formListWaliMuridView.onSetupListView(dataModelArrayList);
                         formListWaliMuridView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                     }
                 } catch (JSONException e) {

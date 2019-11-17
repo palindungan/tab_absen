@@ -76,6 +76,8 @@ public class ListWaliMuridPresenter implements IListWaliMuridPresenter {
 
                         listWaliMuridView.onSetupListView(dataModelArrayList);
                     } else {
+                        dataModelArrayList = new ArrayList<>();
+                        listWaliMuridView.onSetupListView(dataModelArrayList);
                         listWaliMuridView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                     }
                 } catch (JSONException e) {

@@ -26,15 +26,18 @@ public class ListMuridPresenter implements IListMuridPresenter {
     SessionManager sessionManager;
     ArrayList<Murid> dataModelArrayList;
 
+    String base_url = "";
+
     public ListMuridPresenter(IListMuridView listMuridView, Context context) {
         this.listMuridView = listMuridView;
         this.context = context;
+
+        sessionManager = new SessionManager(context);
     }
 
     @Override
     public void onLoadSemuaListMurid() {
-        sessionManager = new SessionManager(context);
-        String base_url = sessionManager.getBaseUrl();
+        base_url = sessionManager.getBaseUrl();
         String URLstring = base_url + "murid/list_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring, new Response.Listener<String>() {
@@ -72,6 +75,8 @@ public class ListMuridPresenter implements IListMuridPresenter {
 
                         listMuridView.onSetupListView(dataModelArrayList);
                     } else {
+                        dataModelArrayList = new ArrayList<>();
+                        listMuridView.onSetupListView(dataModelArrayList);
                         listMuridView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                     }
                 } catch (JSONException e) {

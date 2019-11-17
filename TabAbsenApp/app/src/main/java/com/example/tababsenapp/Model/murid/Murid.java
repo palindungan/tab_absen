@@ -1,7 +1,7 @@
 package com.example.tababsenapp.Model.murid;
 
 public class Murid {
-    String id_murid, nama, nama_wali_murid, alamat, foto;
+    String id_murid, id_wali_murid ,nama, nama_wali_murid, alamat, foto;
 
     public String getId_murid() {
         return id_murid;
@@ -9,6 +9,14 @@ public class Murid {
 
     public void setId_murid(String id_murid) {
         this.id_murid = id_murid;
+    }
+
+    public String getId_wali_murid() {
+        return id_wali_murid;
+    }
+
+    public void setId_wali_murid(String id_wali_murid) {
+        this.id_wali_murid = id_wali_murid;
     }
 
     public String getNama() {

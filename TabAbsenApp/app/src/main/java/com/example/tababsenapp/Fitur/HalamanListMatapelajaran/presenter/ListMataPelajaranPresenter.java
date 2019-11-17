@@ -70,6 +70,8 @@ public class ListMataPelajaranPresenter implements IListMataPelajaranPresenter {
 
                         listMataPelajaranView.onSetupListView(dataModelArrayList);
                     } else {
+                        dataModelArrayList = new ArrayList<>();
+                        listMataPelajaranView.onSetupListView(dataModelArrayList);
                         listMataPelajaranView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                     }
                 } catch (JSONException e) {

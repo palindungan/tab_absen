@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Adapters.AdapterDaftarMurid;
+import com.example.tababsenapp.Fitur.HalamanFormMurid.Edit.HalamanFormEditMuridActivity;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.Tambah.HalamanFormTambahMuridActivity;
 import com.example.tababsenapp.Fitur.HalamanListMurid.presenter.IListMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanListMurid.presenter.ListMuridPresenter;
@@ -102,7 +103,9 @@ public class HalamanListMuridActivity extends AppCompatActivity implements IList
         adapterDaftarMurid.setOnItemClickListener(new AdapterDaftarMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                Intent intent = new Intent(HalamanListMuridActivity.this, HalamanFormEditMuridActivity.class);
+                intent.putExtra(EXTRA_ID_MURID,dataModelArrayList.get(position).getId_murid());
+                startActivity(intent);
             }
         });
 
