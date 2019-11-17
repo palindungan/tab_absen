@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tababsenapp.Controllers.SessionManager;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.IHomeAdminPresenter;
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.view.IHomeAdminView;
@@ -32,6 +33,7 @@ import es.dmoral.toasty.Toasty;
 public class HalamanHomeAdminActivity extends AppCompatActivity implements IHomeAdminView {
 
     IHomeAdminPresenter homeAdminPresenter;
+    SessionManager sessionManager;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -50,6 +52,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
         setContentView(R.layout.activity_halaman_home_admin);
 
         homeAdminPresenter = new HomeAdminPresenter(this, this);
+        sessionManager = new SessionManager(this);
 
         drawerLayout = findViewById(R.id.drawerLayout_admin);
         navigationView = findViewById(R.id.navigation_view_admin);
@@ -177,7 +180,7 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             return true;
         }
         if (id == R.id.menu_keluar) {
-            Toast.makeText(HalamanHomeAdminActivity.this, "Keluar", Toast.LENGTH_SHORT).show();
+            sessionManager.logout();
             return true;
         }
 

@@ -70,6 +70,7 @@ public class SessionManager {
         editor.commit();
 
         Intent intent = new Intent(context, HalamanUtamaActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 
