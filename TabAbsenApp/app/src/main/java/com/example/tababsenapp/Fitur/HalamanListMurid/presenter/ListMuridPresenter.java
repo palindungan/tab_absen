@@ -33,11 +33,11 @@ public class ListMuridPresenter implements IListMuridPresenter {
         this.context = context;
 
         sessionManager = new SessionManager(context);
+        base_url = sessionManager.getBaseUrl();
     }
 
     @Override
     public void onLoadSemuaListMurid() {
-        base_url = sessionManager.getBaseUrl();
         String URLstring = base_url + "murid/list_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring, new Response.Listener<String>() {

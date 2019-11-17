@@ -117,11 +117,12 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_jml_pengajar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_pengajar"
                                 android:layout_marginLeft="10dp"
-                                android:text="20"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>
@@ -168,11 +169,12 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_jml_murid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_murid"
                                 android:layout_marginLeft="10dp"
-                                android:text="18"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>
@@ -228,11 +230,12 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_jml_wali_murid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_wali_murid"
                                 android:layout_marginLeft="10dp"
-                                android:text="12"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>
@@ -279,11 +282,12 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txt_jml_mata_pelajaran"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_mata_pelajaran"
                                 android:layout_marginLeft="10dp"
-                                android:text="4"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>
@@ -344,7 +348,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_kelas"
                                 android:layout_marginLeft="10dp"
-                                android:text="20"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>
@@ -395,7 +399,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txt_kelas_aktif"
                                 android:layout_marginLeft="10dp"
-                                android:text="3"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
                         </RelativeLayout>

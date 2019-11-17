@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tababsenapp.Fitur.HalamanHome.Admin.presenter.HomeAdminPresenter;
@@ -26,6 +27,8 @@ import com.example.tababsenapp.R;
 import com.google.android.material.navigation.NavigationView;
 import com.nex3z.notificationbadge.NotificationBadge;
 
+import es.dmoral.toasty.Toasty;
+
 public class HalamanHomeAdminActivity extends AppCompatActivity implements IHomeAdminView {
 
     IHomeAdminPresenter homeAdminPresenter;
@@ -36,6 +39,8 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
 
     NotificationBadge badge;
     ImageView notificationIcon;
+
+    TextView txtJmlPengajar, txtJmlMurid, txtJmlWaliMurid, txtJmlMataPelajaran;
 
     CardView linkAdminPengajar, linkAdminMurid, linkAdminWaliMurid, linkAdminMataPelajaran, linkAdminKelas, linkAdminKelasAktif;
 
@@ -49,11 +54,21 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
         drawerLayout = findViewById(R.id.drawerLayout_admin);
         navigationView = findViewById(R.id.navigation_view_admin);
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        txtJmlPengajar = findViewById(R.id.txt_jml_pengajar);
+        txtJmlMurid = findViewById(R.id.txt_jml_murid);
+        txtJmlWaliMurid = findViewById(R.id.txt_jml_wali_murid);
+        txtJmlMataPelajaran = findViewById(R.id.txt_jml_mata_pelajaran);
 
+        linkAdminPengajar = findViewById(R.id.link_admin_pengajar);
+        linkAdminMurid = findViewById(R.id.link_admin_murid);
+        linkAdminWaliMurid = findViewById(R.id.link_admin_wali_murid);
+        linkAdminMataPelajaran = findViewById(R.id.link_admin_mata_pelajaran);
+        linkAdminKelas = findViewById(R.id.link_admin_kelas);
+        linkAdminKelasAktif = findViewById(R.id.link_admin_kelas_aktif);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -73,13 +88,6 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
                 return true;
             }
         });
-
-        linkAdminPengajar = findViewById(R.id.link_admin_pengajar);
-        linkAdminMurid = findViewById(R.id.link_admin_murid);
-        linkAdminWaliMurid = findViewById(R.id.link_admin_wali_murid);
-        linkAdminMataPelajaran = findViewById(R.id.link_admin_mata_pelajaran);
-        linkAdminKelas = findViewById(R.id.link_admin_kelas);
-        linkAdminKelasAktif = findViewById(R.id.link_admin_kelas_aktif);
 
         linkAdminPengajar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +117,26 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
             }
         });
 
+        homeAdminPresenter.onCount();
+
+    }
+
+    @Override
+    public void setCountData(String pengajar, String murid, String waliMurid, String mataPelajaran, String kelas, String kelasAktif) {
+        txtJmlPengajar.setText(pengajar);
+        txtJmlMurid.setText(murid);
+        txtJmlWaliMurid.setText(waliMurid);
+        txtJmlMataPelajaran.setText(mataPelajaran);
+    }
+
+    @Override
+    public void onSucceessMessage(String message) {
+        Toasty.success(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onErrorMessage(String message) {
+        Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -154,5 +182,11 @@ public class HalamanHomeAdminActivity extends AppCompatActivity implements IHome
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        homeAdminPresenter.onCount();
     }
 }
