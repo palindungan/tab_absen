@@ -9,6 +9,8 @@ public interface IFormEditMuridView {
 
     void onErrorMessage(String message);
 
+    void showDialogUbah();
+
     void showDialogUpdate();
 
     void showDialogDelete();

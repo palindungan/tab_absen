@@ -171,7 +171,7 @@ class Murid extends REST_Controller
                     $cek_foto = $row["foto"];
                 }
 
-                if ($cek_foto == "DEFFPE") {
+                if ($cek_foto == "DEFFMR") {
                     // lokasi gambar berada
                     $path = './upload/image/murid/';
                     $format = '.jpg';

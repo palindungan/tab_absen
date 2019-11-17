@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.Edit.presenter.FormEditMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.Edit.presenter.IFormEditMuridPresenter;
 import com.example.tababsenapp.Fitur.HalamanFormMurid.Edit.view.IFormEditMuridView;
+import com.example.tababsenapp.Fitur.HalamanFormMurid.List2.HalamanFormList2WaliMuridActivity;
 import com.example.tababsenapp.R;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -41,6 +42,9 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
     ImageView ivFoto;
 
     String EXTRA_ID_MURID = "EXTRA_ID_MURID";
+    String EXTRA_NAMA = "EXTRA_NAMA";
+    String EXTRA_FOTO = "EXTRA_FOTO";
+
     String id_murid = "";
     String id_wali_murid = "";
 
@@ -75,6 +79,13 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 1);
+            }
+        });
+
+        btnUbah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogUbah();
             }
         });
 
@@ -117,10 +128,47 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
     }
 
     @Override
+    public void showDialogUbah() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Mengubah Data Murid ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Memilih Wali Murid dan Menyimpan Data!")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        String nama = edtNama.getText().toString().trim();
+                        String foto = data_photo;
+
+                        try {
+
+                            Intent intent = new Intent(HalamanFormEditMuridActivity.this, HalamanFormList2WaliMuridActivity.class);
+                            intent.putExtra(EXTRA_ID_MURID, id_murid);
+                            intent.putExtra(EXTRA_NAMA, nama);
+                            intent.putExtra(EXTRA_FOTO, foto);
+                            startActivity(intent);
+
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Update " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public void showDialogUpdate() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
+        alertDialogBuilder.setTitle("Ingin Mengupdate Data Murid ?");
         alertDialogBuilder
                 .setMessage("Klik Ya untuk melakukan input !")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -132,7 +180,7 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
                         try {
                             formEditMuridPresenter.onUpdateData(id_murid, id_wali_murid, nama, foto);
                         } catch (Exception e) {
-                            onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
+                            onErrorMessage("Terjadi Kesalahan Update " + e.toString());
                         }
 
                     }
