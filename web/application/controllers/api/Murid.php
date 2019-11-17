@@ -115,6 +115,7 @@ class Murid extends REST_Controller
                 // ambil detail data db
                 $data = array(
                     'nama' => $row["nama"],
+                    'id_wali_murid' => $row["id_wali_murid"],
                     'nama_wali_murid' => $row["nama_wali_murid"],
                     'alamat' => $row["alamat"],
                     'foto' => $row["foto"]
@@ -138,32 +139,19 @@ class Murid extends REST_Controller
     function update_murid_post()
     {
         $id_murid = $this->post('id_murid');
+        $id_wali_murid = $this->post('id_wali_murid');
         $nama = $this->post('nama');
-        $username = $this->post('username');
-        $password = $this->post('password');
-        $alamat = $this->post('alamat');
-        $no_hp = $this->post('no_hp');
+        $foto = $this->post('foto');
+
+        $nama_foto = 'F' . $id_murid;
 
         $data = array();
 
-        if (empty($password)) {
-            $data = array(
-                'id_murid' => $id_murid,
-                'nama'          => $nama,
-                'username'      => $username,
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
-        } else {
-            $data = array(
-                'id_murid' => $id_murid,
-                'nama'          => $nama,
-                'username'      => $username,
-                'password'      => password_hash($password, PASSWORD_DEFAULT),
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
-        }
+        $data = array(
+            'id_wali_murid' => $id_wali_murid,
+            'nama'          => $nama,
+            'foto'          => $nama_foto
+        );
 
         $where = array(
             'id_murid' => $id_murid
@@ -171,6 +159,28 @@ class Murid extends REST_Controller
 
         $update =  $this->M_murid->update_data($where, 'murid', $data);
         if ($update) {
+
+            if (!empty($foto)) {
+
+                $cek_foto = "";
+
+                // mengambil data dari database
+                $query = $this->M_murid->get_data('murid', $where);
+                foreach ($query->result_array() as $row) {
+
+                    $cek_foto = $row["foto"];
+                }
+
+                if ($cek_foto == "DEFFPE") {
+                    // lokasi gambar berada
+                    $path = './upload/image/murid/';
+                    $format = '.jpg';
+                    unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+                }
+
+                $path2 = "./upload/image/murid/$nama_foto.jpg";
+                file_put_contents($path2, base64_decode($foto));
+            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";

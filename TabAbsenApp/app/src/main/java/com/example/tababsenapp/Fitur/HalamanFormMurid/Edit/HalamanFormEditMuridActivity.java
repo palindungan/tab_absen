@@ -42,6 +42,7 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
 
     String EXTRA_ID_MURID = "EXTRA_ID_MURID";
     String id_murid = "";
+    String id_wali_murid = "";
 
     private Bitmap bitmap;
     String data_photo = "";
@@ -95,11 +96,14 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
     }
 
     @Override
-    public void setNilaiDefault(String nama, String nama_wali_murid, String alamat, String foto) {
+    public void setNilaiDefault(String nama, String id_wali_murid, String nama_wali_murid, String alamat, String foto) {
+
         edtNama.setText(nama);
+        this.id_wali_murid = id_wali_murid;
         edtNamaWaliMurid.setText(nama_wali_murid);
         edtAlamat.setText(alamat);
         Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
+
     }
 
     @Override
@@ -122,7 +126,6 @@ public class HalamanFormEditMuridActivity extends AppCompatActivity implements I
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String id_wali_murid = edtNamaWaliMurid.getText().toString().trim();
                         String nama = edtNama.getText().toString().trim();
                         String foto = data_photo;
 

@@ -56,13 +56,14 @@ public class FormEditMuridPresenter implements IFormEditMuridPresenter {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     String nama = object.getString("nama").trim();
+                                    String id_wali_murid = object.getString("id_wali_murid").trim();
                                     String nama_wali_murid = object.getString("nama_wali_murid").trim();
                                     String alamat = object.getString("alamat").trim();
                                     String foto = object.getString("foto").trim();
 
                                     String alamat_foto = sessionManager.getUploadUrl() + "image/murid/" + foto + ".jpg";
 
-                                    formEditMuridView.setNilaiDefault(nama, nama_wali_murid, alamat, alamat_foto);
+                                    formEditMuridView.setNilaiDefault(nama,id_wali_murid, nama_wali_murid, alamat, alamat_foto);
 
                                 }
                             }
