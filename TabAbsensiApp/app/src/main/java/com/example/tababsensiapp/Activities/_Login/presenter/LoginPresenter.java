@@ -42,9 +42,9 @@ public class LoginPresenter implements ILoginPresenter {
     public void onLogin(String username, String password, String hakAkses) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_LOGIN = base_url + "login/" + hakAkses; // url http request
+        String URL_DATA = base_url + "login/" + hakAkses; // url http request
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

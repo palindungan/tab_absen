@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         toolbar = findViewById(R.id.toolbar);
 
         btnLogin.setOnClickListener(this);
+
+        initActionBar();
     }
 
     @Override
@@ -69,6 +72,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    public void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
     public void onSuccessMessage(String message) {
         Toasty.success(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -76,5 +87,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 }
