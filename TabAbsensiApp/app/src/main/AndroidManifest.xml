@@ -16,9 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity"></activity>
         <activity
             android:name=".Activities.Admin.Home.AdminHomeActivity"
-            android:theme="@style/AppThemeHome"></activity>
+            android:theme="@style/AppThemeHome" />
         <activity android:name=".Activities._Login.LoginActivity" />
         <activity android:name=".Activities._Main.MainActivity">
             <intent-filter>
