@@ -22,6 +22,7 @@ import com.example.tababsensiapp.Activities.Admin.Home.presenter.AdminHomePresen
 import com.example.tababsensiapp.Activities.Admin.Home.presenter.IAdminHomePresenter;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.AdminMataPelajaranTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity;
+import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.AdminWaliMuridTampilActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.material.navigation.NavigationView;
@@ -107,7 +108,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             // startActivity(new Intent(getApplicationContext(), HalamanListPengajarActivity.class));
         }
         if (v.getId() == R.id.link_admin_wali_murid) {
-            // startActivity(new Intent(getApplicationContext(), HalamanListPengajarActivity.class));
+            startActivity(new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_mata_pelajaran) {
             startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
