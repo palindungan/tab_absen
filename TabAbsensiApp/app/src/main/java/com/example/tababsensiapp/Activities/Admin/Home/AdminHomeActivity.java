@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.tababsensiapp.Activities.Admin.Home.View.IAdminHomeView;
 import com.example.tababsensiapp.Activities.Admin.Home.presenter.AdminHomePresenter;
 import com.example.tababsensiapp.Activities.Admin.Home.presenter.IAdminHomePresenter;
+import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.material.navigation.NavigationView;
@@ -99,7 +100,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.link_admin_pengajar) {
-            // startActivity(new Intent(getApplicationContext(), HalamanListPengajarActivity.class));
+            startActivity(new Intent(getApplicationContext(), AdminPengajarTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_murid) {
             // startActivity(new Intent(getApplicationContext(), HalamanListPengajarActivity.class));
