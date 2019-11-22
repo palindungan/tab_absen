@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.tababsensiapp.Activities._Main.presenter.IMainPresenter;
-import com.example.tababsensiapp.Activities._Main.presenter.MainPresenter;
 import com.example.tababsensiapp.Activities._Main.view.IMainView;
 import com.example.tababsensiapp.R;
 
@@ -17,16 +15,12 @@ import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, IMainView {
 
-    IMainPresenter mainPresenter;
-
     Button btnLoginAdmin, btnLoginPengajar, btnLoginWaliMurid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mainPresenter = new MainPresenter(this, this);
 
         btnLoginAdmin = findViewById(R.id.btn_login_admin);
         btnLoginPengajar = findViewById(R.id.btn_login_pengajar);
@@ -45,19 +39,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent();
 
         if (v.getId() == R.id.btn_login_admin) {
-            hakAkses = "Admin";
+            hakAkses = "admin";
             //intent = new Intent(MainActivity.this,)
         }
         if (v.getId() == R.id.btn_login_pengajar) {
-            hakAkses = "Pengajar";
+            hakAkses = "pengajar";
             //intent = new Intent(MainActivity.this,)
         }
         if (v.getId() == R.id.btn_login_wali_murid) {
-            hakAkses = "WaliMurid";
+            hakAkses = "wali_murid";
             //intent = new Intent(MainActivity.this,)
         }
-        startActivity(intent);
 
+
+        startActivity(intent);
     }
 
     @Override
