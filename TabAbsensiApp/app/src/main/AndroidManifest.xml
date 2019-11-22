@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Admin.MataPelajaran.Tambah.AdminMataPelajaranTambahActivity"></activity>
+        <activity android:name=".Activities.Admin.WaliMurid.Edit.AdminWaliMuridEditActivity"></activity>
+        <activity android:name=".Activities.Admin.WaliMurid.Tambah.AdminWaliMuridTambahActivity" />
+        <activity android:name=".Activities.Admin.WaliMurid.Tampil.AdminWaliMuridTampilActivity" />
+        <activity android:name=".Activities.Admin.MataPelajaran.Edit.AdminMataPelajaranEditActivity" />
+        <activity android:name=".Activities.Admin.MataPelajaran.Tambah.AdminMataPelajaranTambahActivity" />
         <activity android:name=".Activities.Admin.MataPelajaran.Tampil.AdminMataPelajaranTampilActivity" />
         <activity android:name=".Activities.Admin.Pengajar.Edit.AdminPengajarEditActivity" />
         <activity android:name=".Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity" />

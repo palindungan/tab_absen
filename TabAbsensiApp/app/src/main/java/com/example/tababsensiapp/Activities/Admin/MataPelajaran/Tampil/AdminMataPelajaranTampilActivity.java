@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Edit.AdminMataPelajaranEditActivity;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tambah.AdminMataPelajaranTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.AdminMataPelajaranTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.IAdminMataPelajaranTampilPresenter;
@@ -104,9 +105,9 @@ public class AdminMataPelajaranTampilActivity extends AppCompatActivity implemen
         adapterDaftarMataPelajaran.setOnItemClickListener(new AdapterDaftarMataPelajaran.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListMataPelajaranActivity.this, HalamanFormEditMataPelajaranActivity.class);
-//                intent.putExtra(EXTRA_ID_MATA_PELAJARAN,dataModelArrayList.get(position).getId_mata_pelajaran());
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AdminMataPelajaranEditActivity.class);
+                intent.putExtra(AdminMataPelajaranEditActivity.EXTRA_ID_MATA_PELAJARAN,dataModelArrayList.get(position).getId_mata_pelajaran());
+                startActivity(intent);
             }
         });
     }
