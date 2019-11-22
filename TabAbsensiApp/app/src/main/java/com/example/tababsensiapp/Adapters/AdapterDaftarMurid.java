@@ -41,7 +41,7 @@ public class AdapterDaftarMurid extends RecyclerView.Adapter<AdapterDaftarMurid.
     @NonNull
     @Override
     public DaftarMuridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_murid,parent,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_daftar_murid,parent,false);
         return new DaftarMuridViewHolder(itemView);
     }
 

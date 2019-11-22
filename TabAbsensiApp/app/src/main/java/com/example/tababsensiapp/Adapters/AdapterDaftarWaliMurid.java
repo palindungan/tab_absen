@@ -37,7 +37,7 @@ public class AdapterDaftarWaliMurid extends RecyclerView.Adapter<AdapterDaftarWa
     @NonNull
     @Override
     public DaftarWaliMuridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_wali_murid, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_daftar_wali_murid, parent, false);
         return new DaftarWaliMuridViewHolder(itemView);
     }
 

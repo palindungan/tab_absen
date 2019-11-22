@@ -43,7 +43,7 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
     @NonNull
     @Override
     public DaftarPengajarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_pengajar, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_daftar_pengajar, parent, false);
         return new DaftarPengajarViewHolder(itemView);
     }
 

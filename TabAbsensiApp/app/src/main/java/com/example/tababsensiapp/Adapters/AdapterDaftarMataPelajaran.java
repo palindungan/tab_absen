@@ -35,7 +35,7 @@ public class AdapterDaftarMataPelajaran extends RecyclerView.Adapter<AdapterDaft
     @NonNull
     @Override
     public DaftarMataPelajaranViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_list_mata_pelajaran, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_daftar_mata_pelajaran, parent, false);
         return new DaftarMataPelajaranViewHolder(itemView);
     }
 
