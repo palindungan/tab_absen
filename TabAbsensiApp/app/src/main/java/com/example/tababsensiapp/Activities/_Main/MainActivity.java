@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities._Login.LoginActivity;
 import com.example.tababsensiapp.Activities._Main.view.IMainView;
 import com.example.tababsensiapp.R;
 
@@ -34,24 +35,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        String hakAkses;
+        String hakAkses = "";
 
-        Intent intent = new Intent();
+        Intent intent;
 
         if (v.getId() == R.id.btn_login_admin) {
             hakAkses = "admin";
-            //intent = new Intent(MainActivity.this,)
         }
         if (v.getId() == R.id.btn_login_pengajar) {
             hakAkses = "pengajar";
-            //intent = new Intent(MainActivity.this,)
         }
         if (v.getId() == R.id.btn_login_wali_murid) {
             hakAkses = "wali_murid";
-            //intent = new Intent(MainActivity.this,)
         }
 
-
+        intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.putExtra(LoginActivity.EXTRA_HAK_AKSES, hakAkses);
         startActivity(intent);
     }
 

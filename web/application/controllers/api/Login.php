@@ -20,6 +20,10 @@ class Login extends REST_Controller
         $username = $this->post('username');
         $password = $this->post('password');
 
+        // variable array
+        $result = array();
+        $result['login'] = array();
+
         // data array untuk where db
         $where = array(
             'username' => $username
@@ -33,10 +37,6 @@ class Login extends REST_Controller
 
             // mengambil data dari database berdasarkan username
             $query = $this->M_login->get_data('admin', $where);
-
-            // variable array
-            $result = array();
-            $result['login'] = array();
 
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
@@ -55,20 +55,20 @@ class Login extends REST_Controller
 
                     // membuat array untuk di transfer
                     $result["success"] = "1";
-                    $result["message"] = "success berhasil masuk";
+                    $result["message"] = "Success Berhasil Masuk";
                     $this->response($result, 200);
                 } else {
                     // membuat array untuk di transfer ke API
                     $result["success"] = "0";
-                    $result["message"] = "error password anda salah";
-                    $this->response($result, 502);
+                    $result["message"] = "Error Password Anda Salah";
+                    $this->response($result, 200);
                 }
             }
         } else {
             // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error username tidak ditemukan";
-            $this->response($result, 404);
+            $result["success"] = "-1";
+            $result["message"] = "Error Username Tidak Ditemukan";
+            $this->response($result, 200);
         }
     }
 
