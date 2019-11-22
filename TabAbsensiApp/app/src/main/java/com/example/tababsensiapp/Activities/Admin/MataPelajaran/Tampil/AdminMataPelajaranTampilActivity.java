@@ -1,4 +1,4 @@
-package com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil;
+package com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,13 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.tababsensiapp.Activities.Admin.Pengajar.Edit.AdminPengajarEditActivity;
+import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.AdminMataPelajaranTampilPresenter;
+import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.IAdminMataPelajaranTampilPresenter;
+import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.view.IAdminMataPelajaranTampilView;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity;
-import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.AdminPengajarTampilPresenter;
-import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdminPengajarTampilPresenter;
-import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.view.IAdminPengajarTampilView;
-import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
-import com.example.tababsensiapp.Models.Pengajar;
+import com.example.tababsensiapp.Adapters.AdapterDaftarMataPelajaran;
+import com.example.tababsensiapp.Models.MataPelajaran;
 import com.example.tababsensiapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,11 +26,11 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class AdminPengajarTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminPengajarTampilView {
+public class AdminMataPelajaranTampilActivity extends AppCompatActivity implements View.OnClickListener , IAdminMataPelajaranTampilView {
 
-    IAdminPengajarTampilPresenter adminPengajarTampilPresenter;
+    IAdminMataPelajaranTampilPresenter adminMataPelajaranTampilPresenter;
 
-    private AdapterDaftarPengajar adapterDaftarPengajar;
+    private AdapterDaftarMataPelajaran adapterDaftarMataPelajaran;
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
@@ -42,24 +41,24 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_pengajar_tampil);
+        setContentView(R.layout.activity_admin_mata_pelajaran_tampil);
 
-        adminPengajarTampilPresenter = new AdminPengajarTampilPresenter(this, this);
-        adminPengajarTampilPresenter.onLoadSemuaData();
+        adminMataPelajaranTampilPresenter = new AdminMataPelajaranTampilPresenter(this, this);
+        adminMataPelajaranTampilPresenter.onLoadSemuaData();
 
         recyclerView = findViewById(R.id.recycle_view);
 
         toolbar = findViewById(R.id.toolbar);
         initActionBar();
 
-        fab = findViewById(R.id.fab);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        fab = findViewById(R.id.fab);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Your code to make your refresh action
-                adminPengajarTampilPresenter.onLoadSemuaData();
+                adminMataPelajaranTampilPresenter.onLoadSemuaData();
 
                 // CallYourRefreshingMethod();
                 final Handler handler = new Handler();
@@ -75,13 +74,12 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
         });
 
         fab.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            startActivity(new Intent(getApplicationContext(), AdminPengajarTambahActivity.class));
+            // startActivity(new Intent(getApplicationContext(), AdminPengajarTambahActivity.class));
         }
     }
 
@@ -94,20 +92,20 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
     }
 
     @Override
-    public void onSetupListView(ArrayList<Pengajar> dataModelArrayList) {
-        adapterDaftarPengajar = new AdapterDaftarPengajar(this, dataModelArrayList);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-        recyclerView.setAdapter(adapterDaftarPengajar);
+    public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
+        adapterDaftarMataPelajaran = new AdapterDaftarMataPelajaran(this,dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false);
+        recyclerView.setAdapter(adapterDaftarMataPelajaran);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        adapterDaftarPengajar.notifyDataSetChanged();
+        adapterDaftarMataPelajaran.notifyDataSetChanged();
 
-        adapterDaftarPengajar.setOnItemClickListener(new AdapterDaftarPengajar.ClickListener() {
+        adapterDaftarMataPelajaran.setOnItemClickListener(new AdapterDaftarMataPelajaran.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
-                intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-                startActivity(intent);
+//                Intent intent = new Intent(HalamanListMataPelajaranActivity.this, HalamanFormEditMataPelajaranActivity.class);
+//                intent.putExtra(EXTRA_ID_MATA_PELAJARAN,dataModelArrayList.get(position).getId_mata_pelajaran());
+//                startActivity(intent);
             }
         });
     }
@@ -136,6 +134,6 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
     @Override
     protected void onResume() {
         super.onResume();
-        adminPengajarTampilPresenter.onLoadSemuaData();
+        adminMataPelajaranTampilPresenter.onLoadSemuaData();
     }
 }
