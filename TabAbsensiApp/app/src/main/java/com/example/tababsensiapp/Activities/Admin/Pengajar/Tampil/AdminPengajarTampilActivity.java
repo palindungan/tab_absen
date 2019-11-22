@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Pengajar.Edit.AdminPengajarEditActivity;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.AdminPengajarTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdminPengajarTampilPresenter;
@@ -106,9 +107,9 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
         adapterDaftarPengajar.setOnItemClickListener(new AdapterDaftarPengajar.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListPengajarActivity.this, HalamanFormEditPengajarActivity.class);
-//                intent.putExtra(EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
+                intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                startActivity(intent);
             }
         });
     }

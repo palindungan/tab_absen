@@ -238,7 +238,7 @@ class Pengajar extends REST_Controller
                 $cek_foto = $row["foto"];
             }
 
-            if ($cek_foto != "DEFFPE") {
+            if ($cek_foto == "DEFFPE") {
 
                 $nama_foto = 'F' . $id_pengajar;
 
