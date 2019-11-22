@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Admin.MataPelajaran.Tampil.AdminMataPelajaranTampilActivity"></activity>
+        <activity android:name=".Activities.Admin.MataPelajaran.Tambah.AdminMataPelajaranTambahActivity"></activity>
+        <activity android:name=".Activities.Admin.MataPelajaran.Tampil.AdminMataPelajaranTampilActivity" />
         <activity android:name=".Activities.Admin.Pengajar.Edit.AdminPengajarEditActivity" />
         <activity android:name=".Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity" />
         <activity android:name=".Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity" />

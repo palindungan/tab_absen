@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tambah.AdminMataPelajaranTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.AdminMataPelajaranTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.presenter.IAdminMataPelajaranTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.view.IAdminMataPelajaranTampilView;
@@ -79,7 +80,7 @@ public class AdminMataPelajaranTampilActivity extends AppCompatActivity implemen
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            // startActivity(new Intent(getApplicationContext(), AdminPengajarTambahActivity.class));
+             startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTambahActivity.class));
         }
     }
 
