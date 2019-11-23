@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Murid.Edit.Step1.AdminMuridEditStep1Activity;
 import com.example.tababsensiapp.Activities.Admin.Murid.Tambah.Step1.AdminMuridTambahStep1Activity;
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.presenter.AdminMuridTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.presenter.IAdminMuridTampilPresenter;
@@ -101,9 +102,9 @@ public class AdminMuridTampilActivity extends AppCompatActivity implements View.
         adapterDaftarMurid.setOnItemClickListener(new AdapterDaftarMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), HalamanFormEditMuridActivity.class);
-//                intent.putExtra(EXTRA_ID_MURID,dataModelArrayList.get(position).getId_murid());
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep1Activity.class);
+                intent.putExtra(AdminMuridEditStep1Activity.EXTRA_ID_MURID,dataModelArrayList.get(position).getId_murid());
+                startActivity(intent);
             }
         });
     }
