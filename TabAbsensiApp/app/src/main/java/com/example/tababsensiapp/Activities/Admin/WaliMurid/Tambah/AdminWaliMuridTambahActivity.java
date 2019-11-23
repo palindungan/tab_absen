@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -83,15 +84,48 @@ public class AdminWaliMuridTambahActivity extends AppCompatActivity implements V
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String nama = edtNama.getText().toString().trim();
-                        String username = edtUsername.getText().toString().trim();
-                        String password = edtPassword.getText().toString().trim();
-                        String konfirmasi_password = edtKonfirmasiPassword.getText().toString().trim();
-                        String alamat = edtAlamat.getText().toString().trim();
-                        String no_hp = edtNoHp.getText().toString().trim();
+                        String inputNama = edtNama.getText().toString().trim();
+                        String inputUsername = edtUsername.getText().toString().trim();
+                        String inputPassword = edtPassword.getText().toString().trim();
+                        String inputKonfirmasi_password = edtKonfirmasiPassword.getText().toString().trim();
+                        String inputAlamat = edtAlamat.getText().toString().trim();
+                        String inputNo_hp = edtNoHp.getText().toString().trim();
+
+                        boolean isEmpty = false;
+                        boolean isInvalidKonfirmasi = false;
+
+                        if (TextUtils.isEmpty(inputNama)) {
+                            isEmpty = true;
+                            edtNama.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputUsername)) {
+                            isEmpty = true;
+                            edtUsername.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputPassword)) {
+                            isEmpty = true;
+                            edtPassword.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputKonfirmasi_password)) {
+                            isEmpty = true;
+                            edtKonfirmasiPassword.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputAlamat)) {
+                            isEmpty = true;
+                            edtAlamat.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputNo_hp)) {
+                            isEmpty = true;
+                            edtNoHp.setError("Isi Data Dengan Lengkap");
+                        }
+
+                        if (!inputPassword.equals(inputKonfirmasi_password)){
+                            isInvalidKonfirmasi = true;
+                            edtKonfirmasiPassword.setError("Konfirmasi Password Salah");
+                        }
 
                         try {
-                            adminWaliMuridTambahPresenter.onSubmit(nama, username, password, alamat, no_hp);
+
+                            if (!isEmpty && !isInvalidKonfirmasi) {
+                                adminWaliMuridTambahPresenter.onSubmit(inputNama, inputUsername, inputPassword, inputAlamat, inputNo_hp);
+                            }
+
+
                         } catch (Exception e) {
                             onSubmitError("Terjadi Kesalahan Submit " + e.toString());
                         }
