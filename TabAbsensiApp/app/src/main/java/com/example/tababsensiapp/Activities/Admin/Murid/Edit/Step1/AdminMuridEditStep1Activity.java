@@ -96,6 +96,7 @@ public class AdminMuridEditStep1Activity extends AppCompatActivity implements Vi
             if (!isEmpty) {
                 Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep2Activity.class);
                 intent.putExtra(AdminMuridEditStep2Activity.EXTRA_ID_MURID, id_murid);
+                intent.putExtra(AdminMuridEditStep2Activity.EXTRA_ID_WALI_MURID, id_wali_murid);
                 intent.putExtra(AdminMuridEditStep2Activity.EXTRA_NAMA, inputNama);
                 intent.putExtra(AdminMuridEditStep2Activity.EXTRA_FOTO, data_photo);
                 startActivity(intent);
