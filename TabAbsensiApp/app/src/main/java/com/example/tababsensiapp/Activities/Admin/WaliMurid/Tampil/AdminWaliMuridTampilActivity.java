@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity;
+import com.example.tababsensiapp.Activities.Admin.WaliMurid.Edit.AdminWaliMuridEditActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tambah.AdminWaliMuridTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.presenter.AdminWaliMuridTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.presenter.IAdminWaliMuridTampilPresenter;
@@ -105,9 +106,9 @@ public class AdminWaliMuridTampilActivity extends AppCompatActivity implements V
         adapterDaftarWaliMurid.setOnItemClickListener(new AdapterDaftarWaliMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(HalamanListWaliMuridActivity.this, HalamanFormEditWaliMuridActivity.class);
-//                intent.putExtra(EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AdminWaliMuridEditActivity.class);
+                intent.putExtra(AdminWaliMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                startActivity(intent);
             }
         });
     }
