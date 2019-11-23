@@ -157,30 +157,30 @@ class Murid extends REST_Controller
             'id_murid' => $id_murid
         );
 
+        if (!empty($foto)) {
+
+            $cek_foto = "";
+
+            // mengambil data dari database
+            $query = $this->M_murid->get_data('murid', $where);
+            foreach ($query->result_array() as $row) {
+
+                $cek_foto = $row["foto"];
+            }
+
+            if ($cek_foto != "DEFFMR") {
+                // lokasi gambar berada
+                $path = './upload/image/murid/';
+                $format = '.jpg';
+                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+            }
+
+            $path2 = "./upload/image/murid/$nama_foto.jpg";
+            file_put_contents($path2, base64_decode($foto));
+        }
+
         $update =  $this->M_murid->update_data($where, 'murid', $data);
         if ($update) {
-
-            if (!empty($foto)) {
-
-                $cek_foto = "";
-
-                // mengambil data dari database
-                $query = $this->M_murid->get_data('murid', $where);
-                foreach ($query->result_array() as $row) {
-
-                    $cek_foto = $row["foto"];
-                }
-
-                if ($cek_foto == "DEFFMR") {
-                    // lokasi gambar berada
-                    $path = './upload/image/murid/';
-                    $format = '.jpg';
-                    unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-                }
-
-                $path2 = "./upload/image/murid/$nama_foto.jpg";
-                file_put_contents($path2, base64_decode($foto));
-            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
@@ -203,26 +203,26 @@ class Murid extends REST_Controller
             'id_murid' => $id_murid
         );
 
+        $cek_foto = "";
+
+        // mengambil data dari database
+        $query = $this->M_murid->get_data('murid', $where);
+        foreach ($query->result_array() as $row) {
+            $cek_foto = $row["foto"];
+        }
+
+        if ($cek_foto != "DEFFMR") {
+
+            $nama_foto = 'F' . $id_murid;
+
+            // lokasi gambar berada
+            $path = './upload/image/murid/';
+            $format = '.jpg';
+            unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+        }
+
         $hapus =  $this->M_murid->hapus_data($where, "murid");
         if ($hapus) {
-
-            $cek_foto = "";
-
-            // mengambil data dari database
-            $query = $this->M_murid->get_data('murid', $where);
-            foreach ($query->result_array() as $row) {
-                $cek_foto = $row["foto"];
-            }
-
-            if ($cek_foto != "DEFFMR") {
-
-                $nama_foto = 'F' . $id_murid;
-
-                // lokasi gambar berada
-                $path = './upload/image/murid/';
-                $format = '.jpg';
-                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";

@@ -181,30 +181,30 @@ class Pengajar extends REST_Controller
             'id_pengajar' => $id_pengajar
         );
 
+        if (!empty($foto)) {
+
+            $cek_foto = "";
+
+            // mengambil data dari database
+            $query = $this->M_pengajar->get_data('pengajar', $where);
+            foreach ($query->result_array() as $row) {
+
+                $cek_foto = $row["foto"];
+            }
+
+            if ($cek_foto != "DEFFPE") {
+                // lokasi gambar berada
+                $path = './upload/image/pengajar/';
+                $format = '.jpg';
+                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+            }
+
+            $path2 = "./upload/image/pengajar/$nama_foto.jpg";
+            file_put_contents($path2, base64_decode($foto));
+        }
+
         $update =  $this->M_pengajar->update_data($where, 'pengajar', $data);
         if ($update) {
-
-            if (!empty($foto)) {
-
-                $cek_foto = "";
-
-                // mengambil data dari database
-                $query = $this->M_pengajar->get_data('pengajar', $where);
-                foreach ($query->result_array() as $row) {
-
-                    $cek_foto = $row["foto"];
-                }
-
-                if ($cek_foto == "DEFFPE") {
-                    // lokasi gambar berada
-                    $path = './upload/image/pengajar/';
-                    $format = '.jpg';
-                    unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-                }
-
-                $path2 = "./upload/image/pengajar/$nama_foto.jpg";
-                file_put_contents($path2, base64_decode($foto));
-            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
@@ -227,26 +227,26 @@ class Pengajar extends REST_Controller
             'id_pengajar' => $id_pengajar
         );
 
+        $cek_foto = "";
+
+        // mengambil data dari database
+        $query = $this->M_pengajar->get_data('pengajar', $where);
+        foreach ($query->result_array() as $row) {
+            $cek_foto = $row["foto"];
+        }
+
+        if ($cek_foto != "DEFFPE") {
+
+            $nama_foto = 'F' . $id_pengajar;
+
+            // lokasi gambar berada
+            $path = './upload/image/pengajar/';
+            $format = '.jpg';
+            unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
+        }
+
         $hapus =  $this->M_pengajar->hapus_data($where, "pengajar");
         if ($hapus) {
-
-            $cek_foto = "";
-
-            // mengambil data dari database
-            $query = $this->M_pengajar->get_data('pengajar', $where);
-            foreach ($query->result_array() as $row) {
-                $cek_foto = $row["foto"];
-            }
-
-            if ($cek_foto == "DEFFPE") {
-
-                $nama_foto = 'F' . $id_pengajar;
-
-                // lokasi gambar berada
-                $path = './upload/image/pengajar/';
-                $format = '.jpg';
-                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
