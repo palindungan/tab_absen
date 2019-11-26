@@ -1,0 +1,17 @@
+id_admin (AD01)
+id_pengajar (PE001)
+id_wali_murid (WM001)
+id_mata_pelajaran (MP01)
+id_murid (MR001)
+id_kelas(KL001)
+
+
+CREATE VIEW list_murid AS
+SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto
+FROM murid m JOIN wali_murid wm USING(id_wali_murid)
+ORDER BY m.nama ASC;
+
+CREATE VIEW list_kelas AS
+SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee ,mp.id_mata_pelajaran ,mp.nama AS nama_pelajaran, p.id_pengajar, p.nama AS nama_pengajar, kp.id_sharing, kp.nama_sharing
+FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar p USING(id_pengajar)
+ORDER BY kp.id_kelas_p ASC;

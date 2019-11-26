@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -15,10 +16,9 @@ import android.widget.Toast;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.AdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.IAdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.view.IAdminKelasTampilPengajarView;
-import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
+import com.example.tababsensiapp.Adapters.AdapterDaftarPengajarKelas;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class AdminKelasTampilPengajarActivity extends AppCompatActivity implemen
 
     IAdminKelasTampilPengajarPresenter adminKelasTampilPengajarPresenter;
 
-    private AdapterDaftarPengajar adapterDaftarPengajar;
+    private AdapterDaftarPengajarKelas adapterDaftarPengajarKelas;
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
@@ -85,21 +85,23 @@ public class AdminKelasTampilPengajarActivity extends AppCompatActivity implemen
 
     @Override
     public void onSetupListView(ArrayList<Pengajar> dataModelArrayList) {
-        adapterDaftarPengajar = new AdapterDaftarPengajar(this, dataModelArrayList);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-        recyclerView.setAdapter(adapterDaftarPengajar);
+        adapterDaftarPengajarKelas = new AdapterDaftarPengajarKelas(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(adapterDaftarPengajarKelas);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        adapterDaftarPengajar.notifyDataSetChanged();
+        adapterDaftarPengajarKelas.notifyDataSetChanged();
 
-        adapterDaftarPengajar.setOnItemClickListener(new AdapterDaftarPengajar.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
-//                intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                startActivity(intent);
-            }
-        });
+       adapterDaftarPengajarKelas.setOnItemClickListener(new AdapterDaftarPengajarKelas.ClickListener() {
+           @Override
+           public void onClick(View view, int position) {
+//               Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
+//               intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//               startActivity(intent);
+
+               onSucceessMessage(dataModelArrayList.get(position).getNama());
+           }
+       });
     }
 
     @Override
