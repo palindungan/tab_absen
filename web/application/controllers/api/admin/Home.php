@@ -5,13 +5,13 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Admin extends REST_Controller
+class Home extends REST_Controller
 {
 
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/home/M_admin");
+        $this->load->model("api/admin/M_home");
     }
 
     function list_count_get()
@@ -22,10 +22,10 @@ class Admin extends REST_Controller
         $result['data'] = array();
 
         // mengambil data dari database
-        $pengajar = $this->M_admin->count_num_row('pengajar');
-        $murid = $this->M_admin->count_num_row('murid');
-        $wali_murid = $this->M_admin->count_num_row('wali_murid');
-        $mata_pelajaran = $this->M_admin->count_num_row('mata_pelajaran');
+        $pengajar = $this->M_home->count_num_row('pengajar');
+        $murid = $this->M_home->count_num_row('murid');
+        $wali_murid = $this->M_home->count_num_row('wali_murid');
+        $mata_pelajaran = $this->M_home->count_num_row('mata_pelajaran');
 
         // ambil detail data db
         $data = array(

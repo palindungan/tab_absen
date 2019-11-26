@@ -11,7 +11,7 @@ class Murid extends REST_Controller
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_murid");
+        $this->load->model("api/admin/M_murid");
     }
 
     function list_murid_get()

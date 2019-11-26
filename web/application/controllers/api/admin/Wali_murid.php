@@ -5,23 +5,23 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Pengajar extends REST_Controller
+class Wali_murid extends REST_Controller
 {
 
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_pengajar");
+        $this->load->model("api/admin/M_wali_murid");
     }
 
-    function list_pengajar_get()
+    function list_wali_murid_get()
     {
         // mengambil data dari database
-        $query = $this->M_pengajar->tampil_data('pengajar');
+        $query = $this->M_wali_murid->tampil_data('wali_murid');
 
         // variable array
         $result = array();
-        $result['pengajar'] = array();
+        $result['wali_murid'] = array();
 
         if ($query->num_rows() > 0) {
 
@@ -30,15 +30,14 @@ class Pengajar extends REST_Controller
 
                 // ambil detail data db
                 $data = array(
-                    'id_pengajar' => $row["id_pengajar"],
+                    'id_wali_murid' => $row["id_wali_murid"],
                     'nama' => $row["nama"],
                     'username' => $row["username"],
                     'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"],
-                    'foto' => $row["foto"]
+                    'no_hp' => $row["no_hp"]
                 );
 
-                array_push($result['pengajar'], $data);
+                array_push($result['wali_murid'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";
@@ -53,40 +52,27 @@ class Pengajar extends REST_Controller
         }
     }
 
-    function tambah_pengajar_post()
+    function tambah_wali_murid_post()
     {
         // ambil data
-        $id_pengajar = $this->M_pengajar->get_no();
+        $id_wali_murid = $this->M_wali_murid->get_no();
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
         $alamat = $this->post('alamat');
         $no_hp = $this->post('no_hp');
-        $foto = $this->post('foto');
-
-        $nama_foto = "DEFFPE";
-
-        if (!empty($foto)) {
-            $nama_foto = 'F' . $id_pengajar;
-        }
 
         $data = array(
-            'id_pengajar'   => $id_pengajar,
+            'id_wali_murid'   => $id_wali_murid,
             'nama'          => $nama,
             'username'      => $username,
             'password'      => password_hash($password, PASSWORD_DEFAULT),
             'alamat'        => $alamat,
-            'no_hp'         => $no_hp,
-            'foto'          => $nama_foto
+            'no_hp'         => $no_hp
         );
 
-        $insert =  $this->M_pengajar->input_data('pengajar', $data);
+        $insert =  $this->M_wali_murid->input_data('wali_murid', $data);
         if ($insert) {
-
-            if (!empty($foto)) {
-                $path = "./upload/image/pengajar/$nama_foto.jpg";
-                file_put_contents($path, base64_decode($foto));
-            }
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
@@ -100,20 +86,20 @@ class Pengajar extends REST_Controller
         }
     }
 
-    function ambil_data_pengajar_post()
+    function ambil_data_wali_murid_post()
     {
-        $id_pengajar = $this->post('id_pengajar');
+        $id_wali_murid = $this->post('id_wali_murid');
 
         // variable array
         $result = array();
-        $result['pengajar'] = array();
+        $result['wali_murid'] = array();
 
         $data_id = array(
-            'id_pengajar' => $id_pengajar
+            'id_wali_murid' => $id_wali_murid
         );
 
         // mengambil data dari database
-        $query = $this->M_pengajar->get_data('pengajar', $data_id);
+        $query = $this->M_wali_murid->get_data('wali_murid', $data_id);
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database
@@ -124,11 +110,10 @@ class Pengajar extends REST_Controller
                     'nama' => $row["nama"],
                     'username' => $row["username"],
                     'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"],
-                    'foto' => $row["foto"]
+                    'no_hp' => $row["no_hp"]
                 );
 
-                array_push($result['pengajar'], $data);
+                array_push($result['wali_murid'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";
@@ -143,67 +128,41 @@ class Pengajar extends REST_Controller
         }
     }
 
-    function update_pengajar_post()
+    function update_wali_murid_post()
     {
-        $id_pengajar = $this->post('id_pengajar');
+        $id_wali_murid = $this->post('id_wali_murid');
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
         $alamat = $this->post('alamat');
         $no_hp = $this->post('no_hp');
-        $foto = $this->post('foto');
-        $nama_foto = 'F' . $id_pengajar;
 
         $data = array();
 
         if (empty($password)) {
             $data = array(
-                'id_pengajar'   => $id_pengajar,
+                'id_wali_murid' => $id_wali_murid,
                 'nama'          => $nama,
                 'username'      => $username,
                 'alamat'        => $alamat,
-                'no_hp'         => $no_hp,
-                'foto'          => $nama_foto
+                'no_hp'         => $no_hp
             );
         } else {
             $data = array(
-                'id_pengajar'   => $id_pengajar,
+                'id_wali_murid' => $id_wali_murid,
                 'nama'          => $nama,
                 'username'      => $username,
                 'password'      => password_hash($password, PASSWORD_DEFAULT),
                 'alamat'        => $alamat,
-                'no_hp'         => $no_hp,
-                'foto'          => $nama_foto
+                'no_hp'         => $no_hp
             );
         }
 
         $where = array(
-            'id_pengajar' => $id_pengajar
+            'id_wali_murid' => $id_wali_murid
         );
 
-        if (!empty($foto)) {
-
-            $cek_foto = "";
-
-            // mengambil data dari database
-            $query = $this->M_pengajar->get_data('pengajar', $where);
-            foreach ($query->result_array() as $row) {
-
-                $cek_foto = $row["foto"];
-            }
-
-            if ($cek_foto != "DEFFPE") {
-                // lokasi gambar berada
-                $path = './upload/image/pengajar/';
-                $format = '.jpg';
-                unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-            }
-
-            $path2 = "./upload/image/pengajar/$nama_foto.jpg";
-            file_put_contents($path2, base64_decode($foto));
-        }
-
-        $update =  $this->M_pengajar->update_data($where, 'pengajar', $data);
+        $update =  $this->M_wali_murid->update_data($where, 'wali_murid', $data);
         if ($update) {
 
             // membuat array untuk di transfer ke API
@@ -219,33 +178,15 @@ class Pengajar extends REST_Controller
         }
     }
 
-    function delete_pengajar_post()
+    function delete_wali_murid_post()
     {
-        $id_pengajar = $this->post('id');
+        $id_wali_murid = $this->post('id');
 
         $where = array(
-            'id_pengajar' => $id_pengajar
+            'id_wali_murid' => $id_wali_murid
         );
 
-        $cek_foto = "";
-
-        // mengambil data dari database
-        $query = $this->M_pengajar->get_data('pengajar', $where);
-        foreach ($query->result_array() as $row) {
-            $cek_foto = $row["foto"];
-        }
-
-        if ($cek_foto != "DEFFPE") {
-
-            $nama_foto = 'F' . $id_pengajar;
-
-            // lokasi gambar berada
-            $path = './upload/image/pengajar/';
-            $format = '.jpg';
-            unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-        }
-
-        $hapus =  $this->M_pengajar->hapus_data($where, "pengajar");
+        $hapus =  $this->M_wali_murid->hapus_data($where, "wali_murid");
         if ($hapus) {
 
             // membuat array untuk di transfer ke API
