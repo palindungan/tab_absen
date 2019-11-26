@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tababsensiapp.Controllers.BaseUrl;
-import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
 import com.squareup.picasso.MemoryPolicy;
@@ -29,14 +28,12 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
 
     private static ClickListener clickListener;
 
-    SessionManager sessionManager;
     BaseUrl baseUrl;
 
     public AdapterDaftarPengajar(Context context, ArrayList<Pengajar> dataModelArrayList) {
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
-        sessionManager = new SessionManager(context);
         baseUrl = new BaseUrl();
     }
 
