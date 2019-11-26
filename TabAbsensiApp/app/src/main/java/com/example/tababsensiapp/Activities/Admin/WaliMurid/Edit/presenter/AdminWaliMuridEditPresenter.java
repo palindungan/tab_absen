@@ -37,7 +37,7 @@ public class AdminWaliMuridEditPresenter implements IAdminWaliMuridEditPresenter
     public void inisiasiAwal(String id_wali_murid) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/ambil_data_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/ambil_data_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -91,7 +91,7 @@ public class AdminWaliMuridEditPresenter implements IAdminWaliMuridEditPresenter
     public void onUpdate(String id_wali_murid, String nama, String username, String password, String alamat, String no_hp) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/update_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/update_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -142,7 +142,7 @@ public class AdminWaliMuridEditPresenter implements IAdminWaliMuridEditPresenter
     public void hapusAkun(String id) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/delete_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/delete_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

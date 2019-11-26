@@ -36,7 +36,7 @@ public class AdminMataPelajaranTambahPresenter implements IAdminMataPelajaranTam
     public void onSubmit(String nama) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "mata_pelajaran/tambah_mata_pelajaran"; // url http request
+        String URL_DATA = base_url + "admin/mata_pelajaran/tambah_mata_pelajaran"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

@@ -41,7 +41,7 @@ public class AdminMuridTambahStep2Presenter implements IAdminMuridTambahStep2Pre
     public void onLoadSemuaData() {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/list_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/list_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
             @Override
@@ -101,7 +101,7 @@ public class AdminMuridTambahStep2Presenter implements IAdminMuridTambahStep2Pre
     public void onSendData(String id_wali_murid, String nama, String foto) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "murid/tambah_murid"; // url http request
+        String URL_DATA = base_url + "admin/murid/tambah_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

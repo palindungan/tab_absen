@@ -38,7 +38,7 @@ public class AdminPengajarTampilPresenter implements IAdminPengajarTampilPresent
     public void onLoadSemuaData() {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/list_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/pengajar/list_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
             @Override

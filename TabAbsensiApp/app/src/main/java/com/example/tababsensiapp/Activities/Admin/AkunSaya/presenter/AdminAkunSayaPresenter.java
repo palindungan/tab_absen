@@ -38,7 +38,7 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
     @Override
     public void onSubmit(String nama, String username, String password, String foto) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/tambah_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/pengajar/tambah_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

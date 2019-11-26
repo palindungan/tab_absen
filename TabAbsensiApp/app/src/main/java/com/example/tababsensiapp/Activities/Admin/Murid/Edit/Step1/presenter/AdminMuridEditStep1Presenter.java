@@ -40,7 +40,7 @@ public class AdminMuridEditStep1Presenter implements IAdminMuridEditStep1Present
     public void inisiasiAwal(String id_murid) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "murid/ambil_data_murid"; // url http request
+        String URL_DATA = base_url + "admin/murid/ambil_data_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -109,7 +109,7 @@ public class AdminMuridEditStep1Presenter implements IAdminMuridEditStep1Present
     public void hapusAkun(String id) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "murid/delete_murid"; // url http request
+        String URL_DATA = base_url + "admin/murid/delete_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

@@ -37,7 +37,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
     public void inisiasiAwal(String id_mata_pelajaran) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "mata_pelajaran/ambil_data_mata_pelajaran"; // url http request
+        String URL_DATA = base_url + "admin/mata_pelajaran/ambil_data_mata_pelajaran"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -91,7 +91,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
     public void onUpdate(String id_mata_pelajaran, String nama) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "mata_pelajaran/update_mata_pelajaran"; // url http request
+        String URL_DATA = base_url + "admin/mata_pelajaran/update_mata_pelajaran"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -137,7 +137,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
     public void hapusAkun(String id) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "mata_pelajaran/delete_mata_pelajaran"; // url http request
+        String URL_DATA = base_url + "admin/mata_pelajaran/delete_mata_pelajaran"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

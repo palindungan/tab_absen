@@ -40,7 +40,7 @@ public class AdminMuridEditStep2Presenter implements IAdminMuridEditStep2Present
     public void onLoadSemuaData() {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/list_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/list_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
             @Override
@@ -101,7 +101,7 @@ public class AdminMuridEditStep2Presenter implements IAdminMuridEditStep2Present
     public void onUpdateData(String id_murid, String id_wali_murid, String nama, String foto) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "murid/update_murid"; // url http request
+        String URL_DATA = base_url + "admin/murid/update_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

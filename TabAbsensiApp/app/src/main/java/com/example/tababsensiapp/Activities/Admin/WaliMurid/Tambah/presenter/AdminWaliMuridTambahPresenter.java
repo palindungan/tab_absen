@@ -36,7 +36,7 @@ public class AdminWaliMuridTambahPresenter implements IAdminWaliMuridTambahPrese
     public void onSubmit(String nama, String username, String password, String alamat, String no_hp) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "wali_murid/tambah_wali_murid"; // url http request
+        String URL_DATA = base_url + "admin/wali_murid/tambah_wali_murid"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

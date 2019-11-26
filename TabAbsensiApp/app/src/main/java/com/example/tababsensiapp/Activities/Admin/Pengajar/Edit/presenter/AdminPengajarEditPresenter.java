@@ -40,7 +40,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
     public void inisiasiAwal(String id_pengajar) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/ambil_data_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/pengajar/ambil_data_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -98,7 +98,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
     public void onUpdate(String id_pengajar, String nama, String username, String password, String alamat, String no_hp, String foto) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/update_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/pengajar/update_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -160,7 +160,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
     public void hapusAkun(String id) {
 
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/delete_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/pengajar/delete_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
