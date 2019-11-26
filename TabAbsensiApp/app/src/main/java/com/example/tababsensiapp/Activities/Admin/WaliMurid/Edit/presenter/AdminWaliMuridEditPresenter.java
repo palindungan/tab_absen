@@ -102,7 +102,7 @@ public class AdminWaliMuridEditPresenter implements IAdminWaliMuridEditPresenter
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminWaliMuridEditView.onSucceessMessage("Berhasil Mengupdate Data");
+                                adminWaliMuridEditView.onSuccessMessage("Berhasil Mengupdate Data");
                                 adminWaliMuridEditView.backPressed();
                             } else {
                                 adminWaliMuridEditView.onErrorMessage("Gagal Mengupdate Data !");
@@ -153,7 +153,7 @@ public class AdminWaliMuridEditPresenter implements IAdminWaliMuridEditPresenter
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminWaliMuridEditView.onSucceessMessage("Berhasil Menghapus Data");
+                                adminWaliMuridEditView.onSuccessMessage("Berhasil Menghapus Data");
                                 adminWaliMuridEditView.backPressed();
                             } else {
                                 adminWaliMuridEditView.onErrorMessage("Gagal Menghapus Data !");

@@ -41,7 +41,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
     @Override
     public void inisiasiAwal(String id_pengajar) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/kelas/ambil_data_kelas"; // url http request
+        String URL_DATA = base_url + "admin/kelas_pertemuan/ambil_data_kelas_pertemuan"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -123,7 +123,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminKelasTampilKelasView.onSucceessMessage("Berhasil Menghapus Data");
+                                adminKelasTampilKelasView.onSuccessMessage("Berhasil Menghapus Data");
                                 adminKelasTampilKelasView.backPressed();
                             } else {
                                 adminKelasTampilKelasView.onErrorMessage("Gagal Menghapus Data !");

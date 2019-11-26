@@ -105,7 +105,7 @@ public class AdminPengajarEditActivity extends AppCompatActivity implements View
     }
 
     @Override
-    public void onSucceessMessage(String message) {
+    public void onSuccessMessage(String message) {
         Toasty.success(this, message, Toast.LENGTH_SHORT).show();
     }
 

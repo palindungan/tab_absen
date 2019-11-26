@@ -9,7 +9,7 @@ public interface IAdminKelasTampilKelasView {
 
     void onSetupListView(ArrayList<Kelas> dataModelArrayList);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 

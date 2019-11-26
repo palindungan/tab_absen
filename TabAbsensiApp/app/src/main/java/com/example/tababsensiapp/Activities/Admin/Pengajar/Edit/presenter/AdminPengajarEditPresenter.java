@@ -109,7 +109,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminPengajarEditView.onSucceessMessage("Berhasil Mengupdate Data");
+                                adminPengajarEditView.onSuccessMessage("Berhasil Mengupdate Data");
                                 adminPengajarEditView.backPressed();
                             } else {
                                 adminPengajarEditView.onErrorMessage("Gagal Mengupdate Data !");
@@ -171,7 +171,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminPengajarEditView.onSucceessMessage("Berhasil Menghapus Data");
+                                adminPengajarEditView.onSuccessMessage("Berhasil Menghapus Data");
                                 adminPengajarEditView.backPressed();
                             } else {
                                 adminPengajarEditView.onErrorMessage("Gagal Menghapus Data !");

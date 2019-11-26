@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.AdminKelasTampilKelasActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.AdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.IAdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.view.IAdminKelasTampilPengajarView;
@@ -95,11 +96,9 @@ public class AdminKelasTampilPengajarActivity extends AppCompatActivity implemen
        adapterDaftarPengajarKelas.setOnItemClickListener(new AdapterDaftarPengajarKelas.ClickListener() {
            @Override
            public void onClick(View view, int position) {
-//               Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
-//               intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//               startActivity(intent);
-
-               onSucceessMessage(dataModelArrayList.get(position).getNama());
+               Intent intent = new Intent(getApplicationContext(), AdminKelasTampilKelasActivity.class);
+               intent.putExtra(AdminKelasTampilKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+               startActivity(intent);
            }
        });
     }

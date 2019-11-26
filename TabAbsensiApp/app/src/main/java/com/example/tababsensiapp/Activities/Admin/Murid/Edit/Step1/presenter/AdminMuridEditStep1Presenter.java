@@ -120,7 +120,7 @@ public class AdminMuridEditStep1Presenter implements IAdminMuridEditStep1Present
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminMuridEditStep1View.onSucceessMessage("Berhasil Menghapus Data");
+                                adminMuridEditStep1View.onSuccessMessage("Berhasil Menghapus Data");
                                 adminMuridEditStep1View.backPressed();
                             } else {
                                 adminMuridEditStep1View.onErrorMessage("Gagal Menghapus Data !");

@@ -5,7 +5,7 @@ public interface IAdminAkunSayaView {
 
     void setNilaiDefault(String nama, String username, String foto);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 

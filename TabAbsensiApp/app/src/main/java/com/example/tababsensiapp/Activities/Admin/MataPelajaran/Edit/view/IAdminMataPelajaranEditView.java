@@ -5,7 +5,7 @@ public interface IAdminMataPelajaranEditView {
 
     void setNilaiDefault(String nama);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 

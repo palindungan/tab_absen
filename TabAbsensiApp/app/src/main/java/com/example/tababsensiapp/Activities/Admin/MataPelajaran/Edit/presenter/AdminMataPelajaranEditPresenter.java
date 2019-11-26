@@ -102,7 +102,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminMataPelajaranEditView.onSucceessMessage("Berhasil Mengupdate Data");
+                                adminMataPelajaranEditView.onSuccessMessage("Berhasil Mengupdate Data");
                                 adminMataPelajaranEditView.backPressed();
                             } else {
                                 adminMataPelajaranEditView.onErrorMessage("Gagal Mengupdate Data !");
@@ -148,7 +148,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminMataPelajaranEditView.onSucceessMessage("Berhasil Menghapus Data");
+                                adminMataPelajaranEditView.onSuccessMessage("Berhasil Menghapus Data");
                                 adminMataPelajaranEditView.backPressed();
                             } else {
                                 adminMataPelajaranEditView.onErrorMessage("Gagal Menghapus Data !");

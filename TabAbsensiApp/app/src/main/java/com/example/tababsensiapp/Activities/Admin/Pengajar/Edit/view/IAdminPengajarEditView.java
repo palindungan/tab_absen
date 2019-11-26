@@ -5,7 +5,7 @@ public interface IAdminPengajarEditView {
 
     void setNilaiDefault(String nama, String username, String alamat, String no_hp, String foto);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 

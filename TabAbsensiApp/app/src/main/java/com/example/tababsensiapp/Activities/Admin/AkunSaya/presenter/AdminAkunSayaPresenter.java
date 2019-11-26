@@ -104,7 +104,7 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminAkunSayaView.onSucceessMessage("Berhasil Mengupdate Data");
+                                adminAkunSayaView.onSuccessMessage("Berhasil Mengupdate Data");
                                 adminAkunSayaView.backPressed();
                             } else {
                                 adminAkunSayaView.onErrorMessage("Gagal Mengupdate Data !");
