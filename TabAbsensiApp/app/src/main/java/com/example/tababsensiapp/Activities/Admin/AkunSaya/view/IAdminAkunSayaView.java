@@ -3,11 +3,13 @@ package com.example.tababsensiapp.Activities.Admin.AkunSaya.view;
 public interface IAdminAkunSayaView {
     void initActionBar();
 
-    void onSubmitSuccess(String message);
+    void setNilaiDefault(String nama, String username, String foto);
 
-    void onSubmitError(String message);
+    void onSucceessMessage(String message);
 
-    void showDialog();
+    void onErrorMessage(String message);
+
+    void showDialogUpdate();
 
     void backPressed();
 }

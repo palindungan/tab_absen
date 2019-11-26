@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,44 +23,60 @@ import android.widget.Toast;
 import com.example.tababsensiapp.Activities.Admin.AkunSaya.presenter.AdminAkunSayaPresenter;
 import com.example.tababsensiapp.Activities.Admin.AkunSaya.presenter.IAdminAkunSayaPresenter;
 import com.example.tababsensiapp.Activities.Admin.AkunSaya.view.IAdminAkunSayaView;
+import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
 public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnClickListener, IAdminAkunSayaView {
 
-    IAdminAkunSayaPresenter adminAkunSayaPresenter;
+    Toolbar toolbar;
 
     EditText edtNama,edtUsername,edtPassword,edtKonfirmasiPassword;
     ImageView ivFoto;
-    Button btnSubmit;
+    Button btnUpdate;
 
-    Toolbar toolbar;
+    IAdminAkunSayaPresenter adminAkunSayaPresenter;
+
+    String id_admin = "";
 
     private Bitmap bitmap;
     String data_photo = "";
+
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_akun_saya);
 
-        adminAkunSayaPresenter = new AdminAkunSayaPresenter(this,this);
+        toolbar = findViewById(R.id.toolbar);
+        initActionBar();
 
         edtNama = findViewById(R.id.edt_nama);
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
         edtKonfirmasiPassword = findViewById(R.id.edt_konfirmasi_password);
         ivFoto = findViewById(R.id.iv_foto);
-        btnSubmit = findViewById(R.id.btn_submit);
+        btnUpdate = findViewById(R.id.btn_update);
 
-        toolbar = findViewById(R.id.toolbar);
-        initActionBar();
+        adminAkunSayaPresenter = new AdminAkunSayaPresenter(this, this);
+
+        sessionManager = new SessionManager(this);
+        HashMap<String, String> user = sessionManager.getDataUser();
+        id_admin = user.get(sessionManager.ID_USER);
+
+        adminAkunSayaPresenter.inisiasiAwal(id_admin);
 
         ivFoto.setOnClickListener(this);
-        btnSubmit.setOnClickListener(this);
+        btnUpdate.setOnClickListener(this);
+
     }
 
     @Override
@@ -70,8 +87,8 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 1);
         }
-        if (v.getId() == R.id.btn_submit) {
-            showDialog();
+        if (v.getId() == R.id.btn_update) {
+            showDialogUpdate();
         }
     }
 
@@ -84,22 +101,30 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onSubmitSuccess(String message) {
+    public void setNilaiDefault(String nama, String username, String foto) {
+        edtNama.setText(nama);
+        edtUsername.setText(username);
+        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
+
+    }
+
+    @Override
+    public void onSucceessMessage(String message) {
         Toasty.success(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onSubmitError(String message) {
+    public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showDialog() {
+    public void showDialogUpdate() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Ingin Menambah Data Pegawai Baru ?");
+        alertDialogBuilder.setTitle("Ingin Mengupdate Data ?");
         alertDialogBuilder
-                .setMessage("Klik Ya untuk melakukan input !")
+                .setMessage("Klik Ya untuk melakukan update !")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -126,7 +151,7 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
                             edtKonfirmasiPassword.setError("Isi Data Dengan Lengkap");
                         }
 
-                        if (!inputPassword.equals(inputKonfirmasi_password)){
+                        if (!inputPassword.equals(inputKonfirmasi_password)) {
                             isInvalidKonfirmasi = true;
                             edtKonfirmasiPassword.setError("Konfirmasi Password Salah");
                         }
@@ -134,11 +159,11 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
                         try {
 
                             if (!isEmpty && !isInvalidKonfirmasi) {
-                                adminAkunSayaPresenter.onSubmit(inputNama, inputUsername, inputPassword, inputFoto);
+                                adminAkunSayaPresenter.onUpdate(id_admin, inputNama, inputUsername, inputPassword, inputFoto);
                             }
 
                         } catch (Exception e) {
-                            onSubmitError("Terjadi Kesalahan Submit " + e.toString());
+                            onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
                         }
 
                     }
@@ -158,17 +183,6 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
         onBackPressed();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
-    }
-
     // proses pengolahan gambar
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -183,10 +197,23 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
 
             } catch (IOException e) {
                 e.printStackTrace();
-                onSubmitError("Gambar Error " + e.toString());
+                onErrorMessage("Gambar Error " + e.toString());
             }
 
             data_photo = adminAkunSayaPresenter.getStringImage(bitmap);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

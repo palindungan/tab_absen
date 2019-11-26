@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.AkunSaya.AdminAkunSayaActivity;
 import com.example.tababsensiapp.Activities.Admin.Home.View.IAdminHomeView;
 import com.example.tababsensiapp.Activities.Admin.Home.presenter.AdminHomePresenter;
 import com.example.tababsensiapp.Activities.Admin.Home.presenter.IAdminHomePresenter;
@@ -198,7 +199,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             return true;
         }
         if (id == R.id.menu_akun_saya) {
-            Toast.makeText(getApplicationContext(), "akun saya", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), AdminAkunSayaActivity.class));
             return true;
         }
         if (id == R.id.menu_tentang_kami) {

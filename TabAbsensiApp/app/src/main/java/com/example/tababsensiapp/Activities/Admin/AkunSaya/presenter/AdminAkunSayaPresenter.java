@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tababsensiapp.Activities.Admin.AkunSaya.view.IAdminAkunSayaView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,9 +37,63 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
     }
 
     @Override
-    public void onSubmit(String nama, String username, String password, String foto) {
+    public void inisiasiAwal(String id_admin) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/pengajar/tambah_pengajar"; // url http request
+        String URL_DATA = base_url + "admin/akun_saya/ambil_data_admin"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            JSONArray jsonArray = jsonObject.getJSONArray("admin");
+
+                            if (success.equals("1")) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+
+                                    String nama = object.getString("nama").trim();
+                                    String username = object.getString("username").trim();
+                                    String foto = object.getString("foto").trim();
+
+                                    String alamat_foto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
+
+                                    adminAkunSayaView.setNilaiDefault(nama, username, alamat_foto);
+
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminAkunSayaView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminAkunSayaView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_admin", id_admin);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onUpdate(String id_admin, String nama, String username, String password, String foto) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/akun_saya/update_admin"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -49,27 +104,28 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                adminAkunSayaView.onSubmitSuccess("Berhasil Menambah Data Pengajar Baru");
+                                adminAkunSayaView.onSucceessMessage("Berhasil Mengupdate Data");
                                 adminAkunSayaView.backPressed();
                             } else {
-                                adminAkunSayaView.onSubmitError("Gagal Menambah Data");
+                                adminAkunSayaView.onErrorMessage("Gagal Mengupdate Data !");
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            adminAkunSayaView.onSubmitError("Kesalahan Menerima Data : " + e.toString());
+                            adminAkunSayaView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminAkunSayaView.onSubmitError("Volley Error : " + error.toString());
+                        adminAkunSayaView.onErrorMessage("Volley Error : " + error.toString());
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("id_admin", id_admin);
                 params.put("nama", nama);
                 params.put("username", username);
                 params.put("password", password);

@@ -19,10 +19,10 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
     private static final String PREF_NAME = "LOGIN";
 
-    private static final String STATUS_LOGIN = "STATUS_LOGIN";
-    private static final String ID_USER = "ID_USER";
-    private static final String NAMA = "NAMA";
-    private static final String USERNAME = "USERNAME";
+    public static final String STATUS_LOGIN = "STATUS_LOGIN";
+    public static final String ID_USER = "ID_USER";
+    public static final String NAMA = "NAMA";
+    public static final String USERNAME = "USERNAME";
 
     public SessionManager(Context context) {
         this.context = context;

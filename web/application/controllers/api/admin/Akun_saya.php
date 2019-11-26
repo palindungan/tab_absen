@@ -11,44 +11,7 @@ class Akun_saya extends REST_Controller
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_akun_saya");
-    }
-
-    function list_admin_get()
-    {
-        // mengambil data dari database
-        $query = $this->M_akun_saya->tampil_data('admin');
-
-        // variable array
-        $result = array();
-        $result['admin'] = array();
-
-        if ($query->num_rows() > 0) {
-
-            // mengeluarkan data dari database
-            foreach ($query->result_array() as $row) {
-
-                // ambil detail data db
-                $data = array(
-                    'id_admin' => $row["id_admin"],
-                    'nama' => $row["nama"],
-                    'username' => $row["username"],
-                    'foto' => $row["foto"]
-                );
-
-                array_push($result['admin'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
-                $this->response($result, 200);
-            }
-        } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
-            $this->response($result, 200);
-        }
+        $this->load->model("api/admin/M_akun_saya");
     }
 
     function tambah_admin_post()
@@ -60,7 +23,7 @@ class Akun_saya extends REST_Controller
         $password = $this->post('password');
         $foto = $this->post('foto');
 
-        $nama_foto = "DEFFPE";
+        $nama_foto = "DEFFAD";
 
         if (!empty($foto)) {
             $nama_foto = 'F' . $id_admin;
@@ -178,7 +141,7 @@ class Akun_saya extends REST_Controller
                 $cek_foto = $row["foto"];
             }
 
-            if ($cek_foto != "DEFFPE") {
+            if ($cek_foto != "DEFFAD") {
                 // lokasi gambar berada
                 $path = './upload/image/admin/';
                 $format = '.jpg';
@@ -191,48 +154,6 @@ class Akun_saya extends REST_Controller
 
         $update =  $this->M_akun_saya->update_data($where, 'admin', $data);
         if ($update) {
-
-            // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "success";
-            $this->response($result, 200);
-        } else {
-
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
-        }
-    }
-
-    function delete_admin_post()
-    {
-        $id_admin = $this->post('id');
-
-        $where = array(
-            'id_admin' => $id_admin
-        );
-
-        $cek_foto = "";
-
-        // mengambil data dari database
-        $query = $this->M_akun_saya->get_data('admin', $where);
-        foreach ($query->result_array() as $row) {
-            $cek_foto = $row["foto"];
-        }
-
-        if ($cek_foto != "DEFFPE") {
-
-            $nama_foto = 'F' . $id_admin;
-
-            // lokasi gambar berada
-            $path = './upload/image/admin/';
-            $format = '.jpg';
-            unlink($path . $nama_foto . $format); // hapus data di folder dimana data tersimpan
-        }
-
-        $hapus =  $this->M_akun_saya->hapus_data($where, "admin");
-        if ($hapus) {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
