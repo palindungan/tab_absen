@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Kelas.Tambah.AdminKelasTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.AdminKelasTampilKelasPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.IAdminKelasTampilKelasPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.view.IAdminKelasTampilKelasView;
@@ -86,7 +87,9 @@ public class AdminKelasTampilKelasActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            // startActivity(new Intent(getApplicationContext(), AdminWaliMuridTambahActivity.class));
+            Intent intent = new Intent(getApplicationContext(), AdminKelasTambahActivity.class);
+            intent.putExtra(AdminKelasTambahActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+            startActivity(intent);
         }
     }
 

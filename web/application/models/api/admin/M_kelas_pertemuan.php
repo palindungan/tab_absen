@@ -34,10 +34,10 @@ class M_kelas_pertemuan extends CI_Model
     // autogenerate kode / ID
     function get_no()
     {
-        $field = "id_wali_murid";
-        $tabel = "wali_murid";
+        $field = "id_kelas_p";
+        $tabel = "kelas_pertemuan";
         $digit = "3";
-        $kode = "WM";
+        $kode = "KL";
 
         $q = $this->db->query("SELECT MAX(RIGHT($field,$digit)) AS kd_max FROM $tabel");
         $kd = "";
@@ -47,7 +47,7 @@ class M_kelas_pertemuan extends CI_Model
                 $kd = $kode . sprintf('%0' . $digit . 's',  $tmp);
             }
         } else {
-            $kd = "WM001";
+            $kd = "KL001";
         }
         return $kd;
     }

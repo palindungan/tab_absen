@@ -56,19 +56,25 @@ class Kelas_pertemuan extends REST_Controller
     {
         // ambil data
         $id_kelas_p = $this->M_kelas_pertemuan->get_no();
-        $nama = $this->post('nama');
-        $username = $this->post('username');
-        $password = $this->post('password');
-        $alamat = $this->post('alamat');
-        $no_hp = $this->post('no_hp');
+        $id_pengajar = $this->post('id_pengajar');
+        $id_mata_pelajaran = $this->post('id_mata_pelajaran');
+        $hari = $this->post('hari');
+        $jam_mulai = $this->post('jam_mulai');
+        $jam_berakhir = $this->post('jam_berakhir');
+        $harga_fee = $this->post('harga_fee');
+        $id_sharing = "null";
+        $nama_sharing = "kosong";
 
         $data = array(
             'id_kelas_p'   => $id_kelas_p,
-            'nama'          => $nama,
-            'username'      => $username,
-            'password'      => password_hash($password, PASSWORD_DEFAULT),
-            'alamat'        => $alamat,
-            'no_hp'         => $no_hp
+            'id_pengajar'   => $id_pengajar,
+            'id_mata_pelajaran'   => $id_mata_pelajaran,
+            'hari'   => $hari,
+            'jam_mulai'   => $jam_mulai,
+            'jam_berakhir'   => $jam_berakhir,
+            'harga_fee'   => $harga_fee,
+            'id_sharing'   => $id_sharing,
+            'nama_sharing'   => $nama_sharing,
         );
 
         $insert =  $this->M_kelas_pertemuan->input_data('kelas_pertemuan', $data);
