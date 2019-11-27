@@ -12,8 +12,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -44,13 +47,18 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
     String id_mata_pelajaran = "";
 
     Toolbar toolbar;
+    Spinner edtHari;
     TextView tvNamaPelajaran, edtJamMulai, edtJamBerakhir;
-    EditText edtHari, edtHargaFee;
+    EditText edtHargaFee;
     Button btnSubmit;
 
     final Calendar c = Calendar.getInstance();
     int hour = c.get(Calendar.HOUR_OF_DAY);
     int minute = c.get(Calendar.MINUTE);
+
+    ArrayAdapter<String> adapter;
+    String hari[] = {"Pilih Hari", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"};
+    String record = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +83,45 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
         edtJamBerakhir = findViewById(R.id.edt_jam_berakhir);
         edtHargaFee = findViewById(R.id.edt_harga_fee);
         btnSubmit = findViewById(R.id.btn_submit);
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hari);
+        edtHari.setAdapter(adapter);
+        edtHari.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        record = "Pilih Hari";
+                        break;
+                    case 1:
+                        record = "Senin";
+                        break;
+
+                    case 2:
+                        record = "Selasa";
+                        break;
+                    case 3:
+                        record = "Rabu";
+                        break;
+                    case 4:
+                        record = "Kamis";
+                        break;
+                    case 5:
+                        record = "Jum'at";
+                        break;
+                    case 6:
+                        record = "Sabtu";
+                        break;
+                    case 7:
+                        record = "Minggu";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         btnSubmit.setOnClickListener(this);
         edtJamMulai.setOnClickListener(this);
@@ -141,7 +188,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                     public void onClick(DialogInterface dialog, int id) {
 
                         String inputIdMataPelajaran = id_mata_pelajaran;
-                        String inputHari = edtHari.getText().toString().trim();
+                        String inputHari = record;
                         String inputJamMulai = edtJamMulai.getText().toString().trim();
                         String inputJamBerakhir = edtJamBerakhir.getText().toString().trim();
                         String inputHargaFee = edtHargaFee.getText().toString().trim();
@@ -151,9 +198,9 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                         if (TextUtils.isEmpty(inputIdMataPelajaran)) {
                             isEmpty = true;
                             onSubmitError("Pilih Salah Satu Mata Pelajaran");
-                        } else if (TextUtils.isEmpty(inputHari)) {
+                        } else if (inputHari.equals("Pilih Hari")) {
                             isEmpty = true;
-                            edtHari.setError("Isi Data Dengan Lengkap");
+                            onSubmitError("Isi Hari Pertemuan");
                         } else if (inputJamMulai.equals("Jam Mulai")) {
                             isEmpty = true;
                             onSubmitError("Isi Form Jam Mulai Kelas");
