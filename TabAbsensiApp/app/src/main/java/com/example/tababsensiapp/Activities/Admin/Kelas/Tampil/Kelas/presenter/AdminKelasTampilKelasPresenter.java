@@ -1,6 +1,9 @@
 package com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -67,6 +70,10 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                                     String nama_pelajaran = dataobj.getString("nama_pelajaran");
                                     String nama_sharing = dataobj.getString("nama_sharing");
 
+                                    String id_mata_pelajaran = dataobj.getString("id_mata_pelajaran");
+                                    String id_pengajar = dataobj.getString("id_pengajar");
+                                    String id_sharing = dataobj.getString("id_sharing");
+
                                     playerModel.setId_kelas_p(id_kelas_p);
                                     playerModel.setHari(hari);
                                     playerModel.setJam_mulai(jam_mulai);
@@ -74,6 +81,10 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                                     playerModel.setHarga_fee(harga_fee);
                                     playerModel.setNama_pelajaran(nama_pelajaran);
                                     playerModel.setNama_sharing(nama_sharing);
+
+                                    playerModel.setId_mata_pelajaran(id_mata_pelajaran);
+                                    playerModel.setId_pengajar(id_pengajar);
+                                    playerModel.setId_sharing(id_sharing);
 
                                     dataModelArrayList.add(playerModel);
                                 }
@@ -110,46 +121,73 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
     }
 
     @Override
-    public void hapusAkun(String id) {
-        String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/kelas/delete_kelas"; // url http request
+    public void hapusAkun(String id_kelas_p) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Data Ini ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Menghapus !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
 
-                            if (success.equals("1")) {
-                                adminKelasTampilKelasView.onSuccessMessage("Berhasil Menghapus Data");
-                                adminKelasTampilKelasView.backPressed();
-                            } else {
-                                adminKelasTampilKelasView.onErrorMessage("Gagal Menghapus Data !");
-                            }
+                            String base_url = baseUrl.getUrlData();
+                            String URL_DATA = base_url + "admin/kelas_pertemuan/delete_kelas_pertemuan"; // url http request
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            adminKelasTampilKelasView.onErrorMessage("Kesalahan Menerima Data : " + response);
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                String success = jsonObject.getString("success");
+
+                                                if (success.equals("1")) {
+                                                    adminKelasTampilKelasView.onSuccessMessage("Berhasil Menghapus Data");
+                                                    adminKelasTampilKelasView.backPressed();
+                                                } else {
+                                                    adminKelasTampilKelasView.onErrorMessage("Gagal Menghapus Data !");
+                                                }
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                adminKelasTampilKelasView.onErrorMessage("Kesalahan Menerima Data : " + response);
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            adminKelasTampilKelasView.onErrorMessage("Volley Error : " + error.toString());
+                                        }
+                                    }) {
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("id", id_kelas_p);
+                                    return params;
+                                }
+                            };
+
+                            RequestQueue requestQueue = Volley.newRequestQueue(context);
+                            requestQueue.add(stringRequest);
+
+                        } catch (Exception e) {
+                            adminKelasTampilKelasView.onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        adminKelasTampilKelasView.onErrorMessage("Volley Error : " + error.toString());
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("id", id);
-                return params;
-            }
-        };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

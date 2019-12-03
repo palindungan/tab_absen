@@ -129,36 +129,8 @@ public class AdminKelasTampilKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void showDialogDelete() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                this);
-        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Akun Ini ?");
-        alertDialogBuilder
-                .setMessage("Klik Ya untuk Menghapus !")
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        try {
-                            adminKelasTampilKelasPresenter.hapusAkun(id_pengajar);
-                        } catch (Exception e) {
-                            onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
-                        }
-
-                    }
-                })
-                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    @Override
     public void backPressed() {
-        onBackPressed();
+        onResume();
     }
 
     @Override

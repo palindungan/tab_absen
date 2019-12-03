@@ -3,6 +3,8 @@ package com.example.tababsensiapp.Models;
 public class Kelas {
     String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, nama_pelajaran, nama_sharing;
 
+    String id_mata_pelajaran, id_pengajar,id_sharing;
+
     public String getId_kelas_p() {
         return id_kelas_p;
     }
@@ -57,5 +59,29 @@ public class Kelas {
 
     public void setNama_sharing(String nama_sharing) {
         this.nama_sharing = nama_sharing;
+    }
+
+    public String getId_mata_pelajaran() {
+        return id_mata_pelajaran;
+    }
+
+    public void setId_mata_pelajaran(String id_mata_pelajaran) {
+        this.id_mata_pelajaran = id_mata_pelajaran;
+    }
+
+    public String getId_pengajar() {
+        return id_pengajar;
+    }
+
+    public void setId_pengajar(String id_pengajar) {
+        this.id_pengajar = id_pengajar;
+    }
+
+    public String getId_sharing() {
+        return id_sharing;
+    }
+
+    public void setId_sharing(String id_sharing) {
+        this.id_sharing = id_sharing;
     }
 }

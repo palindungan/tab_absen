@@ -5,11 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.AdminKelasTampilKelasPresenter;
+import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.IAdminKelasTampilKelasPresenter;
+import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.view.IAdminKelasTampilKelasView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
 import com.example.tababsensiapp.Models.Kelas;
 import com.example.tababsensiapp.R;
@@ -44,22 +48,13 @@ public class AdapterDaftarKelas extends RecyclerView.Adapter<AdapterDaftarKelas.
     @Override
     public void onBindViewHolder(@NonNull AdapterDaftarKelas.AdapterDaftarKelasViewHolder holder, int position) {
         holder.tvNamaPelajaran.setText(dataModelArrayList.get(position).getNama_pelajaran());
-        holder.tvHargaFee.setText(dataModelArrayList.get(position).getHarga_fee());
         holder.tvHari.setText(dataModelArrayList.get(position).getHari());
-        holder.tvJamMulai.setText(dataModelArrayList.get(position).getJam_mulai());
-        holder.tvJamBerakhir.setText(dataModelArrayList.get(position).getJam_berakhir());
+        holder.tvJam.setText(dataModelArrayList.get(position).getJam_mulai()+" - "+dataModelArrayList.get(position).getJam_berakhir());
 
-        holder.btnDataKelas.setOnClickListener(new View.OnClickListener() {
+        holder.btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-
-        holder.btnDataMurid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                holder.adminKelasTampilKelasPresenter.hapusAkun(dataModelArrayList.get(position).getId_kelas_p());
             }
         });
 
@@ -72,20 +67,20 @@ public class AdapterDaftarKelas extends RecyclerView.Adapter<AdapterDaftarKelas.
 
     public class AdapterDaftarKelasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView tvNamaPelajaran, tvHargaFee, tvHari, tvJamMulai, tvJamBerakhir;
-        protected Button btnDataKelas, btnDataMurid;
+        protected TextView tvNamaPelajaran, tvHari, tvJam;
+        protected ImageButton btnHapus;
+
+        IAdminKelasTampilKelasPresenter adminKelasTampilKelasPresenter;
 
         public AdapterDaftarKelasViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvNamaPelajaran = itemView.findViewById(R.id.tv_nama_pelajaran);
-
-            tvHargaFee = itemView.findViewById(R.id.tv_harga_fee);
             tvHari = itemView.findViewById(R.id.tv_hari);
-            tvJamMulai = itemView.findViewById(R.id.tv_jam_mulai);
-            tvJamBerakhir = itemView.findViewById(R.id.tv_jam_berakhir);
-            btnDataKelas = itemView.findViewById(R.id.btn_data_kelas);
-            btnDataMurid = itemView.findViewById(R.id.btn_data_murid);
+            tvJam = itemView.findViewById(R.id.tv_jam);
+            btnHapus = itemView.findViewById(R.id.btn_hapus);
+
+            adminKelasTampilKelasPresenter = new AdminKelasTampilKelasPresenter(context, (IAdminKelasTampilKelasView) context);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

@@ -13,7 +13,5 @@ public interface IAdminKelasTampilKelasView {
 
     void onErrorMessage(String message);
 
-    void showDialogDelete();
-
     void backPressed();
 }
