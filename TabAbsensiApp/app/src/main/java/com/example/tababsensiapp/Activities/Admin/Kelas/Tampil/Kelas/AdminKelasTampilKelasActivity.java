@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.AdminKelasDetailKelasActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tambah.AdminKelasTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.AdminKelasTampilKelasPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.presenter.IAdminKelasTampilKelasPresenter;
@@ -113,7 +114,19 @@ public class AdminKelasTampilKelasActivity extends AppCompatActivity implements 
         adapterDaftarKelas.setOnItemClickListener(new AdapterDaftarKelas.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                Intent intent = new Intent(getApplicationContext(), AdminKelasDetailKelasActivity.class);
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_JAM_BERAKHIR, dataModelArrayList.get(position).getJam_berakhir());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_HARGA_FEE, dataModelArrayList.get(position).getHarga_fee());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_NAMA_PELAJARAN, dataModelArrayList.get(position).getNama_pelajaran());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_NAMA_PENGAJAR, dataModelArrayList.get(position).getNama_pengajar());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_SHARING, dataModelArrayList.get(position).getId_sharing());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_NAMA_SHARING, dataModelArrayList.get(position).getNama_sharing());
+                startActivity(intent);
             }
         });
     }

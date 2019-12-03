@@ -9,7 +9,7 @@ public interface IAdminMuridTampilView {
 
     void onSetupListView(ArrayList<Murid> dataModelArrayList);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 }

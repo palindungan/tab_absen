@@ -26,7 +26,6 @@ public class AdminMuridTampilPresenter implements IAdminMuridTampilPresenter {
     BaseUrl baseUrl;
 
     ArrayList<Murid> dataModelArrayList;
-    String base_url = "";
 
     public AdminMuridTampilPresenter(Context context, IAdminMuridTampilView adminMuridTampilView) {
         this.context = context;
