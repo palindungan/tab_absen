@@ -2,6 +2,7 @@ package com.example.tababsensiapp.Models;
 
 public class Murid {
     String id_murid, id_wali_murid ,nama, nama_wali_murid, alamat, foto;
+    String id_kelas_p , id_detail_kelas_p;
 
     public String getId_murid() {
         return id_murid;
@@ -49,5 +50,21 @@ public class Murid {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getId_kelas_p() {
+        return id_kelas_p;
+    }
+
+    public void setId_kelas_p(String id_kelas_p) {
+        this.id_kelas_p = id_kelas_p;
+    }
+
+    public String getId_detail_kelas_p() {
+        return id_detail_kelas_p;
+    }
+
+    public void setId_detail_kelas_p(String id_detail_kelas_p) {
+        this.id_detail_kelas_p = id_detail_kelas_p;
     }
 }

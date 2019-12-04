@@ -58,7 +58,7 @@ public class AdapterDaftarKelasMurid extends RecyclerView.Adapter<AdapterDaftarK
         holder.btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.adminKelasDetailKelasPresenter.hapusAkun(dataModelArrayList.get(position).getId_murid());
+                holder.adminKelasDetailKelasPresenter.hapusAkun(dataModelArrayList.get(position).getId_detail_kelas_p());
             }
         });
 

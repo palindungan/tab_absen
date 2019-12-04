@@ -11,6 +11,11 @@ SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.ala
 FROM murid m JOIN wali_murid wm USING(id_wali_murid)
 ORDER BY m.nama ASC;
 
+CREATE VIEW list_murid_by_kelas AS
+SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto , dkp.id_kelas_p , dkp.id_detail_kelas_p
+FROM murid m JOIN wali_murid wm USING(id_wali_murid) JOIN detail_kelas_pertemuan dkp USING(id_murid)
+ORDER BY m.nama ASC;
+
 CREATE VIEW list_kelas AS
 SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee ,mp.id_mata_pelajaran ,mp.nama AS nama_pelajaran, p.id_pengajar, p.nama AS nama_pengajar, kp.id_sharing, kp.nama_sharing
 FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar p USING(id_pengajar)

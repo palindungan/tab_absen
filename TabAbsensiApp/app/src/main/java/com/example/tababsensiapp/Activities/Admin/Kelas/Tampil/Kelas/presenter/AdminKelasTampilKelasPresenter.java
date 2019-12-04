@@ -73,6 +73,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                                     String id_mata_pelajaran = dataobj.getString("id_mata_pelajaran");
                                     String id_pengajar = dataobj.getString("id_pengajar");
                                     String id_sharing = dataobj.getString("id_sharing");
+                                    String nama_pengajar = dataobj.getString("nama_pengajar");
 
                                     playerModel.setId_kelas_p(id_kelas_p);
                                     playerModel.setHari(hari);
@@ -85,6 +86,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                                     playerModel.setId_mata_pelajaran(id_mata_pelajaran);
                                     playerModel.setId_pengajar(id_pengajar);
                                     playerModel.setId_sharing(id_sharing);
+                                    playerModel.setNama_pengajar(nama_pengajar);
 
                                     dataModelArrayList.add(playerModel);
                                 }

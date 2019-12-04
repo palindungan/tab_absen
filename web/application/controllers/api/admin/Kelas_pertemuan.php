@@ -141,42 +141,62 @@ class Kelas_pertemuan extends REST_Controller
         }
     }
 
-    function update_kelas_pertemuan_post()
+    function ambil_data_detail_kelas_pertemuan_post()
     {
         $id_kelas_p = $this->post('id_kelas_p');
-        $nama = $this->post('nama');
-        $username = $this->post('username');
-        $password = $this->post('password');
-        $alamat = $this->post('alamat');
-        $no_hp = $this->post('no_hp');
 
-        $data = array();
+        // variable array
+        $result = array();
+        $result['list_murid_by_kelas'] = array();
 
-        if (empty($password)) {
-            $data = array(
-                'id_kelas_p' => $id_kelas_p,
-                'nama'          => $nama,
-                'username'      => $username,
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
+        $data_id = array(
+            'id_kelas_p' => $id_kelas_p
+        );
+
+        // mengambil data dari database
+        $query = $this->M_kelas_pertemuan->get_data('list_murid_by_kelas', $data_id);
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'id_detail_kelas_p' => $row["id_detail_kelas_p"],
+                    'id_murid' => $row["id_murid"],
+                    'nama' => $row["nama"],
+                    'id_wali_murid' => $row["id_wali_murid"],
+                    'nama_wali_murid' => $row["nama_wali_murid"],
+                    'alamat' => $row["alamat"],
+                    'foto' => $row["foto"],
+                    'id_kelas_p' => $row["id_kelas_p"]
+                );
+
+                array_push($result['list_murid_by_kelas'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "success berhasil mengambil data";
+                $this->response($result, 200);
+            }
         } else {
-            $data = array(
-                'id_kelas_p' => $id_kelas_p,
-                'nama'          => $nama,
-                'username'      => $username,
-                'password'      => password_hash($password, PASSWORD_DEFAULT),
-                'alamat'        => $alamat,
-                'no_hp'         => $no_hp
-            );
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error data tidak ada";
+            $this->response($result, 200);
         }
+    }
+
+    function delete_kelas_pertemuan_post()
+    {
+        $id_kelas_p = $this->post('id');
 
         $where = array(
             'id_kelas_p' => $id_kelas_p
         );
 
-        $update =  $this->M_kelas_pertemuan->update_data($where, 'kelas_pertemuan', $data);
-        if ($update) {
+        $hapus =  $this->M_kelas_pertemuan->hapus_data($where, "kelas_pertemuan");
+        if ($hapus) {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
@@ -191,15 +211,15 @@ class Kelas_pertemuan extends REST_Controller
         }
     }
 
-    function delete_kelas_pertemuan_post()
+    function delete_detail_kelas_pertemuan_post()
     {
-        $id_kelas_p = $this->post('id');
+        $id_detail_kelas_p = $this->post('id_detail_kelas_p');
 
         $where = array(
-            'id_kelas_p' => $id_kelas_p
+            'id_detail_kelas_p' => $id_detail_kelas_p
         );
 
-        $hapus =  $this->M_kelas_pertemuan->hapus_data($where, "kelas_pertemuan");
+        $hapus =  $this->M_kelas_pertemuan->hapus_data($where, "detail_kelas_pertemuan");
         if ($hapus) {
 
             // membuat array untuk di transfer ke API

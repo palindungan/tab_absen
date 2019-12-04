@@ -44,34 +44,40 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/tv_nama_pelajaran"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nama Pelajaran" />
 
                     <TextView
+                        android:id="@+id/tv_nama_pengajar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nama Pengajar" />
 
                     <TextView
+                        android:id="@+id/tv_hari"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Hari" />
 
                     <TextView
+                        android:id="@+id/tv_jam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jam Mulai - Jam Berakhir" />
 
                     <TextView
+                        android:id="@+id/tv_harga_fee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Harga Fee" />
 
                     <TextView
+                        android:id="@+id/tv_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Status Sharing Kelas" />
+                        android:text="Status : Tidak Dibagikan" />
 
                 </LinearLayout>
 
