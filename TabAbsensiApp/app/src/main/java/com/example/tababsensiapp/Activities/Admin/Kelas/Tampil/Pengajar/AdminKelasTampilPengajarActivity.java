@@ -17,7 +17,7 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Kelas.AdminKelasT
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.AdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.presenter.IAdminKelasTampilPengajarPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Tampil.Pengajar.view.IAdminKelasTampilPengajarView;
-import com.example.tababsensiapp.Adapters.AdapterDaftarPengajarKelas;
+import com.example.tababsensiapp.Adapters.AdapterDaftarKelasPengajar;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
 
@@ -29,7 +29,7 @@ public class AdminKelasTampilPengajarActivity extends AppCompatActivity implemen
 
     IAdminKelasTampilPengajarPresenter adminKelasTampilPengajarPresenter;
 
-    private AdapterDaftarPengajarKelas adapterDaftarPengajarKelas;
+    private AdapterDaftarKelasPengajar adapterDaftarKelasPengajar;
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
@@ -86,14 +86,14 @@ public class AdminKelasTampilPengajarActivity extends AppCompatActivity implemen
 
     @Override
     public void onSetupListView(ArrayList<Pengajar> dataModelArrayList) {
-        adapterDaftarPengajarKelas = new AdapterDaftarPengajarKelas(this, dataModelArrayList);
+        adapterDaftarKelasPengajar = new AdapterDaftarKelasPengajar(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        recyclerView.setAdapter(adapterDaftarPengajarKelas);
+        recyclerView.setAdapter(adapterDaftarKelasPengajar);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-        adapterDaftarPengajarKelas.notifyDataSetChanged();
+        adapterDaftarKelasPengajar.notifyDataSetChanged();
 
-       adapterDaftarPengajarKelas.setOnItemClickListener(new AdapterDaftarPengajarKelas.ClickListener() {
+       adapterDaftarKelasPengajar.setOnItemClickListener(new AdapterDaftarKelasPengajar.ClickListener() {
            @Override
            public void onClick(View view, int position) {
                Intent intent = new Intent(getApplicationContext(), AdminKelasTampilKelasActivity.class);

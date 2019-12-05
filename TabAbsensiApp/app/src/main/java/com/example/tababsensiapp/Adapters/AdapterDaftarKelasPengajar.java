@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public class AdapterDaftarPengajarKelas extends RecyclerView.Adapter<AdapterDaftarPengajarKelas.DaftarPengajarKelasViewHolder> {
+public class AdapterDaftarKelasPengajar extends RecyclerView.Adapter<AdapterDaftarKelasPengajar.DaftarPengajarKelasViewHolder> {
 
     Context context;
     ArrayList<Pengajar> dataModelArrayList;
@@ -30,7 +30,7 @@ public class AdapterDaftarPengajarKelas extends RecyclerView.Adapter<AdapterDaft
 
     BaseUrl baseUrl;
 
-    public AdapterDaftarPengajarKelas(Context context, ArrayList<Pengajar> dataModelArrayList) {
+    public AdapterDaftarKelasPengajar(Context context, ArrayList<Pengajar> dataModelArrayList) {
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
@@ -39,13 +39,13 @@ public class AdapterDaftarPengajarKelas extends RecyclerView.Adapter<AdapterDaft
 
     @NonNull
     @Override
-    public AdapterDaftarPengajarKelas.DaftarPengajarKelasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterDaftarKelasPengajar.DaftarPengajarKelasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_daftar_pengajar_kelas, parent, false);
         return new DaftarPengajarKelasViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterDaftarPengajarKelas.DaftarPengajarKelasViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterDaftarKelasPengajar.DaftarPengajarKelasViewHolder holder, int position) {
         holder.tvNama.setText(dataModelArrayList.get(position).getNama());
         holder.tvUsername.setText(dataModelArrayList.get(position).getUsername());
         holder.tvAlamat.setText(dataModelArrayList.get(position).getAlamat());
@@ -87,6 +87,6 @@ public class AdapterDaftarPengajarKelas extends RecyclerView.Adapter<AdapterDaft
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        AdapterDaftarPengajarKelas.clickListener = clickListener;
+        AdapterDaftarKelasPengajar.clickListener = clickListener;
     }
 }
