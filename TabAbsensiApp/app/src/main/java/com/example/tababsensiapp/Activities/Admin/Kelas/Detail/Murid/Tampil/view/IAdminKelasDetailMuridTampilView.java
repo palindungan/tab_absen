@@ -12,4 +12,6 @@ public interface IAdminKelasDetailMuridTampilView {
     void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
+
+    void backPressed();
 }

@@ -234,4 +234,30 @@ class Kelas_pertemuan extends REST_Controller
             $this->response(array($result, 502));
         }
     }
+
+    function tambah_murid_post()
+    {
+        // ambil data
+        $id_murid = $this->post('id_murid');
+        $id_kelas_p = $this->post('id_kelas_p');
+
+        $data = array(
+            'id_murid'   => $id_murid,
+            'id_kelas_p'   => $id_kelas_p
+        );
+
+        $insert =  $this->M_kelas_pertemuan->input_data('detail_kelas_pertemuan', $data);
+        if ($insert) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "success";
+            $this->response($result, 200);
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error";
+            $this->response(array($result, 502));
+        }
+    }
 }

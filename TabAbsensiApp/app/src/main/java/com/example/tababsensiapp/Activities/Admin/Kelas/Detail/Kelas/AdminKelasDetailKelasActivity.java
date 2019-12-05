@@ -18,6 +18,7 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.presenter.A
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.presenter.IAdminKelasDetailKelasPresenter;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.view.IAdminKelasDetailKelasView;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Detail.AdminKelasDetailMuridDetailActivity;
+import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
@@ -120,7 +121,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            //startActivity(new Intent(getApplicationContext(), AdminMuridTambahStep1Activity.class));
+            Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridTampilActivity.class);
+            intent.putExtra(AdminKelasDetailMuridTampilActivity.EXTRA_ID_KELAS_P, id_kelas_p);
+            startActivity(intent);
         }
     }
 
