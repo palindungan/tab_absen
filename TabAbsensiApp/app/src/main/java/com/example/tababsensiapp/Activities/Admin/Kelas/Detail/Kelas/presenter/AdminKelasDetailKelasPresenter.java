@@ -212,10 +212,11 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                                     String jam_berakhir = dataobj.getString("jam_berakhir");
                                     String harga_fee = dataobj.getString("harga_fee");
                                     String nama_pelajaran = dataobj.getString("nama_pelajaran");
+                                    String id_sharing = dataobj.getString("id_sharing");
                                     String nama_sharing = dataobj.getString("nama_sharing");
                                     String nama_pengajar = dataobj.getString("nama_pengajar");
 
-                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir, nama_sharing);
+                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir,id_sharing, nama_sharing);
 
                                 }
                             } else {
@@ -244,5 +245,53 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onDeleteSharing(String id) {
+
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/kelas_pertemuan/update_sharing"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            if (success.equals("1")) {
+                                adminKelasDetailKelasView.onSuccessMessage("Berhasil Menghapus Sharing Kelas");
+                                adminKelasDetailKelasView.backPressed();
+                            } else {
+                                adminKelasDetailKelasView.onErrorMessage("Gagal Menghapus Sharing Kelas !");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminKelasDetailKelasView.onErrorMessage("Kesalahan Menghapus Sharing Kelas : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminKelasDetailKelasView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_kelas_p", id);
+                params.put("id_sharing", "null");
+                params.put("nama_sharing", "kosong");
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
     }
 }

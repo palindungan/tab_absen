@@ -118,7 +118,6 @@ public class AdminKelasTampilKelasActivity extends AppCompatActivity implements 
                 intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
                 intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
                 intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_SHARING, dataModelArrayList.get(position).getId_sharing());
                 startActivity(intent);
             }
         });

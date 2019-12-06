@@ -6,4 +6,6 @@ public interface IAdminKelasDetailKelasPresenter {
     void onLoadSemuaData(String id);
 
     void onLoadSemuaDataKelas(String id);
+
+    void onDeleteSharing(String id);
 }

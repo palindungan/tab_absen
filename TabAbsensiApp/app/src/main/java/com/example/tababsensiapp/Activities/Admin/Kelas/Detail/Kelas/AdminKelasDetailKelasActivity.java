@@ -38,7 +38,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
     public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
-    public static final String EXTRA_ID_SHARING = "EXTRA_ID_SHARING";
 
     String id_kelas_p;
     String id_mata_pelajaran, id_pengajar, id_sharing = "";
@@ -74,7 +73,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
         id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
-        id_sharing = getIntent().getStringExtra(EXTRA_ID_SHARING);
 
         adminKelasDetailKelasPresenter = new AdminKelasDetailKelasPresenter(this, this);
         adminKelasDetailKelasPresenter.onLoadSemuaData(id_kelas_p);
@@ -127,7 +125,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         }
 
         if (v.getId() == R.id.btn_delete_sharing) {
-
+            adminKelasDetailKelasPresenter.onDeleteSharing(id_kelas_p);
+            adminKelasDetailKelasPresenter.onLoadSemuaDataKelas(id_kelas_p);
         }
     }
 
@@ -140,7 +139,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void setNilaiDefault(String nama_pelajaran,String nama_pengajar,String harga_fee,String hari,String jam_mulai,String jam_berakhir ,String nama_sharing) {
+    public void setNilaiDefault(String nama_pelajaran,String nama_pengajar,String harga_fee,String hari,String jam_mulai,String jam_berakhir,String id_sharing ,String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText(nama_pengajar);
         tvHargaFee.setText(harga_fee);
@@ -148,7 +147,13 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         tvJam.setText(jam_mulai + " - " + jam_berakhir);
 
         if (!id_sharing.equals("null")) {
-            tvStatus.setText("Status : Dibagikan(" + nama_sharing + ")");
+            tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
+            btnSharing.setVisibility(View.GONE);
+            btnDeleteSharing.setVisibility(View.VISIBLE);
+        }else {
+            tvStatus.setText("Status : Tidak Sedang Dibagikan");
+            btnSharing.setVisibility(View.VISIBLE);
+            btnDeleteSharing.setVisibility(View.GONE);
         }
 
     }
