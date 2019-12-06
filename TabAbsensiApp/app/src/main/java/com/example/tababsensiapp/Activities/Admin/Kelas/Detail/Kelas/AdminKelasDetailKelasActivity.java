@@ -36,16 +36,9 @@ import es.dmoral.toasty.Toasty;
 public class AdminKelasDetailKelasActivity extends AppCompatActivity implements View.OnClickListener, IAdminKelasDetailKelasView {
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
-    public static final String EXTRA_HARI = "EXTRA_HARI";
-    public static final String EXTRA_JAM_MULAI = "EXTRA_JAM_MULAI";
-    public static final String EXTRA_JAM_BERAKHIR = "EXTRA_JAM_BERAKHIR";
-    public static final String EXTRA_HARGA_FEE = "EXTRA_HARGA_FEE";
     public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
-    public static final String EXTRA_NAMA_PELAJARAN = "EXTRA_NAMA_PELAJARAN";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
-    public static final String EXTRA_NAMA_PENGAJAR = "EXTRA_NAMA_PENGAJAR";
     public static final String EXTRA_ID_SHARING = "EXTRA_ID_SHARING";
-    public static final String EXTRA_NAMA_SHARING = "EXTRA_NAMA_SHARING";
 
     String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, nama_pelajaran, nama_sharing = "";
     String id_mata_pelajaran, id_pengajar, nama_pengajar, id_sharing = "";
@@ -79,16 +72,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         tvStatus = findViewById(R.id.tv_status);
 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
-        hari = getIntent().getStringExtra(EXTRA_HARI);
-        jam_mulai = getIntent().getStringExtra(EXTRA_JAM_MULAI);
-        jam_berakhir = getIntent().getStringExtra(EXTRA_JAM_BERAKHIR);
-        harga_fee = getIntent().getStringExtra(EXTRA_HARGA_FEE);
-        nama_pelajaran = getIntent().getStringExtra(EXTRA_NAMA_PELAJARAN);
-        nama_sharing = getIntent().getStringExtra(EXTRA_NAMA_SHARING);
-
         id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
-        nama_pengajar = getIntent().getStringExtra(EXTRA_NAMA_PENGAJAR);
         id_sharing = getIntent().getStringExtra(EXTRA_ID_SHARING);
 
         adminKelasDetailKelasPresenter = new AdminKelasDetailKelasPresenter(this, this);
@@ -165,6 +150,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan(" + nama_sharing + ")");
         }
+
+
     }
 
     @Override

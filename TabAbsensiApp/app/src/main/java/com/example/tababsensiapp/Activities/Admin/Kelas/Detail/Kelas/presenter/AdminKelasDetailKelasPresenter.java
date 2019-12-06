@@ -147,7 +147,6 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                                     playerModel.setNama_wali_murid(nama_wali_murid);
                                     playerModel.setAlamat(alamat);
                                     playerModel.setFoto(foto);
-                                    playerModel.setFoto(foto);
                                     playerModel.setId_kelas_p(id_kelas_p);
 
                                     dataModelArrayList.add(playerModel);
@@ -183,5 +182,10 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onLoadSemuaDataKelas(String id) {
+        
     }
 }
