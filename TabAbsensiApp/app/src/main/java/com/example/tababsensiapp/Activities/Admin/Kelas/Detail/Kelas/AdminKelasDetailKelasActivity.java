@@ -25,9 +25,6 @@ import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     String id_kelas_p;
-    String id_mata_pelajaran, id_pengajar, id_sharing = "";
+    String id_mata_pelajaran, id_pengajar;
 
     IAdminKelasDetailKelasPresenter adminKelasDetailKelasPresenter;
 
