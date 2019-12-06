@@ -73,11 +73,31 @@
                         android:layout_height="wrap_content"
                         android:text="Harga Fee" />
 
-                    <TextView
-                        android:id="@+id/tv_status"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Status : Tidak Dibagikan" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/tv_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status : Tidak Dibagikan" />
+
+                        <ImageButton
+                            android:id="@+id/btn_sharing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_share_black_24dp" />
+
+                        <ImageButton
+                            android:id="@+id/btn_delete_sharing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_close_black_24dp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

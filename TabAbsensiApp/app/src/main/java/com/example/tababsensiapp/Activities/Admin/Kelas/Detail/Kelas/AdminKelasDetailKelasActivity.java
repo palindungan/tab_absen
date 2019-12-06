@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     TextView tvNamaPelajaran, tvNamaPengajar, tvHari, tvJam, tvHargaFee, tvStatus;
 
+    ImageButton btnSharing, btnDeleteSharing;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         fab = findViewById(R.id.fab);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
+        btnSharing = findViewById(R.id.btn_sharing);
+        btnDeleteSharing = findViewById(R.id.btn_delete_sharing);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -116,6 +122,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         });
 
         fab.setOnClickListener(this);
+        btnSharing.setOnClickListener(this);
+        btnDeleteSharing.setOnClickListener(this);
     }
 
     @Override
@@ -124,6 +132,16 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
             Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridTampilActivity.class);
             intent.putExtra(AdminKelasDetailMuridTampilActivity.EXTRA_ID_KELAS_P, id_kelas_p);
             startActivity(intent);
+        }
+
+        if (v.getId() == R.id.btn_sharing) {
+            Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridTampilActivity.class);
+            intent.putExtra(AdminKelasDetailMuridTampilActivity.EXTRA_ID_KELAS_P, id_kelas_p);
+            startActivity(intent);
+        }
+
+        if (v.getId() == R.id.btn_delete_sharing) {
+
         }
     }
 

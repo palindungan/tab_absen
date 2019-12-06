@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity"></activity>
+        <activity android:name=".Activities.Admin.Kelas.Detail.Pengajar.Sharing.AdminKelasDetailPengajarSharingActivity"></activity>
+        <activity android:name=".Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity" />
         <activity android:name=".Activities.Admin.Kelas.Detail.Murid.Detail.AdminKelasDetailMuridDetailActivity" />
         <activity android:name=".Activities.Admin.Kelas.Detail.Kelas.AdminKelasDetailKelasActivity" />
         <activity android:name=".Activities.Admin.Kelas.Tambah.AdminKelasTambahActivity" />
