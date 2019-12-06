@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.view.IAdminKelasDetailKelasView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
+import com.example.tababsensiapp.Models.Kelas;
 import com.example.tababsensiapp.Models.Murid;
 
 import org.json.JSONArray;
@@ -31,7 +32,8 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
 
     BaseUrl baseUrl;
 
-    ArrayList<Murid> dataModelArrayList;
+    ArrayList<Murid> dataModelArrayListMurid;
+    ArrayList<Kelas> dataModelArrayListKelas;
 
     public AdminKelasDetailKelasPresenter(Context context, IAdminKelasDetailKelasView adminKelasDetailKelasView) {
         this.context = context;
@@ -120,11 +122,14 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                     @Override
                     public void onResponse(String response) {
                         try {
+
+                            onLoadSemuaDataKelas(id);
+
                             JSONObject obj = new JSONObject(response);
 
                             if (obj.optString("success").equals("1")) {
 
-                                dataModelArrayList = new ArrayList<>();
+                                dataModelArrayListMurid = new ArrayList<>();
                                 JSONArray dataArray = obj.getJSONArray("list_murid_by_kelas");
                                 for (int i = 0; i < dataArray.length(); i++) {
 
@@ -149,14 +154,13 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                                     playerModel.setFoto(foto);
                                     playerModel.setId_kelas_p(id_kelas_p);
 
-                                    dataModelArrayList.add(playerModel);
+                                    dataModelArrayListMurid.add(playerModel);
                                 }
 
-                                adminKelasDetailKelasView.onSetupListView(dataModelArrayList);
-                                adminKelasDetailKelasView.setNilaiDefault();
+                                adminKelasDetailKelasView.onSetupListView(dataModelArrayListMurid);
                             } else {
-                                dataModelArrayList = new ArrayList<>();
-                                adminKelasDetailKelasView.onSetupListView(dataModelArrayList);
+                                dataModelArrayListMurid = new ArrayList<>();
+                                adminKelasDetailKelasView.onSetupListView(dataModelArrayListMurid);
                                 adminKelasDetailKelasView.onErrorMessage("Database Kosong Silahkan Menambah Data Baru !");
                             }
 
@@ -186,6 +190,59 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
 
     @Override
     public void onLoadSemuaDataKelas(String id) {
-        
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/kelas_pertemuan/ambil_data_kelas_pertemuan_by_id_kelas_p"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            if (obj.optString("success").equals("1")) {
+
+                                dataModelArrayListKelas = new ArrayList<>();
+                                JSONArray dataArray = obj.getJSONArray("list_kelas");
+                                for (int i = 0; i < dataArray.length(); i++) {
+
+                                    JSONObject dataobj = dataArray.getJSONObject(i);
+                                    String hari = dataobj.getString("hari");
+                                    String jam_mulai = dataobj.getString("jam_mulai");
+                                    String jam_berakhir = dataobj.getString("jam_berakhir");
+                                    String harga_fee = dataobj.getString("harga_fee");
+                                    String nama_pelajaran = dataobj.getString("nama_pelajaran");
+                                    String nama_sharing = dataobj.getString("nama_sharing");
+                                    String nama_pengajar = dataobj.getString("nama_pengajar");
+
+                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir, nama_sharing);
+
+                                }
+                            } else {
+                                adminKelasDetailKelasView.onErrorMessage("Gagal Mengambil Data !");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminKelasDetailKelasView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminKelasDetailKelasView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_kelas_p", id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }

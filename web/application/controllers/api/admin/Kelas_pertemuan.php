@@ -293,4 +293,52 @@ class Kelas_pertemuan extends REST_Controller
             $this->response(array($result, 200));
         }
     }
+
+    function ambil_data_kelas_pertemuan_by_id_kelas_p_post()
+    {
+        $id_kelas_p = $this->post('id_kelas_p');
+
+        // variable array
+        $result = array();
+        $result['list_kelas'] = array();
+
+        $data_id = array(
+            'id_kelas_p' => $id_kelas_p
+        );
+
+        // mengambil data dari database
+        $query = $this->M_kelas_pertemuan->get_data('list_kelas', $data_id);
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'hari' => $row["hari"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_berakhir' => $row["jam_berakhir"],
+                    'harga_fee' => $row["harga_fee"],
+                    'id_mata_pelajaran' => $row["id_mata_pelajaran"],
+                    'nama_pelajaran' => $row["nama_pelajaran"],
+                    'id_pengajar' => $row["id_pengajar"],
+                    'nama_pengajar' => $row["nama_pengajar"],
+                    'id_sharing' => $row["id_sharing"],
+                    'nama_sharing' => $row["nama_sharing"]
+                );
+
+                array_push($result['list_kelas'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "success berhasil mengambil data";
+                $this->response($result, 200);
+            }
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "error data tidak ada";
+            $this->response($result, 200);
+        }
+    }
 }

@@ -40,8 +40,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
     public static final String EXTRA_ID_SHARING = "EXTRA_ID_SHARING";
 
-    String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, nama_pelajaran, nama_sharing = "";
-    String id_mata_pelajaran, id_pengajar, nama_pengajar, id_sharing = "";
+    String id_kelas_p;
+    String id_mata_pelajaran, id_pengajar, id_sharing = "";
 
     IAdminKelasDetailKelasPresenter adminKelasDetailKelasPresenter;
 
@@ -140,7 +140,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void setNilaiDefault() {
+    public void setNilaiDefault(String nama_pelajaran,String nama_pengajar,String harga_fee,String hari,String jam_mulai,String jam_berakhir ,String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText(nama_pengajar);
         tvHargaFee.setText(harga_fee);
@@ -150,7 +150,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan(" + nama_sharing + ")");
         }
-
 
     }
 

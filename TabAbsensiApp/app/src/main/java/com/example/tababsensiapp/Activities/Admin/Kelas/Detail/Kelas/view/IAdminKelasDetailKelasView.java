@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface IAdminKelasDetailKelasView {
     void initActionBar();
 
-    void setNilaiDefault();
+    void setNilaiDefault(String nama_pelajaran,String nama_pengajar,String harga_fee,String hari,String jam_mulai,String jam_berakhir ,String nama_sharing);
 
     void onSuccessMessage(String message);
 
