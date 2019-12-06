@@ -9,7 +9,11 @@ public interface IAdminKelasDetailPengajarSharingView {
 
     void onSetupListView(ArrayList<Pengajar> dataModelArrayList);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
+
+    void showDialogUpdate(String id_kelas_p, String id_sharing, String nama_sharing);
+
+    void backPressed();
 }

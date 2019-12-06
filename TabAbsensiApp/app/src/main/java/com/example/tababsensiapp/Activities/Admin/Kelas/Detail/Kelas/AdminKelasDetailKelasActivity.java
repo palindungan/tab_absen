@@ -20,6 +20,7 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.presenter.I
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.view.IAdminKelasDetailKelasView;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Detail.AdminKelasDetailMuridDetailActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity;
+import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Pengajar.Sharing.AdminKelasDetailPengajarSharingActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
@@ -135,8 +136,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         }
 
         if (v.getId() == R.id.btn_sharing) {
-            Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridTampilActivity.class);
-            intent.putExtra(AdminKelasDetailMuridTampilActivity.EXTRA_ID_KELAS_P, id_kelas_p);
+            Intent intent = new Intent(getApplicationContext(), AdminKelasDetailPengajarSharingActivity.class);
+            intent.putExtra(AdminKelasDetailPengajarSharingActivity.EXTRA_ID_KELAS_P, id_kelas_p);
             startActivity(intent);
         }
 

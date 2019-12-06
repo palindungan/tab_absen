@@ -2,6 +2,7 @@ package com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Pengajar.Sharing
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AdminKelasDetailPengajarSharingPresenter implements IAdminKelasDetailPengajarSharingPresenter {
 
@@ -95,5 +98,51 @@ public class AdminKelasDetailPengajarSharingPresenter implements IAdminKelasDeta
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public void onUpdate(String id_kelas_p, String id_sharing, String nama_sharing) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/kelas_pertemuan/update_sharing"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            if (success.equals("1")) {
+                                adminKelasDetailPengajarSharingView.onSuccessMessage("Berhasil Sharing Kelas");
+                                adminKelasDetailPengajarSharingView.backPressed();
+                            } else {
+                                adminKelasDetailPengajarSharingView.onErrorMessage("Gagal Sharing Kelas !");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminKelasDetailPengajarSharingView.onErrorMessage("Kesalahan  Sharing Kelas : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminKelasDetailPengajarSharingView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_kelas_p", id_kelas_p);
+                params.put("id_sharing", id_sharing);
+                params.put("nama_sharing", nama_sharing);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }
