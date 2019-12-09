@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tababsensiapp.Activities.Admin.Home.AdminHomeActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Home.PengajarHomeActivity;
 import com.example.tababsensiapp.Activities._Login.view.ILoginView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
 import com.example.tababsensiapp.Controllers.SessionManager;
@@ -72,7 +73,8 @@ public class LoginPresenter implements ILoginPresenter {
 
                                     } else if (hakAkses.equals("pengajar")) {
 
-                                        loginView.onSuccessMessage("Pengajar");
+                                        id_user = object.getString("id_pengajar").trim();
+                                        intent = new Intent(context, PengajarHomeActivity.class);
 
                                     } else if (hakAkses.equals("wali_murid")) {
 
