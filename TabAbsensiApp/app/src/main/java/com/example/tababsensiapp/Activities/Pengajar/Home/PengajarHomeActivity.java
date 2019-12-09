@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tababsensiapp.Activities.Admin.AkunSaya.AdminAkunSayaActivity;
+import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Home.presenter.IPengajarHomePresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Home.presenter.PengajarHomePresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Home.view.IPengajarHomeView;
@@ -48,7 +49,8 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.link_pengajar_absensi_pertemuan){
-
+            Intent intent = new Intent(getApplicationContext(), PengajarAbsensiPertemuanActivity.class);
+            startActivity(intent);
         }
     }
 
