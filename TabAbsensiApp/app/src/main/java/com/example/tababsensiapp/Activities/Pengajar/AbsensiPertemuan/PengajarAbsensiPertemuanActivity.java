@@ -85,19 +85,20 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
-                    map = googleMap;
+//                    map = googleMap;
+//
+//                    latLng = new LatLng(28.61, 77.20);
+//                    map.addMarker(new MarkerOptions().position(latLng).title("New Delhi"));
+//                    map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
 
-                    // currently adding marker in new delhi
-                    latLng = new LatLng(28.61, 77.20);
-                    map.addMarker(new MarkerOptions().position(latLng).title("New Delhi"));
-                    map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+                    map = googleMap;
+                    getLocation();
                 }
             });
         }
 
         if (v.getId() == R.id.btn_location) {
-            progressDialog.show();
             getLocation();
         }
     }
@@ -122,6 +123,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     @Override
     public void getLocation() {
+        progressDialog.show();
         if (Build.VERSION.SDK_INT >= 23) {
 
             if (checkPermission()) {
@@ -256,6 +258,16 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         } else {
             progressDialog.dismiss();
             tvLocation.setText("Location : " + loc.getLatitude() + " , " + loc.getLongitude());
+
+            if (map != null) {
+                map.clear();
+                // now add location in map
+                latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+                map.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+                map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+            }
+            
         }
     }
 
