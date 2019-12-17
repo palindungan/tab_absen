@@ -6,9 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!--  permission untuk google maps api  -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- permission untuk google maps api -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -22,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <!-- untuk api ID google -->
+        <activity android:name=".Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity"></activity>
+        <activity android:name=".Activities.Pengajar.Kelas.TampilSemua.PengajarKelasTampilSemuaActivity" /> <!-- untuk api ID google -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAPUvdjy8dcI9skIiiYgWcc3jjKo8UIjM" />
 
-        <activity android:name=".Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity"></activity>
+        <activity android:name=".Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity" />
         <activity
             android:name=".Activities.Pengajar.Home.PengajarHomeActivity"
             android:theme="@style/AppThemeHome" />
