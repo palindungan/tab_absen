@@ -116,8 +116,9 @@ public class AdminKelasTampilKelasActivity extends AppCompatActivity implements 
             public void onClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), AdminKelasDetailKelasActivity.class);
                 intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
-                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
-                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_STATUS_USER, "admin");
+//                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
+//                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
                 startActivity(intent);
             }
         });

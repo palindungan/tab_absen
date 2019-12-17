@@ -79,10 +79,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_gravity="center_vertical"
                             android:id="@+id/tv_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:text="Status : Tidak Dibagikan" />
 
                         <ImageButton
@@ -96,6 +96,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_close_black_24dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/btn_absen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_play_circle_filled_black_24dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 

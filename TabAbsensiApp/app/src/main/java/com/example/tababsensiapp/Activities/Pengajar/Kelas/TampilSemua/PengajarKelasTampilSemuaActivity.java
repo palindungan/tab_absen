@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.AdminKelasDetailKelasActivity;
 import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.presenter.IPengajarKelasTampilSemuaPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.presenter.PengajarKelasTampilSemuaPresenter;
@@ -107,13 +108,13 @@ public class PengajarKelasTampilSemuaActivity extends AppCompatActivity implemen
         adapterPengajarDaftarKelas.setOnItemClickListener(new AdapterPengajarDaftarKelas.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), AdminKelasDetailKelasActivity.class);
-//                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
+
+                Intent intent = new Intent(getApplicationContext(), AdminKelasDetailKelasActivity.class);
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_STATUS_USER, "pengajar");
+                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
 //                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
 //                intent.putExtra(AdminKelasDetailKelasActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                startActivity(intent);
 
-                Intent intent = new Intent(getApplicationContext(), PengajarAbsensiPertemuanActivity.class);
                 startActivity(intent);
             }
         });

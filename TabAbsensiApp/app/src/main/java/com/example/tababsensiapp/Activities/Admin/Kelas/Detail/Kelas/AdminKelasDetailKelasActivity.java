@@ -22,6 +22,7 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Detail.Admi
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Pengajar.Sharing.AdminKelasDetailPengajarSharingActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
+import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelasMurid;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,15 +34,19 @@ import es.dmoral.toasty.Toasty;
 public class AdminKelasDetailKelasActivity extends AppCompatActivity implements View.OnClickListener, IAdminKelasDetailKelasView {
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
-    public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
-    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+//    public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
+//    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+
+    public static final String EXTRA_STATUS_USER = "EXTRA_STATUS_USER";
 
     String id_kelas_p;
-    String id_mata_pelajaran, id_pengajar;
+    //    String id_mata_pelajaran, id_pengajar;
+    String statusUser = "";
 
     IAdminKelasDetailKelasPresenter adminKelasDetailKelasPresenter;
 
     private AdapterDaftarKelasMurid adapterDaftarKelasMurid;
+    private AdapterPengajarDaftarKelasMurid adapterPengajarDaftarKelasMurid;
     private RecyclerView recyclerView;
 
     Toolbar toolbar;
@@ -51,7 +56,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     TextView tvNamaPelajaran, tvNamaPengajar, tvHari, tvJam, tvHargaFee, tvStatus;
 
-    ImageButton btnSharing, btnDeleteSharing;
+    ImageButton btnSharing, btnDeleteSharing, btnAbsen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,20 +73,22 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         tvStatus = findViewById(R.id.tv_status);
 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
-        id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
-        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
+//        id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
+//        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
 
         adminKelasDetailKelasPresenter = new AdminKelasDetailKelasPresenter(this, this);
         adminKelasDetailKelasPresenter.onLoadSemuaData(id_kelas_p);
 
         toolbar = findViewById(R.id.toolbar);
-        initActionBar();
 
         fab = findViewById(R.id.fab);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
         btnSharing = findViewById(R.id.btn_sharing);
         btnDeleteSharing = findViewById(R.id.btn_delete_sharing);
+        btnAbsen = findViewById(R.id.btn_absen);
+
+        statusUser = getIntent().getStringExtra(EXTRA_STATUS_USER);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -101,6 +108,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                 }, 1000);
             }
         });
+
+        initActionBar();
 
         fab.setOnClickListener(this);
         btnSharing.setOnClickListener(this);
@@ -125,6 +134,10 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
             adminKelasDetailKelasPresenter.onDeleteSharing(id_kelas_p);
             adminKelasDetailKelasPresenter.onLoadSemuaDataKelas(id_kelas_p);
         }
+
+        if (v.getId() == R.id.btn_absen) {
+            onErrorMessage("absen");
+        }
     }
 
     @Override
@@ -136,7 +149,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void setNilaiDefault(String nama_pelajaran,String nama_pengajar,String harga_fee,String hari,String jam_mulai,String jam_berakhir,String id_sharing ,String nama_sharing) {
+    public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText(nama_pengajar);
         tvHargaFee.setText(harga_fee);
@@ -147,12 +160,19 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
             btnSharing.setVisibility(View.GONE);
             btnDeleteSharing.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             tvStatus.setText("Status : Tidak Sedang Dibagikan");
             btnSharing.setVisibility(View.VISIBLE);
             btnDeleteSharing.setVisibility(View.GONE);
         }
 
+        if (statusUser.equals("pengajar")) {
+            btnAbsen.setVisibility(View.VISIBLE);
+
+            tvStatus.setVisibility(View.GONE);
+            btnDeleteSharing.setVisibility(View.GONE);
+            btnSharing.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -172,11 +192,29 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     @Override
     public void onSetupListView(ArrayList<Murid> dataModelArrayList) {
+
+        if (statusUser.equals("pengajar")) {
+            btnAbsen.setVisibility(View.VISIBLE);
+
+            tvStatus.setVisibility(View.GONE);
+            btnDeleteSharing.setVisibility(View.GONE);
+            btnSharing.setVisibility(View.GONE);
+        }
+
         adapterDaftarKelasMurid = new AdapterDaftarKelasMurid(this, dataModelArrayList);
+        adapterPengajarDaftarKelasMurid = new AdapterPengajarDaftarKelasMurid(this, dataModelArrayList);
+
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-        recyclerView.setAdapter(adapterDaftarKelasMurid);
+
+        if (statusUser.equals("pengajar")) {
+            recyclerView.setAdapter(adapterPengajarDaftarKelasMurid);
+        } else {
+            recyclerView.setAdapter(adapterDaftarKelasMurid);
+        }
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
+
         adapterDaftarKelasMurid.setOnItemClickListener(new AdapterDaftarKelasMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -188,7 +226,20 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                 intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
                 intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                 startActivity(intent);
+            }
+        });
 
+        adapterPengajarDaftarKelasMurid.setOnItemClickListener(new AdapterPengajarDaftarKelasMurid.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridDetailActivity.class);
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_NAMA_WALI_MURID, dataModelArrayList.get(position).getNama_wali_murid());
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
+                intent.putExtra(AdminKelasDetailMuridDetailActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
+                startActivity(intent);
             }
         });
     }
