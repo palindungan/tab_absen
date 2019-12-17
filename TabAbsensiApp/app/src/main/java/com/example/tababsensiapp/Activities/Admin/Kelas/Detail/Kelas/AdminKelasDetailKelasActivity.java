@@ -166,13 +166,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
             btnDeleteSharing.setVisibility(View.GONE);
         }
 
-        if (statusUser.equals("pengajar")) {
-            btnAbsen.setVisibility(View.VISIBLE);
-
-            tvStatus.setVisibility(View.GONE);
-            btnDeleteSharing.setVisibility(View.GONE);
-            btnSharing.setVisibility(View.GONE);
-        }
+        sembunyikanObject();
     }
 
     @Override
@@ -193,13 +187,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     @Override
     public void onSetupListView(ArrayList<Murid> dataModelArrayList) {
 
-        if (statusUser.equals("pengajar")) {
-            btnAbsen.setVisibility(View.VISIBLE);
-
-            tvStatus.setVisibility(View.GONE);
-            btnDeleteSharing.setVisibility(View.GONE);
-            btnSharing.setVisibility(View.GONE);
-        }
+        sembunyikanObject();
 
         adapterDaftarKelasMurid = new AdapterDaftarKelasMurid(this, dataModelArrayList);
         adapterPengajarDaftarKelasMurid = new AdapterPengajarDaftarKelasMurid(this, dataModelArrayList);
@@ -242,6 +230,18 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void sembunyikanObject() {
+        if (statusUser.equals("pengajar")) {
+            btnAbsen.setVisibility(View.VISIBLE);
+
+            tvStatus.setVisibility(View.GONE);
+            btnDeleteSharing.setVisibility(View.GONE);
+            btnSharing.setVisibility(View.GONE);
+            fab.hide();
+        }
     }
 
     @Override

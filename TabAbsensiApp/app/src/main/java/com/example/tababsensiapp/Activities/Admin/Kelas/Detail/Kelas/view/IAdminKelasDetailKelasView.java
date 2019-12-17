@@ -16,4 +16,6 @@ public interface IAdminKelasDetailKelasView {
     void backPressed();
 
     void onSetupListView(ArrayList<Murid> dataModelArrayList);
+
+    void sembunyikanObject();
 }
