@@ -85,13 +85,6 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
-//                    map = googleMap;
-//
-//                    latLng = new LatLng(28.61, 77.20);
-//                    map.addMarker(new MarkerOptions().position(latLng).title("New Delhi"));
-//                    map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
-
                     map = googleMap;
                     getLocation();
                 }
@@ -198,11 +191,9 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         if (locationManager != null) {
             try {
-
                 Criteria criteria = new Criteria();
                 String provider = locationManager.getBestProvider(criteria, false);
                 Location location = locationManager.getLastKnownLocation(provider);
-
             } catch (SecurityException e) {
                 e.printStackTrace();
             }
@@ -267,7 +258,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
                 map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
             }
-            
+
         }
     }
 
