@@ -18,6 +18,8 @@ import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAb
 import com.example.tababsensiapp.Activities.Pengajar.Home.presenter.IPengajarHomePresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Home.presenter.PengajarHomePresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Home.view.IPengajarHomeView;
+import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.PengajarKelasTampilSemuaActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -29,7 +31,7 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
     IPengajarHomePresenter pengajarHomePresenter;
     SessionManager sessionManager;
 
-    CardView linkPengajarAbsensiPertemuan;
+    CardView linkPengajarAbsensiPertemuan, linkPengajarKelasTampilSemua, linkPengajarKelastampilAktif;
 
     NotificationBadge badge;
     ImageView notificationIcon;
@@ -39,17 +41,30 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_home);
 
-        pengajarHomePresenter = new PengajarHomePresenter(this,this);
+        pengajarHomePresenter = new PengajarHomePresenter(this, this);
         sessionManager = new SessionManager(this);
 
         linkPengajarAbsensiPertemuan = findViewById(R.id.link_pengajar_absensi_pertemuan);
+        linkPengajarKelasTampilSemua = findViewById(R.id.link_pengajar_kelas_tampil_semua);
+        linkPengajarKelastampilAktif = findViewById(R.id.link_pengajar_kelas_tampil_aktif);
+
         linkPengajarAbsensiPertemuan.setOnClickListener(this);
+        linkPengajarKelasTampilSemua.setOnClickListener(this);
+        linkPengajarKelastampilAktif.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.link_pengajar_absensi_pertemuan){
+        if (v.getId() == R.id.link_pengajar_absensi_pertemuan) {
             Intent intent = new Intent(getApplicationContext(), PengajarAbsensiPertemuanActivity.class);
+            startActivity(intent);
+        }
+        if (v.getId() == R.id.link_pengajar_kelas_tampil_semua) {
+            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilSemuaActivity.class);
+            startActivity(intent);
+        }
+        if (v.getId() == R.id.link_pengajar_kelas_tampil_aktif) {
+            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
             startActivity(intent);
         }
     }
