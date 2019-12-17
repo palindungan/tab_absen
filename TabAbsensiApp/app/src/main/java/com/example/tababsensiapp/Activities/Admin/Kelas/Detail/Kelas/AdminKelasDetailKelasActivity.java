@@ -1,14 +1,29 @@
 package com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.app.Service;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,17 +36,25 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.view.IAdmin
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Detail.AdminKelasDetailMuridDetailActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Pengajar.Sharing.AdminKelasDetailPengajarSharingActivity;
+import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
 import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelasMurid;
+import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
-public class AdminKelasDetailKelasActivity extends AppCompatActivity implements View.OnClickListener, IAdminKelasDetailKelasView {
+public class AdminKelasDetailKelasActivity extends AppCompatActivity implements View.OnClickListener, IAdminKelasDetailKelasView, LocationListener {
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
 //    public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
@@ -58,10 +81,28 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     ImageButton btnSharing, btnDeleteSharing, btnAbsen;
 
+    SessionManager sessionManager;
+
+    ProgressDialog progressDialog;
+    private static final int PERMISSION_CODE = 101;
+    String[] permissions_all = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+    LocationManager locationManager;
+    Boolean isGpsLocation;
+    Boolean isNetworkLocation;
+    Location loc;
+    SupportMapFragment mapFragment;
+    GoogleMap map;
+    LatLng latLng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_kelas_detail_kelas);
+
+        sessionManager = new SessionManager(this);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Location... ");
 
         recyclerView = findViewById(R.id.recycle_view);
 
@@ -114,6 +155,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         fab.setOnClickListener(this);
         btnSharing.setOnClickListener(this);
         btnDeleteSharing.setOnClickListener(this);
+        btnAbsen.setOnClickListener(this);
     }
 
     @Override
@@ -136,7 +178,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         }
 
         if (v.getId() == R.id.btn_absen) {
-            onErrorMessage("absen");
+            showDialogMulai();
         }
     }
 
@@ -177,6 +219,179 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     @Override
     public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showDialogMulai() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Memulai Kelas Pertemuan ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Mulai !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+
+                            HashMap<String, String> user = sessionManager.getDataUser();
+                            String id_pengajar_m = user.get(sessionManager.ID_USER);
+                            String id_kelas_p_m = id_kelas_p;
+
+                            getLocation();
+                            String lokasi_mulai_la_m = String.valueOf(loc.getLatitude());
+                            String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
+
+                            onSuccessMessage(id_pengajar_m + id_kelas_p_m + lokasi_mulai_la_m + lokasi_mulai_lo_m);
+
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan" + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void getLocation() {
+        progressDialog.show();
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkPermission()) {
+                getDeviceLocation();
+            } else {
+                requestPermission();
+            }
+
+        } else {
+            getDeviceLocation();
+        }
+    }
+
+    @Override
+    public void requestPermission() {
+        ActivityCompat.requestPermissions(AdminKelasDetailKelasActivity.this, permissions_all, PERMISSION_CODE);
+    }
+
+    @Override
+    public boolean checkPermission() {
+        for (int i = 0; i < permissions_all.length; i++) {
+            int result = ContextCompat.checkSelfPermission(this, permissions_all[i]);
+            if (result == PackageManager.PERMISSION_GRANTED) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void getDeviceLocation() {
+        // now all permission part complete now lets fetch location
+        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
+
+        isGpsLocation = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetworkLocation = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!isGpsLocation && !isNetworkLocation) {
+            showSettingForLocation();
+            getLastLocation();
+
+        } else {
+            getFinalLocation();
+        }
+    }
+
+    @Override
+    public void showSettingForLocation() {
+        android.app.AlertDialog.Builder al = new android.app.AlertDialog.Builder(this);
+        al.setTitle("Location Not Enabled !");
+        al.setMessage("Enable Location ?");
+        al.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+        al.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        al.show();
+    }
+
+    @Override
+    public void getLastLocation() {
+        if (locationManager != null) {
+            try {
+                Criteria criteria = new Criteria();
+                String provider = locationManager.getBestProvider(criteria, false);
+                Location location = locationManager.getLastKnownLocation(provider);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void getFinalLocation() {
+        try {
+
+            if (isGpsLocation) {
+
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 60 * 1, 10, AdminKelasDetailKelasActivity.this);
+
+                if (locationManager != null) {
+                    loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                    if (loc != null) {
+
+                        if (loc.getLatitude() == 0 && loc.getLongitude() == 0) {
+                            getDeviceLocation();
+                        } else {
+                            progressDialog.dismiss();
+                            latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+                        }
+                    }
+
+                }
+
+            } else if (isNetworkLocation) {
+
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000 * 60 * 1, 10, AdminKelasDetailKelasActivity.this);
+
+                if (locationManager != null) {
+                    loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                    if (loc != null) {
+
+                        if (loc.getLatitude() == 0 && loc.getLongitude() == 0) {
+                            getDeviceLocation();
+                        } else {
+                            progressDialog.dismiss();
+                            latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+                        }
+                    }
+                }
+
+            } else {
+                onErrorMessage("Cant get Location");
+            }
+
+        } catch (SecurityException ex) {
+            onErrorMessage("Cant get Location : " + ex);
+        }
     }
 
     @Override
@@ -253,6 +468,40 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getFinalLocation();
+                } else {
+                    onErrorMessage("Permission Failed");
+                }
+        }
     }
 
     @Override

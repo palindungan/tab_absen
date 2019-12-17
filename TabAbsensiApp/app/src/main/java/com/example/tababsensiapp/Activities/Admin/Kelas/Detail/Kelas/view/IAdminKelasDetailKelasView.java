@@ -18,4 +18,20 @@ public interface IAdminKelasDetailKelasView {
     void onSetupListView(ArrayList<Murid> dataModelArrayList);
 
     void sembunyikanObject();
+
+    void showDialogMulai();
+
+    void getLocation();
+
+    void requestPermission();
+
+    boolean checkPermission();
+
+    void getDeviceLocation();
+
+    void showSettingForLocation();
+
+    void getLastLocation();
+
+    void getFinalLocation();
 }
