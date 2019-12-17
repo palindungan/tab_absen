@@ -100,13 +100,8 @@ class Kelas_pertemuan extends REST_Controller
         $result = array();
         $result['list_kelas'] = array();
 
-        $data_id = array(
-            'id_pengajar' => $id_pengajar,
-            'id_sharing' => $id_pengajar
-        );
-
         // mengambil data dari database
-        $query = $this->M_kelas_pertemuan->get_data('list_kelas', $data_id);
+        $query = $this->M_kelas_pertemuan->get_data_or('list_kelas', $id_pengajar);
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database

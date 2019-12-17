@@ -24,6 +24,13 @@ class M_kelas_pertemuan extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
+    function get_data_or($table, $id_pengajar)
+    {
+        $this->db->where('id_pengajar =', $id_pengajar);
+        $this->db->or_where('id_sharing =', $id_pengajar);
+        return $this->db->get($table);
+    }
+
     function update_data($where, $table, $data)
     {
         $this->db->where($where);
