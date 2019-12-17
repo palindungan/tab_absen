@@ -44,21 +44,15 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
         pengajarHomePresenter = new PengajarHomePresenter(this, this);
         sessionManager = new SessionManager(this);
 
-        linkPengajarAbsensiPertemuan = findViewById(R.id.link_pengajar_absensi_pertemuan);
         linkPengajarKelasTampilSemua = findViewById(R.id.link_pengajar_kelas_tampil_semua);
         linkPengajarKelastampilAktif = findViewById(R.id.link_pengajar_kelas_tampil_aktif);
 
-        linkPengajarAbsensiPertemuan.setOnClickListener(this);
         linkPengajarKelasTampilSemua.setOnClickListener(this);
         linkPengajarKelastampilAktif.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.link_pengajar_absensi_pertemuan) {
-            Intent intent = new Intent(getApplicationContext(), PengajarAbsensiPertemuanActivity.class);
-            startActivity(intent);
-        }
         if (v.getId() == R.id.link_pengajar_kelas_tampil_semua) {
             Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilSemuaActivity.class);
             startActivity(intent);
