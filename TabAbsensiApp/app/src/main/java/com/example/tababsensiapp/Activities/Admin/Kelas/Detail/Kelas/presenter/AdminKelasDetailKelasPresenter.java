@@ -307,13 +307,16 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            String id_pertemuan_res = jsonObject.getString("id_pertemuan");
+                            String message = jsonObject.getString("message");
 
                             if (success.equals("1")) {
-                                adminKelasDetailKelasView.onSuccessMessage("Berhasil Memulai Pertemuan");
+                                
+                                String id_pertemuan_res = jsonObject.getString("id_pertemuan");
+
+                                adminKelasDetailKelasView.onSuccessMessage(message);
                                 adminKelasDetailKelasView.keHalamanAbsensi(id_pertemuan_res);
                             } else {
-                                adminKelasDetailKelasView.onErrorMessage("Gagal Memulai Pertemuan");
+                                adminKelasDetailKelasView.onErrorMessage(message);
                             }
 
                         } catch (JSONException e) {

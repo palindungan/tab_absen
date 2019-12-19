@@ -26,6 +26,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter.IPengajarAbsensiPertemuanPresenter;
+import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter.PengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.view.IPengajarAbsensiPertemuanView;
 import com.example.tababsensiapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -62,13 +64,17 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     public static final String EXTRA_ID_PERTEMUAN = "EXTRA_ID_PERTEMUAN";
     String id_pertemuan = "";
 
+    IPengajarAbsensiPertemuanPresenter pengajarAbsensiPertemuanPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_absensi_pertemuan);
 
         id_pertemuan = getIntent().getStringExtra(EXTRA_ID_PERTEMUAN);
-        onSuccessMessage(id_pertemuan);
+
+        pengajarAbsensiPertemuanPresenter = new PengajarAbsensiPertemuanPresenter(this,this);
+        pengajarAbsensiPertemuanPresenter.inisiasiAwal(id_pertemuan);
 
         toolbar = findViewById(R.id.toolbar);
 

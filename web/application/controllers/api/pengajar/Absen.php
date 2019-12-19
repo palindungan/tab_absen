@@ -56,19 +56,102 @@ class Absen extends REST_Controller
             'deskripsi'   => $deskripsi
         );
 
-        $insert =  $this->M_absen->input_data('pertemuan', $data);
-        if ($insert) {
+        $where = array(
+            'id_pengajar' => $id_pengajar,
+            'status_pertemuan' => "Belum Selesai"
+        );
+
+        // mengambil data dari database
+        $cek = $this->M_absen->get_data('list_pertemuan', $where);
+
+        if ($cek->num_rows() > 0) {
 
             // membuat array untuk di transfer ke API
-            $result["success"] = "1";
-            $result["message"] = "success";
-            $result["id_pertemuan"] = $id_pertemuan;
+            $result["success"] = "0";
+            $result["message"] = "Anda Sudah Melakukan Absen , Akhiri kelas yang masih berjalan !";
             $this->response($result, 200);
+        } else {
+            $insert =  $this->M_absen->input_data('pertemuan', $data);
+            if ($insert) {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "1";
+                $result["message"] = "Berhasil Melakukan Input Absen";
+                $result["id_pertemuan"] = $id_pertemuan;
+                $this->response($result, 200);
+            } else {
+
+                // membuat array untuk di transfer ke API
+                $result["success"] = "0";
+                $result["message"] = "Gagal Melakukan Input Absen";
+                $this->response($result, 200);
+            }
+        }
+    }
+
+    function ambil_data_pertemuan_post()
+    {
+        $id_pertemuan = $this->post('id_pertemuan');
+
+        $where = array(
+            'id_pertemuan' => $id_pertemuan
+        );
+
+        // variable array
+        $result = array();
+        $result['list_pertemuan'] = array();
+
+        // mengambil data dari database
+        $query = $this->M_absen->get_data('list_pertemuan', $where);
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'id_pengajar' => $row["id_pengajar"],
+                    'nama_pengajar' => $row["nama_pengajar"],
+                    'username' => $row["username"],
+                    'foto' => $row["foto"],
+
+                    'hari_btn' => $row["hari_btn"],
+                    'waktu_mulai' => $row["waktu_mulai"],
+                    'waktu_berakhir' => $row["waktu_berakhir"],
+                    'lokasi_mulai_la' => $row["lokasi_mulai_la"],
+                    'lokasi_mulai_lo' => $row["lokasi_mulai_lo"],
+                    'lokasi_berakhir_la' => $row["lokasi_berakhir_la"],
+                    'lokasi_berakhir_lo' => $row["lokasi_berakhir_lo"],
+
+                    'status_fee' => $row["status_fee"],
+                    'status_spp' => $row["status_spp"],
+                    'status_pertemuan' => $row["status_pertemuan"],
+                    'status_konfirmasi' => $row["status_konfirmasi"],
+
+                    'deskripsi' => $row["deskripsi"],
+
+                    'id_kelas_p' => $row["id_kelas_p"],
+                    'hari_jadwal' => $row["hari_jadwal"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_berakhir' => $row["jam_berakhir"],
+                    'harga_fee' => $row["harga_fee"],
+
+                    'id_mata_pelajaran' => $row["id_mata_pelajaran"],
+                    'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
+                );
+
+                array_push($result['list_pertemuan'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "success berhasil mengambil data";
+                $this->response($result, 200);
+            }
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 200));
+            $result["message"] = "error data tidak ada";
+            $this->response($result, 200);
         }
     }
 }
