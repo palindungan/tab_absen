@@ -21,9 +21,28 @@ class Absen extends REST_Controller
         $id_pengajar = $this->post('id_pengajar');
         $id_kelas_p = $this->post('id_kelas_p');
 
-        $hari = "Senin"; // ambil hari ini
-        $waktu_mulai = "09:00";
-        $waktu_berakhir = "09:30";
+        $tanggal = date('Y-m-d H:i:s');
+
+        $hari = date('l', strtotime($tanggal));
+
+        if ($hari == "Sunday") {
+            $hari = "Minggu";
+        } elseif ($hari == "Monday") {
+            $hari = "Senin";
+        } elseif ($hari == "Tuesday") {
+            $hari = "Selasa";
+        } elseif ($hari == "Wednesday") {
+            $hari = "Rabu";
+        } elseif ($hari == "Thursday") {
+            $hari = "Kamis";
+        } elseif ($hari == "Friday") {
+            $hari = "Jumat";
+        } elseif ($hari == "Saturday") {
+            $hari = "Sabtu";
+        }
+
+        $waktu_mulai = $tanggal;
+        $waktu_berakhir = $tanggal;
 
         $lokasi_mulai_la = $this->post('lokasi_mulai_la');
         $lokasi_mulai_lo = $this->post('lokasi_mulai_lo');
@@ -255,7 +274,9 @@ class Absen extends REST_Controller
         );
 
         // ambil data
-        $waktu_berakhir = "09:50";
+        $tanggal = date('Y-m-d H:i:s');
+
+        $waktu_berakhir = $tanggal;
 
         $lokasi_berakhir_la = $this->post('lokasi_berakhir_la');
         $lokasi_berakhir_lo = $this->post('lokasi_berakhir_lo');
