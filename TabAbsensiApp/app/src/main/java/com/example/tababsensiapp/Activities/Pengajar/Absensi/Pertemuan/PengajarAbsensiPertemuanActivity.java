@@ -1,34 +1,22 @@
-package com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan;
+package com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter.IPengajarAbsensiPertemuanPresenter;
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter.PengajarAbsensiPertemuanPresenter;
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.view.IPengajarAbsensiPertemuanView;
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.IPengajarAbsensiPertemuanPresenter;
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.PengajarAbsensiPertemuanPresenter;
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.view.IPengajarAbsensiPertemuanView;
 import com.example.tababsensiapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

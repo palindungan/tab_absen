@@ -1,13 +1,11 @@
 package com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,11 +14,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.AdminKelasDetailKelasActivity;
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.presenter.IPengajarKelasTampilSemuaPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.presenter.PengajarKelasTampilSemuaPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.view.IPengajarKelasTampilSemuaView;
-import com.example.tababsensiapp.Adapters.AdapterDaftarKelas;
 import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelas;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.Models.Kelas;

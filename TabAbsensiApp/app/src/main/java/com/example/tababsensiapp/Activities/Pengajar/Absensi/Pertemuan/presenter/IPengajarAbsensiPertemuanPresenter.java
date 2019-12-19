@@ -1,4 +1,4 @@
-package com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter;
+package com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter;
 
 public interface IPengajarAbsensiPertemuanPresenter {
     void inisiasiAwal(String id_pertemuan);

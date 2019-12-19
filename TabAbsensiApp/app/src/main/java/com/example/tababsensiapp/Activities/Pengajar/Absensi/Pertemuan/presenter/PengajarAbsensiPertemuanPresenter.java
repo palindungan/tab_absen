@@ -1,4 +1,4 @@
-package com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.presenter;
+package com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter;
 
 import android.content.Context;
 
@@ -9,7 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.view.IPengajarAbsensiPertemuanView;
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.view.IPengajarAbsensiPertemuanView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
 import com.example.tababsensiapp.Controllers.SessionManager;
 

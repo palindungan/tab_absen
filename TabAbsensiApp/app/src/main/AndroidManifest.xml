@@ -26,7 +26,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAPUvdjy8dcI9skIiiYgWcc3jjKo8UIjM" />
 
-        <activity android:name=".Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity" />
+        <activity android:name=".Activities.Pengajar.Absensi.Pertemuan.PengajarAbsensiPertemuanActivity" />
         <activity
             android:name=".Activities.Pengajar.Home.PengajarHomeActivity"
             android:theme="@style/AppThemeHome" />

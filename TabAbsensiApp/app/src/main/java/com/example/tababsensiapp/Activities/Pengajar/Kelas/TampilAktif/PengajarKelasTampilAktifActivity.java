@@ -13,12 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.AdminKelasDetailKelasActivity;
-import com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan.PengajarAbsensiPertemuanActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.presenter.IPengajarKelasTampilAktifPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.presenter.PengajarKelasTampilAktifPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.view.IPengajarKelasTampilAktifView;
-import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelas;
 import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelasAktif;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.Models.Pertemuan;
