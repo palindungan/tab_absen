@@ -92,6 +92,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     GoogleMap map;
     LatLng latLng;
 
+    String hari_kelas = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,6 +198,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         tvHari.setText(hari);
         tvJam.setText(jam_mulai + " - " + jam_berakhir);
 
+        hari_kelas = hari;
+
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
             btnSharing.setVisibility(View.GONE);
@@ -239,8 +243,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             String lokasi_mulai_la_m = String.valueOf(loc.getLatitude());
                             String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
 
-                            onSuccessMessage(id_pengajar_m + id_kelas_p_m + lokasi_mulai_la_m + lokasi_mulai_lo_m);
-                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m);
+                            // onSuccessMessage(id_pengajar_m + id_kelas_p_m + lokasi_mulai_la_m + lokasi_mulai_lo_m);
+
+                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas);
 
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan " + e.toString());

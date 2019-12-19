@@ -17,6 +17,9 @@ class Absen extends REST_Controller
     function tambah_absen_post()
     {
         // ambil data
+
+        $hari_kelas = $this->post('hari_kelas');
+
         $id_pertemuan = $this->M_absen->get_no();
         $id_pengajar = $this->post('id_pengajar');
         $id_kelas_p = $this->post('id_kelas_p');
@@ -36,7 +39,7 @@ class Absen extends REST_Controller
         } elseif ($hari == "Thursday") {
             $hari = "Kamis";
         } elseif ($hari == "Friday") {
-            $hari = "Jumat";
+            $hari = "Jum'at";
         } elseif ($hari == "Saturday") {
             $hari = "Sabtu";
         }

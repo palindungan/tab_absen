@@ -296,7 +296,7 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
     }
 
     @Override
-    public void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo) {
+    public void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo, String hari_kelas) {
         String base_url = baseUrl.getUrlData();
         String URL_DATA = base_url + "pengajar/absen/tambah_absen"; // url http request
 
@@ -338,6 +338,7 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                 params.put("id_kelas_p", id_kelas_p);
                 params.put("lokasi_mulai_la", lokasi_mulai_la);
                 params.put("lokasi_mulai_lo", lokasi_mulai_lo);
+                params.put("hari_kelas", hari_kelas);
                 return params;
             }
         };
