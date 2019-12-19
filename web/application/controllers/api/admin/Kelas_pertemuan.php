@@ -111,6 +111,12 @@ class Kelas_pertemuan extends REST_Controller
             // mengeluarkan data dari database
             foreach ($query->result_array() as $row) {
 
+                $data_id = array(
+                    'id_kelas_p' => $row["id_kelas_p"]
+                );
+
+                $count = $this->M_kelas_pertemuan->get_data('detail_kelas_pertemuan', $data_id)->num_rows();
+
                 // ambil detail data db
                 $data = array(
                     'id_kelas_p' => $row["id_kelas_p"],
@@ -123,7 +129,8 @@ class Kelas_pertemuan extends REST_Controller
                     'id_pengajar' => $row["id_pengajar"],
                     'nama_pengajar' => $row["nama_pengajar"],
                     'id_sharing' => $row["id_sharing"],
-                    'nama_sharing' => $row["nama_sharing"]
+                    'nama_sharing' => $row["nama_sharing"],
+                    'jumlah_murid' => $count
                 );
 
                 array_push($result['list_kelas'], $data);

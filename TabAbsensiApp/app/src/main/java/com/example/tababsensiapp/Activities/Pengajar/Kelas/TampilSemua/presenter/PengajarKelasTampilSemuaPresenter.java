@@ -71,6 +71,8 @@ public class PengajarKelasTampilSemuaPresenter implements IPengajarKelasTampilSe
                                     String id_sharing = dataobj.getString("id_sharing");
                                     String nama_pengajar = dataobj.getString("nama_pengajar");
 
+                                    String jumlah_murid = dataobj.getString("jumlah_murid");
+
                                     playerModel.setId_kelas_p(id_kelas_p);
                                     playerModel.setHari(hari);
                                     playerModel.setJam_mulai(jam_mulai);
@@ -83,6 +85,8 @@ public class PengajarKelasTampilSemuaPresenter implements IPengajarKelasTampilSe
                                     playerModel.setId_pengajar(id_pengajar);
                                     playerModel.setId_sharing(id_sharing);
                                     playerModel.setNama_pengajar(nama_pengajar);
+
+                                    playerModel.setJumlah_murid(jumlah_murid);
 
                                     dataModelArrayList.add(playerModel);
                                 }

@@ -3,7 +3,7 @@ package com.example.tababsensiapp.Models;
 public class Kelas {
     String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, nama_pelajaran, nama_sharing;
 
-    String id_mata_pelajaran, id_pengajar,nama_pengajar,id_sharing;
+    String id_mata_pelajaran, id_pengajar,nama_pengajar,id_sharing,jumlah_murid;
 
     public String getId_kelas_p() {
         return id_kelas_p;
@@ -91,5 +91,13 @@ public class Kelas {
 
     public void setNama_pengajar(String nama_pengajar) {
         this.nama_pengajar = nama_pengajar;
+    }
+
+    public String getJumlah_murid() {
+        return jumlah_murid;
+    }
+
+    public void setJumlah_murid(String jumlah_murid) {
+        this.jumlah_murid = jumlah_murid;
     }
 }

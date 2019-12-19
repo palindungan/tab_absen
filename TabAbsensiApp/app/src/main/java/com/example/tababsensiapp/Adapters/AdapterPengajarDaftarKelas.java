@@ -47,9 +47,11 @@ public class AdapterPengajarDaftarKelas extends RecyclerView.Adapter<AdapterPeng
 
     @Override
     public void onBindViewHolder(@NonNull AdapterPengajarDaftarKelas.AdapterPengajarDaftarKelasViewHolder holder, int position) {
-        holder.tvNamaPelajaran.setText(dataModelArrayList.get(position).getNama_pelajaran());
-        holder.tvHari.setText(dataModelArrayList.get(position).getHari());
-        holder.tvJam.setText(dataModelArrayList.get(position).getJam_mulai()+" - "+dataModelArrayList.get(position).getJam_berakhir());
+        String jumlah_murid = dataModelArrayList.get(position).getJumlah_murid();
+
+        holder.tvNamaPelajaran.setText(dataModelArrayList.get(position).getNama_pelajaran() + " (" + jumlah_murid + " Murid)");
+        holder.tvHari.setText("Jadwal Hari : " + dataModelArrayList.get(position).getHari());
+        holder.tvJam.setText("Jadwal Jam : " + dataModelArrayList.get(position).getJam_mulai() + " - " + dataModelArrayList.get(position).getJam_berakhir());
     }
 
     @Override
