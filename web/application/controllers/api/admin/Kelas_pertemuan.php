@@ -31,10 +31,14 @@ class Kelas_pertemuan extends REST_Controller
                 // ambil detail data db
                 $data = array(
                     'id_kelas_p' => $row["id_kelas_p"],
-                    'nama' => $row["nama"],
-                    'username' => $row["username"],
-                    'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"]
+                    'id_pengajar' => $row["id_pengajar"],
+                    'id_mata_pelajaran' => $row["id_mata_pelajaran"],
+                    'hari' => $row["hari"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_berakhir' => $row["jam_berakhir"],
+                    'harga_fee' => $row["harga_fee"],
+                    'id_sharing' => $row["id_sharing"],
+                    'nama_sharing' => $row["nama_sharing"],
                 );
 
                 array_push($result['kelas_pertemuan'], $data);
