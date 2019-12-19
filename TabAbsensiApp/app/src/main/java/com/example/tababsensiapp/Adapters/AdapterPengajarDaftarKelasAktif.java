@@ -48,22 +48,18 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
     @Override
     public void onBindViewHolder(@NonNull AdapterPengajarDaftarKelasAktif.AdapterPengajarDaftarKelasAktifViewHolder holder, int position) {
-        holder.tvNamaPengajar.setText("Nama Pengajar :"+dataModelArrayList.get(position).getNama_pengajar());
+        holder.tvNamaPengajar.setText("Nama Pengajar : " + dataModelArrayList.get(position).getNama_pengajar());
 
         String nama_pelajaran = dataModelArrayList.get(position).getNama_mata_pelajaran();
         String hari_jadwal = dataModelArrayList.get(position).getHari_jadwal();
         String jam_mulai = dataModelArrayList.get(position).getJam_mulai();
         String jam_berakhir = dataModelArrayList.get(position).getJam_berakhir();
         String harga_fee = dataModelArrayList.get(position).getHarga_fee();
-        holder.tvDetailKelasP.setText(nama_pelajaran+" ("+hari_jadwal+", "+jam_mulai+" - "+jam_berakhir+") / Rp "+harga_fee+"");
+        holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee + "");
 
-        String hari_btn =  dataModelArrayList.get(position).getHari_btn();
-        String waktu_mulai =  dataModelArrayList.get(position).getWaktu_mulai();
-        holder.tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : "+hari_btn+", "+waktu_mulai);
-
-//        String lokasi_mulai_la =  dataModelArrayList.get(position).getLokasi_mulai_la();
-//        String lokasi_mulai_lo =  dataModelArrayList.get(position).getLokasi_mulai_lo();
-//        holder.tvLokasiDetailMulai.setText("Lokasi : ("+lokasi_mulai_la+") , ("+lokasi_mulai_lo+")");
+        String hari_btn = dataModelArrayList.get(position).getHari_btn();
+        String waktu_mulai = dataModelArrayList.get(position).getWaktu_mulai();
+        holder.tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
 
     }
 
@@ -74,7 +70,7 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
     public class AdapterPengajarDaftarKelasAktifViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai , tvLokasiDetailMulai;
+        protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvLokasiDetailMulai;
 
         public AdapterPengajarDaftarKelasAktifViewHolder(@NonNull View itemView) {
             super(itemView);

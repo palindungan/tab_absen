@@ -55,13 +55,37 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
-                                    String id_kelas_p = object.getString("id_kelas_p").trim();
-                                    String id_mata_pelajaran = object.getString("id_mata_pelajaran").trim();
-                                    String nama_mata_pelajaran = object.getString("nama_mata_pelajaran").trim();
+                                    String id_pengajar = object.getString("id_pengajar");
 
-                                    // pengajarAbsensiPertemuanView.onSuccessMessage(id_kelas_p+id_mata_pelajaran+nama_mata_pelajaran);
+                                    String nama_pengajar = object.getString("nama_pengajar");
+                                    String nama_mata_pelajaran = object.getString("nama_mata_pelajaran");
+
+                                    String hari_btn = object.getString("hari_btn");
+                                    String waktu_mulai = object.getString("waktu_mulai");
+                                    String lokasi_mulai_la = object.getString("lokasi_mulai_la");
+                                    String lokasi_mulai_lo = object.getString("lokasi_mulai_lo");
+
+                                    String hari_jadwal = object.getString("hari_jadwal");
+                                    String jam_mulai = object.getString("jam_mulai");
+                                    String jam_berakhir = object.getString("jam_berakhir");
+                                    String harga_fee = object.getString("harga_fee");
 
                                     HashMap<String, String> data = new HashMap<>();
+                                    data.put("id_pertemuan", id_pertemuan);
+
+                                    data.put("id_pengajar", id_pengajar);
+                                    data.put("nama_pengajar", nama_pengajar);
+                                    data.put("nama_mata_pelajaran", nama_mata_pelajaran);
+
+                                    data.put("hari_btn", hari_btn);
+                                    data.put("waktu_mulai", waktu_mulai);
+                                    data.put("lokasi_mulai_la", lokasi_mulai_la);
+                                    data.put("lokasi_mulai_lo", lokasi_mulai_lo);
+
+                                    data.put("hari_jadwal", hari_jadwal);
+                                    data.put("jam_mulai", jam_mulai);
+                                    data.put("jam_berakhir", jam_berakhir);
+                                    data.put("harga_fee", harga_fee);
 
                                     pengajarAbsensiPertemuanView.setNilaiDefault(data);
                                 }

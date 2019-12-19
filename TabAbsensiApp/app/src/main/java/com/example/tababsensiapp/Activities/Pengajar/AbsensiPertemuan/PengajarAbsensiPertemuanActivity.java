@@ -43,14 +43,10 @@ import es.dmoral.toasty.Toasty;
 
 public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implements View.OnClickListener, IPengajarAbsensiPertemuanView, LocationListener {
 
-    ProgressDialog progressDialog;
-
     Toolbar toolbar;
 
     TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvLatitude, tvLongitude;
     Button btnBatal, btnNext;
-
-    String[] permissions_all = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
 
     SupportMapFragment mapFragment;
     GoogleMap map;
@@ -78,9 +74,6 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvLongitude = findViewById(R.id.tv_longitude);
 
         toolbar = findViewById(R.id.toolbar);
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching Location... ");
 
         initActionBar();
     }
@@ -111,6 +104,31 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     @Override
     public void setNilaiDefault(HashMap<String, String> data) {
+
+        String id_pertemuan = data.get("id_pertemuan");
+
+        String nama_pengajar = data.get("nama_pengajar");
+        String nama_mata_pelajaran = data.get("nama_mata_pelajaran");
+
+        String hari_btn = data.get("hari_btn");
+        String waktu_mulai = data.get("waktu_mulai");
+        String lokasi_mulai_la = data.get("lokasi_mulai_la");
+        String lokasi_mulai_lo = data.get("lokasi_mulai_lo");
+
+        String hari_jadwal = data.get("hari_jadwal");
+        String jam_mulai = data.get("jam_mulai");
+        String jam_berakhir = data.get("jam_berakhir");
+        String harga_fee = data.get("harga_fee");
+
+        tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
+
+        tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee);
+
+        tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
+
+        tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
+        tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
+
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -119,9 +137,12 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
                 map.clear();
 
+                double latitude = Double.parseDouble(lokasi_mulai_la);
+                double longitude = Double.parseDouble(lokasi_mulai_lo);
+
                 // now add location in map
-                latLng = new LatLng(12.023, 23.23);
-                map.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+                latLng = new LatLng(latitude, longitude);
+                map.addMarker(new MarkerOptions().position(latLng).title("Lokasi Sekarang"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
             }
