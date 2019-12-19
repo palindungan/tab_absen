@@ -59,11 +59,11 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     String id_mata_pelajaran = object.getString("id_mata_pelajaran").trim();
                                     String nama_mata_pelajaran = object.getString("nama_mata_pelajaran").trim();
 
-                                    pengajarAbsensiPertemuanView.onSuccessMessage(id_kelas_p+id_mata_pelajaran+nama_mata_pelajaran);
+                                    // pengajarAbsensiPertemuanView.onSuccessMessage(id_kelas_p+id_mata_pelajaran+nama_mata_pelajaran);
 
-                                    //HashMap<String, String> data = new HashMap<>();
+                                    HashMap<String, String> data = new HashMap<>();
 
-                                    //pengajarAbsensiPertemuanView.setNilaiDefault(data);
+                                    pengajarAbsensiPertemuanView.setNilaiDefault(data);
                                 }
                             }
 
