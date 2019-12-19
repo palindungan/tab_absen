@@ -242,6 +242,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
 
                             onSuccessMessage(id_pengajar_m + id_kelas_p_m + lokasi_mulai_la_m + lokasi_mulai_lo_m);
+                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m);
 
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan" + e.toString());
@@ -457,6 +458,14 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
             btnSharing.setVisibility(View.GONE);
             fab.hide();
         }
+    }
+
+    @Override
+    public void keHalamanAbsensi(String id_pertemuan) {
+        Intent intent = new Intent(getApplicationContext(), PengajarAbsensiPertemuanActivity.class);
+        intent.putExtra(PengajarAbsensiPertemuanActivity.EXTRA_ID_PERTEMUAN, id_pertemuan);
+
+        startActivity(intent);
     }
 
     @Override

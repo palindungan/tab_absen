@@ -62,6 +62,7 @@ class Absen extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
             $result["message"] = "success";
+            $result["id_pertemuan"] = $id_pertemuan;
             $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API

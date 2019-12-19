@@ -34,4 +34,6 @@ public interface IAdminKelasDetailKelasView {
     void getLastLocation();
 
     void getFinalLocation();
+
+    void keHalamanAbsensi(String id_pertemuan);
 }

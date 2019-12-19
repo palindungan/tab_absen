@@ -32,23 +32,25 @@ class M_absen extends CI_Model
     }
 
     // autogenerate kode / ID
+    // PT191218-001
     function get_no()
     {
-        $field = "id_pengajar";
-        $tabel = "pengajar";
+        $field = "id_pertemuan";
+        $tabel = "pertemuan";
         $digit = "3";
-        $kode = "PE";
+        $ymd = date('ymd');
 
-        $q = $this->db->query("SELECT MAX(RIGHT($field,$digit)) AS kd_max FROM $tabel");
+        $q = $this->db->query("SELECT MAX(RIGHT($field,$digit)) AS kd_max FROM $tabel WHERE SUBSTR($field, 3, 6) = $ymd LIMIT 1");
         $kd = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $k) {
                 $tmp = ((int) $k->kd_max) + 1;
-                $kd = $kode . sprintf('%0' . $digit . 's',  $tmp);
+                $kd = sprintf("%03s", $tmp); // 0 berapa kali + $tmp
             }
         } else {
-            $kd = "PE001";
+            $kd = "001";
         }
-        return $kd;
+        date_default_timezone_set('Asia/Jakarta');
+        return 'PT' . date('ymd') . '-' . $kd; // SELECT SUBSTR('PT191218-001', 3, 6); dari digit ke 3 sampai 6 digit seanjutnya
     }
 }

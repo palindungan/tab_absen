@@ -216,7 +216,7 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                                     String nama_sharing = dataobj.getString("nama_sharing");
                                     String nama_pengajar = dataobj.getString("nama_pengajar");
 
-                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir,id_sharing, nama_sharing);
+                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir, id_sharing, nama_sharing);
 
                                 }
                             } else {
@@ -293,5 +293,53 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "pengajar/absen/tambah_absen"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String id_pertemuan_res = jsonObject.getString("id_pertemuan");
+
+                            if (success.equals("1")) {
+                                adminKelasDetailKelasView.onSuccessMessage("Berhasil Memulai Pertemuan");
+                                adminKelasDetailKelasView.keHalamanAbsensi(id_pertemuan_res);
+                            } else {
+                                adminKelasDetailKelasView.onErrorMessage("Gagal Memulai Pertemuan");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminKelasDetailKelasView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminKelasDetailKelasView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_pengajar", id_pengajar);
+                params.put("id_kelas_p", id_kelas_p);
+                params.put("lokasi_mulai_la", lokasi_mulai_la);
+                params.put("lokasi_mulai_lo", lokasi_mulai_lo);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }

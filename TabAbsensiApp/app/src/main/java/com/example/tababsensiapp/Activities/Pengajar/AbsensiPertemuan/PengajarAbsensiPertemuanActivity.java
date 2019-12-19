@@ -57,10 +57,16 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     GoogleMap map;
     LatLng latLng;
 
+    public static final String EXTRA_ID_PERTEMUAN = "EXTRA_ID_PERTEMUAN";
+    String id_pertemuan = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_absensi_pertemuan);
+
+        id_pertemuan = getIntent().getStringExtra(EXTRA_ID_PERTEMUAN);
+        onSuccessMessage(id_pertemuan);
 
         toolbar = findViewById(R.id.toolbar);
 

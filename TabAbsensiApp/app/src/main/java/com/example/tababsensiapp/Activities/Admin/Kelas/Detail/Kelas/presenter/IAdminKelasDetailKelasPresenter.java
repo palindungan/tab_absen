@@ -8,4 +8,6 @@ public interface IAdminKelasDetailKelasPresenter {
     void onLoadSemuaDataKelas(String id);
 
     void onDeleteSharing(String id);
+
+    void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo);
 }
