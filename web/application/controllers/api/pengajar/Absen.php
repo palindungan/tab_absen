@@ -266,7 +266,6 @@ class Absen extends REST_Controller
 
         $data = array();
         $data = array(
-            'id_pertemuan' => $id_pertemuan,
             'waktu_berakhir' => $waktu_berakhir,
             'lokasi_berakhir_la' => $lokasi_berakhir_la,
             'lokasi_berakhir_lo' => $lokasi_berakhir_lo,
