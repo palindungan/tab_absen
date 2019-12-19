@@ -61,9 +61,9 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
         String waktu_mulai =  dataModelArrayList.get(position).getWaktu_mulai();
         holder.tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : "+hari_btn+", "+waktu_mulai);
 
-        String lokasi_mulai_la =  dataModelArrayList.get(position).getLokasi_mulai_la();
-        String lokasi_mulai_lo =  dataModelArrayList.get(position).getLokasi_mulai_lo();
-        holder.tvLokasiDetailMulai.setText("Lokasi : ("+lokasi_mulai_la+") , ("+lokasi_mulai_lo+")");
+//        String lokasi_mulai_la =  dataModelArrayList.get(position).getLokasi_mulai_la();
+//        String lokasi_mulai_lo =  dataModelArrayList.get(position).getLokasi_mulai_lo();
+//        holder.tvLokasiDetailMulai.setText("Lokasi : ("+lokasi_mulai_la+") , ("+lokasi_mulai_lo+")");
 
     }
 
@@ -82,7 +82,7 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
             tvNamaPengajar = itemView.findViewById(R.id.tv_nama_pengajar);
             tvDetailKelasP = itemView.findViewById(R.id.tv_detail_kelas_p);
             tvWaktuDetailMulai = itemView.findViewById(R.id.tv_waktu_detail_mulai);
-            tvLokasiDetailMulai = itemView.findViewById(R.id.tv_lokasi_detail_mulai);
+//            tvLokasiDetailMulai = itemView.findViewById(R.id.tv_lokasi_detail_mulai);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
