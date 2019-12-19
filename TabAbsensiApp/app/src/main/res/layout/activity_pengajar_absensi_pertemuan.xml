@@ -28,22 +28,40 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_nama_pengajar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Pengajar " />
+
+        <TextView
+            android:id="@+id/tv_kelas_pertemuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mata Pelajaran ( hari , jam - jam , harga )" />
+
+        <TextView
+            android:id="@+id/tv_hari_mulai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hari Mulai" />
+
+        <TextView
+            android:id="@+id/tv_jam_mulai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam Mulai" />
+
+        <TextView
             android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lokasi : " />
 
         <Button
-            android:id="@+id/btn_location"
+            android:id="@+id/btn_batal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location" />
-
-        <Button
-            android:id="@+id/btn_open_map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Open Map" />
+            android:text="Batalkan Pertemuan" />
 
         <fragment
             android:id="@+id/map"
@@ -53,5 +71,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Next" />
 
 </RelativeLayout>
