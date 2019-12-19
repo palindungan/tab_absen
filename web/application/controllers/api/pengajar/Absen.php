@@ -221,4 +221,28 @@ class Absen extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function delete_pertemuan_post()
+    {
+        $id_pertemuan = $this->post('id');
+
+        $where = array(
+            'id_pertemuan' => $id_pertemuan
+        );
+
+        $hapus =  $this->M_absen->hapus_data($where, "pertemuan");
+        if ($hapus) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Menghapus Data Pertemuan !";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Menghapus Data Pertemuan !";
+            $this->response(array($result, 200));
+        }
+    }
 }

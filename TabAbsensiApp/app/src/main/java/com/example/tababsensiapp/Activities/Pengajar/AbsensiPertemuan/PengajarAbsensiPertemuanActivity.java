@@ -1,13 +1,13 @@
 package com.example.tababsensiapp.Activities.Pengajar.AbsensiPertemuan;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.DialogInterface;
@@ -73,15 +73,20 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvLatitude = findViewById(R.id.tv_latitude);
         tvLongitude = findViewById(R.id.tv_longitude);
 
+        btnBatal = findViewById(R.id.btn_batal);
+
         toolbar = findViewById(R.id.toolbar);
 
         initActionBar();
+
+        btnBatal.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-//        if (v.getId() == R.id.btn_open_map) {
-//        }
+        if (v.getId() == R.id.btn_batal) {
+            showDialogDelete();
+        }
     }
 
     @Override
@@ -105,7 +110,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     @Override
     public void setNilaiDefault(HashMap<String, String> data) {
 
-        String id_pertemuan = data.get("id_pertemuan");
+        String id_pengajar = data.get("id_pengajar");
 
         String nama_pengajar = data.get("nama_pengajar");
         String nama_mata_pelajaran = data.get("nama_mata_pelajaran");
@@ -147,6 +152,39 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
             }
         });
+    }
+
+    @Override
+    public void showDialogDelete() {
+        androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Membatalkan Pertemuan ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Menghapus Data !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            pengajarAbsensiPertemuanPresenter.hapusData(id_pertemuan);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void backPressed() {
+        onBackPressed();
     }
 
     @Override

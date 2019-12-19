@@ -13,4 +13,8 @@ public interface IPengajarAbsensiPertemuanView {
 
     // String nama_pengajar, String nama_mata_pelajaran, String hari, String jam_mulai, String jam_berakhir, String harga, String hari_mulai_x, String jam_mulai_x, String lan, String lon
     void setNilaiDefault(HashMap<String, String> data);
+
+    void showDialogDelete();
+
+    void backPressed();
 }
