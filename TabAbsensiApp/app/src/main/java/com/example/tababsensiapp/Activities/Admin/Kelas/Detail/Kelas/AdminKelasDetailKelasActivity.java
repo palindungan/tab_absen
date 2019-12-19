@@ -245,7 +245,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m);
 
                         } catch (Exception e) {
-                            onErrorMessage("Terjadi Kesalahan" + e.toString());
+                            onErrorMessage("Terjadi Kesalahan " + e.toString());
                         }
 
                     }
