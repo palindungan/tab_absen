@@ -21,4 +21,9 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
         sessionManager = new SessionManager(context);
         baseUrl = new BaseUrl();
     }
+
+    @Override
+    public void inisiasiAwal(String id_pertemuan) {
+        
+    }
 }

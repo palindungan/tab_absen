@@ -35,6 +35,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
+
 import es.dmoral.toasty.Toasty;
 
 public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implements View.OnClickListener, IPengajarAbsensiPertemuanView, LocationListener {
@@ -49,7 +51,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     Toolbar toolbar;
 
     TextView tvLocation;
-    Button btnLocation, btnOpenMap;
+    Button btnBatal, btnNext;
 
     String[] permissions_all = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
 
@@ -71,35 +73,28 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         toolbar = findViewById(R.id.toolbar);
 
         tvLocation = findViewById(R.id.tv_location);
-        btnLocation = findViewById(R.id.btn_location);
-        btnOpenMap = findViewById(R.id.btn_open_map);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching Location... ");
 
         initActionBar();
 
-        btnLocation.setOnClickListener(this);
-        btnOpenMap.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_open_map) {
+//        if (v.getId() == R.id.btn_open_map) {
+//
+//            mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//            mapFragment.getMapAsync(new OnMapReadyCallback() {
+//                @Override
+//                public void onMapReady(GoogleMap googleMap) {
+//                    map = googleMap;
+//                    getLocation();
+//                }
+//            });
+//        }
 
-            mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    map = googleMap;
-                    getLocation();
-                }
-            });
-        }
-
-        if (v.getId() == R.id.btn_location) {
-            getLocation();
-        }
     }
 
     @Override
@@ -118,6 +113,11 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     @Override
     public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setNilaiDefault(HashMap<String, String> data) {
+
     }
 
     @Override
