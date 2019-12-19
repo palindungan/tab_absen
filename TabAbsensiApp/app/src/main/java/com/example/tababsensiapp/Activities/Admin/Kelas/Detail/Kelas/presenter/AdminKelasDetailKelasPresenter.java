@@ -310,7 +310,7 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                             String message = jsonObject.getString("message");
 
                             if (success.equals("1")) {
-                                
+
                                 String id_pertemuan_res = jsonObject.getString("id_pertemuan");
 
                                 adminKelasDetailKelasView.onSuccessMessage(message);
