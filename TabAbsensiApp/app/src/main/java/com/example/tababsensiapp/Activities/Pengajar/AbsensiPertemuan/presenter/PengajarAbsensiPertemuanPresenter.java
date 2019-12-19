@@ -64,7 +64,6 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     //HashMap<String, String> data = new HashMap<>();
 
                                     //pengajarAbsensiPertemuanView.setNilaiDefault(data);
-
                                 }
                             }
 

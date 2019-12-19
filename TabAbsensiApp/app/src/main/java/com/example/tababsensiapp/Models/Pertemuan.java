@@ -2,7 +2,7 @@ package com.example.tababsensiapp.Models;
 
 public class Pertemuan {
     String id_kelas_p, hari_btn, waktu_mulai, harga_fee, id_mata_pelajaran, nama_mata_pelajaran, id_pengajar, nama_pengajar, status_pertemuan;
-    String lokasi_mulai_la, lokasi_mulai_lo, hari_jadwal, jam_mulai, jam_berakhir;
+    String lokasi_mulai_la, lokasi_mulai_lo, hari_jadwal, jam_mulai, jam_berakhir , id_pertemuan;
 
     public String getId_kelas_p() {
         return id_kelas_p;
@@ -114,5 +114,13 @@ public class Pertemuan {
 
     public void setJam_berakhir(String jam_berakhir) {
         this.jam_berakhir = jam_berakhir;
+    }
+
+    public String getId_pertemuan() {
+        return id_pertemuan;
+    }
+
+    public void setId_pertemuan(String id_pertemuan) {
+        this.id_pertemuan = id_pertemuan;
     }
 }

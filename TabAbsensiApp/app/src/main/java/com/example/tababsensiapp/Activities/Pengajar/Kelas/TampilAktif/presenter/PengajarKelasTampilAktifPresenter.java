@@ -11,7 +11,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.view.IPengajarKelasTampilAktifView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
-import com.example.tababsensiapp.Models.Kelas;
 import com.example.tababsensiapp.Models.Pertemuan;
 
 import org.json.JSONArray;
@@ -61,6 +60,8 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
                                     Pertemuan playerModel = new Pertemuan();
                                     JSONObject dataobj = dataArray.getJSONObject(i);
 
+                                    String id_pertemuan = dataobj.getString("id_pertemuan");
+
                                     String nama_pengajar = dataobj.getString("nama_pengajar");
                                     String nama_mata_pelajaran = dataobj.getString("nama_mata_pelajaran");
 
@@ -73,6 +74,8 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
                                     String jam_mulai = dataobj.getString("jam_mulai");
                                     String jam_berakhir = dataobj.getString("jam_berakhir");
                                     String harga_fee = dataobj.getString("harga_fee");
+
+                                    playerModel.setId_pertemuan(id_pertemuan);
 
                                     playerModel.setNama_pengajar(nama_pengajar);
                                     playerModel.setNama_mata_pelajaran(nama_mata_pelajaran);
@@ -88,11 +91,9 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
                                     playerModel.setHarga_fee(harga_fee);
 
                                     dataModelArrayList.add(playerModel);
-
-                                    pengajarKelasTampilAktifView.onSuccessMessage(harga_fee);
                                 }
 
-                                //pengajarKelasTampilAktifView.onSetupListView(dataModelArrayList);
+                                pengajarKelasTampilAktifView.onSetupListView(dataModelArrayList);
                             } else {
                                 dataModelArrayList = new ArrayList<>();
                                 pengajarKelasTampilAktifView.onSetupListView(dataModelArrayList);
