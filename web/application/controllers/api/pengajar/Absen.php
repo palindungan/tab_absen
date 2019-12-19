@@ -245,4 +245,48 @@ class Absen extends REST_Controller
             $this->response(array($result, 200));
         }
     }
+
+    function update_pertemuan_post()
+    {
+        $id_pertemuan = $this->post('id_pertemuan');
+
+        $where = array(
+            'id_pertemuan' => $id_pertemuan
+        );
+
+        // ambil data
+        $waktu_berakhir = "09:50";
+
+        $lokasi_berakhir_la = $this->post('lokasi_berakhir_la');
+        $lokasi_berakhir_lo = $this->post('lokasi_berakhir_lo');
+
+        $status_pertemuan = "Selesai";
+
+        $deskripsi = $this->post('deskripsi');
+
+        $data = array();
+        $data = array(
+            'id_pertemuan' => $id_pertemuan,
+            'waktu_berakhir' => $waktu_berakhir,
+            'lokasi_berakhir_la' => $lokasi_berakhir_la,
+            'lokasi_berakhir_lo' => $lokasi_berakhir_lo,
+            'status_pertemuan' => $status_pertemuan,
+            'deskripsi' => $deskripsi
+        );
+
+        $update =  $this->M_pertemuan->update_data($where, 'pertemuan', $data);
+        if ($update) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Mengakhiri Pertemuan";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Mengakhiri Pertemuan";
+            $this->response(array($result, 200));
+        }
+    }
 }
