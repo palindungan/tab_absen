@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Pengajar.Absensi.NextStep.PengajarAbsensiNextStepActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.IPengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.PengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.view.IPengajarAbsensiPertemuanView;
@@ -62,18 +64,25 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvLongitude = findViewById(R.id.tv_longitude);
 
         btnBatal = findViewById(R.id.btn_batal);
+        btnNext = findViewById(R.id.btn_next);
 
         toolbar = findViewById(R.id.toolbar);
 
         initActionBar();
 
         btnBatal.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_batal) {
             showDialogDelete();
+        }
+        if (v.getId() == R.id.btn_next) {
+            Intent intent = new Intent(getApplicationContext(), PengajarAbsensiNextStepActivity.class);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_ID_PERTEMUAN,id_pertemuan);
+            startActivity(intent);
         }
     }
 

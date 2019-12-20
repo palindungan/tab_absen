@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.Pengajar.Absensi.NextStep.PengajarAbsensiNextStepActivity"></activity>
         <activity android:name=".Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity" />
         <activity android:name=".Activities.Pengajar.Kelas.TampilSemua.PengajarKelasTampilSemuaActivity" /> <!-- untuk api ID google -->
         <meta-data
