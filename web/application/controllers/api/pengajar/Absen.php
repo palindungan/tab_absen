@@ -12,6 +12,7 @@ class Absen extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/pengajar/M_absen");
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     function tambah_absen_post()
@@ -297,7 +298,7 @@ class Absen extends REST_Controller
             'deskripsi' => $deskripsi
         );
 
-        $update =  $this->M_pertemuan->update_data($where, 'pertemuan', $data);
+        $update =  $this->M_absen->update_data($where, 'pertemuan', $data);
         if ($update) {
 
             // membuat array untuk di transfer ke API

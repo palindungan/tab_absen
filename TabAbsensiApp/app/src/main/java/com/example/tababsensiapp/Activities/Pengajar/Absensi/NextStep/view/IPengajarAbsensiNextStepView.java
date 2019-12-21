@@ -7,6 +7,8 @@ public interface IPengajarAbsensiNextStepView {
 
     void onErrorMessage(String message);
 
+    void setNilaiDefault();
+
     void backPressed();
 
     void showDialogBerakhir();

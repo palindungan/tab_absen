@@ -240,6 +240,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             String id_kelas_p_m = id_kelas_p;
 
                             getLocation();
+                            getLocation();
                             String lokasi_mulai_la_m = String.valueOf(loc.getLatitude());
                             String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
 

@@ -36,15 +36,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edt_deskripsi"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lines="5" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edt_deskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Deskripsi ..."
+                        android:lines="3" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
