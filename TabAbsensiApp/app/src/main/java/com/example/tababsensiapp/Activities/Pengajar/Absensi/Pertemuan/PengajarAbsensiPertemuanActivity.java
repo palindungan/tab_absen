@@ -19,6 +19,7 @@ import com.example.tababsensiapp.Activities.Pengajar.Absensi.NextStep.PengajarAb
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.IPengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.PengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.view.IPengajarAbsensiPertemuanView;
+import com.example.tababsensiapp.Activities.Pengajar.Home.PengajarHomeActivity;
 import com.example.tababsensiapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -144,8 +145,8 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee);
 
-        tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
-        tvWaktuDetailBerakhir.setText("Waktu Kelas Berakhir : " + hari_btn + ", " + waktu_berakhir);
+        tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
+        tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
 
         tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
         tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
@@ -205,7 +206,9 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     @Override
     public void backPressed() {
-        onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), PengajarHomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override

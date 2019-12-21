@@ -30,6 +30,9 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.AdminKelasD
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.NextStep.presenter.IPengajarAbsensiNextStepPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.NextStep.presenter.PengajarAbsensiNextStepPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.NextStep.view.IPengajarAbsensiNextStepView;
+import com.example.tababsensiapp.Activities.Pengajar.Home.PengajarHomeActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity;
+import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -74,11 +77,14 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
     String lokasi_berakhir_la = "";
     String lokasi_berakhir_lo = "";
 
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_absensi_next_step);
+
+        sessionManager = new SessionManager(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching Location... ");
@@ -343,7 +349,9 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
 
     @Override
     public void keHalamanLain(String id_pertemuan) {
-
+        Intent intent = new Intent(getApplicationContext(), PengajarHomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override

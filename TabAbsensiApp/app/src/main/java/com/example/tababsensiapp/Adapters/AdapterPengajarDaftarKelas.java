@@ -50,8 +50,8 @@ public class AdapterPengajarDaftarKelas extends RecyclerView.Adapter<AdapterPeng
         String jumlah_murid = dataModelArrayList.get(position).getJumlah_murid();
 
         holder.tvNamaPelajaran.setText(dataModelArrayList.get(position).getNama_pelajaran() + " (" + jumlah_murid + " Murid)");
-        holder.tvHari.setText("Jadwal Hari : " + dataModelArrayList.get(position).getHari());
-        holder.tvJam.setText("Jadwal Jam : " + dataModelArrayList.get(position).getJam_mulai() + " - " + dataModelArrayList.get(position).getJam_berakhir());
+        holder.tvHari.setText("Hari : " + dataModelArrayList.get(position).getHari());
+        holder.tvJam.setText("Jam : " + dataModelArrayList.get(position).getJam_mulai() + " - " + dataModelArrayList.get(position).getJam_berakhir());
     }
 
     @Override

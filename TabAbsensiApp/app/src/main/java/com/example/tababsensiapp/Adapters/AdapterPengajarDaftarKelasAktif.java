@@ -60,10 +60,10 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
         String hari_btn = dataModelArrayList.get(position).getHari_btn();
         String waktu_mulai = dataModelArrayList.get(position).getWaktu_mulai();
-        holder.tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
+        holder.tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
 
         String waktu_berakhir = dataModelArrayList.get(position).getWaktu_berakhir();
-        holder.tvWaktuDetailBerakhir.setText("Waktu Kelas Berakhir : " + hari_btn + ", " + waktu_berakhir);
+        holder.tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
 
         if (waktu_mulai.equals(waktu_berakhir)) {
             holder.tvWaktuDetailBerakhir.setVisibility(View.GONE);
