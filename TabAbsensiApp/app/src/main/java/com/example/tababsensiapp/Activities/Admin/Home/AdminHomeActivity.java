@@ -26,6 +26,7 @@ import com.example.tababsensiapp.Activities.Admin.MataPelajaran.Tampil.AdminMata
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.AdminMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.AdminWaliMuridTampilActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.material.navigation.NavigationView;
@@ -108,7 +109,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(getApplicationContext(), AdminPengajarTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_murid) {
-             startActivity(new Intent(getApplicationContext(), AdminMuridTampilActivity.class));
+            startActivity(new Intent(getApplicationContext(), AdminMuridTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_wali_murid) {
             startActivity(new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class));
@@ -117,10 +118,13 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_kelas) {
-             startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
+            startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
         }
         if (v.getId() == R.id.link_admin_kelas_aktif) {
-            // startActivity(new Intent(getApplicationContext(), HalamanListPengajarActivity.class));
+            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
+            String id_pengajar = "Semua";
+            intent.putExtra(PengajarKelasTampilAktifActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+            startActivity(intent);
         }
     }
 

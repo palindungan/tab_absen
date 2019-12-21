@@ -67,6 +67,7 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
         }
         if (v.getId() == R.id.link_pengajar_kelas_tampil_aktif) {
             Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
+            intent.putExtra(PengajarKelasTampilAktifActivity.EXTRA_ID_PENGAJAR, id_pengajar);
             startActivity(intent);
         }
         if (v.getId() == R.id.link_pengajar_riwayat_absen) {

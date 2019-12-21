@@ -125,7 +125,15 @@ class Absen extends REST_Controller
         $result['list_pertemuan_belum_selesai'] = array();
 
         // mengambil data dari database
-        $query = $this->M_absen->get_data('list_pertemuan_belum_selesai', $where);
+
+        $query = array();
+
+        if ($id_pengajar == "Semua") {
+            $query = $this->M_absen->tampil_data('list_pertemuan_belum_selesai');
+        } else {
+            $query = $this->M_absen->get_data('list_pertemuan_belum_selesai', $where);
+        }
+
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database

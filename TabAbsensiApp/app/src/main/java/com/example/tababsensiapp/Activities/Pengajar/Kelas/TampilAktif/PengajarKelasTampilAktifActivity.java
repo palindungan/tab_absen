@@ -40,14 +40,14 @@ public class PengajarKelasTampilAktifActivity extends AppCompatActivity implemen
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_kelas_tampil_aktif);
 
-        sessionManager = new SessionManager(this);
-        HashMap<String, String> user = sessionManager.getDataUser();
-        id_pengajar = user.get(sessionManager.ID_USER);
+        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
 
         pengajarKelasTampilAktifPresenter = new PengajarKelasTampilAktifPresenter(this,this);
         pengajarKelasTampilAktifPresenter.inisiasiAwal(id_pengajar);
