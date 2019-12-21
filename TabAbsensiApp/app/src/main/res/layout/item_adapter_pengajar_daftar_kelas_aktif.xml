@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_nama_pengajar"
                 android:text="Nama : nama_pengajar"
                 android:layout_width="match_parent"
@@ -54,21 +55,51 @@
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="2"-->
-<!--                android:orientation="horizontal">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_lokasi_detail_mulai"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Lokasi : (00000) , (00000) "-->
-<!--                    android:textSize="16dp" />-->
+                <TextView
+                    android:id="@+id/tv_waktu_detail_berakhir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Waktu Kelas Berakhir : Senin, 18:35"
+                    android:textSize="16dp" />
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_status_pertemuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Status Pertemuan : Belum Selesai"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_status_konfirmasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Status Konfirmasi : Invalid"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

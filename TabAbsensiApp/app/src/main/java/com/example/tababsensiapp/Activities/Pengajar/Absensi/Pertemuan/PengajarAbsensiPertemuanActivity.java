@@ -35,7 +35,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     Toolbar toolbar;
 
-    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvLatitude, tvLongitude;
+    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude;
     Button btnBatal, btnNext;
 
     SupportMapFragment mapFragment;
@@ -44,6 +44,11 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     public static final String EXTRA_ID_PERTEMUAN = "EXTRA_ID_PERTEMUAN";
     String id_pertemuan = "";
+
+    String status_pertemuan = "";
+    String deskripsi = "";
+    String lokasi_berakhir_la = "";
+    String lokasi_berakhir_lo = "";
 
     IPengajarAbsensiPertemuanPresenter pengajarAbsensiPertemuanPresenter;
 
@@ -60,6 +65,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvNamaPengajar = findViewById(R.id.tv_nama_pengajar);
         tvDetailKelasP = findViewById(R.id.tv_detail_kelas_p);
         tvWaktuDetailMulai = findViewById(R.id.tv_waktu_detail_mulai);
+        tvWaktuDetailBerakhir = findViewById(R.id.tv_waktu_detail_berakhir);
         tvLatitude = findViewById(R.id.tv_latitude);
         tvLongitude = findViewById(R.id.tv_longitude);
 
@@ -81,7 +87,11 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         }
         if (v.getId() == R.id.btn_next) {
             Intent intent = new Intent(getApplicationContext(), PengajarAbsensiNextStepActivity.class);
-            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_ID_PERTEMUAN,id_pertemuan);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_ID_PERTEMUAN, id_pertemuan);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_STATUS_PERTEMUAN, status_pertemuan);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_DESKRIPSI, deskripsi);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_LOKASI_BERAKHIR_LA, lokasi_berakhir_la);
+            intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_LOKASI_BERAKHIR_LO, lokasi_berakhir_lo);
             startActivity(intent);
         }
     }
@@ -114,6 +124,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         String hari_btn = data.get("hari_btn");
         String waktu_mulai = data.get("waktu_mulai");
+        String waktu_berakhir = data.get("waktu_berakhir");
         String lokasi_mulai_la = data.get("lokasi_mulai_la");
         String lokasi_mulai_lo = data.get("lokasi_mulai_lo");
 
@@ -122,14 +133,27 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         String jam_berakhir = data.get("jam_berakhir");
         String harga_fee = data.get("harga_fee");
 
+        status_pertemuan = data.get("status_pertemuan");
+
+        deskripsi = data.get("deskripsi");
+
+        lokasi_berakhir_la = data.get("lokasi_berakhir_la");
+        lokasi_berakhir_lo = data.get("lokasi_berakhir_lo");
+
         tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
 
         tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee);
 
         tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
+        tvWaktuDetailBerakhir.setText("Waktu Kelas Berakhir : " + hari_btn + ", " + waktu_berakhir);
 
         tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
         tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
+
+        if (status_pertemuan.equals("Selesai")) {
+            btnBatal.setVisibility(View.GONE);
+            tvWaktuDetailBerakhir.setVisibility(View.VISIBLE);
+        }
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -144,7 +168,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
                 // now add location in map
                 latLng = new LatLng(latitude, longitude);
-                map.addMarker(new MarkerOptions().position(latLng).title("Lokasi Sekarang"));
+                map.addMarker(new MarkerOptions().position(latLng).title("Lokasi Absen"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
             }

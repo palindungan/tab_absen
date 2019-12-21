@@ -1,4 +1,4 @@
-package com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.presenter;
+package com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.presenter;
 
 import android.content.Context;
 
@@ -9,7 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.view.IPengajarKelasTampilAktifView;
+import com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.view.IPengajarRiwayatAbsenView;
 import com.example.tababsensiapp.Controllers.BaseUrl;
 import com.example.tababsensiapp.Models.Pertemuan;
 
@@ -21,18 +21,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAktifPresenter {
+public class PengajarRiwayatAbsenPresenter implements IPengajarRiwayatAbsenPresenter {
 
     Context context;
-    IPengajarKelasTampilAktifView pengajarKelasTampilAktifView;
+    IPengajarRiwayatAbsenView pengajarRiwayatAbsenView;
 
     BaseUrl baseUrl;
 
     ArrayList<Pertemuan> dataModelArrayList;
 
-    public PengajarKelasTampilAktifPresenter(Context context, IPengajarKelasTampilAktifView pengajarKelasTampilAktifView) {
+    public PengajarRiwayatAbsenPresenter(Context context, IPengajarRiwayatAbsenView pengajarRiwayatAbsenView) {
         this.context = context;
-        this.pengajarKelasTampilAktifView = pengajarKelasTampilAktifView;
+        this.pengajarRiwayatAbsenView = pengajarRiwayatAbsenView;
 
         baseUrl = new BaseUrl();
     }
@@ -40,7 +40,7 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
     @Override
     public void inisiasiAwal(String id_pengajar) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/absen/ambil_list_pertemuan_aktif"; // url http request
+        String URL_DATA = base_url + "pengajar/absen/riwayat_pertemuan"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -54,7 +54,7 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
                             if (obj.optString("success").equals("1")) {
 
                                 dataModelArrayList = new ArrayList<>();
-                                JSONArray dataArray = obj.getJSONArray("list_pertemuan_belum_selesai");
+                                JSONArray dataArray = obj.getJSONArray("list_pertemuan_selesai");
                                 for (int i = 0; i < dataArray.length(); i++) {
 
                                     Pertemuan playerModel = new Pertemuan();
@@ -105,23 +105,23 @@ public class PengajarKelasTampilAktifPresenter implements IPengajarKelasTampilAk
                                     dataModelArrayList.add(playerModel);
                                 }
 
-                                pengajarKelasTampilAktifView.onSetupListView(dataModelArrayList);
+                                pengajarRiwayatAbsenView.onSetupListView(dataModelArrayList);
                             } else {
                                 dataModelArrayList = new ArrayList<>();
-                                pengajarKelasTampilAktifView.onSetupListView(dataModelArrayList);
-                                pengajarKelasTampilAktifView.onErrorMessage(message);
+                                pengajarRiwayatAbsenView.onSetupListView(dataModelArrayList);
+                                pengajarRiwayatAbsenView.onErrorMessage(message);
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            pengajarKelasTampilAktifView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                            pengajarRiwayatAbsenView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarKelasTampilAktifView.onErrorMessage("Volley Error : " + error.toString());
+                        pengajarRiwayatAbsenView.onErrorMessage("Volley Error : " + error.toString());
                     }
                 }) {
             @Override

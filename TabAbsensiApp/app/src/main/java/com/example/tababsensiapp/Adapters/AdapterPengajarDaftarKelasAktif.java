@@ -48,19 +48,32 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
     @Override
     public void onBindViewHolder(@NonNull AdapterPengajarDaftarKelasAktif.AdapterPengajarDaftarKelasAktifViewHolder holder, int position) {
-        holder.tvNamaPengajar.setText("Nama Pengajar : " + dataModelArrayList.get(position).getNama_pengajar());
+        // holder.tvNamaPengajar.setText("Nama Pengajar : " + dataModelArrayList.get(position).getNama_pengajar());
 
         String nama_pelajaran = dataModelArrayList.get(position).getNama_mata_pelajaran();
         String hari_jadwal = dataModelArrayList.get(position).getHari_jadwal();
         String jam_mulai = dataModelArrayList.get(position).getJam_mulai();
         String jam_berakhir = dataModelArrayList.get(position).getJam_berakhir();
         String harga_fee = dataModelArrayList.get(position).getHarga_fee();
-        holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee + "");
+        // holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee + "");
+        holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
 
         String hari_btn = dataModelArrayList.get(position).getHari_btn();
         String waktu_mulai = dataModelArrayList.get(position).getWaktu_mulai();
         holder.tvWaktuDetailMulai.setText("Waktu Kelas Dimulai : " + hari_btn + ", " + waktu_mulai);
 
+        String waktu_berakhir = dataModelArrayList.get(position).getWaktu_berakhir();
+        holder.tvWaktuDetailBerakhir.setText("Waktu Kelas Berakhir : " + hari_btn + ", " + waktu_berakhir);
+
+        if (waktu_mulai.equals(waktu_berakhir)) {
+            holder.tvWaktuDetailBerakhir.setVisibility(View.GONE);
+        }
+
+        String status_pertemuan = dataModelArrayList.get(position).getStatus_pertemuan();
+        holder.tvStatusPertemuan.setText("Status Pertemuan : " + status_pertemuan);
+
+        String status_konfirmasi = dataModelArrayList.get(position).getStatus_konfirmasi();
+        holder.tvStatusKonfirmasi.setText("Status Konfirmasi : " + status_konfirmasi);
     }
 
     @Override
@@ -70,7 +83,8 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
     public class AdapterPengajarDaftarKelasAktifViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvLokasiDetailMulai;
+        protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLokasiDetailMulai;
+        protected TextView tvStatusPertemuan, tvStatusKonfirmasi;
 
         public AdapterPengajarDaftarKelasAktifViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +92,10 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
             tvNamaPengajar = itemView.findViewById(R.id.tv_nama_pengajar);
             tvDetailKelasP = itemView.findViewById(R.id.tv_detail_kelas_p);
             tvWaktuDetailMulai = itemView.findViewById(R.id.tv_waktu_detail_mulai);
+            tvWaktuDetailBerakhir = itemView.findViewById(R.id.tv_waktu_detail_berakhir);
+
+            tvStatusPertemuan = itemView.findViewById(R.id.tv_status_pertemuan);
+            tvStatusKonfirmasi = itemView.findViewById(R.id.tv_status_konfirmasi);
 //            tvLokasiDetailMulai = itemView.findViewById(R.id.tv_lokasi_detail_mulai);
 
             ButterKnife.bind(this, itemView);

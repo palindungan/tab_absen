@@ -1,8 +1,9 @@
 package com.example.tababsensiapp.Models;
 
 public class Pertemuan {
-    String id_kelas_p, hari_btn, waktu_mulai, harga_fee, id_mata_pelajaran, nama_mata_pelajaran, id_pengajar, nama_pengajar, status_pertemuan;
-    String lokasi_mulai_la, lokasi_mulai_lo, hari_jadwal, jam_mulai, jam_berakhir , id_pertemuan;
+    String id_kelas_p, hari_btn, waktu_mulai, waktu_berakhir, harga_fee, id_mata_pelajaran, nama_mata_pelajaran, id_pengajar, nama_pengajar, status_pertemuan;
+    String lokasi_mulai_la, lokasi_mulai_lo, hari_jadwal, jam_mulai, jam_berakhir, id_pertemuan;
+    String status_fee, status_spp, status_konfirmasi;
 
     public String getId_kelas_p() {
         return id_kelas_p;
@@ -122,5 +123,37 @@ public class Pertemuan {
 
     public void setId_pertemuan(String id_pertemuan) {
         this.id_pertemuan = id_pertemuan;
+    }
+
+    public String getStatus_fee() {
+        return status_fee;
+    }
+
+    public void setStatus_fee(String status_fee) {
+        this.status_fee = status_fee;
+    }
+
+    public String getStatus_spp() {
+        return status_spp;
+    }
+
+    public void setStatus_spp(String status_spp) {
+        this.status_spp = status_spp;
+    }
+
+    public String getStatus_konfirmasi() {
+        return status_konfirmasi;
+    }
+
+    public void setStatus_konfirmasi(String status_konfirmasi) {
+        this.status_konfirmasi = status_konfirmasi;
+    }
+
+    public String getWaktu_berakhir() {
+        return waktu_berakhir;
+    }
+
+    public void setWaktu_berakhir(String waktu_berakhir) {
+        this.waktu_berakhir = waktu_berakhir;
     }
 }

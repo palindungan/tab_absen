@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/menu_hapus_akun"
-        android:title="Hapus Akun" />
+        android:title="Hapus Data" />
 
 </menu>

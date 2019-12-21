@@ -62,6 +62,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
 
                                     String hari_btn = object.getString("hari_btn");
                                     String waktu_mulai = object.getString("waktu_mulai");
+                                    String waktu_berakhir = object.getString("waktu_berakhir");
                                     String lokasi_mulai_la = object.getString("lokasi_mulai_la");
                                     String lokasi_mulai_lo = object.getString("lokasi_mulai_lo");
 
@@ -69,6 +70,13 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     String jam_mulai = object.getString("jam_mulai");
                                     String jam_berakhir = object.getString("jam_berakhir");
                                     String harga_fee = object.getString("harga_fee");
+
+                                    String status_pertemuan = object.getString("status_pertemuan");
+
+                                    String deskripsi = object.getString("deskripsi");
+
+                                    String lokasi_berakhir_la = object.getString("lokasi_berakhir_la");
+                                    String lokasi_berakhir_lo = object.getString("lokasi_berakhir_lo");
 
                                     HashMap<String, String> data = new HashMap<>();
                                     data.put("id_pertemuan", id_pertemuan);
@@ -79,6 +87,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
 
                                     data.put("hari_btn", hari_btn);
                                     data.put("waktu_mulai", waktu_mulai);
+                                    data.put("waktu_berakhir", waktu_berakhir);
                                     data.put("lokasi_mulai_la", lokasi_mulai_la);
                                     data.put("lokasi_mulai_lo", lokasi_mulai_lo);
 
@@ -86,6 +95,13 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     data.put("jam_mulai", jam_mulai);
                                     data.put("jam_berakhir", jam_berakhir);
                                     data.put("harga_fee", harga_fee);
+
+                                    data.put("status_pertemuan", status_pertemuan);
+
+                                    data.put("deskripsi", deskripsi);
+
+                                    data.put("lokasi_berakhir_la", lokasi_berakhir_la);
+                                    data.put("lokasi_berakhir_lo", lokasi_berakhir_lo);
 
                                     pengajarAbsensiPertemuanView.setNilaiDefault(data);
                                 }

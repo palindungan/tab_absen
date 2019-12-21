@@ -126,7 +126,7 @@ public class AdminMataPelajaranEditActivity extends AppCompatActivity implements
     public void showDialogDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Akun Ini ?");
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Data Ini ?");
         alertDialogBuilder
                 .setMessage("Klik Ya untuk Menghapus !")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {

@@ -18,9 +18,12 @@ import com.example.tababsensiapp.Activities.Pengajar.Home.presenter.PengajarHome
 import com.example.tababsensiapp.Activities.Pengajar.Home.view.IPengajarHomeView;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilSemua.PengajarKelasTampilSemuaActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.nex3z.notificationbadge.NotificationBadge;
+
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -29,10 +32,12 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
     IPengajarHomePresenter pengajarHomePresenter;
     SessionManager sessionManager;
 
-    CardView linkPengajarAbsensiPertemuan, linkPengajarKelasTampilSemua, linkPengajarKelastampilAktif;
+    CardView linkPengajarAbsensiPertemuan, linkPengajarKelasTampilSemua, linkPengajarKelastampilAktif, linkpengajarRiwayatAbsen;
 
     NotificationBadge badge;
     ImageView notificationIcon;
+
+    String id_pengajar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +47,16 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
         pengajarHomePresenter = new PengajarHomePresenter(this, this);
         sessionManager = new SessionManager(this);
 
+        HashMap<String, String> user = sessionManager.getDataUser();
+        id_pengajar = user.get(sessionManager.ID_USER);
+
         linkPengajarKelasTampilSemua = findViewById(R.id.link_pengajar_kelas_tampil_semua);
         linkPengajarKelastampilAktif = findViewById(R.id.link_pengajar_kelas_tampil_aktif);
+        linkpengajarRiwayatAbsen = findViewById(R.id.link_pengajar_riwayat_absen);
 
         linkPengajarKelasTampilSemua.setOnClickListener(this);
         linkPengajarKelastampilAktif.setOnClickListener(this);
+        linkpengajarRiwayatAbsen.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +67,11 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
         }
         if (v.getId() == R.id.link_pengajar_kelas_tampil_aktif) {
             Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
+            startActivity(intent);
+        }
+        if (v.getId() == R.id.link_pengajar_riwayat_absen) {
+            Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+            intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
             startActivity(intent);
         }
     }

@@ -52,7 +52,13 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
     EditText edtDeskripsi;
 
     public static final String EXTRA_ID_PERTEMUAN = "EXTRA_ID_PERTEMUAN";
-    String id_pertemuan = "id_pertemuan";
+    public static final String EXTRA_STATUS_PERTEMUAN = "EXTRA_STATUS_PERTEMUAN";
+    public static final String EXTRA_DESKRIPSI = "EXTRA_DESKRIPSI";
+    public static final String EXTRA_LOKASI_BERAKHIR_LA = "EXTRA_LOKASI_BERAKHIR_LA";
+    public static final String EXTRA_LOKASI_BERAKHIR_LO = "EXTRA_LOKASI_BERAKHIR_LO";
+    String id_pertemuan = "";
+    String status_pertemuan = "";
+    String deskripsi = "";
 
     ProgressDialog progressDialog;
     private static final int PERMISSION_CODE = 101;
@@ -66,7 +72,7 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
     LatLng latLng;
 
     String lokasi_berakhir_la = "";
-    String lokasi_berakhir_l0 = "";
+    String lokasi_berakhir_lo = "";
 
 
     @Override
@@ -80,6 +86,8 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
         pengajarAbsensiNextStepPresenter = new PengajarAbsensiNextStepPresenter(this, this);
 
         id_pertemuan = getIntent().getStringExtra(EXTRA_ID_PERTEMUAN);
+        status_pertemuan = getIntent().getStringExtra(EXTRA_STATUS_PERTEMUAN);
+        deskripsi = getIntent().getStringExtra(EXTRA_DESKRIPSI);
 
         toolbar = findViewById(R.id.toolbar);
         btnFinish = findViewById(R.id.btn_finish);
@@ -119,11 +127,23 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
 
     @Override
     public void setNilaiDefault() {
-        getLocation();
-        getLocation();
 
-        lokasi_berakhir_la = String.valueOf(loc.getLatitude());
-        lokasi_berakhir_l0 = String.valueOf(loc.getLongitude());
+        if (status_pertemuan.equals("Selesai")) {
+
+            lokasi_berakhir_la = getIntent().getStringExtra(EXTRA_LOKASI_BERAKHIR_LA);
+            lokasi_berakhir_lo = getIntent().getStringExtra(EXTRA_LOKASI_BERAKHIR_LO);
+
+            edtDeskripsi.setText(deskripsi);
+            edtDeskripsi.setFocusable(false);
+
+            btnFinish.setVisibility(View.GONE);
+        } else {
+            getLocation();
+            getLocation();
+
+            lokasi_berakhir_la = String.valueOf(loc.getLatitude());
+            lokasi_berakhir_lo = String.valueOf(loc.getLongitude());
+        }
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -134,17 +154,15 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
                 map.clear();
 
                 double latitude = Double.parseDouble(lokasi_berakhir_la);
-                double longitude = Double.parseDouble(lokasi_berakhir_l0);
+                double longitude = Double.parseDouble(lokasi_berakhir_lo);
 
                 // now add location in map
                 latLng = new LatLng(latitude, longitude);
-                map.addMarker(new MarkerOptions().position(latLng).title("Lokasi Sekarang"));
+                map.addMarker(new MarkerOptions().position(latLng).title("Lokasi Absen"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
             }
         });
-
-        onSuccessMessage(id_pertemuan);
     }
 
     @Override
@@ -168,9 +186,7 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
                             String id_pertemuan_m = id_pertemuan;
                             String deskripsi_m = edtDeskripsi.getText().toString();
                             String lokasi_berakhir_la_m = lokasi_berakhir_la;
-                            String lokasi_berakhir_lo_m = lokasi_berakhir_l0;
-
-                            onSuccessMessage(id_pertemuan_m + deskripsi_m + lokasi_berakhir_la_m + lokasi_berakhir_lo_m);
+                            String lokasi_berakhir_lo_m = lokasi_berakhir_lo;
 
                             pengajarAbsensiNextStepPresenter.onAkhiriPertemuan(id_pertemuan_m, deskripsi_m, lokasi_berakhir_la_m, lokasi_berakhir_lo_m);
 

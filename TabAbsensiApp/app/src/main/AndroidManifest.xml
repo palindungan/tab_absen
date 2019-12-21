@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Pengajar.RiwayatAbsen.PengajarRiwayatAbsenActivity"></activity>
+        <activity android:name=".Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity"></activity>
         <activity android:name=".Activities.Pengajar.Absensi.NextStep.PengajarAbsensiNextStepActivity" />
         <activity android:name=".Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity" />
         <activity android:name=".Activities.Pengajar.Kelas.TampilSemua.PengajarKelasTampilSemuaActivity" /> <!-- untuk api ID google -->
