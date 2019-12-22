@@ -37,7 +37,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     Toolbar toolbar;
 
-    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude;
+    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude, tvStatus;
     Button btnBatal, btnNext, btnHapus, btnValidasi;
 
     SupportMapFragment mapFragment;
@@ -78,6 +78,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvWaktuDetailBerakhir = findViewById(R.id.tv_waktu_detail_berakhir);
         tvLatitude = findViewById(R.id.tv_latitude);
         tvLongitude = findViewById(R.id.tv_longitude);
+        tvStatus = findViewById(R.id.tv_status);
 
         btnBatal = findViewById(R.id.btn_batal);
         btnNext = findViewById(R.id.btn_next);
@@ -154,6 +155,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         String harga_fee = data.get("harga_fee");
 
         status_pertemuan = data.get("status_pertemuan");
+        String status_konfirmasi = data.get("status_konfirmasi");
 
         deskripsi = data.get("deskripsi");
 
@@ -169,6 +171,8 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
         tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
+
+        tvStatus.setText("Status Validasi : " + status_konfirmasi);
 
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);
