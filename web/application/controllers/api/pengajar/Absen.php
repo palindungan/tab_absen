@@ -395,4 +395,37 @@ class Absen extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function validasi_pertemuan_post()
+    {
+        $id_pertemuan = $this->post('id');
+
+        $where = array(
+            'id_pertemuan' => $id_pertemuan
+        );
+
+        // ambil data
+
+        $status_konfirmasi = $this->post('status_konfirmasi');
+
+        $data = array();
+        $data = array(
+            'status_konfirmasi' => $status_konfirmasi
+        );
+
+        $update =  $this->M_absen->update_data($where, 'pertemuan', $data);
+        if ($update) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Validasi Pertemuan";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Validasi Pertemuan";
+            $this->response(array($result, 200));
+        }
+    }
 }

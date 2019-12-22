@@ -83,13 +83,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/tv_waktu_detail_berakhir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Waktu Kelas Berakhir : Senin, 18:35"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -118,6 +118,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Batalkan Pertemuan" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_hapus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hapus"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_validasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Validasi"
+                android:visibility="gone" />
+        </LinearLayout>
 
     </LinearLayout>
 

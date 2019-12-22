@@ -182,7 +182,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         View view = menu.findItem(R.id.menu_notification).getActionView();
         badge = view.findViewById(R.id.badge);
         notificationIcon = view.findViewById(R.id.notification_icon);
-        
+
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

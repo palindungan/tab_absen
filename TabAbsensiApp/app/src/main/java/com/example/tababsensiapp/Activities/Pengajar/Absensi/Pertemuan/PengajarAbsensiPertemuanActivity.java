@@ -38,7 +38,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     Toolbar toolbar;
 
     TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude;
-    Button btnBatal, btnNext;
+    Button btnBatal, btnNext, btnHapus, btnValidasi;
 
     SupportMapFragment mapFragment;
     GoogleMap map;
@@ -81,6 +81,8 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         btnBatal = findViewById(R.id.btn_batal);
         btnNext = findViewById(R.id.btn_next);
+        btnHapus = findViewById(R.id.btn_hapus);
+        btnValidasi = findViewById(R.id.btn_validasi);
 
         toolbar = findViewById(R.id.toolbar);
 
@@ -88,6 +90,8 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         btnBatal.setOnClickListener(this);
         btnNext.setOnClickListener(this);
+        btnHapus.setOnClickListener(this);
+        btnValidasi.setOnClickListener(this);
     }
 
     @Override
@@ -103,6 +107,12 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
             intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_LOKASI_BERAKHIR_LA, lokasi_berakhir_la);
             intent.putExtra(PengajarAbsensiNextStepActivity.EXTRA_LOKASI_BERAKHIR_LO, lokasi_berakhir_lo);
             startActivity(intent);
+        }
+        if (v.getId() == R.id.btn_hapus) {
+            showDialogDelete();
+        }
+        if (v.getId() == R.id.btn_validasi) {
+            showDialogValidasi();
         }
     }
 
@@ -163,7 +173,13 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);
             tvWaktuDetailBerakhir.setVisibility(View.VISIBLE);
-        } else if (status_pertemuan.equals("Belum Selesai") && hakAkses.equals("admin")){
+
+            if (hakAkses.equals("admin")) {
+                btnHapus.setVisibility(View.VISIBLE);
+                btnValidasi.setVisibility(View.VISIBLE);
+            }
+
+        } else if (status_pertemuan.equals("Belum Selesai") && hakAkses.equals("admin")) {
             btnBatal.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
         }
@@ -201,7 +217,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
                         try {
                             pengajarAbsensiPertemuanPresenter.hapusData(id_pertemuan);
                         } catch (Exception e) {
-                            onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
+                            onErrorMessage("Terjadi Kesalahan Validasi " + e.toString());
                         }
 
                     }
@@ -217,10 +233,47 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
     }
 
     @Override
+    public void showDialogValidasi() {
+        androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Mengkonfirmasi Pertemuan ?");
+        alertDialogBuilder
+                .setMessage("Klik Valid untuk Mengkonfirmasi Data !")
+                .setPositiveButton("Valid", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            pengajarAbsensiPertemuanPresenter.onValidasi(id_pertemuan);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Validasi " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Invalid", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            pengajarAbsensiPertemuanPresenter.onInValidasi(id_pertemuan);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Validasi " + e.toString());
+                        }
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public void backPressed() {
-        Intent intent = new Intent(getApplicationContext(), PengajarHomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+
+        if (hakAkses.equals("admin")) {
+            onBackPressed();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), PengajarHomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -14,5 +14,7 @@ public interface IPengajarAbsensiPertemuanView {
 
     void showDialogDelete();
 
+    void showDialogValidasi();
+
     void backPressed();
 }
