@@ -43,8 +43,6 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-    NotificationBadge badge;
-    ImageView notificationIcon;
     TextView txtJmlPengajar, txtJmlMurid, txtJmlWaliMurid, txtJmlMataPelajaran;
     CardView linkAdminPengajar, linkAdminMurid, linkAdminWaliMurid, linkAdminMataPelajaran, linkAdminKelas, linkAdminKelasAktif;
 
@@ -179,19 +177,16 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_home_admin, menu);
 
-        View view = menu.findItem(R.id.menu_notification).getActionView();
-        badge = view.findViewById(R.id.badge);
-        notificationIcon = view.findViewById(R.id.notification_icon);
+//        View view = menu.findItem(R.id.menu_notification).getActionView();
+//        badge = view.findViewById(R.id.badge);
+//        notificationIcon = view.findViewById(R.id.notification_icon);
+//
+//        notificationIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 
-        notificationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
-                String id_pengajar = "Semua";
-                intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
-                startActivity(intent);
-            }
-        });
+//            }
+//        });
 
         return true;
     }
@@ -204,8 +199,11 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        if (id == R.id.menu_notification) {
-            return true;
+        if (id == R.id.menu_riwayat) {
+            Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+            String id_pengajar = "Semua";
+            intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+            startActivity(intent);
         }
         if (id == R.id.menu_akun_saya) {
             startActivity(new Intent(getApplicationContext(), AdminAkunSayaActivity.class));

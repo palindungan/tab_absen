@@ -89,18 +89,7 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar_home_admin, menu);
-
-        View view = menu.findItem(R.id.menu_notification).getActionView();
-        badge = view.findViewById(R.id.badge);
-        notificationIcon = view.findViewById(R.id.notification_icon);
-
-        notificationIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "notif", Toast.LENGTH_SHORT).show();
-            }
-        });
+        getMenuInflater().inflate(R.menu.action_bar_home_pengajar, menu);
 
         return true;
     }
