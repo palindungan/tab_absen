@@ -27,6 +27,7 @@ import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.AdminMuridTampilA
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.AdminPengajarTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.AdminWaliMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Kelas.TampilAktif.PengajarKelasTampilAktifActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity;
 import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.material.navigation.NavigationView;
@@ -181,11 +182,14 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         View view = menu.findItem(R.id.menu_notification).getActionView();
         badge = view.findViewById(R.id.badge);
         notificationIcon = view.findViewById(R.id.notification_icon);
-
+        
         notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(getApplicationContext(), HalamanListNotificationActivity.class));
+                Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+                String id_pengajar = "Semua";
+                intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+                startActivity(intent);
             }
         });
 
