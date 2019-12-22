@@ -83,12 +83,11 @@ public class LoginPresenter implements ILoginPresenter {
                                     } else {
 
                                         sessionManager.logout();
-                                        
+
                                     }
 
-                                    sessionManager.setSessionLogin(id_user, nama, username);
-                                    loginView.onSuccessMessage("Selamat Datang " + nama + " , " + id_user + " , " + username);
-
+                                    sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+                                    
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     context.startActivity(intent);
                                 }

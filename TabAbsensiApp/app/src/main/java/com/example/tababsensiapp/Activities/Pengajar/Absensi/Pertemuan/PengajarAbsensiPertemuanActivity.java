@@ -20,6 +20,7 @@ import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.presenter.PengajarAbsensiPertemuanPresenter;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.view.IPengajarAbsensiPertemuanView;
 import com.example.tababsensiapp.Activities.Pengajar.Home.PengajarHomeActivity;
+import com.example.tababsensiapp.Controllers.SessionManager;
 import com.example.tababsensiapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,10 +54,18 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     IPengajarAbsensiPertemuanPresenter pengajarAbsensiPertemuanPresenter;
 
+    SessionManager sessionManager;
+    String hakAkses = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pengajar_absensi_pertemuan);
+
+        sessionManager = new SessionManager(this);
+
+        HashMap<String, String> user = sessionManager.getDataUser();
+        hakAkses = user.get(sessionManager.HAK_AKSES);
 
         id_pertemuan = getIntent().getStringExtra(EXTRA_ID_PERTEMUAN);
 
@@ -154,6 +163,9 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);
             tvWaktuDetailBerakhir.setVisibility(View.VISIBLE);
+        } else if (status_pertemuan.equals("Belum Selesai") && hakAkses.equals("admin")){
+            btnBatal.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
         }
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);

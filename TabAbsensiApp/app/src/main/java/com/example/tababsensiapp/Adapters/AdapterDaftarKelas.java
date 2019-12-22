@@ -60,6 +60,12 @@ public class AdapterDaftarKelas extends RecyclerView.Adapter<AdapterDaftarKelas.
             }
         });
 
+        String nama_sharing = dataModelArrayList.get(position).getNama_sharing();
+
+        if (!nama_sharing.equals("kosong")){
+            holder.btnHapus.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

@@ -48,9 +48,9 @@ public class AdapterPengajarDaftarKelasMurid extends RecyclerView.Adapter<Adapte
 
     @Override
     public void onBindViewHolder(@NonNull AdapterPengajarDaftarKelasMurid.AdapterPengajarDaftarKelasMuridViewHolder holder, int position) {
-        holder.tvNama.setText(dataModelArrayList.get(position).getNama());
-        holder.tvNamaWaliMurid.setText(dataModelArrayList.get(position).getNama_wali_murid());
-        holder.tvAlamat.setText(dataModelArrayList.get(position).getAlamat());
+        holder.tvNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
+        holder.tvNamaWaliMurid.setText("Wali Murid : " + dataModelArrayList.get(position).getNama_wali_murid());
+        holder.tvAlamat.setText("Alamat : " + dataModelArrayList.get(position).getAlamat());
 
         String alamat = baseUrl.getUrlUpload() + "image/murid/" + dataModelArrayList.get(position).getFoto() + ".jpg";
         Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);

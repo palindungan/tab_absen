@@ -46,9 +46,9 @@ public class AdapterDaftarPengajar extends RecyclerView.Adapter<AdapterDaftarPen
 
     @Override
     public void onBindViewHolder(@NonNull DaftarPengajarViewHolder holder, int position) {
-        holder.txtNama.setText(dataModelArrayList.get(position).getNama());
-        holder.txtUsername.setText(dataModelArrayList.get(position).getUsername());
-        holder.txtNoHP.setText(dataModelArrayList.get(position).getNo_hp());
+        holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
+        holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
+        holder.txtNoHP.setText("No : " + dataModelArrayList.get(position).getNo_hp());
 
 
         String alamat = baseUrl.getUrlUpload() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";

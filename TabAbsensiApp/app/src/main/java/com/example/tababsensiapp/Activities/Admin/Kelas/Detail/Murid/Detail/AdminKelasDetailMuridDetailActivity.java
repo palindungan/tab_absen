@@ -78,9 +78,9 @@ public class AdminKelasDetailMuridDetailActivity extends AppCompatActivity imple
     public void setNilaiDefault() {
         String alamat_foto = baseUrl.getUrlUpload() + "image/murid/" + foto + ".jpg";
 
-        tvNama.setText(nama);
-        tvNamaWaliMurid.setText(nama_wali_murid);
-        tvAlamat.setText(alamat);
+        tvNama.setText("Nama : " + nama);
+        tvNamaWaliMurid.setText("Wali Murid : " + nama_wali_murid);
+        tvAlamat.setText("Alamat : " + alamat);
         Picasso.get().load(alamat_foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 

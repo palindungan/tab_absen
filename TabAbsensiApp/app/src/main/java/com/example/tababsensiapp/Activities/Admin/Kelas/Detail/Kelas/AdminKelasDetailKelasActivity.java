@@ -193,10 +193,10 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     @Override
     public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
-        tvNamaPengajar.setText(nama_pengajar);
-        tvHargaFee.setText(harga_fee);
-        tvHari.setText(hari);
-        tvJam.setText(jam_mulai + " - " + jam_berakhir);
+        tvNamaPengajar.setText("Pemilik Kelas : " + nama_pengajar);
+        tvHargaFee.setText("FEE : Rp " + harga_fee);
+        tvHari.setText("Hari : " + hari);
+        tvJam.setText("Jam : " + jam_mulai + " - " + jam_berakhir);
 
         hari_kelas = hari;
 
