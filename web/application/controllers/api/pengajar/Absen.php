@@ -431,4 +431,72 @@ class Absen extends REST_Controller
             $this->response(array($result, 200));
         }
     }
+
+    function ambil_data_pertemuan_selesai_valid_belum_terbayar_post()
+    {
+        $id_pengajar = $this->post('id_pengajar');
+
+        $where = array(
+            'id_pengajar' => $id_pengajar
+        );
+
+        // variable array
+        $result = array();
+        $result['list_pertemuan_selesai_valid_belum_terbayar'] = array();
+
+        $query = array();
+        $query = $this->M_absen->get_data('list_pertemuan_selesai_valid_belum_terbayar', $where);
+
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'id_pertemuan' => $row["id_pertemuan"],
+
+                    'nama_pengajar' => $row["nama_pengajar"],
+                    'username' => $row["username"],
+                    'foto' => $row["foto"],
+
+                    'hari_btn' => $row["hari_btn"],
+                    'waktu_mulai' => $row["waktu_mulai"],
+                    'waktu_berakhir' => $row["waktu_berakhir"],
+                    'lokasi_mulai_la' => $row["lokasi_mulai_la"],
+                    'lokasi_mulai_lo' => $row["lokasi_mulai_lo"],
+                    'lokasi_berakhir_la' => $row["lokasi_berakhir_la"],
+                    'lokasi_berakhir_lo' => $row["lokasi_berakhir_lo"],
+
+                    'status_fee' => $row["status_fee"],
+                    'status_spp' => $row["status_spp"],
+                    'status_pertemuan' => $row["status_pertemuan"],
+                    'status_konfirmasi' => $row["status_konfirmasi"],
+
+                    'deskripsi' => $row["deskripsi"],
+                    'harga_fee' => $row["harga_fee"],
+
+                    'id_kelas_p' => $row["id_kelas_p"],
+                    'hari_jadwal' => $row["hari_jadwal"],
+                    'jam_mulai' => $row["jam_mulai"],
+                    'jam_berakhir' => $row["jam_berakhir"],
+
+                    'id_mata_pelajaran' => $row["id_mata_pelajaran"],
+                    'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
+                );
+
+                array_push($result['list_pertemuan_selesai_valid_belum_terbayar'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "success berhasil mengambil data";
+                $this->response($result, 200);
+            }
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "data tidak ada dalam database";
+            $this->response($result, 200);
+        }
+    }
 }
