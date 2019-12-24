@@ -90,7 +90,9 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(getApplicationContext(), "SPP", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.gaji_pengajar:
-                        Toast.makeText(getApplicationContext(), "Gaji", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+                        intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_transaksi_gaji");
+                        startActivity(intent);
                         break;
                     default:
                         return true;
@@ -105,7 +107,9 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.link_admin_pengajar) {
-            startActivity(new Intent(getApplicationContext(), AdminPengajarTampilActivity.class));
+            Intent intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+            intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_pengajar");
+            startActivity(intent);
         }
         if (v.getId() == R.id.link_admin_murid) {
             startActivity(new Intent(getApplicationContext(), AdminMuridTampilActivity.class));

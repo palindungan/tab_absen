@@ -10,6 +10,8 @@ import com.example.tababsensiapp.R;
 
 public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiGajiTampilView {
 
+    public final static String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

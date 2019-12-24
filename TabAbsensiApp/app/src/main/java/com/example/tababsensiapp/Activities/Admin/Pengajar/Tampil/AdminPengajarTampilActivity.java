@@ -18,6 +18,7 @@ import com.example.tababsensiapp.Activities.Admin.Pengajar.Tambah.AdminPengajarT
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.AdminPengajarTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdminPengajarTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.view.IAdminPengajarTampilView;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
@@ -39,10 +40,15 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
     private SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton fab;
 
+    public final static String EXTRA_STATUS_ACTIVITY = "EXTRA_STATUS_ACTIVITY";
+    String status_activity = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_pengajar_tampil);
+
+        status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
 
         adminPengajarTampilPresenter = new AdminPengajarTampilPresenter(this, this);
         adminPengajarTampilPresenter.onLoadSemuaData();
@@ -105,9 +111,17 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
         adapterDaftarPengajar.setOnItemClickListener(new AdapterDaftarPengajar.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
-                intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-                startActivity(intent);
+
+                if (status_activity.equals("to_edit_pengajar")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminPengajarEditActivity.class);
+                    intent.putExtra(AdminPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    startActivity(intent);
+                } else if (status_activity.equals("to_transaksi_gaji")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
+                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    startActivity(intent);
+                }
+
             }
         });
     }
