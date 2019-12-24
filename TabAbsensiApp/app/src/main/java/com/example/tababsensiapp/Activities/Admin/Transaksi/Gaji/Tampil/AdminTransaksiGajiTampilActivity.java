@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.presenter.AdminTransaksiGajiTampilPresenter;
@@ -23,6 +25,7 @@ import com.example.tababsensiapp.Models.Pertemuan;
 import com.example.tababsensiapp.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -42,14 +45,31 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
 
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
+    TextView tvNamaPengajar, tvTotalPertemuan, tvTotalHargaFee;
+    Button btnBayarFee, btnBatal;
+
+    String id_admin, total_pertemuan, total_harga_fee;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_transaksi_gaji);
 
+        sessionManager = new SessionManager(this);
+        HashMap<String, String> user = sessionManager.getDataUser();
+        id_admin = user.get(sessionManager.ID_USER);
+
+
+        tvNamaPengajar = findViewById(R.id.tv_nama_pengajar);
+        tvTotalPertemuan = findViewById(R.id.tv_total_pertemuan);
+        tvTotalHargaFee = findViewById(R.id.tv_total_harga_fee);
+
+        btnBayarFee = findViewById(R.id.btn_bayar_fee);
+        btnBatal = findViewById(R.id.btn_batal);
+
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
 
-        adminTransaksiGajiTampilPresenter = new AdminTransaksiGajiTampilPresenter(this,this);
+        adminTransaksiGajiTampilPresenter = new AdminTransaksiGajiTampilPresenter(this, this);
         adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar);
 
         recyclerView = findViewById(R.id.recycle_view);
@@ -76,11 +96,19 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
                 }, 1000);
             }
         });
+
+        btnBatal.setOnClickListener(this);
+        btnBayarFee.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.btn_batal) {
 
+        }
+        if (v.getId() == R.id.btn_bayar_fee) {
+            adminTransaksiGajiTampilPresenter.onBayar(id_pengajar, id_admin, total_pertemuan, total_harga_fee);
+        }
     }
 
     @Override
@@ -92,7 +120,15 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     }
 
     @Override
-    public void onSetupListView(ArrayList<Pertemuan> dataModelArrayList) {
+    public void onSetupListView(ArrayList<Pertemuan> dataModelArrayList, String nama_pengajar, String total_pertemuan, String harga_fee) {
+
+        tvNamaPengajar.setText("Nama : " + nama_pengajar);
+        tvTotalPertemuan.setText("Total Pertemuan : " + total_pertemuan);
+        tvTotalHargaFee.setText("Total Fee : " + harga_fee);
+
+        this.total_pertemuan = total_pertemuan;
+        total_harga_fee = harga_fee;
+
         adapterPengajarDaftarKelasAktif = new AdapterPengajarDaftarKelasAktif(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setAdapter(adapterPengajarDaftarKelasAktif);

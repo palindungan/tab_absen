@@ -51,18 +51,26 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
 
                             String message = obj.optString("message");
 
+                            String nama_pengajar = "kosong";
+                            String total_pertemuan = "";
+                            int total_harga_fee = 0;
+                            String total = "";
+
                             if (obj.optString("success").equals("1")) {
 
                                 dataModelArrayList = new ArrayList<>();
                                 JSONArray dataArray = obj.getJSONArray("list_pertemuan_selesai_valid_belum_terbayar");
+
                                 for (int i = 0; i < dataArray.length(); i++) {
+
+                                    total_pertemuan = String.valueOf(dataArray.length());
 
                                     Pertemuan playerModel = new Pertemuan();
                                     JSONObject dataobj = dataArray.getJSONObject(i);
 
                                     String id_pertemuan = dataobj.getString("id_pertemuan");
 
-                                    String nama_pengajar = dataobj.getString("nama_pengajar");
+                                    nama_pengajar = dataobj.getString("nama_pengajar");
                                     String nama_mata_pelajaran = dataobj.getString("nama_mata_pelajaran");
 
                                     String hari_btn = dataobj.getString("hari_btn");
@@ -103,12 +111,16 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
                                     playerModel.setStatus_konfirmasi(status_konfirmasi);
 
                                     dataModelArrayList.add(playerModel);
+
+                                    total_harga_fee = total_harga_fee + Integer.parseInt(harga_fee);
                                 }
 
-                                adminTransaksiGajiView.onSetupListView(dataModelArrayList);
+                                total = String.valueOf(total_harga_fee);
+
+                                adminTransaksiGajiView.onSetupListView(dataModelArrayList,nama_pengajar,total_pertemuan,total);
                             } else {
                                 dataModelArrayList = new ArrayList<>();
-                                adminTransaksiGajiView.onSetupListView(dataModelArrayList);
+                                adminTransaksiGajiView.onSetupListView(dataModelArrayList,nama_pengajar,total_pertemuan,total);
                                 adminTransaksiGajiView.onErrorMessage(message);
                             }
 
@@ -128,6 +140,53 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("id_pengajar", id_pengajar);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBayar(String id_pengajar, String id_admin, String total_pertemuan, String total_harga_fee) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "pengajar/absen/tambah_penggajian"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            String message = obj.optString("message");
+
+                            if (obj.optString("success").equals("1")) {
+                               adminTransaksiGajiView.onSuccessMessage(message);
+                            } else {
+                                adminTransaksiGajiView.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminTransaksiGajiView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminTransaksiGajiView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_pengajar", id_pengajar);
+                params.put("id_admin", id_admin);
+                params.put("total_pertemuan", total_pertemuan);
+                params.put("total_harga_fee", total_harga_fee);
                 return params;
             }
         };

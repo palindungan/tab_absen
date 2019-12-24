@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface IAdminTransaksiGajiTampilView {
     void initActionBar();
 
-    void onSetupListView(ArrayList<Pertemuan> dataModelArrayList);
+    void onSetupListView(ArrayList<Pertemuan> dataModelArrayList , String nama_pengajar,String total_pertemuan, String harga_fee);
 
     void onSuccessMessage(String message);
 

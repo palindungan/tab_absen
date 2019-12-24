@@ -432,6 +432,8 @@ class Absen extends REST_Controller
         }
     }
 
+    // gaji start
+
     function ambil_data_pertemuan_selesai_valid_belum_terbayar_post()
     {
         $id_pengajar = $this->post('id_pengajar');
@@ -497,6 +499,43 @@ class Absen extends REST_Controller
             $result["success"] = "0";
             $result["message"] = "data tidak ada dalam database";
             $this->response($result, 200);
+        }
+    }
+
+    function tambah_penggajian_post()
+    {
+        $id_penggajian = $this->M_absen->get_no2();
+
+        $id_pengajar = $this->post('id_pengajar');
+        $id_admin = $this->post('id_admin');
+        $total_pertemuan = $this->post('total_pertemuan');
+        $total_harga_fee = $this->post('total_harga_fee');
+        $tanggal = date('Y-m-d H:i:s');
+
+        $data = array(
+            'id_penggajian' => $id_penggajian,
+            'id_pengajar' => $id_pengajar,
+            'id_admin' => $id_admin,
+            'waktu' => $tanggal,
+            'total_pertemuan' => $total_pertemuan,
+            'total_harga_fee' => $total_harga_fee
+        );
+
+        $insert =  $this->M_absen->input_data('penggajian', $data);
+        if ($insert) {
+
+
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Menambah Penggajian FEE";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Menambah Penggajian FEE";
+            $this->response(array($result, 200));
         }
     }
 }
