@@ -1,14 +1,14 @@
-package com.example.tababsensiapp.Activities.Admin.Transaksi.SPP;
+package com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.Tampil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.presenter.IAdminTransaksiSppPresenter;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.Tampil.presenter.IAdminTransaksiSppTampilPresenter;
 import com.example.tababsensiapp.R;
 
-public class AdminTransaksiSppActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiSppPresenter {
+public class AdminTransaksiSppTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiSppTampilPresenter {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,6 @@ public class AdminTransaksiSppActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View v) {
-        
+
     }
 }

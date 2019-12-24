@@ -1,14 +1,14 @@
-package com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji;
+package com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.view.IAdminTransaksiGajiView;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.view.IAdminTransaksiGajiTampilView;
 import com.example.tababsensiapp.R;
 
-public class AdminTransaksiGajiActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiGajiView {
+public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiGajiTampilView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
