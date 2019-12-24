@@ -9,5 +9,5 @@ public interface IAdminKelasDetailKelasPresenter {
 
     void onDeleteSharing(String id);
 
-    void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo, String hari_kelas);
+    void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo, String hari_kelas,String harga_fee);
 }

@@ -93,6 +93,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     LatLng latLng;
 
     String hari_kelas = "";
+    String harga_fee_m = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +201,8 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
         hari_kelas = hari;
 
+        harga_fee_m = harga_fee;
+
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
             btnSharing.setVisibility(View.GONE);
@@ -244,9 +247,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             String lokasi_mulai_la_m = String.valueOf(loc.getLatitude());
                             String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
 
-                            // onSuccessMessage(id_pengajar_m + id_kelas_p_m + lokasi_mulai_la_m + lokasi_mulai_lo_m);
+                            onSuccessMessage(harga_fee_m);
 
-                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas);
+                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas,harga_fee_m);
 
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan " + e.toString());

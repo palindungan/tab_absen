@@ -61,6 +61,8 @@ class Absen extends REST_Controller
 
         $deskripsi = "kosong";
 
+        $harga_fee = $this->post('harga_fee');
+
         $data = array(
             'id_pertemuan'   => $id_pertemuan,
             'id_pengajar'   => $id_pengajar,
@@ -76,7 +78,8 @@ class Absen extends REST_Controller
             'status_spp'   => $status_spp,
             'status_pertemuan'   => $status_pertemuan,
             'status_konfirmasi'   => $status_konfirmasi,
-            'deskripsi'   => $deskripsi
+            'deskripsi'   => $deskripsi,
+            'harga_fee' => $harga_fee
         );
 
         $where = array(
@@ -161,12 +164,12 @@ class Absen extends REST_Controller
                     'status_konfirmasi' => $row["status_konfirmasi"],
 
                     'deskripsi' => $row["deskripsi"],
+                    'harga_fee' => $row["harga_fee"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
-                    'harga_fee' => $row["harga_fee"],
 
                     'id_mata_pelajaran' => $row["id_mata_pelajaran"],
                     'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
@@ -227,12 +230,12 @@ class Absen extends REST_Controller
                     'status_konfirmasi' => $row["status_konfirmasi"],
 
                     'deskripsi' => $row["deskripsi"],
+                    'harga_fee' => $row["harga_fee"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
-                    'harga_fee' => $row["harga_fee"],
 
                     'id_mata_pelajaran' => $row["id_mata_pelajaran"],
                     'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
@@ -370,12 +373,12 @@ class Absen extends REST_Controller
                     'status_konfirmasi' => $row["status_konfirmasi"],
 
                     'deskripsi' => $row["deskripsi"],
+                    'harga_fee' => $row["harga_fee"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
-                    'harga_fee' => $row["harga_fee"],
 
                     'id_mata_pelajaran' => $row["id_mata_pelajaran"],
                     'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
