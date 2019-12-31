@@ -12,4 +12,6 @@ public interface IAdminTransaksiGajiTampilView {
     void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
+
+    void showDialogTransaksi();
 }

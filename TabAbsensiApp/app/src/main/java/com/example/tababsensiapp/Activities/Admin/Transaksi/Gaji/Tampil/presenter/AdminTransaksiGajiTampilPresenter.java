@@ -117,10 +117,10 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
 
                                 total = String.valueOf(total_harga_fee);
 
-                                adminTransaksiGajiView.onSetupListView(dataModelArrayList,nama_pengajar,total_pertemuan,total);
+                                adminTransaksiGajiView.onSetupListView(dataModelArrayList, nama_pengajar, total_pertemuan, total);
                             } else {
                                 dataModelArrayList = new ArrayList<>();
-                                adminTransaksiGajiView.onSetupListView(dataModelArrayList,nama_pengajar,total_pertemuan,total);
+                                adminTransaksiGajiView.onSetupListView(dataModelArrayList, nama_pengajar, total_pertemuan, total);
                                 adminTransaksiGajiView.onErrorMessage(message);
                             }
 
@@ -151,7 +151,7 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
     @Override
     public void onBayar(String id_pengajar, String id_admin, String total_pertemuan, String total_harga_fee) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/absen/tambah_penggajian"; // url http request
+        String URL_DATA = base_url + "admin/transaksi/fee/tambah_transaksi"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -161,9 +161,15 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
                             JSONObject obj = new JSONObject(response);
 
                             String message = obj.optString("message");
+                            String id_penggajian = obj.optString("id_penggajian");
 
                             if (obj.optString("success").equals("1")) {
-                               adminTransaksiGajiView.onSuccessMessage(message);
+                                adminTransaksiGajiView.onSuccessMessage(id_penggajian);
+
+                                for (int i = 0; i < dataModelArrayList.size(); i++) {
+                                    onBayarDetail(id_penggajian, dataModelArrayList.get(i).getId_pertemuan());
+                                }
+
                             } else {
                                 adminTransaksiGajiView.onErrorMessage(message);
                             }
@@ -187,6 +193,51 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
                 params.put("id_admin", id_admin);
                 params.put("total_pertemuan", total_pertemuan);
                 params.put("total_harga_fee", total_harga_fee);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onBayarDetail(String id_penggajian, String id_pertemuan) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/transaksi/fee/tambah_detail_transaksi"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            String message = obj.optString("message");
+
+                            if (obj.optString("success").equals("1")) {
+                                adminTransaksiGajiView.onSuccessMessage(message);
+                            } else {
+                                adminTransaksiGajiView.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminTransaksiGajiView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminTransaksiGajiView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_penggajian", id_penggajian);
+                params.put("id_pertemuan", id_pertemuan);
                 return params;
             }
         };

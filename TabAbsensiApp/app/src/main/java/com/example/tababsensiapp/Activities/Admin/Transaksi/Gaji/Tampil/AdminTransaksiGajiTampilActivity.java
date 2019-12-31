@@ -1,11 +1,13 @@
 package com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -107,7 +109,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
 
         }
         if (v.getId() == R.id.btn_bayar_fee) {
-            adminTransaksiGajiTampilPresenter.onBayar(id_pengajar, id_admin, total_pertemuan, total_harga_fee);
+            showDialogTransaksi();
         }
     }
 
@@ -128,6 +130,11 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
 
         this.total_pertemuan = total_pertemuan;
         total_harga_fee = harga_fee;
+
+        if (dataModelArrayList.size()==0){
+            btnBayarFee.setVisibility(View.GONE);
+            onErrorMessage("Tidak Ada Data Pertemuan !");
+        }
 
         adapterPengajarDaftarKelasAktif = new AdapterPengajarDaftarKelasAktif(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
@@ -155,6 +162,34 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     @Override
     public void onErrorMessage(String message) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showDialogTransaksi() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Melakukan Pembayaran Fee ?");
+        alertDialogBuilder
+                .setMessage("Klik bayar untuk pembayaran !")
+                .setPositiveButton("Bayar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            adminTransaksiGajiTampilPresenter.onBayar(id_pengajar, id_admin, total_pertemuan, total_harga_fee);
+                        } catch (Exception e) {
+                            onErrorMessage("Terjadi Kesalahan Transaksi " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
