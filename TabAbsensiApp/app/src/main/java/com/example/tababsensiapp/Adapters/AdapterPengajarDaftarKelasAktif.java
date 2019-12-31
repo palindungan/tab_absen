@@ -74,6 +74,12 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
         String status_konfirmasi = dataModelArrayList.get(position).getStatus_konfirmasi();
         holder.tvStatusKonfirmasi.setText("Status Konfirmasi : " + status_konfirmasi);
+
+        String status_fee = dataModelArrayList.get(position).getStatus_fee();
+        holder.tvStatusFee.setText("Status Fee : " + status_fee);
+
+        String status_spp = dataModelArrayList.get(position).getStatus_spp();
+        holder.tvStatusSPP.setText("Status SPP : " + status_spp);
     }
 
     @Override
@@ -84,7 +90,7 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
     public class AdapterPengajarDaftarKelasAktifViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLokasiDetailMulai;
-        protected TextView tvStatusPertemuan, tvStatusKonfirmasi;
+        protected TextView tvStatusPertemuan, tvStatusKonfirmasi, tvStatusFee,tvStatusSPP;
 
         public AdapterPengajarDaftarKelasAktifViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +103,8 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
             tvStatusPertemuan = itemView.findViewById(R.id.tv_status_pertemuan);
             tvStatusKonfirmasi = itemView.findViewById(R.id.tv_status_konfirmasi);
 //            tvLokasiDetailMulai = itemView.findViewById(R.id.tv_lokasi_detail_mulai);
+            tvStatusFee = itemView.findViewById(R.id.tv_status_fee);
+            tvStatusSPP= itemView.findViewById(R.id.tv_status_spp);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

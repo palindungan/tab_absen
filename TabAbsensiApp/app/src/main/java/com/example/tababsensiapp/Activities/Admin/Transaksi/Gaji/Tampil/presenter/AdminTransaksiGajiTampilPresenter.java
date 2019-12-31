@@ -40,7 +40,7 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
     @Override
     public void inisiasiAwal(String id_pengajar) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "pengajar/absen/ambil_data_pertemuan_selesai_valid_belum_terbayar"; // url http request
+        String URL_DATA = base_url + "admin/transaksi/fee/ambil_data_pertemuan_for_fee"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -59,7 +59,7 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
                             if (obj.optString("success").equals("1")) {
 
                                 dataModelArrayList = new ArrayList<>();
-                                JSONArray dataArray = obj.getJSONArray("list_pertemuan_selesai_valid_belum_terbayar");
+                                JSONArray dataArray = obj.getJSONArray("list_pertemuan");
 
                                 for (int i = 0; i < dataArray.length(); i++) {
 

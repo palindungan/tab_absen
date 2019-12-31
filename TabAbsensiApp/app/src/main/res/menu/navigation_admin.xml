@@ -7,5 +7,11 @@
     <item
         android:id="@+id/gaji_pengajar"
         android:title="Penggajian Pengajar" />
+    <item
+        android:id="@+id/riwayat_penggajian"
+        android:title="Riwayat Penggajian" />
+    <item
+        android:id="@+id/riwayat_bayar_spp"
+        android:title="Riwayat Pembayaran SPP" />
 
 </menu>

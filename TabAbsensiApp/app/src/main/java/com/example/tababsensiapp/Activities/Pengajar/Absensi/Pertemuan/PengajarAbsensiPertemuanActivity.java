@@ -172,7 +172,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
         tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
 
-        tvStatus.setText("Status Validasi : " + status_konfirmasi);
+        tvStatus.setText("Status Konfirmasi : " + status_konfirmasi);
 
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);

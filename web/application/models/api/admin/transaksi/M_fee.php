@@ -33,6 +33,7 @@ class M_fee extends CI_Model
 
     function get_no_transaksi()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $field = "id_penggajian";
         $tabel = "penggajian";
         $digit = "4";
@@ -43,12 +44,11 @@ class M_fee extends CI_Model
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $k) {
                 $tmp = ((int) $k->kd_max) + 1;
-                $kd = sprintf('%0' . $digit . 's',  $tmp); // 0 berapa kali + $tmp
+                $kd = sprintf('%0' . $digit . 's', $tmp);
             }
         } else {
             $kd = "0001";
         }
-        date_default_timezone_set('Asia/Jakarta');
-        return 'PG' . date('ymd') . '-' . $kd; // SELECT SUBSTR('PT191218-0001', 3, 6); dari digit ke 3 sampai 6 digit seanjutnya
+        return 'PG' . date('ymd') . '-' . $kd; // SELECT SUBSTR('RI191121-0001', 3, 6); dari digit ke 3 sampai 6 digit seanjutnya
     }
 }
