@@ -85,13 +85,19 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                Intent intent = new Intent();
                 switch (id) {
                     case R.id.bayar_spp:
                         Toast.makeText(getApplicationContext(), "SPP", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.gaji_pengajar:
-                        Intent intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+                        intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
                         intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_transaksi_gaji");
+                        startActivity(intent);
+                        break;
+                    case R.id.riwayat_penggajian:
+                        intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+                        intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_riwayat_gaji");
                         startActivity(intent);
                         break;
                     default:

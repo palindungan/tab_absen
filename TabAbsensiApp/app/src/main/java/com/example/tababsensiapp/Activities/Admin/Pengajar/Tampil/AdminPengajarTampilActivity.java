@@ -19,6 +19,7 @@ import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.Admi
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdminPengajarTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.view.IAdminPengajarTampilView;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.AdminTransaksiRiwayatGajiTampilActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
@@ -119,6 +120,10 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
                 } else if (status_activity.equals("to_transaksi_gaji")) {
                     Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
                     intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    startActivity(intent);
+                } else if (status_activity.equals("to_riwayat_gaji")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
+                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
                     startActivity(intent);
                 }
 
