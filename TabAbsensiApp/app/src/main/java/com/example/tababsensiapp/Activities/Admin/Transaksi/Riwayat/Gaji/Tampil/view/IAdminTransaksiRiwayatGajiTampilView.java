@@ -1,4 +1,4 @@
-package com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.view;
+package com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.view;
 
 import com.example.tababsensiapp.Models.Penggajian;
 
@@ -9,7 +9,7 @@ public interface IAdminTransaksiRiwayatGajiTampilView {
 
     void onSetupListView(ArrayList<Penggajian> dataModelArrayList);
 
-    void onSucceessMessage(String message);
+    void onSuccessMessage(String message);
 
     void onErrorMessage(String message);
 }

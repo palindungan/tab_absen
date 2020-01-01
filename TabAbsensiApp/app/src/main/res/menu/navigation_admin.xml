@@ -2,16 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bayar_spp"
-        android:title="Pembayaran SPP" />
-    <item
         android:id="@+id/gaji_pengajar"
         android:title="Penggajian Pengajar" />
     <item
         android:id="@+id/riwayat_penggajian"
-        android:title="Riwayat Penggajian" />
+        android:title="Riwayat Penggajian pengajar" />
+    <item
+        android:id="@+id/bayar_spp"
+        android:title="Pembayaran SPP" />
     <item
         android:id="@+id/riwayat_bayar_spp"
         android:title="Riwayat Pembayaran SPP" />
+
 
 </menu>

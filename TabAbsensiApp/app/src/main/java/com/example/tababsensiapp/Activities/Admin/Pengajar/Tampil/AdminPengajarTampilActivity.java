@@ -19,7 +19,7 @@ import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.Admi
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdminPengajarTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.view.IAdminPengajarTampilView;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity;
-import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.AdminTransaksiRiwayatGajiTampilActivity;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.AdminTransaksiRiwayatGajiTampilActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;

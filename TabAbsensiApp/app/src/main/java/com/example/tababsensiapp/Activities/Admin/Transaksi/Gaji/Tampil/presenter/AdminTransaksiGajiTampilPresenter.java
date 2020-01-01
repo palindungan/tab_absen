@@ -170,6 +170,8 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
                                     onBayarDetail(id_penggajian, dataModelArrayList.get(i).getId_pertemuan());
                                 }
 
+                                adminTransaksiGajiView.backPressed();
+
                             } else {
                                 adminTransaksiGajiView.onErrorMessage(message);
                             }

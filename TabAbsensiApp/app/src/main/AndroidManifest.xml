@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Admin.Transaksi.Riwayat.Gaji.AdminTransaksiRiwayatGajiTampilActivity"></activity>
+        <activity android:name=".Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.AdminTransaksiRiwayatGajiTampilActivity"></activity>
         <activity android:name=".Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity" />
         <activity android:name=".Activities.Admin.Transaksi.SPP.Tampil.AdminTransaksiSppTampilActivity" />
         <activity android:name=".Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity" />

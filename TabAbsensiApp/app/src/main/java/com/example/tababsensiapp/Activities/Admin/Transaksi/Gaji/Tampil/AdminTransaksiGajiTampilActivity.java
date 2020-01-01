@@ -193,6 +193,11 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     }
 
     @Override
+    public void backPressed() {
+        onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 

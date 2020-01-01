@@ -52,14 +52,16 @@ public class AdapterDaftarPenggajian extends RecyclerView.Adapter<AdapterDaftarP
 
     public class DaftarPenggajianViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvWaktu, tvTotalPertemuan, tvTotalHargaFee;
+        protected TextView tvWaktu, tvTotalPertemuan, tvTotalHargaFee;
 
         public DaftarPenggajianViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvWaktu = itemView.findViewById(R.id.tv_waktu);
             tvTotalPertemuan = itemView.findViewById(R.id.tv_total_pertemuan);
-            tvTotalHargaFee = itemView.findViewById(R.id.tv_total_pertemuan);
+            tvTotalHargaFee = itemView.findViewById(R.id.tv_total_harga_fee);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override

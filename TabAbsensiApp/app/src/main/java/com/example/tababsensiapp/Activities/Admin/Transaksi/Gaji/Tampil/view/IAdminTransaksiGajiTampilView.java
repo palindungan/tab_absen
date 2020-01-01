@@ -14,4 +14,6 @@ public interface IAdminTransaksiGajiTampilView {
     void onErrorMessage(String message);
 
     void showDialogTransaksi();
+
+    void backPressed();
 }
