@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.presenter.AdminTransaksiRiwayatGajiTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.presenter.IAdminTransaksiRiwayatGajiTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.view.IAdminTransaksiRiwayatGajiTampilView;
@@ -97,7 +99,10 @@ public class AdminTransaksiRiwayatGajiTampilActivity extends AppCompatActivity i
         adapterDaftarPenggajian.setOnItemClickListener(new AdapterDaftarPenggajian.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                onSuccessMessage(dataModelArrayList.get(position).getId_penggajian());
+                Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
+                intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, dataModelArrayList.get(position).getId_penggajian());
+                startActivity(intent);
             }
         });
     }

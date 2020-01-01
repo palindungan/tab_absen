@@ -97,7 +97,6 @@ class Fee extends REST_Controller
     function ambil_data_pertemuan_for_fee_post()
     {
         $id_pengajar = $this->post('id_pengajar');
-        $id_pengajar = $this->post('id_pengajar');
 
         $where = array(
             'id_pengajar' => $id_pengajar,
@@ -179,7 +178,7 @@ class Fee extends REST_Controller
         $result['penggajian'] = array();
 
         $query = array();
-        $query = $this->M_fee->get_data('penggajian', $where);
+        $query = $this->M_fee->get_data('list_penggajian', $where);
 
         if ($query->num_rows() > 0) {
 
@@ -213,6 +212,7 @@ class Fee extends REST_Controller
 
     function ambil_data_detail_penggajian_post()
     {
+        $id_pengajar = $this->post('id_pengajar');
         $id_penggajian = $this->post('id_penggajian');
 
         $where = array(
@@ -221,7 +221,7 @@ class Fee extends REST_Controller
 
         // variable array
         $result = array();
-        $result['list_detail_penggajian'] = array();
+        $result['list_pertemuan'] = array();
 
         $query = array();
         $query = $this->M_fee->get_data('list_detail_penggajian', $where);
@@ -266,7 +266,7 @@ class Fee extends REST_Controller
                     'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
                 );
 
-                array_push($result['list_detail_penggajian'], $data);
+                array_push($result['list_pertemuan'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";

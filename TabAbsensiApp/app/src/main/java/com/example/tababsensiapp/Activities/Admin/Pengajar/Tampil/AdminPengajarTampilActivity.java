@@ -120,6 +120,7 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
                 } else if (status_activity.equals("to_transaksi_gaji")) {
                     Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
                     intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
                     startActivity(intent);
                 } else if (status_activity.equals("to_riwayat_gaji")) {
                     Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);

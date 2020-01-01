@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,9 @@ import es.dmoral.toasty.Toasty;
 
 public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminTransaksiGajiTampilView {
 
+    public static final String EXTRA_ID_PENGGAJIAN = "EXTRA_ID_PENGGAJIAN";
+    String id_penggajian = "";
+
     SessionManager sessionManager;
     String id_pengajar;
 
@@ -48,7 +52,8 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     TextView tvNamaPengajar, tvTotalPertemuan, tvTotalHargaFee;
-    Button btnBayarFee, btnBatal;
+    Button btnBayarFee;
+    LinearLayout layoutKet;
 
     String id_admin, total_pertemuan, total_harga_fee;
 
@@ -67,12 +72,13 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
         tvTotalHargaFee = findViewById(R.id.tv_total_harga_fee);
 
         btnBayarFee = findViewById(R.id.btn_bayar_fee);
-        btnBatal = findViewById(R.id.btn_batal);
+        layoutKet = findViewById(R.id.layout_ket);
 
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
+        id_penggajian = getIntent().getStringExtra(EXTRA_ID_PENGGAJIAN);
 
         adminTransaksiGajiTampilPresenter = new AdminTransaksiGajiTampilPresenter(this, this);
-        adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar);
+        adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar, id_penggajian);
 
         recyclerView = findViewById(R.id.recycle_view);
 
@@ -84,7 +90,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
             @Override
             public void onRefresh() {
                 // Your code to make your refresh action
-                adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar);
+                adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar, id_penggajian);
 
                 // CallYourRefreshingMethod();
                 final Handler handler = new Handler();
@@ -99,15 +105,11 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
             }
         });
 
-        btnBatal.setOnClickListener(this);
         btnBayarFee.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_batal) {
-
-        }
         if (v.getId() == R.id.btn_bayar_fee) {
             showDialogTransaksi();
         }
@@ -131,9 +133,14 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
         this.total_pertemuan = total_pertemuan;
         total_harga_fee = harga_fee;
 
-        if (dataModelArrayList.size()==0){
+        if (dataModelArrayList.size() == 0) {
             btnBayarFee.setVisibility(View.GONE);
             onErrorMessage("Tidak Ada Data Pertemuan !");
+        }
+
+        if (!id_penggajian.equals("kosong")) {
+            btnBayarFee.setVisibility(View.GONE);
+//            layoutKet.setVisibility(View.GONE);
         }
 
         adapterPengajarDaftarKelasAktif = new AdapterPengajarDaftarKelasAktif(this, dataModelArrayList);
@@ -211,6 +218,6 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     @Override
     protected void onResume() {
         super.onResume();
-        adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar);
+        adminTransaksiGajiTampilPresenter.inisiasiAwal(id_pengajar, id_penggajian);
     }
 }

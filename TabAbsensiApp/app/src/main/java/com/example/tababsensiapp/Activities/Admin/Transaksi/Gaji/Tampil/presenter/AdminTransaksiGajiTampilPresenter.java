@@ -38,9 +38,14 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
     }
 
     @Override
-    public void inisiasiAwal(String id_pengajar) {
+    public void inisiasiAwal(String id_pengajar, String id_penggajian) {
+
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/transaksi/fee/ambil_data_pertemuan_for_fee"; // url http request
+        String URL_DATA;
+        URL_DATA = base_url + "admin/transaksi/fee/ambil_data_pertemuan_for_fee"; // url http request
+        if (!id_penggajian.equals("kosong")) {
+            URL_DATA = base_url + "admin/transaksi/fee/ambil_data_detail_penggajian"; // url http request
+        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -140,6 +145,7 @@ public class AdminTransaksiGajiTampilPresenter implements IAdminTransaksiGajiTam
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("id_pengajar", id_pengajar);
+                params.put("id_penggajian", id_penggajian);
                 return params;
             }
         };
