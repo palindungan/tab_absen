@@ -13,6 +13,8 @@
     <item
         android:id="@+id/riwayat_bayar_spp"
         android:title="Riwayat Pembayaran SPP" />
-
+    <item
+        android:id="@+id/monitoring"
+        android:title="Monitoring" />
 
 </menu>

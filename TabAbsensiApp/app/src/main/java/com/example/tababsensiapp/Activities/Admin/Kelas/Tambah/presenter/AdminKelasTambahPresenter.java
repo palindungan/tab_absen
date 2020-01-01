@@ -37,7 +37,7 @@ public class AdminKelasTambahPresenter implements IAdminKelasTambahPresenter {
     }
 
     @Override
-    public void onSubmit(String id_pengajar, String id_mata_pelajaran, String hari, String jam_mulai, String jam_berakhir, String harga_fee) {
+    public void onSubmit(String id_pengajar, String id_mata_pelajaran, String hari, String jam_mulai, String jam_berakhir, String harga_fee, String harga_spp) {
 
         String base_url = baseUrl.getUrlData();
         String URL_DATA = base_url + "admin/kelas_pertemuan/tambah_kelas_pertemuan"; // url http request
@@ -78,6 +78,7 @@ public class AdminKelasTambahPresenter implements IAdminKelasTambahPresenter {
                 params.put("jam_mulai", jam_mulai);
                 params.put("jam_berakhir", jam_berakhir);
                 params.put("harga_fee", harga_fee);
+                params.put("harga_spp", harga_spp);
                 return params;
             }
         };

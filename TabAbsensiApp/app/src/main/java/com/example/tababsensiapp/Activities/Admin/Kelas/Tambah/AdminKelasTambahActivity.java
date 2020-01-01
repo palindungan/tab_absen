@@ -49,7 +49,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
     Toolbar toolbar;
     EditText edtHari;
     TextView tvNamaPelajaran, tvJamMulai, tvJamBerakhir;
-    EditText edtHargaFee;
+    EditText edtHargaFee,edtHargaSpp;
     Button btnSubmit;
 
     final Calendar c = Calendar.getInstance();
@@ -78,6 +78,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
         tvJamMulai = findViewById(R.id.tv_jam_mulai);
         tvJamBerakhir = findViewById(R.id.tv_jam_berakhir);
         edtHargaFee = findViewById(R.id.edt_harga_fee);
+        edtHargaSpp = findViewById(R.id.edt_harga_spp);
         btnSubmit = findViewById(R.id.btn_submit);
 
         btnSubmit.setOnClickListener(this);
@@ -149,6 +150,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                         String inputJamMulai = tvJamMulai.getText().toString().trim();
                         String inputJamBerakhir = tvJamBerakhir.getText().toString().trim();
                         String inputHargaFee = edtHargaFee.getText().toString().trim();
+                        String inputHargaSpp = edtHargaSpp.getText().toString().trim();
 
                         boolean isEmpty = false;
 
@@ -167,12 +169,15 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                         } else if (TextUtils.isEmpty(inputHargaFee)) {
                             isEmpty = true;
                             edtHargaFee.setError("Isi Data Dengan Lengkap");
+                        }else if (TextUtils.isEmpty(inputHargaSpp)) {
+                            isEmpty = true;
+                            edtHargaFee.setError("Isi Data Dengan Lengkap");
                         }
 
                         try {
 
                             if (!isEmpty) {
-                                adminKelasTambahPresenter.onSubmit(id_pengajar, id_mata_pelajaran, inputHari, inputJamMulai, inputJamBerakhir, inputHargaFee);
+                                adminKelasTambahPresenter.onSubmit(id_pengajar, id_mata_pelajaran, inputHari, inputJamMulai, inputJamBerakhir, inputHargaFee,inputHargaSpp);
                             }
 
                         } catch (Exception e) {

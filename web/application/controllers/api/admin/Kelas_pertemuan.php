@@ -37,6 +37,7 @@ class Kelas_pertemuan extends REST_Controller
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp'   => $row["harga_spp"],
                     'id_sharing' => $row["id_sharing"],
                     'nama_sharing' => $row["nama_sharing"],
                 );
@@ -66,6 +67,7 @@ class Kelas_pertemuan extends REST_Controller
         $jam_mulai = $this->post('jam_mulai');
         $jam_berakhir = $this->post('jam_berakhir');
         $harga_fee = $this->post('harga_fee');
+        $harga_spp = $this->post('harga_spp');
         $id_sharing = "null";
         $nama_sharing = "kosong";
 
@@ -77,6 +79,7 @@ class Kelas_pertemuan extends REST_Controller
             'jam_mulai'   => $jam_mulai,
             'jam_berakhir'   => $jam_berakhir,
             'harga_fee'   => $harga_fee,
+            'harga_spp'   => $harga_spp,
             'id_sharing'   => $id_sharing,
             'nama_sharing'   => $nama_sharing,
         );
@@ -326,6 +329,7 @@ class Kelas_pertemuan extends REST_Controller
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp'   => $row["harga_spp"],
                     'id_mata_pelajaran' => $row["id_mata_pelajaran"],
                     'nama_pelajaran' => $row["nama_pelajaran"],
                     'id_pengajar' => $row["id_pengajar"],

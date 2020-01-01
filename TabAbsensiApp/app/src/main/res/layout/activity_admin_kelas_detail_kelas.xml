@@ -73,6 +73,12 @@
                         android:layout_height="wrap_content"
                         android:text="Harga Fee" />
 
+                    <TextView
+                        android:id="@+id/tv_harga_spp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Harga Spp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

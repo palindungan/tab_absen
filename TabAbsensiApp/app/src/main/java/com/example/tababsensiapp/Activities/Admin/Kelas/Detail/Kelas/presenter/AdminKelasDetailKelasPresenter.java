@@ -211,12 +211,13 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
                                     String jam_mulai = dataobj.getString("jam_mulai");
                                     String jam_berakhir = dataobj.getString("jam_berakhir");
                                     String harga_fee = dataobj.getString("harga_fee");
+                                    String harga_spp = dataobj.getString("harga_spp");
                                     String nama_pelajaran = dataobj.getString("nama_pelajaran");
                                     String id_sharing = dataobj.getString("id_sharing");
                                     String nama_sharing = dataobj.getString("nama_sharing");
                                     String nama_pengajar = dataobj.getString("nama_pengajar");
 
-                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, hari, jam_mulai, jam_berakhir, id_sharing, nama_sharing);
+                                    adminKelasDetailKelasView.setNilaiDefault(nama_pelajaran, nama_pengajar, harga_fee, harga_spp, hari, jam_mulai, jam_berakhir, id_sharing, nama_sharing);
 
                                 }
                             } else {
@@ -296,7 +297,7 @@ public class AdminKelasDetailKelasPresenter implements IAdminKelasDetailKelasPre
     }
 
     @Override
-    public void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo, String hari_kelas,String harga_fee) {
+    public void onMulaiPertemuan(String id_pengajar, String id_kelas_p, String lokasi_mulai_la, String lokasi_mulai_lo, String hari_kelas, String harga_fee) {
         String base_url = baseUrl.getUrlData();
         String URL_DATA = base_url + "pengajar/absen/tambah_absen"; // url http request
 

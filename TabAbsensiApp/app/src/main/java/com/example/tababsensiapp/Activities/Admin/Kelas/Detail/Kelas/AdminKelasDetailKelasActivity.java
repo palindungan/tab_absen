@@ -75,7 +75,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     private SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton fab;
 
-    TextView tvNamaPelajaran, tvNamaPengajar, tvHari, tvJam, tvHargaFee, tvStatus;
+    TextView tvNamaPelajaran, tvNamaPengajar, tvHari, tvJam, tvHargaFee, tvHargaSpp, tvStatus;
 
     ImageButton btnSharing, btnDeleteSharing, btnAbsen;
 
@@ -112,6 +112,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
         tvHari = findViewById(R.id.tv_hari);
         tvJam = findViewById(R.id.tv_jam);
         tvHargaFee = findViewById(R.id.tv_harga_fee);
+        tvHargaSpp = findViewById(R.id.tv_harga_spp);
         tvStatus = findViewById(R.id.tv_status);
 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
@@ -192,10 +193,11 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
+    public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee,String harga_spp, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText("Pemilik Kelas : " + nama_pengajar);
         tvHargaFee.setText("FEE : Rp " + harga_fee);
+        tvHargaSpp.setText("SPP : "+ harga_spp);
         tvHari.setText("Hari : " + hari);
         tvJam.setText("Jam : " + jam_mulai + " - " + jam_berakhir);
 
@@ -249,7 +251,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
                             onSuccessMessage(harga_fee_m);
 
-                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas,harga_fee_m);
+                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas, harga_fee_m);
 
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan " + e.toString());
