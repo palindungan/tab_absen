@@ -135,7 +135,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
 
         if (dataModelArrayList.size() == 0) {
             btnBayarFee.setVisibility(View.GONE);
-            onErrorMessage("Tidak Ada Data Pertemuan !");
+            layoutKet.setVisibility(View.GONE);
         }
 
         if (!id_penggajian.equals("kosong")) {

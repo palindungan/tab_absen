@@ -66,12 +66,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Spinner
-                    android:autofillHints="Pilih Hari"
+                <EditText
                     android:id="@+id/edt_hari"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
-                    android:textSize="17sp" />
+                    android:layout_height="wrap_content"
+                    android:hint="Jadwal Hari"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/edt_jam_mulai"
+                    android:id="@+id/tv_jam_mulai"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
                     android:gravity="center_vertical"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/edt_jam_berakhir"
+                    android:id="@+id/tv_jam_berakhir"
                     android:layout_width="match_parent"
                     android:layout_height="40sp"
                     android:gravity="center_vertical"

@@ -47,18 +47,14 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
     String id_mata_pelajaran = "";
 
     Toolbar toolbar;
-    Spinner edtHari;
-    TextView tvNamaPelajaran, edtJamMulai, edtJamBerakhir;
+    EditText edtHari;
+    TextView tvNamaPelajaran, tvJamMulai, tvJamBerakhir;
     EditText edtHargaFee;
     Button btnSubmit;
 
     final Calendar c = Calendar.getInstance();
     int hour = c.get(Calendar.HOUR_OF_DAY);
     int minute = c.get(Calendar.MINUTE);
-
-    ArrayAdapter<String> adapter;
-    String hari[] = {"Pilih Hari", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"};
-    String record = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,53 +75,14 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
 
         tvNamaPelajaran = findViewById(R.id.tv_nama_pelajaran);
         edtHari = findViewById(R.id.edt_hari);
-        edtJamMulai = findViewById(R.id.edt_jam_mulai);
-        edtJamBerakhir = findViewById(R.id.edt_jam_berakhir);
+        tvJamMulai = findViewById(R.id.tv_jam_mulai);
+        tvJamBerakhir = findViewById(R.id.tv_jam_berakhir);
         edtHargaFee = findViewById(R.id.edt_harga_fee);
         btnSubmit = findViewById(R.id.btn_submit);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hari);
-        edtHari.setAdapter(adapter);
-        edtHari.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        record = "Pilih Hari";
-                        break;
-                    case 1:
-                        record = "Senin";
-                        break;
-
-                    case 2:
-                        record = "Selasa";
-                        break;
-                    case 3:
-                        record = "Rabu";
-                        break;
-                    case 4:
-                        record = "Kamis";
-                        break;
-                    case 5:
-                        record = "Jum'at";
-                        break;
-                    case 6:
-                        record = "Sabtu";
-                        break;
-                    case 7:
-                        record = "Minggu";
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         btnSubmit.setOnClickListener(this);
-        edtJamMulai.setOnClickListener(this);
-        edtJamBerakhir.setOnClickListener(this);
+        tvJamMulai.setOnClickListener(this);
+        tvJamBerakhir.setOnClickListener(this);
     }
 
     @Override
@@ -133,10 +90,10 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
         if (v.getId() == R.id.btn_submit) {
             showDialog();
         }
-        if (v.getId() == R.id.edt_jam_mulai) {
+        if (v.getId() == R.id.tv_jam_mulai) {
             showHoursPicker();
         }
-        if (v.getId() == R.id.edt_jam_berakhir) {
+        if (v.getId() == R.id.tv_jam_berakhir) {
             showHoursPicker2();
         }
     }
@@ -188,9 +145,9 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                     public void onClick(DialogInterface dialog, int id) {
 
                         String inputIdMataPelajaran = id_mata_pelajaran;
-                        String inputHari = record;
-                        String inputJamMulai = edtJamMulai.getText().toString().trim();
-                        String inputJamBerakhir = edtJamBerakhir.getText().toString().trim();
+                        String inputHari = edtHari.getText().toString().trim();
+                        String inputJamMulai = tvJamMulai.getText().toString().trim();
+                        String inputJamBerakhir = tvJamBerakhir.getText().toString().trim();
                         String inputHargaFee = edtHargaFee.getText().toString().trim();
 
                         boolean isEmpty = false;
@@ -198,9 +155,9 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                         if (TextUtils.isEmpty(inputIdMataPelajaran)) {
                             isEmpty = true;
                             onSubmitError("Pilih Salah Satu Mata Pelajaran");
-                        } else if (inputHari.equals("Pilih Hari")) {
+                        } else if (TextUtils.isEmpty(inputHari)) {
                             isEmpty = true;
-                            onSubmitError("Isi Hari Pertemuan");
+                            onSubmitError("Isi Hari Kelas Pertemuan");
                         } else if (inputJamMulai.equals("Jam Mulai")) {
                             isEmpty = true;
                             onSubmitError("Isi Form Jam Mulai Kelas");
@@ -243,7 +200,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
 
-                        edtJamMulai.setText(hourOfDay + ":" + minute);
+                        tvJamMulai.setText(hourOfDay + ":" + minute);
                     }
                 }, hour, minute, true);
         timePickerDialog.show();
@@ -258,7 +215,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
 
-                        edtJamBerakhir.setText(hourOfDay + ":" + minute);
+                        tvJamBerakhir.setText(hourOfDay + ":" + minute);
                     }
                 }, hour, minute, true);
         timePickerDialog.show();
