@@ -159,7 +159,7 @@ public class AdminKelasTambahActivity extends AppCompatActivity implements View.
                             onSubmitError("Pilih Salah Satu Mata Pelajaran");
                         } else if (TextUtils.isEmpty(inputHari)) {
                             isEmpty = true;
-                            onSubmitError("Isi Hari Kelas Pertemuan");
+                            edtHari.setError("Isi Data Dengan Lengkap");
                         } else if (inputJamMulai.equals("Jam Mulai")) {
                             isEmpty = true;
                             onSubmitError("Isi Form Jam Mulai Kelas");
