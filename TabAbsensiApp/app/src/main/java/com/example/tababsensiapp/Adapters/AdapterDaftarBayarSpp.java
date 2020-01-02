@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tababsensiapp.Controllers.SessionManager;
-import com.example.tababsensiapp.Models.bayar_spp;
+import com.example.tababsensiapp.Models.BayarSpp;
 import com.example.tababsensiapp.R;
 
 import java.util.ArrayList;
@@ -18,13 +18,13 @@ import java.util.ArrayList;
 public class AdapterDaftarBayarSpp extends RecyclerView.Adapter<AdapterDaftarBayarSpp.DaftarBayarSppViewHolder> {
 
     Context context;
-    ArrayList<bayar_spp> dataModelArrayList;
+    ArrayList<BayarSpp> dataModelArrayList;
 
     private static ClickListener clickListener;
 
     SessionManager sessionManager;
 
-    public AdapterDaftarBayarSpp(Context context, ArrayList<bayar_spp> dataModelArrayList) {
+    public AdapterDaftarBayarSpp(Context context, ArrayList<BayarSpp> dataModelArrayList) {
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 

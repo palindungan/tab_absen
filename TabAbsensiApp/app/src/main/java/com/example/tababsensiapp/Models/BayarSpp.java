@@ -1,6 +1,6 @@
 package com.example.tababsensiapp.Models;
 
-public class bayar_spp {
+public class BayarSpp {
     String id_bayar_spp, id_murid, id_admin, waktu, total_pertemuan, total_spp;
 
     public String getId_bayar_spp() {
