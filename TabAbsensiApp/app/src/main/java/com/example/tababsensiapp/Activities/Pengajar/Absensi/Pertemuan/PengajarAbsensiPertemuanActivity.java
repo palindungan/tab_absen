@@ -153,6 +153,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         String jam_mulai = data.get("jam_mulai");
         String jam_berakhir = data.get("jam_berakhir");
         String harga_fee = data.get("harga_fee");
+        String harga_spp = data.get("harga_spp");
 
         status_pertemuan = data.get("status_pertemuan");
         String status_konfirmasi = data.get("status_konfirmasi");

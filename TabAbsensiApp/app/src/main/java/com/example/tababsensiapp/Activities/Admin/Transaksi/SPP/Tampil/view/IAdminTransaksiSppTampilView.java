@@ -9,7 +9,7 @@ public interface IAdminTransaksiSppTampilView {
 
     void initActionBar();
 
-    void onSetupListView(ArrayList<BayarSpp> dataModelArrayList, String nama_pengajar, String total_pertemuan, String total_spp);
+    void onSetupListView(ArrayList<Pertemuan> dataModelArrayList, String nama_pengajar, String total_pertemuan, String total_spp);
 
     void onSuccessMessage(String message);
 

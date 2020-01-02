@@ -62,6 +62,7 @@ class Absen extends REST_Controller
         $deskripsi = "kosong";
 
         $harga_fee = $this->post('harga_fee');
+        $harga_spp = $this->post('harga_spp');
 
         $data = array(
             'id_pertemuan'   => $id_pertemuan,
@@ -79,7 +80,8 @@ class Absen extends REST_Controller
             'status_pertemuan'   => $status_pertemuan,
             'status_konfirmasi'   => $status_konfirmasi,
             'deskripsi'   => $deskripsi,
-            'harga_fee' => $harga_fee
+            'harga_fee' => $harga_fee,
+            'harga_spp' => $harga_spp
         );
 
         $where = array(
@@ -97,8 +99,31 @@ class Absen extends REST_Controller
             $result["message"] = "Anda Sudah Melakukan Absen , Akhiri kelas yang masih berjalan !";
             $this->response($result, 200);
         } else {
+
             $insert =  $this->M_absen->input_data('pertemuan', $data);
             if ($insert) {
+
+                // tambah detail pertemuan
+                $where = array(
+                    'id_kelas_p' => $id_kelas_p
+                );
+
+                // mengambil data dari database
+                $query = $this->M_absen->get_data('detail_kelas_pertemuan', $where);
+
+                if ($query->num_rows() > 0) {
+
+                    // mengeluarkan data dari database
+                    foreach ($query->result_array() as $row) {
+
+                        $data = array(
+                            'id_pertemuan'   =>  $id_pertemuan,
+                            'id_murid'   => $row["id_murid"]
+                        );
+
+                        $insert =  $this->M_absen->input_data('detail_pertemuan', $data);
+                    }
+                }
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "1";
@@ -165,6 +190,7 @@ class Absen extends REST_Controller
 
                     'deskripsi' => $row["deskripsi"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp' => $row["harga_spp"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
@@ -231,6 +257,7 @@ class Absen extends REST_Controller
 
                     'deskripsi' => $row["deskripsi"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp' => $row["harga_spp"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
@@ -374,6 +401,7 @@ class Absen extends REST_Controller
 
                     'deskripsi' => $row["deskripsi"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp' => $row["harga_spp"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],

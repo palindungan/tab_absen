@@ -93,7 +93,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     LatLng latLng;
 
     String hari_kelas = "";
-    String harga_fee_m = "";
+    String harga_fee_m = "", harga_spp_m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,17 +193,18 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee,String harga_spp, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
+    public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee, String harga_spp, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText("Pemilik Kelas : " + nama_pengajar);
         tvHargaFee.setText("FEE : Rp " + harga_fee);
-        tvHargaSpp.setText("SPP : "+ harga_spp);
+        tvHargaSpp.setText("SPP : " + harga_spp);
         tvHari.setText("Hari : " + hari);
         tvJam.setText("Jam : " + jam_mulai + " - " + jam_berakhir);
 
         hari_kelas = hari;
 
         harga_fee_m = harga_fee;
+        harga_spp_m = harga_spp;
 
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
@@ -251,7 +252,7 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
                             onSuccessMessage(harga_fee_m);
 
-                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas, harga_fee_m);
+                            adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas, harga_fee_m, harga_spp_m);
 
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan " + e.toString());

@@ -70,6 +70,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     String jam_mulai = object.getString("jam_mulai");
                                     String jam_berakhir = object.getString("jam_berakhir");
                                     String harga_fee = object.getString("harga_fee");
+                                    String harga_spp = object.getString("harga_spp");
 
                                     String status_pertemuan = object.getString("status_pertemuan");
                                     String status_konfirmasi = object.getString("status_konfirmasi");
@@ -96,6 +97,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                                     data.put("jam_mulai", jam_mulai);
                                     data.put("jam_berakhir", jam_berakhir);
                                     data.put("harga_fee", harga_fee);
+                                    data.put("harga_spp", harga_spp);
 
                                     data.put("status_pertemuan", status_pertemuan);
                                     data.put("status_konfirmasi", status_konfirmasi);
