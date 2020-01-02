@@ -169,20 +169,20 @@ class Spp extends REST_Controller
         }
     }
 
-    function ambil_data_penggajian_post()
+    function ambil_data_bayar_spp_post()
     {
-        $id_pengajar = $this->post('id_pengajar');
+        $id_wali_murid = $this->post('id_wali_murid');
 
         $where = array(
-            'id_pengajar' => $id_pengajar
+            'id_wali_murid' => $id_wali_murid
         );
 
         // variable array
         $result = array();
-        $result['penggajian'] = array();
+        $result['bayar_spp'] = array();
 
         $query = array();
-        $query = $this->M_spp->get_data('list_penggajian', $where);
+        $query = $this->M_spp->get_data('bayar_spp', $where);
 
         if ($query->num_rows() > 0) {
 
@@ -191,15 +191,15 @@ class Spp extends REST_Controller
 
                 // ambil detail data db
                 $data = array(
-                    'id_penggajian' => $row["id_penggajian"],
-                    'id_pengajar' => $row["id_pengajar"],
+                    'id_bayar_spp' => $row["id_bayar_spp"],
+                    'id_wali_murid' => $row["id_wali_murid"],
                     'id_admin' => $row["id_admin"],
                     'waktu' => $row["waktu"],
                     'total_pertemuan' => $row["total_pertemuan"],
-                    'total_harga_fee' => $row["total_harga_fee"]
+                    'total_spp' => $row["total_spp"]
                 );
 
-                array_push($result['penggajian'], $data);
+                array_push($result['bayar_spp'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";
@@ -214,21 +214,21 @@ class Spp extends REST_Controller
         }
     }
 
-    function ambil_data_detail_penggajian_post()
+    function ambil_data_detail_bayar_spp_post()
     {
-        $id_pengajar = $this->post('id_pengajar');
-        $id_penggajian = $this->post('id_penggajian');
+        $id_wali_murid = $this->post('id_wali_murid');
+        $id_bayar_spp = $this->post('id_bayar_spp');
 
         $where = array(
-            'id_penggajian' => $id_penggajian
+            'id_bayar_spp' => $id_bayar_spp
         );
 
         // variable array
         $result = array();
-        $result['list_pertemuan'] = array();
+        $result['list_pertemuan_spp'] = array();
 
         $query = array();
-        $query = $this->M_spp->get_data('list_detail_penggajian', $where);
+        $query = $this->M_spp->get_data('list_detail_bayar_spp', $where);
 
         if ($query->num_rows() > 0) {
 
@@ -237,7 +237,7 @@ class Spp extends REST_Controller
 
                 // ambil detail data db
                 $data = array(
-                    'id_penggajian' => $row["id_penggajian"],
+                    'id_bayar_spp' => $row["id_bayar_spp"],
 
                     'id_pertemuan' => $row["id_pertemuan"],
 
@@ -260,6 +260,7 @@ class Spp extends REST_Controller
 
                     'deskripsi' => $row["deskripsi"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp' => $row["harga_spp"],
 
                     'id_kelas_p' => $row["id_kelas_p"],
                     'hari_jadwal' => $row["hari_jadwal"],
@@ -270,7 +271,7 @@ class Spp extends REST_Controller
                     'nama_mata_pelajaran' => $row["nama_mata_pelajaran"]
                 );
 
-                array_push($result['list_pertemuan'], $data);
+                array_push($result['list_pertemuan_spp'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";

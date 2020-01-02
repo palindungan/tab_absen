@@ -44,7 +44,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
         String URL_DATA;
         URL_DATA = base_url + "admin/transaksi/spp/ambil_data_pertemuan_for_spp"; // url http request
         if (!id_bayar_spp.equals("kosong")) {
-            URL_DATA = base_url + "admin/transaksi/spp/ambil_data_detail_penggajian"; // url http request
+            URL_DATA = base_url + "admin/transaksi/spp/ambil_data_detail_bayar_spp"; // url http request
         }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,

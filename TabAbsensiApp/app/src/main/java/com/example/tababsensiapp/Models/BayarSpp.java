@@ -1,7 +1,8 @@
 package com.example.tababsensiapp.Models;
 
 public class BayarSpp {
-    String id_bayar_spp, id_murid, id_admin, waktu, total_pertemuan, total_spp;
+    String id_bayar_spp, id_wali_murid, id_admin, waktu, total_pertemuan, total_spp;
+
 
     public String getId_bayar_spp() {
         return id_bayar_spp;
@@ -11,12 +12,12 @@ public class BayarSpp {
         this.id_bayar_spp = id_bayar_spp;
     }
 
-    public String getId_murid() {
-        return id_murid;
+    public String getId_wali_murid() {
+        return id_wali_murid;
     }
 
-    public void setId_murid(String id_murid) {
-        this.id_murid = id_murid;
+    public void setId_wali_murid(String id_wali_murid) {
+        this.id_wali_murid = id_wali_murid;
     }
 
     public String getId_admin() {

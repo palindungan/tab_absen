@@ -126,7 +126,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     @Override
     public void onSetupListView(ArrayList<Pertemuan> dataModelArrayList, String nama_pengajar, String total_pertemuan, String harga_fee) {
 
-        tvNamaPengajar.setText("Nama : " + nama_pengajar);
+        tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
         tvTotalPertemuan.setText("Total Pertemuan : " + total_pertemuan);
         tvTotalHargaFee.setText("Total Fee : " + harga_fee);
 

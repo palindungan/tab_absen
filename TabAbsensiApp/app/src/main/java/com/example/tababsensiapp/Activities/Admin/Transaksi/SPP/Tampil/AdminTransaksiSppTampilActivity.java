@@ -125,7 +125,7 @@ public class AdminTransaksiSppTampilActivity extends AppCompatActivity implement
 
     @Override
     public void onSetupListView(ArrayList<Pertemuan> dataModelArrayList, String nama_pengajar, String total_pertemuan, String total_spp) {
-        tvNamaPengajar.setText("Nama : " + nama_pengajar);
+        tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
         tvTotalPertemuan.setText("Total Pertemuan : " + total_pertemuan);
         tvTotalSpp.setText("Total Spp : " + total_spp);
 

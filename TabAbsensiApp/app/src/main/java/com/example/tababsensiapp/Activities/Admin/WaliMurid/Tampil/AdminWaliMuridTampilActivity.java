@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.SPP.Tampil.AdminTransaksiRiwayatSppTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.Tampil.AdminTransaksiSppTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Edit.AdminWaliMuridEditActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tambah.AdminWaliMuridTambahActivity;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class AdminWaliMuridTampilActivity extends AppCompatActivity implements View.OnClickListener , IAdminWaliMuridTampilView {
+public class AdminWaliMuridTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminWaliMuridTampilView {
 
     public final static String EXTRA_STATUS_ACTIVITY = "EXTRA_STATUS_ACTIVITY";
     String status_activity = "";
@@ -122,9 +123,9 @@ public class AdminWaliMuridTampilActivity extends AppCompatActivity implements V
                     intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_BAYAR_SPP, "kosong");
                     startActivity(intent);
                 } else if (status_activity.equals("to_riwayat_spp")) {
-//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
-//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatSppTampilActivity.class);
+                    intent.putExtra(AdminTransaksiRiwayatSppTampilActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                    startActivity(intent);
                 }
             }
         });
