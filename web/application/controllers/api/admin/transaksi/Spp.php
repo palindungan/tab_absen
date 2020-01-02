@@ -16,42 +16,42 @@ class Spp extends REST_Controller
 
     function tambah_transaksi_post()
     {
-        $id_penggajian = $this->M_spp->get_no_transaksi();
-        $id_pengajar = $this->post('id_pengajar');
+        $id_bayar_spp = $this->M_spp->get_no_transaksi();
+        $id_wali_murid = $this->post('id_wali_murid');
         $id_admin = $this->post('id_admin');
-        $total_pertemuan = $this->post('total_pertemuan');
-        $total_harga_fee = $this->post('total_harga_fee');
         $tanggal = date('Y-m-d H:i:s');
+        $total_pertemuan = $this->post('total_pertemuan');
+        $total_spp = $this->post('total_spp');
 
         $data = array(
-            'id_penggajian' => $id_penggajian,
-            'id_pengajar' => $id_pengajar,
+            'id_bayar_spp' => $id_bayar_spp,
+            'id_wali_murid' => $id_wali_murid,
             'id_admin' => $id_admin,
             'waktu' => $tanggal,
             'total_pertemuan' => $total_pertemuan,
-            'total_harga_fee' => $total_harga_fee
+            'total_spp' => $total_spp
         );
 
-        $insert =  $this->M_spp->input_data('penggajian', $data);
+        $insert =  $this->M_spp->input_data('bayar_spp', $data);
         if ($insert) {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "Berhasil Menambah Penggajian FEE";
-            $result["id_penggajian"] =  $id_penggajian;
+            $result["message"] = "Berhasil Menambah Pembayaran Spp";
+            $result["id_bayar_spp"] =  $id_bayar_spp;
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "Gagal Menambah Penggajian FEE";
+            $result["message"] = "Gagal Menambah Pembayaran Spp";
             $this->response(array($result, 200));
         }
     }
 
     function tambah_detail_transaksi_post()
     {
-        $id_penggajian = $this->post('id_penggajian');
+        $id_bayar_spp = $this->post('id_bayar_spp');
         $id_pertemuan = $this->post('id_pertemuan');
 
         $where = array(
@@ -59,7 +59,7 @@ class Spp extends REST_Controller
         );
 
         $data_update = array(
-            'status_fee' => 'Sudah Terbayar'
+            'status_spp' => 'Sudah Lunas'
         );
 
         $update = $this->M_spp->update_data($where, 'pertemuan', $data_update);
@@ -67,29 +67,29 @@ class Spp extends REST_Controller
         if ($update) {
 
             $data = array(
-                'id_penggajian' => $id_penggajian,
+                'id_bayar_spp' => $id_bayar_spp,
                 'id_pertemuan' => $id_pertemuan
             );
 
-            $insert =  $this->M_spp->input_data('detail_penggajian', $data);
+            $insert =  $this->M_spp->input_data('detail_bayar_spp', $data);
             if ($insert) {
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "1";
-                $result["message"] = "Berhasil Menambah Detail Penggajian FEE";
+                $result["message"] = "Berhasil Menambah Detail Pembayaran Spp";
                 $this->response($result, 200);
             } else {
 
                 // membuat array untuk di transfer ke API
                 $result["success"] = "0";
-                $result["message"] = "Gagal Menambah Detail Penggajian FEE";
+                $result["message"] = "Gagal Menambah Detail Pembayaran Spp";
                 $this->response(array($result, 200));
             }
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "Gagal Update Data Pertemuan FEE";
+            $result["message"] = "Gagal Update Data Pertemuan";
             $this->response(array($result, 200));
         }
     }

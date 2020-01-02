@@ -158,11 +158,101 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
 
     @Override
     public void onBayar(String id_wali_murid, String id_admin, String total_pertemuan, String total_spp) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/transaksi/spp/tambah_transaksi"; // url http request
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            String message = obj.optString("message");
+                            String id_bayar_spp = obj.optString("id_bayar_spp");
+
+                            if (obj.optString("success").equals("1")) {
+                                adminTransaksiSppTampilView.onSuccessMessage(id_bayar_spp);
+
+                                for (int i = 0; i < dataModelArrayList.size(); i++) {
+                                    onBayarDetail(id_bayar_spp, dataModelArrayList.get(i).getId_pertemuan());
+                                }
+
+                                adminTransaksiSppTampilView.backPressed();
+
+                            } else {
+                                adminTransaksiSppTampilView.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminTransaksiSppTampilView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminTransaksiSppTampilView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_wali_murid", id_wali_murid);
+                params.put("id_admin", id_admin);
+                params.put("total_pertemuan", total_pertemuan);
+                params.put("total_spp", total_spp);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 
     @Override
     public void onBayarDetail(String id_bayar_spp, String id_pertemuan) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/transaksi/spp/tambah_detail_transaksi"; // url http request
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            String message = obj.optString("message");
+
+                            if (obj.optString("success").equals("1")) {
+                                adminTransaksiSppTampilView.onSuccessMessage(message);
+                            } else {
+                                adminTransaksiSppTampilView.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adminTransaksiSppTampilView.onErrorMessage("Kesalahan Menerima Data : " + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        adminTransaksiSppTampilView.onErrorMessage("Volley Error : " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_bayar_spp", id_bayar_spp);
+                params.put("id_pertemuan", id_pertemuan);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }
