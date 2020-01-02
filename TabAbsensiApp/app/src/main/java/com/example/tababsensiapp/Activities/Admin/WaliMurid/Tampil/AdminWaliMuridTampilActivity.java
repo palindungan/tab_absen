@@ -81,6 +81,10 @@ public class AdminWaliMuridTampilActivity extends AppCompatActivity implements V
             }
         });
 
+        if (!status_activity.equals("to_edit_wali_murid")){
+            fab.hide();
+        }
+
         fab.setOnClickListener(this);
     }
 
