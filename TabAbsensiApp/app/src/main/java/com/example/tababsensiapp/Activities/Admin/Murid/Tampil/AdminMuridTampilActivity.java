@@ -108,21 +108,9 @@ public class AdminMuridTampilActivity extends AppCompatActivity implements View.
         adapterDaftarMurid.setOnItemClickListener(new AdapterDaftarMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-                if (status_activity.equals("to_edit_murid")) {
-                    Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep1Activity.class);
-                    intent.putExtra(AdminMuridEditStep1Activity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
-                    startActivity(intent);
-                } else if (status_activity.equals("to_transaksi_spp")) {
-                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiSppTampilActivity.class);
-                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
-                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_BAYAR_SPP, "kosong");
-                    startActivity(intent);
-                } else if (status_activity.equals("to_riwayat_spp")) {
-//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
-//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    startActivity(intent);
-                }
+                Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep1Activity.class);
+                intent.putExtra(AdminMuridEditStep1Activity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
+                startActivity(intent);
             }
         });
     }

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.tababsensiapp.Activities.Admin.Pengajar.Tambah.AdminPengajarTambahActivity;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.Tampil.AdminTransaksiSppTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Edit.AdminWaliMuridEditActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tambah.AdminWaliMuridTambahActivity;
 import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.presenter.AdminWaliMuridTampilPresenter;
@@ -30,6 +30,9 @@ import es.dmoral.toasty.Toasty;
 
 public class AdminWaliMuridTampilActivity extends AppCompatActivity implements View.OnClickListener , IAdminWaliMuridTampilView {
 
+    public final static String EXTRA_STATUS_ACTIVITY = "EXTRA_STATUS_ACTIVITY";
+    String status_activity = "";
+
     IAdminWaliMuridTampilPresenter adminWaliMuridTampilPresenter;
 
     private AdapterDaftarWaliMurid adapterDaftarWaliMurid;
@@ -44,6 +47,8 @@ public class AdminWaliMuridTampilActivity extends AppCompatActivity implements V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_wali_murid_tampil);
+
+        status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
 
         adminWaliMuridTampilPresenter = new AdminWaliMuridTampilPresenter(this, this);
         adminWaliMuridTampilPresenter.onLoadSemuaData();
@@ -106,9 +111,21 @@ public class AdminWaliMuridTampilActivity extends AppCompatActivity implements V
         adapterDaftarWaliMurid.setOnItemClickListener(new AdapterDaftarWaliMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), AdminWaliMuridEditActivity.class);
-                intent.putExtra(AdminWaliMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
-                startActivity(intent);
+
+                if (status_activity.equals("to_edit_wali_murid")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminWaliMuridEditActivity.class);
+                    intent.putExtra(AdminWaliMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                    startActivity(intent);
+                } else if (status_activity.equals("to_transaksi_spp")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiSppTampilActivity.class);
+                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
+                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_BAYAR_SPP, "kosong");
+                    startActivity(intent);
+                } else if (status_activity.equals("to_riwayat_spp")) {
+//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
+//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//                    startActivity(intent);
+                }
             }
         });
     }

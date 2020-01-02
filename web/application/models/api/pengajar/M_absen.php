@@ -35,6 +35,7 @@ class M_absen extends CI_Model
     // PT191218-0001
     function get_no()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $field = "id_pertemuan";
         $tabel = "pertemuan";
         $digit = "4";
@@ -50,12 +51,12 @@ class M_absen extends CI_Model
         } else {
             $kd = "0001";
         }
-        date_default_timezone_set('Asia/Jakarta');
         return 'PT' . date('ymd') . '-' . $kd; // SELECT SUBSTR('PT191218-0001', 3, 6); dari digit ke 3 sampai 6 digit seanjutnya
     }
 
     function get_no2()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $field = "id_penggajian";
         $tabel = "penggajian";
         $digit = "4";
@@ -71,7 +72,6 @@ class M_absen extends CI_Model
         } else {
             $kd = "0001";
         }
-        date_default_timezone_set('Asia/Jakarta');
         return 'PG' . date('ymd') . '-' . $kd; // SELECT SUBSTR('PT191218-0001', 3, 6); dari digit ke 3 sampai 6 digit seanjutnya
     }
 }

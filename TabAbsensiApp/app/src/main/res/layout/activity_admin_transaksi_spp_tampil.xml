@@ -40,10 +40,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_nama_murid"
+                    android:id="@+id/tv_nama_pengajar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama : Nama Murid"
+                    android:text="Nama : Nama Pengajar"
                     android:textSize="16dp" />
 
                 <TextView

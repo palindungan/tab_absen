@@ -39,12 +39,12 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
     }
 
     @Override
-    public void inisiasiAwal(String id_murid, String id_bayar_spp) {
+    public void inisiasiAwal(String id_wali_murid, String id_bayar_spp) {
         String base_url = baseUrl.getUrlData();
         String URL_DATA;
-        URL_DATA = base_url + "admin/transaksi/fee/ambil_data_pertemuan_for_fee"; // url http request
+        URL_DATA = base_url + "admin/transaksi/spp/ambil_data_pertemuan_for_spp"; // url http request
         if (!id_bayar_spp.equals("kosong")) {
-            URL_DATA = base_url + "admin/transaksi/fee/ambil_data_detail_penggajian"; // url http request
+            URL_DATA = base_url + "admin/transaksi/spp/ambil_data_detail_penggajian"; // url http request
         }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
@@ -64,7 +64,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
                             if (obj.optString("success").equals("1")) {
 
                                 dataModelArrayList = new ArrayList<>();
-                                JSONArray dataArray = obj.getJSONArray("list_pertemuan");
+                                JSONArray dataArray = obj.getJSONArray("list_pertemuan_spp");
 
                                 for (int i = 0; i < dataArray.length(); i++) {
 
@@ -88,6 +88,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
                                     String jam_mulai = dataobj.getString("jam_mulai");
                                     String jam_berakhir = dataobj.getString("jam_berakhir");
                                     String harga_fee = dataobj.getString("harga_fee");
+                                    String harga_spp = dataobj.getString("harga_spp");
 
                                     String status_fee = dataobj.getString("status_fee");
                                     String status_spp = dataobj.getString("status_spp");
@@ -109,6 +110,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
                                     playerModel.setJam_mulai(jam_mulai);
                                     playerModel.setJam_berakhir(jam_berakhir);
                                     playerModel.setHarga_fee(harga_fee);
+                                    playerModel.setHarga_spp(harga_spp);
 
                                     playerModel.setStatus_fee(status_fee);
                                     playerModel.setStatus_spp(status_spp);
@@ -117,7 +119,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
 
                                     dataModelArrayList.add(playerModel);
 
-                                    total_spp = total_spp + Integer.parseInt(harga_fee);
+                                    total_spp = total_spp + Integer.parseInt(harga_spp);
                                 }
 
                                 total = String.valueOf(total_spp);
@@ -144,7 +146,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id_murid", id_murid);
+                params.put("id_wali_murid", id_wali_murid);
                 params.put("id_bayar_spp", id_bayar_spp);
                 return params;
             }
@@ -155,7 +157,7 @@ public class AdminTransaksiSppTampilPresenter implements IAdminTransaksiSppTampi
     }
 
     @Override
-    public void onBayar(String id_murid, String id_admin, String total_pertemuan, String total_spp) {
+    public void onBayar(String id_wali_murid, String id_admin, String total_pertemuan, String total_spp) {
 
     }
 

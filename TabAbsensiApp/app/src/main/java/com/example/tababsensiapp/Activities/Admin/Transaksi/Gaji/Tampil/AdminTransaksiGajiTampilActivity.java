@@ -60,7 +60,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_transaksi_gaji);
+        setContentView(R.layout.activity_admin_transaksi_gaji_tampil);
 
         sessionManager = new SessionManager(this);
         HashMap<String, String> user = sessionManager.getDataUser();

@@ -37,7 +37,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     Toolbar toolbar;
 
-    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude, tvStatus;
+    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude, tvStatus, tvHargaFee, tvHargaSpp;
     Button btnBatal, btnNext, btnHapus, btnValidasi;
 
     SupportMapFragment mapFragment;
@@ -74,6 +74,8 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         tvNamaPengajar = findViewById(R.id.tv_nama_pengajar);
         tvDetailKelasP = findViewById(R.id.tv_detail_kelas_p);
+        tvHargaFee = findViewById(R.id.tv_harga_fee);
+        tvHargaSpp = findViewById(R.id.tv_harga_spp);
         tvWaktuDetailMulai = findViewById(R.id.tv_waktu_detail_mulai);
         tvWaktuDetailBerakhir = findViewById(R.id.tv_waktu_detail_berakhir);
         tvLatitude = findViewById(R.id.tv_latitude);
@@ -165,7 +167,10 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
 
-        tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee);
+        tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
+
+        tvHargaFee.setText("Harga Fee : " + harga_fee);
+        tvHargaSpp.setText("Harga Spp : " + harga_spp);
 
         tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
         tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
