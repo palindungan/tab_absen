@@ -13,10 +13,6 @@
         android:title="Akun Saya" />
 
     <item
-        android:id="@+id/menu_tentang_kami"
-        android:title="Tentang Kami" />
-
-    <item
         android:id="@+id/menu_keluar"
         android:title="Keluar" />
 

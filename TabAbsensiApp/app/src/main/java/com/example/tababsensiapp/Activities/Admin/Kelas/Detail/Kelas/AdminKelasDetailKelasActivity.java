@@ -95,12 +95,16 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     String hari_kelas = "";
     String harga_fee_m = "", harga_spp_m;
 
+    String hakAkses = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_kelas_detail_kelas);
 
         sessionManager = new SessionManager(this);
+        HashMap<String, String> user = sessionManager.getDataUser();
+        hakAkses = user.get(sessionManager.HAK_AKSES);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching Location... ");
@@ -205,6 +209,13 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
         harga_fee_m = harga_fee;
         harga_spp_m = harga_spp;
+
+        if (hakAkses.equals("pengajar")) {
+            tvHargaSpp.setVisibility(View.GONE);
+        }
+        if (hakAkses.equals("wali_murid")) {
+            tvHargaFee.setVisibility(View.GONE);
+        }
 
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);

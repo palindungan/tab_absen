@@ -127,15 +127,6 @@ public class PengajarHomeActivity extends AppCompatActivity implements View.OnCl
 
         int id = item.getItemId();
 
-        if (id == R.id.menu_akun_saya) {
-            Toast.makeText(getApplicationContext(), "akun saya", Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(getApplicationContext(), AdminAkunSayaActivity.class));
-            return true;
-        }
-        if (id == R.id.menu_tentang_kami) {
-            Toast.makeText(getApplicationContext(), "tentang kami", Toast.LENGTH_SHORT).show();
-            return true;
-        }
         if (id == R.id.menu_keluar) {
             showDialog();
             return true;
