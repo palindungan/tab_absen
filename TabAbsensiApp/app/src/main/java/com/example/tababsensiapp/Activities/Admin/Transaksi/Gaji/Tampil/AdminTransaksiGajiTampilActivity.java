@@ -38,7 +38,6 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     String id_penggajian = "";
 
     SessionManager sessionManager;
-    String id_pengajar;
 
     IAdminTransaksiGajiTampilPresenter adminTransaksiGajiTampilPresenter;
 
@@ -50,6 +49,7 @@ public class AdminTransaksiGajiTampilActivity extends AppCompatActivity implemen
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+    String id_pengajar;
 
     TextView tvNamaPengajar, tvTotalPertemuan, tvTotalHargaFee;
     Button btnBayarFee;

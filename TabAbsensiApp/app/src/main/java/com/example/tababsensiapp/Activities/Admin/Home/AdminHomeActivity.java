@@ -88,7 +88,9 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent();
                 switch (id) {
                     case R.id.bayar_spp:
-                        Toast.makeText(getApplicationContext(), "SPP", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
+                        intent.putExtra(AdminMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_transaksi_spp");
+                        startActivity(intent);
                         break;
                     case R.id.gaji_pengajar:
                         intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
@@ -118,7 +120,9 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         }
         if (v.getId() == R.id.link_admin_murid) {
-            startActivity(new Intent(getApplicationContext(), AdminMuridTampilActivity.class));
+            Intent intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
+            intent.putExtra(AdminMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_murid");
+            startActivity(intent);
         }
         if (v.getId() == R.id.link_admin_wali_murid) {
             startActivity(new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class));

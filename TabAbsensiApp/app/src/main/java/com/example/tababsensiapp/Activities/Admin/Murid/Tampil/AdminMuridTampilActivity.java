@@ -18,6 +18,7 @@ import com.example.tababsensiapp.Activities.Admin.Murid.Tambah.Step1.AdminMuridT
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.presenter.AdminMuridTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.presenter.IAdminMuridTampilPresenter;
 import com.example.tababsensiapp.Activities.Admin.Murid.Tampil.view.IAdminMuridTampilView;
+import com.example.tababsensiapp.Activities.Admin.Transaksi.SPP.Tampil.AdminTransaksiSppTampilActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarMurid;
 import com.example.tababsensiapp.Models.Murid;
 import com.example.tababsensiapp.R;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class AdminMuridTampilActivity extends AppCompatActivity implements View.OnClickListener , IAdminMuridTampilView {
+public class AdminMuridTampilActivity extends AppCompatActivity implements View.OnClickListener, IAdminMuridTampilView {
 
     IAdminMuridTampilPresenter adminMuridTampilPresenter;
 
@@ -39,10 +40,15 @@ public class AdminMuridTampilActivity extends AppCompatActivity implements View.
     private SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton fab;
 
+    public final static String EXTRA_STATUS_ACTIVITY = "EXTRA_STATUS_ACTIVITY";
+    String status_activity = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_murid_tampil);
+
+        status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
 
         adminMuridTampilPresenter = new AdminMuridTampilPresenter(this, this);
         adminMuridTampilPresenter.onLoadSemuaData();
@@ -79,8 +85,8 @@ public class AdminMuridTampilActivity extends AppCompatActivity implements View.
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.fab){
-             startActivity(new Intent(getApplicationContext(), AdminMuridTambahStep1Activity.class));
+        if (v.getId() == R.id.fab) {
+            startActivity(new Intent(getApplicationContext(), AdminMuridTambahStep1Activity.class));
         }
     }
 
@@ -94,17 +100,29 @@ public class AdminMuridTampilActivity extends AppCompatActivity implements View.
 
     @Override
     public void onSetupListView(ArrayList<Murid> dataModelArrayList) {
-        adapterDaftarMurid = new AdapterDaftarMurid(this,dataModelArrayList);
-        GridLayoutManager layoutManager = new GridLayoutManager(this,1,GridLayoutManager.VERTICAL,false);
+        adapterDaftarMurid = new AdapterDaftarMurid(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setAdapter(adapterDaftarMurid);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
         adapterDaftarMurid.setOnItemClickListener(new AdapterDaftarMurid.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep1Activity.class);
-                intent.putExtra(AdminMuridEditStep1Activity.EXTRA_ID_MURID,dataModelArrayList.get(position).getId_murid());
-                startActivity(intent);
+
+                if (status_activity.equals("to_edit_murid")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminMuridEditStep1Activity.class);
+                    intent.putExtra(AdminMuridEditStep1Activity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
+                    startActivity(intent);
+                } else if (status_activity.equals("to_transaksi_spp")) {
+                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiSppTampilActivity.class);
+                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
+                    intent.putExtra(AdminTransaksiSppTampilActivity.EXTRA_ID_BAYAR_SPP, "kosong");
+                    startActivity(intent);
+                } else if (status_activity.equals("to_riwayat_spp")) {
+//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
+//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//                    startActivity(intent);
+                }
             }
         });
     }
