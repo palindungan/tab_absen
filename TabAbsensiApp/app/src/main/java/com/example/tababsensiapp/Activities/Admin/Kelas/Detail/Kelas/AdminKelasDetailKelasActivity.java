@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -490,17 +491,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
-    }
-
-    @Override
     public void onLocationChanged(Location location) {
 
     }
@@ -538,5 +528,30 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     protected void onResume() {
         super.onResume();
         adminKelasDetailKelasPresenter.onLoadSemuaData(id_kelas_p);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar_form_edit_2, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_edit:
+
+                
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
