@@ -352,4 +352,37 @@ class Kelas_pertemuan extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function update_harga_kelas_pertemuan_post()
+    {
+        $id_kelas_p = $this->post('id_kelas_p');
+        $harga_fee = $this->post('harga_fee');
+        $harga_spp = $this->post('harga_spp');
+
+        $data = array();
+
+        $data = array(
+            'harga_fee' => $harga_fee,
+            'harga_spp' => $harga_spp
+        );
+
+        $where = array(
+            'id_kelas_p' => $id_kelas_p
+        );
+
+        $update =  $this->M_kelas_pertemuan->update_data($where, 'kelas_pertemuan', $data);
+        if ($update) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil terupdate";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal terupdate";
+            $this->response(array($result, 200));
+        }
+    }
 }

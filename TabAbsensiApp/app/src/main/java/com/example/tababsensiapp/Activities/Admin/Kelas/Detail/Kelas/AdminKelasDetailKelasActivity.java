@@ -37,6 +37,8 @@ import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Kelas.view.IAdmin
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Detail.AdminKelasDetailMuridDetailActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Murid.Tampil.AdminKelasDetailMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Kelas.Detail.Pengajar.Sharing.AdminKelasDetailPengajarSharingActivity;
+import com.example.tababsensiapp.Activities.Admin.Kelas.Edit.AdminKelasEditHargaActivity;
+import com.example.tababsensiapp.Activities.Admin.WaliMurid.Tampil.AdminWaliMuridTampilActivity;
 import com.example.tababsensiapp.Activities.Pengajar.Absensi.Pertemuan.PengajarAbsensiPertemuanActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarKelasMurid;
 import com.example.tababsensiapp.Adapters.AdapterPengajarDaftarKelasMurid;
@@ -547,7 +549,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                 break;
             case R.id.menu_edit:
 
-
+                Intent intent = new Intent(getApplicationContext(), AdminKelasEditHargaActivity.class);
+                intent.putExtra(AdminKelasEditHargaActivity.EXTRA_ID_KELAS_P, id_kelas_p);
+                startActivity(intent);
 
                 break;
         }
