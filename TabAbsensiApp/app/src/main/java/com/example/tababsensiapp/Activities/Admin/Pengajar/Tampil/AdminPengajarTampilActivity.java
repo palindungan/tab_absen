@@ -20,6 +20,7 @@ import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.presenter.IAdm
 import com.example.tababsensiapp.Activities.Admin.Pengajar.Tampil.view.IAdminPengajarTampilView;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Gaji.Tampil.AdminTransaksiGajiTampilActivity;
 import com.example.tababsensiapp.Activities.Admin.Transaksi.Riwayat.Gaji.Tampil.AdminTransaksiRiwayatGajiTampilActivity;
+import com.example.tababsensiapp.Activities.Pengajar.Riwayat.Absen.PengajarRiwayatAbsenActivity;
 import com.example.tababsensiapp.Adapters.AdapterDaftarPengajar;
 import com.example.tababsensiapp.Models.Pengajar;
 import com.example.tababsensiapp.R;
@@ -81,7 +82,7 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
             }
         });
 
-        if (!status_activity.equals("to_edit_pengajar")){
+        if (!status_activity.equals("to_edit_pengajar")) {
             fab.hide();
         }
 
@@ -128,6 +129,11 @@ public class AdminPengajarTampilActivity extends AppCompatActivity implements Vi
                 } else if (status_activity.equals("to_riwayat_gaji")) {
                     Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
                     intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    startActivity(intent);
+                } else if (status_activity.equals("to_monitoring")) {
+                    Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
+                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
                     startActivity(intent);
                 }
 

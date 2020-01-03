@@ -87,6 +87,11 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
                 int id = item.getItemId();
                 Intent intent = new Intent();
                 switch (id) {
+                    case R.id.monitoring:
+                        intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+                        intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_monitoring");
+                        startActivity(intent);
+                        break;
                     case R.id.bayar_spp:
                         intent = new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class);
                         intent.putExtra(AdminWaliMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_transaksi_spp");
