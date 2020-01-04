@@ -9,7 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
@@ -35,7 +36,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimary"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="0dp"
                         app:cardElevation="0dp">
 
@@ -43,25 +44,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
+                            <TextView
+                                android:id="@+id/tv_judul"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Bimbel Bigstars"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="30dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_margin="10dp"
-                                android:text="Selamat Datang "
-                                android:textColor="@color/white"
-                                android:textSize="18dp"
+                                android:layout_below="@+id/tv_judul"
+                                android:layout_marginLeft="25dp"
+                                android:text="Selamat Datang Administrasi Data !"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
@@ -69,349 +70,342 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_pengajar"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="7dp"
-                    android:orientation="horizontal">
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_pengajar"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
+                        android:layout_height="match_parent">
 
-                        <RelativeLayout
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
-
-                            <TextView
-                                android:id="@+id/txt_pengajar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Pengajar"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/txt_jml_pengajar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_pengajar"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_murid"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
-
-                        <RelativeLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_1" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
+                        <TextView
+                            android:id="@+id/txt_pengajar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Data Pengajar"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
+                        <TextView
+                            android:id="@+id/txt_jml_pengajar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_pengajar"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/txt_murid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Murid"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/txt_jml_murid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_murid"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_murid"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="7dp"
-                    android:orientation="horizontal">
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_wali_murid"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
+                        android:layout_height="match_parent">
 
-                        <RelativeLayout
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
-
-                            <TextView
-                                android:id="@+id/txt_wali_murid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Wali Murid"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/txt_jml_wali_murid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_wali_murid"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_mata_pelajaran"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
-
-                        <RelativeLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_2" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
+                        <TextView
+                            android:id="@+id/txt_murid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Data Murid"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
+                        <TextView
+                            android:id="@+id/txt_jml_murid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_murid"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/txt_mata_pelajaran"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Mata Pelajaran"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/txt_jml_mata_pelajaran"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_mata_pelajaran"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_wali_murid"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginBottom="7dp"
-                    android:orientation="horizontal">
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_kelas"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
+                        android:layout_height="match_parent">
 
-                        <RelativeLayout
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_3" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
+                        <TextView
+                            android:id="@+id/txt_wali_murid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Data Wali Murid"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/txt_kelas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Kelas"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txt_jml_wali_murid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_wali_murid"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:visibility="gone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_kelas"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
-                    </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_mata_pelajaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/link_admin_kelas_aktif"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="3dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp">
+                        android:layout_height="match_parent">
 
-                        <RelativeLayout
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:visibility="visible" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_4" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.6"
-                                android:scaleType="centerCrop" />
+                        <TextView
+                            android:id="@+id/txt_mata_pelajaran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Data Mata Pelajaran"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/txt_kelas_aktif"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="10dp"
-                                android:text="Kelas Aktif"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txt_jml_mata_pelajaran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_mata_pelajaran"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:visibility="gone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/txt_kelas_aktif"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="50dp" />
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_kelas"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
-                </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_5" />
+
+
+                        <TextView
+                            android:id="@+id/txt_kelas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Data Kelas Pertemuan"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_kelas"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/link_admin_kelas_aktif"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/background_menu_1"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_menu_6" />
+
+                        <TextView
+                            android:id="@+id/txt_kelas_aktif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="10dp"
+                            android:text="Lihat Pertemuan Aktif"
+                            android:textColor="@color/white"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_kelas_aktif"
+                            android:layout_marginLeft="10dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="50dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
