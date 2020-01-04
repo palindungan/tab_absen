@@ -27,6 +27,7 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,7 +81,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     TextView tvNamaPelajaran, tvNamaPengajar, tvHari, tvJam, tvHargaFee, tvHargaSpp, tvStatus;
 
-    ImageButton btnSharing, btnDeleteSharing, btnAbsen;
+    ImageButton btnSharing, btnDeleteSharing;
+
+    Button btnAbsen;
 
     SessionManager sessionManager;
 
@@ -170,6 +173,9 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
+
+            onSuccessMessage("Pilih Murid Yang Ingin Ditambahkan Kedalam Kelas !");
+
             Intent intent = new Intent(getApplicationContext(), AdminKelasDetailMuridTampilActivity.class);
             intent.putExtra(AdminKelasDetailMuridTampilActivity.EXTRA_ID_KELAS_P, id_kelas_p);
             startActivity(intent);
@@ -203,10 +209,10 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
     public void setNilaiDefault(String nama_pelajaran, String nama_pengajar, String harga_fee, String harga_spp, String hari, String jam_mulai, String jam_berakhir, String id_sharing, String nama_sharing) {
         tvNamaPelajaran.setText(nama_pelajaran);
         tvNamaPengajar.setText("Pemilik Kelas : " + nama_pengajar);
-        tvHargaFee.setText("FEE : Rp " + harga_fee);
-        tvHargaSpp.setText("SPP : " + harga_spp);
-        tvHari.setText("Hari : " + hari);
-        tvJam.setText("Jam : " + jam_mulai + " - " + jam_berakhir);
+        tvHargaFee.setText("Harga Fee : Rp " + harga_fee);
+        tvHargaSpp.setText("Harga Spp : Rp " + harga_spp);
+        tvHari.setText("Hari Pertemuan : " + hari);
+        tvJam.setText("Jam Pertemuan: " + jam_mulai + " - " + jam_berakhir);
 
         hari_kelas = hari;
 
@@ -263,8 +269,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
                             getLocation();
                             String lokasi_mulai_la_m = String.valueOf(loc.getLatitude());
                             String lokasi_mulai_lo_m = String.valueOf(loc.getLongitude());
-
-                            onSuccessMessage(harga_fee_m);
 
                             adminKelasDetailKelasPresenter.onMulaiPertemuan(id_pengajar_m, id_kelas_p_m, lokasi_mulai_la_m, lokasi_mulai_lo_m, hari_kelas, harga_fee_m, harga_spp_m);
 
@@ -534,7 +538,10 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar_form_edit_2, menu);
+
+        if (hakAkses.equals("admin")) {
+            getMenuInflater().inflate(R.menu.action_bar_form_edit_2, menu);
+        }
 
         return true;
     }
