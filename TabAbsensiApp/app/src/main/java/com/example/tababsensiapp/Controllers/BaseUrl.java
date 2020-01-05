@@ -4,11 +4,11 @@ public class BaseUrl {
     String urlData;
     String urlUpload;
 
-    String ipAddress = "http://192.168.137.1/";
+    String ipAddress = "http://bigstarsjember.online/";
 
     public BaseUrl() {
-        urlData = ipAddress + "tab_absen/web/api/";
-        urlUpload = ipAddress + "tab_absen/web/upload/";
+        urlData = ipAddress + "web/api/";
+        urlUpload = ipAddress + "web/upload/";
     }
 
     public String getUrlData() {
