@@ -174,7 +174,7 @@ public class AdminTransaksiSppTampilActivity extends AppCompatActivity implement
     public void showDialogTransaksi() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Yakin Melakukan Pembayaran Fee ?");
+        alertDialogBuilder.setTitle("Yakin Melakukan Pembayaran Spp ?");
         alertDialogBuilder
                 .setMessage("Klik bayar untuk pembayaran !")
                 .setPositiveButton("Bayar", new DialogInterface.OnClickListener() {
