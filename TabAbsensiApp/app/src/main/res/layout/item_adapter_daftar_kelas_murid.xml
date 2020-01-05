@@ -57,7 +57,7 @@
 
                         <TextView
                             android:id="@+id/tv_nama"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nama Murid"
                             android:textSize="16dp"
@@ -65,14 +65,14 @@
 
                         <TextView
                             android:id="@+id/tv_nama_wali_murid"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nama Wali Murid"
                             android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tv_alamat"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Alamat"
                             android:textSize="16dp" />

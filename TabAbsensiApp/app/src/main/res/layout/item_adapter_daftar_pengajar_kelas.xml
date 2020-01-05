@@ -6,6 +6,7 @@
     android:layout_margin="5dp"
     android:clickable="true"
     android:focusable="true"
+    app:cardBackgroundColor="@color/colorPrimaryDark2"
     android:foreground="?attr/selectableItemBackground"
     android:orientation="vertical"
     app:cardCornerRadius="3dp"
@@ -24,6 +25,7 @@
             android:src="@drawable/ic_default_account_circle_24dp" />
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +49,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tv_alamat"
                 android:layout_width="wrap_content"
@@ -55,6 +58,7 @@
                 android:textSize="12dp" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -48,7 +48,7 @@ public class AdapterDaftarKelasMurid extends RecyclerView.Adapter<AdapterDaftarK
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDaftarKelasMurid.AdapterDaftarKelasMuridViewHolder holder, int position) {
-        holder.tvNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
+        holder.tvNama.setText("Nama Murid : " + dataModelArrayList.get(position).getNama());
         holder.tvNamaWaliMurid.setText("Wali Murid : " + dataModelArrayList.get(position).getNama_wali_murid());
         holder.tvAlamat.setText("Alamat : " + dataModelArrayList.get(position).getAlamat());
 

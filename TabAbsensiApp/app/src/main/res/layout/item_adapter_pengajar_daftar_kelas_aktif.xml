@@ -44,20 +44,20 @@
                         android:visibility="gone" />
 
                     <TextView
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="16dp"
                         android:id="@+id/tv_nama_pelajaran"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nama Pelajaran"
                         android:textColor="@color/white"/>
 
                     <TextView
                         android:id="@+id/tv_detail_kelas_p"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_weight="1"
                         android:text="(Senin, 17.30 - 18:45)"
                         android:textColor="@color/white"
