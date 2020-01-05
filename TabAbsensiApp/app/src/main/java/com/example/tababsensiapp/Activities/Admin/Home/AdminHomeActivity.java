@@ -143,6 +143,7 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
         }
         if (v.getId() == R.id.link_admin_kelas) {
+            onSuccessMessage("Pilih Pengajar");
             startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
         }
         if (v.getId() == R.id.link_admin_kelas_aktif) {

@@ -47,8 +47,8 @@ public class AdapterDaftarKelasPengajar extends RecyclerView.Adapter<AdapterDaft
     @Override
     public void onBindViewHolder(@NonNull AdapterDaftarKelasPengajar.DaftarPengajarKelasViewHolder holder, int position) {
         holder.tvNama.setText(dataModelArrayList.get(position).getNama());
-        holder.tvUsername.setText(dataModelArrayList.get(position).getUsername());
-        holder.tvAlamat.setText(dataModelArrayList.get(position).getAlamat());
+        holder.tvUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
+        holder.tvAlamat.setText("(" + dataModelArrayList.get(position).getAlamat() + ")");
 
         String alamat = baseUrl.getUrlUpload() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
         Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
@@ -60,7 +60,7 @@ public class AdapterDaftarKelasPengajar extends RecyclerView.Adapter<AdapterDaft
         return dataModelArrayList.size();
     }
 
-    public class DaftarPengajarKelasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    public class DaftarPengajarKelasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView tvNama, tvUsername, tvAlamat;
         protected ImageView ivFoto;
 
