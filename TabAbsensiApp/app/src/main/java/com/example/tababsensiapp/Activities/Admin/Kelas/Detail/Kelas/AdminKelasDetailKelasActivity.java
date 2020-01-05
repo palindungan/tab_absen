@@ -164,6 +164,15 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
         initActionBar();
 
+        if (hakAkses.equals("pengajar")) {
+            tvHargaSpp.setVisibility(View.GONE);
+        }
+        if (hakAkses.equals("wali_murid")) {
+            tvHargaFee.setVisibility(View.GONE);
+        }
+
+        sembunyikanObject();
+
         fab.setOnClickListener(this);
         btnSharing.setOnClickListener(this);
         btnDeleteSharing.setOnClickListener(this);
@@ -218,13 +227,6 @@ public class AdminKelasDetailKelasActivity extends AppCompatActivity implements 
 
         harga_fee_m = harga_fee;
         harga_spp_m = harga_spp;
-
-        if (hakAkses.equals("pengajar")) {
-            tvHargaSpp.setVisibility(View.GONE);
-        }
-        if (hakAkses.equals("wali_murid")) {
-            tvHargaFee.setVisibility(View.GONE);
-        }
 
         if (!id_sharing.equals("null")) {
             tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
