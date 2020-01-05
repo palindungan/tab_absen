@@ -29,12 +29,15 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_foto"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_circle" />
+            android:layout_marginBottom="10sp"
+            android:src="@drawable/ic_default_account_circle_24dp"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
