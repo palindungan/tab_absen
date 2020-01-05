@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/gaji_pengajar"
-        android:title="Penggajian Pengajar" />
-    <item
-        android:id="@+id/riwayat_penggajian"
-        android:title="Riwayat Penggajian pengajar" />
-    <item
-        android:id="@+id/bayar_spp"
-        android:title="Pembayaran SPP" />
-    <item
-        android:id="@+id/riwayat_bayar_spp"
-        android:title="Riwayat Pembayaran SPP" />
-    <item
-        android:id="@+id/monitoring"
-        android:title="Monitoring" />
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/gaji_pengajar"
+            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:title="Pembayaran FEE" />
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/riwayat_penggajian"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="Riwayat FEE" />
+    </group>
+
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/bayar_spp"
+            android:icon="@drawable/ic_monetization_on_black_24dp"
+            android:title="Pembayaran SPP" />
+    </group>
+
+    <group
+        android:id="@+id/group4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/riwayat_bayar_spp"
+            android:icon="@drawable/ic_library_books_black_24dp"
+            android:title="Riwayat SPP" />
+    </group>
+
+    <group
+        android:id="@+id/group5"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/monitoring"
+            android:icon="@drawable/ic_remove_red_eye_black_24dp"
+            android:title="Monitoring Pertemuan" />
+    </group>
+
 
 </menu>
