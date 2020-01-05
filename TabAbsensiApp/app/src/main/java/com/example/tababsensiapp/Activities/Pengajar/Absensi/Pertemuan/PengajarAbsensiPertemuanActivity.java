@@ -92,6 +92,10 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
         initActionBar();
 
+        if (!hakAkses.equals("admin")) {
+            tvHargaSpp.setVisibility(View.GONE);
+        }
+
         btnBatal.setOnClickListener(this);
         btnNext.setOnClickListener(this);
         btnHapus.setOnClickListener(this);
@@ -166,21 +170,6 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         lokasi_berakhir_la = data.get("lokasi_berakhir_la");
         lokasi_berakhir_lo = data.get("lokasi_berakhir_lo");
 
-        tvNamaPelajaran.setText(nama_mata_pelajaran);
-        tvDetailKelasP.setText("(" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
-        tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
-        tvHargaFee.setText("Harga Fee : " + harga_fee);
-        tvHargaSpp.setText("Harga Spp : " + harga_spp);
-        tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
-        tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
-        tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
-        tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
-        tvStatus.setText("Status Konfirmasi : " + status_konfirmasi);
-
-        if (!hakAkses.equals("admin")) {
-            tvHargaSpp.setVisibility(View.GONE);
-        }
-
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);
             tvWaktuDetailBerakhir.setVisibility(View.VISIBLE);
@@ -194,6 +183,18 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
             btnBatal.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
         }
+
+        tvNamaPelajaran.setText(nama_mata_pelajaran);
+        tvDetailKelasP.setText("(" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
+        tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
+        tvHargaFee.setText("Harga Fee : " + harga_fee);
+        tvHargaSpp.setText("Harga Spp : " + harga_spp);
+        tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
+        tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
+        tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
+        tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
+        tvStatus.setText("Status Konfirmasi : " + status_konfirmasi);
+
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
