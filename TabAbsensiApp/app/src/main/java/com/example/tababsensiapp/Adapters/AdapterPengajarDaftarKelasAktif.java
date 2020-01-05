@@ -56,7 +56,8 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
         String jam_berakhir = dataModelArrayList.get(position).getJam_berakhir();
         String harga_fee = dataModelArrayList.get(position).getHarga_fee();
         // holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ") / Rp " + harga_fee + "");
-        holder.tvDetailKelasP.setText(nama_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
+        holder.tvNamaPelajaran.setText(nama_pelajaran);
+        holder.tvDetailKelasP.setText("(" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
 
         String hari_btn = dataModelArrayList.get(position).getHari_btn();
         String waktu_mulai = dataModelArrayList.get(position).getWaktu_mulai();
@@ -73,13 +74,13 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
         holder.tvStatusPertemuan.setText("Status Pertemuan : " + status_pertemuan);
 
         String status_konfirmasi = dataModelArrayList.get(position).getStatus_konfirmasi();
-        holder.tvStatusKonfirmasi.setText("Status Konfirmasi : " + status_konfirmasi);
+        holder.tvStatusKonfirmasi.setText("Konfirmasi : " + status_konfirmasi);
 
         String status_fee = dataModelArrayList.get(position).getStatus_fee();
-        holder.tvStatusFee.setText("Status Fee : " + status_fee);
+        holder.tvStatusFee.setText("FEE : " + status_fee);
 
         String status_spp = dataModelArrayList.get(position).getStatus_spp();
-        holder.tvStatusSPP.setText("Status SPP : " + status_spp);
+        holder.tvStatusSPP.setText("SPP : " + status_spp);
     }
 
     @Override
@@ -89,12 +90,13 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
 
     public class AdapterPengajarDaftarKelasAktifViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        protected TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLokasiDetailMulai;
-        protected TextView tvStatusPertemuan, tvStatusKonfirmasi, tvStatusFee,tvStatusSPP;
+        protected TextView tvNamaPelajaran, tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLokasiDetailMulai;
+        protected TextView tvStatusPertemuan, tvStatusKonfirmasi, tvStatusFee, tvStatusSPP;
 
         public AdapterPengajarDaftarKelasAktifViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            tvNamaPelajaran = itemView.findViewById(R.id.tv_nama_pelajaran);
             tvNamaPengajar = itemView.findViewById(R.id.tv_nama_pengajar);
             tvDetailKelasP = itemView.findViewById(R.id.tv_detail_kelas_p);
             tvWaktuDetailMulai = itemView.findViewById(R.id.tv_waktu_detail_mulai);
@@ -104,7 +106,7 @@ public class AdapterPengajarDaftarKelasAktif extends RecyclerView.Adapter<Adapte
             tvStatusKonfirmasi = itemView.findViewById(R.id.tv_status_konfirmasi);
 //            tvLokasiDetailMulai = itemView.findViewById(R.id.tv_lokasi_detail_mulai);
             tvStatusFee = itemView.findViewById(R.id.tv_status_fee);
-            tvStatusSPP= itemView.findViewById(R.id.tv_status_spp);
+            tvStatusSPP = itemView.findViewById(R.id.tv_status_spp);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

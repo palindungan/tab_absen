@@ -1,90 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="10sp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:background="@color/colorPrimaryDark2">
 
-            <TextView
-                android:id="@+id/tv_nama_pengajar"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama : nama_pengajar"
-                android:textSize="16dp"
-                android:visibility="gone" />
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_detail_kelas_p"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nama Pelajaran (Senin, 17.30 - 18:45)"
-                android:textSize="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_waktu_detail_mulai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Waktu Kelas Dimulai : Senin, 17:35"
-                android:textSize="16dp" />
+                    <TextView
+                        android:id="@+id/tv_nama_pengajar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama : nama_pengajar"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tv_waktu_detail_berakhir"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Waktu Kelas Berakhir : Senin, 18:35"
-                android:textSize="16dp" />
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:id="@+id/tv_nama_pelajaran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Pelajaran"
+                        android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/tv_status_pertemuan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Status Pertemuan : Belum Selesai"
-                android:textSize="16dp"
-                android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/tv_detail_kelas_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="(Senin, 17.30 - 18:45)"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginBottom="7dp"/>
 
-            <TextView
-                android:id="@+id/tv_status_fee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Status FEE : Belum Terbayar"
-                android:textSize="16dp" />
+                    <TextView
+                        android:textAlignment="center"
+                        android:id="@+id/tv_waktu_detail_mulai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dimulai : Senin, 17:35"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/tv_status_spp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Status SPP :Belum Lunas"
-                android:textSize="16dp" />
+                    <TextView
+                        android:textAlignment="center"
+                        android:id="@+id/tv_waktu_detail_berakhir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Berakhir : Senin, 18:35"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/tv_status_konfirmasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Status Konfirmasi : Invalid"
-                android:textSize="16dp" />
+                    <TextView
+                        android:id="@+id/tv_status_pertemuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Status Pertemuan : Belum Selesai"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
 
-        </LinearLayout>
+                    <TextView
+                        android:textAlignment="center"
+                        android:id="@+id/tv_status_fee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="FEE : Belum Terbayar"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
+                    <TextView
+                        android:textAlignment="center"
+                        android:id="@+id/tv_status_spp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SPP : Belum Lunas"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-    </LinearLayout>
+                    <TextView
+                        android:textAlignment="center"
+                        android:id="@+id/tv_status_konfirmasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Konfirmasi : Invalid"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>
