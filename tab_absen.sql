@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jan 2020 pada 21.50
+-- Waktu pembuatan: 05 Jan 2020 pada 04.58
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`, `foto`) VALUES
-('AD01', 'rizkika', 'kaka', '$2y$10$UCRWvfewFVgNP1NRg9oCtO4J8ISzux9AjDFdjQHk0CNCjRTbdqX.m', 'FAD01');
+('AD01', 'rizkika', 'kaka', '$2y$10$uNGzA6kD9BDaSRCirVujVOAY57Z4DsTpS3hVQQfpfwvWWHmk/JdcS', 'FAD01');
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,7 @@ CREATE TABLE `bayar_spp` (
 --
 
 INSERT INTO `bayar_spp` (`id_bayar_spp`, `id_wali_murid`, `id_admin`, `waktu`, `total_pertemuan`, `total_spp`) VALUES
-('BS200103-0001', 'WM001', 'AD01', '2020-01-03 06:41:38', 1, 1500);
+('BS200104-0001', 'WM001', 'AD01', '2020-01-04 11:46:35', 2, 105000);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,8 @@ CREATE TABLE `detail_bayar_spp` (
 --
 
 INSERT INTO `detail_bayar_spp` (`id_detail_bayar_spp`, `id_bayar_spp`, `id_pertemuan`) VALUES
-(4, 'BS200103-0001', 'PT200103-0001');
+(5, 'BS200104-0001', 'PT200104-0001'),
+(6, 'BS200104-0001', 'PT200104-0003');
 
 -- --------------------------------------------------------
 
@@ -101,16 +102,17 @@ CREATE TABLE `detail_kelas_pertemuan` (
 --
 
 INSERT INTO `detail_kelas_pertemuan` (`id_detail_kelas_p`, `id_kelas_p`, `id_murid`) VALUES
+(46, 'KL001', 'MR002'),
 (43, 'KL001', 'MR003'),
 (45, 'KL002', 'MR001'),
 (44, 'KL002', 'MR002'),
 (32, 'KL003', 'MR001'),
 (33, 'KL003', 'MR002'),
+(47, 'KL003', 'MR003'),
 (40, 'KL004', 'MR001'),
 (39, 'KL004', 'MR002'),
 (35, 'KL005', 'MR001'),
 (36, 'KL005', 'MR002'),
-(38, 'KL006', 'MR003'),
 (41, 'KL007', 'MR001'),
 (42, 'KL007', 'MR002');
 
@@ -125,6 +127,16 @@ CREATE TABLE `detail_penggajian` (
   `id_penggajian` char(13) NOT NULL,
   `id_pertemuan` char(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_penggajian`
+--
+
+INSERT INTO `detail_penggajian` (`id_detail_penggajian`, `id_penggajian`, `id_pertemuan`) VALUES
+(1, 'PG200104-0001', 'PT200103-0001'),
+(2, 'PG200104-0001', 'PT200104-0001'),
+(3, 'PG200105-0001', 'PT200104-0002'),
+(4, 'PG200105-0001', 'PT200104-0003');
 
 -- --------------------------------------------------------
 
@@ -149,7 +161,16 @@ INSERT INTO `detail_pertemuan` (`id_detail_pertemuan`, `id_pertemuan`, `id_murid
 (15, 'PT200104-0001', 'MR002'),
 (16, 'PT200104-0002', 'MR003'),
 (17, 'PT200104-0003', 'MR001'),
-(18, 'PT200104-0003', 'MR002');
+(18, 'PT200104-0003', 'MR002'),
+(21, 'PT200105-0001', 'MR001'),
+(22, 'PT200105-0001', 'MR002'),
+(23, 'PT200105-0001', 'MR003'),
+(24, 'PT200105-0002', 'MR001'),
+(25, 'PT200105-0002', 'MR002'),
+(26, 'PT200105-0002', 'MR003'),
+(30, 'PT200105-0003', 'MR001'),
+(31, 'PT200105-0003', 'MR002'),
+(32, 'PT200105-0003', 'MR003');
 
 -- --------------------------------------------------------
 
@@ -178,7 +199,7 @@ CREATE TABLE `kelas_pertemuan` (
 INSERT INTO `kelas_pertemuan` (`id_kelas_p`, `id_pengajar`, `id_mata_pelajaran`, `hari`, `jam_mulai`, `jam_berakhir`, `harga_fee`, `harga_spp`, `id_sharing`, `nama_sharing`, `status`) VALUES
 ('KL001', 'PE001', 'MP02', 'Senin', '18:30:00', '20:30:00', 15000, 20000, 'null', 'kosong', 'Normal'),
 ('KL002', 'PE001', 'MP01', 'Rabu', '20:30:00', '20:30:00', 30000, 35000, 'null', 'kosong', 'Normal'),
-('KL003', 'PE002', 'MP02', 'Selasa', '19:30:00', '16:30:00', 20000, 15000, 'null', 'kosong', 'Normal'),
+('KL003', 'PE002', 'MP02', 'Selasa', '19:30:00', '16:30:00', 20000, 25000, 'null', 'kosong', 'Normal'),
 ('KL004', 'PE002', 'MP02', 'Kamis', '18:30:00', '18:30:00', 20000, 25000, 'null', 'kosong', 'Normal'),
 ('KL005', 'PE002', 'MP02', 'senin-jumat', '21:45:00', '22:30:00', 60000, 70000, 'null', 'kosong', 'Normal'),
 ('KL006', 'PE002', 'MP02', 'senin - jumat', '18:30:00', '19:30:00', 60000, 70000, 'null', 'kosong', 'Normal'),
@@ -501,9 +522,8 @@ CREATE TABLE `murid` (
 --
 
 INSERT INTO `murid` (`id_murid`, `id_wali_murid`, `nama`, `foto`) VALUES
-('MR001', 'WM001', 'Kevin', 'DEFFMR'),
-('MR002', 'WM001', '888', 'DEFFMR'),
-('MR003', 'WM002', 'keke', 'FMR003');
+('MR001', 'WM001', 'Kevin', 'FMR001'),
+('MR002', 'WM001', '888', 'FMR002');
 
 -- --------------------------------------------------------
 
@@ -545,6 +565,14 @@ CREATE TABLE `penggajian` (
   `total_harga_fee` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `penggajian`
+--
+
+INSERT INTO `penggajian` (`id_penggajian`, `id_pengajar`, `id_admin`, `waktu`, `total_pertemuan`, `total_harga_fee`) VALUES
+('PG200104-0001', 'PE002', 'AD01', '2020-01-04 11:52:54', 2, 62000),
+('PG200105-0001', 'PE001', 'AD01', '2020-01-05 07:44:12', 2, 45000);
+
 -- --------------------------------------------------------
 
 --
@@ -576,10 +604,13 @@ CREATE TABLE `pertemuan` (
 --
 
 INSERT INTO `pertemuan` (`id_pertemuan`, `id_pengajar`, `id_kelas_p`, `hari`, `waktu_mulai`, `waktu_berakhir`, `lokasi_mulai_la`, `lokasi_mulai_lo`, `lokasi_berakhir_la`, `lokasi_berakhir_lo`, `status_pertemuan`, `status_konfirmasi`, `status_fee`, `status_spp`, `harga_fee`, `harga_spp`, `deskripsi`) VALUES
-('PT200103-0001', 'PE002', 'KL003', 'Jum\'at', '2020-01-03 06:29:11', '2020-01-03 06:29:23', '-8.156506666666667', '113.72076833333334', '-8.156506666666667', '113.72076833333334', 'Selesai', 'Valid', 'Belum Terbayar', 'Sudah Lunas', 2000, 1500, 'jejej'),
-('PT200104-0001', 'PE002', 'KL005', 'Sabtu', '2020-01-04 02:46:51', '2020-01-04 02:46:59', '-8.156545', '113.72071833333332', '-8.156545', '113.72071833333332', 'Selesai', 'Valid', 'Belum Terbayar', 'Belum Lunas', 60000, 70000, 'jsmss'),
-('PT200104-0002', 'PE001', 'KL001', 'Sabtu', '2020-01-04 02:47:40', '2020-01-04 02:47:46', '-8.156493333333334', '113.72067666666665', '-8.156493333333334', '113.72067666666665', 'Selesai', 'Valid', 'Belum Terbayar', 'Belum Lunas', 15000, 20000, 'ksmsms'),
-('PT200104-0003', 'PE001', 'KL002', 'Sabtu', '2020-01-04 02:47:52', '2020-01-04 02:47:58', '-8.155846666666667', '113.72334833333335', '-8.155846666666667', '113.72334833333335', 'Selesai', 'Valid', 'Belum Terbayar', 'Belum Lunas', 30000, 35000, 'jsmms');
+('PT200103-0001', 'PE002', 'KL003', 'Jum\'at', '2020-01-03 06:29:11', '2020-01-03 06:29:23', '-8.156506666666667', '113.72076833333334', '-8.156506666666667', '113.72076833333334', 'Selesai', 'Valid', 'Sudah Terbayar', 'Sudah Lunas', 2000, 1500, 'jejej'),
+('PT200104-0001', 'PE002', 'KL005', 'Sabtu', '2020-01-04 02:46:51', '2020-01-04 02:46:59', '-8.156545', '113.72071833333332', '-8.156545', '113.72071833333332', 'Selesai', 'Valid', 'Sudah Terbayar', 'Sudah Lunas', 60000, 70000, 'jsmss'),
+('PT200104-0002', 'PE001', 'KL001', 'Sabtu', '2020-01-04 02:47:40', '2020-01-04 02:47:46', '-8.156493333333334', '113.72067666666665', '-8.156493333333334', '113.72067666666665', 'Selesai', 'Valid', 'Sudah Terbayar', 'Belum Lunas', 15000, 20000, 'ksmsms'),
+('PT200104-0003', 'PE001', 'KL002', 'Sabtu', '2020-01-04 02:47:52', '2020-01-04 02:47:58', '-8.155846666666667', '113.72334833333335', '-8.155846666666667', '113.72334833333335', 'Selesai', 'Valid', 'Sudah Terbayar', 'Sudah Lunas', 30000, 35000, 'jsmms'),
+('PT200105-0001', 'PE002', 'KL003', 'Minggu', '2020-01-05 06:27:19', '2020-01-05 06:59:33', '-8.156578333333332', '113.72069166666667', '-8.156463333333333', '113.72088833333333', 'Selesai', 'Valid', 'Belum Terbayar', 'Belum Lunas', 20000, 25000, ''),
+('PT200105-0002', 'PE002', 'KL003', 'Minggu', '2020-01-05 07:03:33', '2020-01-05 07:04:24', '-8.15642', '113.72060000000002', '-8.15661', '113.72073999999999', 'Selesai', 'Valid', 'Belum Terbayar', 'Belum Lunas', 20000, 25000, 'xnsms'),
+('PT200105-0003', 'PE002', 'KL003', 'Minggu', '2020-01-05 10:25:40', '2020-01-05 10:25:51', '-8.156606666666667', '113.72071', '-8.156606666666667', '113.72071', 'Selesai', 'Invalid', 'Belum Terbayar', 'Belum Lunas', 20000, 25000, 'ubuyv');
 
 -- --------------------------------------------------------
 
@@ -789,25 +820,25 @@ ALTER TABLE `wali_murid`
 -- AUTO_INCREMENT untuk tabel `detail_bayar_spp`
 --
 ALTER TABLE `detail_bayar_spp`
-  MODIFY `id_detail_bayar_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_detail_bayar_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_kelas_pertemuan`
 --
 ALTER TABLE `detail_kelas_pertemuan`
-  MODIFY `id_detail_kelas_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_detail_kelas_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_penggajian`
 --
 ALTER TABLE `detail_penggajian`
-  MODIFY `id_detail_penggajian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_penggajian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pertemuan`
 --
 ALTER TABLE `detail_pertemuan`
-  MODIFY `id_detail_pertemuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_detail_pertemuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -824,6 +855,12 @@ ALTER TABLE `detail_kelas_pertemuan`
 --
 ALTER TABLE `detail_pertemuan`
   ADD CONSTRAINT `detail_pertemuan_ibfk_1` FOREIGN KEY (`id_pertemuan`) REFERENCES `pertemuan` (`id_pertemuan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `murid`
+--
+ALTER TABLE `murid`
+  ADD CONSTRAINT `murid_ibfk_1` FOREIGN KEY (`id_wali_murid`) REFERENCES `wali_murid` (`id_wali_murid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

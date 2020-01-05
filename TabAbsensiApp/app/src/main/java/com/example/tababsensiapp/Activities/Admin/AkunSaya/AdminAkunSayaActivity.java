@@ -143,12 +143,6 @@ public class AdminAkunSayaActivity extends AppCompatActivity implements View.OnC
                         } else if (TextUtils.isEmpty(inputUsername)) {
                             isEmpty = true;
                             edtUsername.setError("Isi Data Dengan Lengkap");
-                        } else if (TextUtils.isEmpty(inputPassword)) {
-                            isEmpty = true;
-                            edtPassword.setError("Isi Data Dengan Lengkap");
-                        } else if (TextUtils.isEmpty(inputKonfirmasi_password)) {
-                            isEmpty = true;
-                            edtKonfirmasiPassword.setError("Isi Data Dengan Lengkap");
                         }
 
                         if (!inputPassword.equals(inputKonfirmasi_password)) {
