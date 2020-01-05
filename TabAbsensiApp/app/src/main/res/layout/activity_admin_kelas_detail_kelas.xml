@@ -134,11 +134,13 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:textColor="@color/red"
                             android:id="@+id/btn_absen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_white"
-                            android:text="Mulai Pertemuan Sekarang" />
+                            android:text="Klik Untuk Memulai Pertemuan !!"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 

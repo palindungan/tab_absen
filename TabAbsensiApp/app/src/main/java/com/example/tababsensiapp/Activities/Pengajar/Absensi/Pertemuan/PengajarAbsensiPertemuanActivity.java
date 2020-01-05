@@ -37,7 +37,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
 
     Toolbar toolbar;
 
-    TextView tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude, tvStatus, tvHargaFee, tvHargaSpp;
+    TextView tvNamaPelajaran, tvNamaPengajar, tvDetailKelasP, tvWaktuDetailMulai, tvWaktuDetailBerakhir, tvLatitude, tvLongitude, tvStatus, tvHargaFee, tvHargaSpp;
     Button btnBatal, btnNext, btnHapus, btnValidasi;
 
     SupportMapFragment mapFragment;
@@ -72,6 +72,7 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         pengajarAbsensiPertemuanPresenter = new PengajarAbsensiPertemuanPresenter(this, this);
         pengajarAbsensiPertemuanPresenter.inisiasiAwal(id_pertemuan);
 
+        tvNamaPelajaran = findViewById(R.id.tv_nama_pelajaran);
         tvNamaPengajar = findViewById(R.id.tv_nama_pengajar);
         tvDetailKelasP = findViewById(R.id.tv_detail_kelas_p);
         tvHargaFee = findViewById(R.id.tv_harga_fee);
@@ -165,20 +166,20 @@ public class PengajarAbsensiPertemuanActivity extends AppCompatActivity implemen
         lokasi_berakhir_la = data.get("lokasi_berakhir_la");
         lokasi_berakhir_lo = data.get("lokasi_berakhir_lo");
 
+        tvNamaPelajaran.setText(nama_mata_pelajaran);
+        tvDetailKelasP.setText("(" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
         tvNamaPengajar.setText("Nama Pengajar : " + nama_pengajar);
-
-        tvDetailKelasP.setText(nama_mata_pelajaran + " (" + hari_jadwal + ", " + jam_mulai + " - " + jam_berakhir + ")");
-
         tvHargaFee.setText("Harga Fee : " + harga_fee);
         tvHargaSpp.setText("Harga Spp : " + harga_spp);
-
         tvWaktuDetailMulai.setText("Dimulai : " + hari_btn + ", " + waktu_mulai);
         tvWaktuDetailBerakhir.setText("Berakhir : " + hari_btn + ", " + waktu_berakhir);
-
         tvLatitude.setText("Latitude : (" + lokasi_mulai_la + ")");
         tvLongitude.setText("Longitude : (" + lokasi_mulai_lo + ")");
-
         tvStatus.setText("Status Konfirmasi : " + status_konfirmasi);
+
+        if (!hakAkses.equals("admin")) {
+            tvHargaSpp.setVisibility(View.GONE);
+        }
 
         if (status_pertemuan.equals("Selesai")) {
             btnBatal.setVisibility(View.GONE);

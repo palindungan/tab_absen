@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -187,15 +188,21 @@ public class PengajarAbsensiNextStepActivity extends AppCompatActivity implement
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
+                        String id_pertemuan_m = id_pertemuan;
+                        String deskripsi_m = edtDeskripsi.getText().toString();
+                        String lokasi_berakhir_la_m = lokasi_berakhir_la;
+                        String lokasi_berakhir_lo_m = lokasi_berakhir_lo;
+
+                        boolean isEmpty = false;
+                        if (TextUtils.isEmpty(deskripsi_m)) {
+                            isEmpty = true;
+                            edtDeskripsi.setError("Isi Data Dengan Lengkap");
+                        }
+
                         try {
-
-                            String id_pertemuan_m = id_pertemuan;
-                            String deskripsi_m = edtDeskripsi.getText().toString();
-                            String lokasi_berakhir_la_m = lokasi_berakhir_la;
-                            String lokasi_berakhir_lo_m = lokasi_berakhir_lo;
-
-                            pengajarAbsensiNextStepPresenter.onAkhiriPertemuan(id_pertemuan_m, deskripsi_m, lokasi_berakhir_la_m, lokasi_berakhir_lo_m);
-
+                            if (!isEmpty) {
+                                pengajarAbsensiNextStepPresenter.onAkhiriPertemuan(id_pertemuan_m, deskripsi_m, lokasi_berakhir_la_m, lokasi_berakhir_lo_m);
+                            }
                         } catch (Exception e) {
                             onErrorMessage("Terjadi Kesalahan " + e.toString());
                         }
