@@ -23,7 +23,7 @@ public class SessionManager {
     public static final String ID_USER = "ID_USER";
     public static final String NAMA = "NAMA";
     public static final String USERNAME = "USERNAME";
-    public static final String HAK_AKSES = "USERNAME";
+    public static final String HAK_AKSES = "HAK_AKSES";
 
     public SessionManager(Context context) {
         this.context = context;
