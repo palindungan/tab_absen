@@ -87,7 +87,7 @@ public class AdminMuridTampilPresenter implements IAdminMuridTampilPresenter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminMuridTampilView.onErrorMessage("Volley Error : " + error.toString());
+                adminMuridTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
             }
         });
 

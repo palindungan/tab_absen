@@ -89,7 +89,7 @@ public class AdminMuridTambahStep2Presenter implements IAdminMuridTambahStep2Pre
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminMuridTambahStep2View.onErrorMessage("Volley Error : " + error.toString());
+                adminMuridTambahStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
             }
         });
 
@@ -127,7 +127,7 @@ public class AdminMuridTambahStep2Presenter implements IAdminMuridTambahStep2Pre
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMuridTambahStep2View.onErrorMessage("Volley Error : " + error.toString());
+                        adminMuridTambahStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

@@ -91,7 +91,7 @@ public class AdminKelasDetailPengajarSharingPresenter implements IAdminKelasDeta
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminKelasDetailPengajarSharingView.onErrorMessage("Volley Error : " + error.toString());
+                adminKelasDetailPengajarSharingView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
             }
         });
 
@@ -129,7 +129,7 @@ public class AdminKelasDetailPengajarSharingPresenter implements IAdminKelasDeta
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminKelasDetailPengajarSharingView.onErrorMessage("Volley Error : " + error.toString());
+                        adminKelasDetailPengajarSharingView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

@@ -78,7 +78,7 @@ public class AdminMuridEditStep1Presenter implements IAdminMuridEditStep1Present
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMuridEditStep1View.onErrorMessage("Volley Error : " + error.toString());
+                        adminMuridEditStep1View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -135,7 +135,7 @@ public class AdminMuridEditStep1Presenter implements IAdminMuridEditStep1Present
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMuridEditStep1View.onErrorMessage("Volley Error : " + error.toString());
+                        adminMuridEditStep1View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

@@ -111,7 +111,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminKelasTampilKelasView.onErrorMessage("Volley Error : " + error.toString());
+                        adminKelasTampilKelasView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -167,7 +167,7 @@ public class AdminKelasTampilKelasPresenter implements IAdminKelasTampilKelasPre
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            adminKelasTampilKelasView.onErrorMessage("Volley Error : " + error.toString());
+                                            adminKelasTampilKelasView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                                         }
                                     }) {
                                 @Override

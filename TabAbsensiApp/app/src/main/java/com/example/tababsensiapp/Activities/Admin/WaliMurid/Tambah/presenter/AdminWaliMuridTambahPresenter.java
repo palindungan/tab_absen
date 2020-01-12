@@ -62,7 +62,7 @@ public class AdminWaliMuridTambahPresenter implements IAdminWaliMuridTambahPrese
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminWaliMuridTambahView.onSubmitError("Volley Error : " + error.toString());
+                        adminWaliMuridTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

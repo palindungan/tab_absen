@@ -68,7 +68,7 @@ public class AdminKelasEditHargaPresenter implements IAdminKelasEditHargaPresent
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminKelasEditHargaView.onErrorMessage("Volley Error : " + error.toString());
+                        adminKelasEditHargaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -113,7 +113,7 @@ public class AdminKelasEditHargaPresenter implements IAdminKelasEditHargaPresent
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminKelasEditHargaView.onErrorMessage("Volley Error : " + error.toString());
+                        adminKelasEditHargaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

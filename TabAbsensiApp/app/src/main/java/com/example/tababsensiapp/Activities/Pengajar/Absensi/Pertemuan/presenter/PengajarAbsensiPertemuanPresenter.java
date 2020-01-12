@@ -120,7 +120,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarAbsensiPertemuanView.onErrorMessage("Volley Error : " + error.toString());
+                        pengajarAbsensiPertemuanView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -165,7 +165,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarAbsensiPertemuanView.onErrorMessage("Volley Error : " + error.toString());
+                        pengajarAbsensiPertemuanView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -211,7 +211,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarAbsensiPertemuanView.onErrorMessage("Volley Error : " + error.toString());
+                        pengajarAbsensiPertemuanView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -258,7 +258,7 @@ public class PengajarAbsensiPertemuanPresenter implements IPengajarAbsensiPertem
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarAbsensiPertemuanView.onErrorMessage("Volley Error : " + error.toString());
+                        pengajarAbsensiPertemuanView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

@@ -66,7 +66,7 @@ public class AdminPengajarTambahPresenter implements IAdminPengajarTambahPresent
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminPengajarTambahView.onSubmitError("Volley Error : " + error.toString());
+                        adminPengajarTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

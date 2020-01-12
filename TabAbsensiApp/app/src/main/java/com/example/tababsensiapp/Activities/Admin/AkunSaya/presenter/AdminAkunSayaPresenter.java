@@ -75,7 +75,7 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminAkunSayaView.onErrorMessage("Volley Error : " + error.toString());
+                        adminAkunSayaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override
@@ -119,7 +119,7 @@ public class AdminAkunSayaPresenter implements IAdminAkunSayaPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminAkunSayaView.onErrorMessage("Volley Error : " + error.toString());
+                        adminAkunSayaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                     }
                 }) {
             @Override

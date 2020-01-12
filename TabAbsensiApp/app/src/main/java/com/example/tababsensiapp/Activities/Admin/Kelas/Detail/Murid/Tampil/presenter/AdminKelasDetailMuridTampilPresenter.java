@@ -93,7 +93,7 @@ public class AdminKelasDetailMuridTampilPresenter implements IAdminKelasDetailMu
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminKelasDetailMuridTampilView.onErrorMessage("Volley Error : " + error.toString());
+                adminKelasDetailMuridTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
             }
         });
 
@@ -143,7 +143,7 @@ public class AdminKelasDetailMuridTampilPresenter implements IAdminKelasDetailMu
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            adminKelasDetailMuridTampilView.onErrorMessage("Volley Error : " + error.toString());
+                                            adminKelasDetailMuridTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
                                         }
                                     }) {
                                 @Override
