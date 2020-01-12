@@ -78,7 +78,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
@@ -124,7 +124,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
@@ -186,7 +186,7 @@ public class AdminPengajarEditPresenter implements IAdminPengajarEditPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminPengajarEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

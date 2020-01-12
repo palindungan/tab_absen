@@ -89,7 +89,7 @@ public class AdminPengajarTampilPresenter implements IAdminPengajarTampilPresent
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminPengajarTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                adminPengajarTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
             }
         });
 

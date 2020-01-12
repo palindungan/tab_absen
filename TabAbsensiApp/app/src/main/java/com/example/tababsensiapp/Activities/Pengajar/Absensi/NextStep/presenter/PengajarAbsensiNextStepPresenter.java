@@ -63,7 +63,7 @@ public class PengajarAbsensiNextStepPresenter implements IPengajarAbsensiNextSte
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarAbsensiNextStepView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        pengajarAbsensiNextStepView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

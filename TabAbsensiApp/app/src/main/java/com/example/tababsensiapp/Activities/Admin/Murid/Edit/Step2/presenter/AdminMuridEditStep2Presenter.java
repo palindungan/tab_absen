@@ -88,7 +88,7 @@ public class AdminMuridEditStep2Presenter implements IAdminMuridEditStep2Present
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminMuridEditStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                adminMuridEditStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
             }
         });
 
@@ -127,7 +127,7 @@ public class AdminMuridEditStep2Presenter implements IAdminMuridEditStep2Present
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMuridEditStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminMuridEditStep2View.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

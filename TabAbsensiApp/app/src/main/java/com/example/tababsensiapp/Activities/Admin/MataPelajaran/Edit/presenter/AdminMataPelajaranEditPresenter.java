@@ -71,7 +71,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
@@ -117,7 +117,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
@@ -163,7 +163,7 @@ public class AdminMataPelajaranEditPresenter implements IAdminMataPelajaranEditP
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminMataPelajaranEditView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

@@ -87,7 +87,7 @@ public class AdminWaliMuridTampilPresenter implements IAdminWaliMuridTampilPrese
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminWaliMuridTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                adminWaliMuridTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
             }
         });
 

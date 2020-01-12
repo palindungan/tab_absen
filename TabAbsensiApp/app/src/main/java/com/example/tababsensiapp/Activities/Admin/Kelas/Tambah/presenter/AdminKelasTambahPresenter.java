@@ -66,7 +66,7 @@ public class AdminKelasTambahPresenter implements IAdminKelasTambahPresenter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminKelasTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminKelasTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
@@ -133,7 +133,7 @@ public class AdminKelasTambahPresenter implements IAdminKelasTambahPresenter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                adminKelasTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                adminKelasTambahView.onSubmitError("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
             }
         });
 

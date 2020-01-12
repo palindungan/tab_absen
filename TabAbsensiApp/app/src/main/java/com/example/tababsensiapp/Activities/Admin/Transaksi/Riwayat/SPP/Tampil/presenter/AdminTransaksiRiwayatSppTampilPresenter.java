@@ -96,7 +96,7 @@ public class AdminTransaksiRiwayatSppTampilPresenter implements IAdminTransaksiR
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        adminTransaksiRiwayatSppTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        adminTransaksiRiwayatSppTampilView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

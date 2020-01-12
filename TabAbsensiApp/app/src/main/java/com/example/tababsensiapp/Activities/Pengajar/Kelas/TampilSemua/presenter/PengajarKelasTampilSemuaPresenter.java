@@ -107,7 +107,7 @@ public class PengajarKelasTampilSemuaPresenter implements IPengajarKelasTampilSe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarKelasTampilSemuaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        pengajarKelasTampilSemuaView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override

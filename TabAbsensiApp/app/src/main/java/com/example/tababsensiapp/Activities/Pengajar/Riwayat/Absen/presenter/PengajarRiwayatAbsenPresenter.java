@@ -121,7 +121,7 @@ public class PengajarRiwayatAbsenPresenter implements IPengajarRiwayatAbsenPrese
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pengajarRiwayatAbsenView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda : " + error.toString());
+                        pengajarRiwayatAbsenView.onErrorMessage("Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda");
                     }
                 }) {
             @Override
