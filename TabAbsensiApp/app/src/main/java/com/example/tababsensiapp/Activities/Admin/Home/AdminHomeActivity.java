@@ -118,8 +118,6 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
                 return true;
             }
         });
-
-        adminHomePresenter.onCount();
     }
 
     @Override
@@ -154,13 +152,13 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    @Override
-    public void setCountData(String pengajar, String murid, String waliMurid, String mataPelajaran, String kelas, String kelasAktif) {
-        txtJmlPengajar.setText(pengajar);
-        txtJmlMurid.setText(murid);
-        txtJmlWaliMurid.setText(waliMurid);
-        txtJmlMataPelajaran.setText(mataPelajaran);
-    }
+//    @Override
+//    public void setCountData(String pengajar, String murid, String waliMurid, String mataPelajaran, String kelas, String kelasAktif) {
+//        txtJmlPengajar.setText(pengajar);
+//        txtJmlMurid.setText(murid);
+//        txtJmlWaliMurid.setText(waliMurid);
+//        txtJmlMataPelajaran.setText(mataPelajaran);
+//    }
 
     @Override
     public void showDialog() {
@@ -247,6 +245,5 @@ public class AdminHomeActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
-        adminHomePresenter.onCount();
     }
 }

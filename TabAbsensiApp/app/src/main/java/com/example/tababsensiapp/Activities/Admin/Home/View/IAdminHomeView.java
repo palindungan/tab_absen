@@ -1,7 +1,7 @@
 package com.example.tababsensiapp.Activities.Admin.Home.View;
 
 public interface IAdminHomeView {
-    void setCountData(String pengajar, String murid, String waliMurid, String mataPelajaran, String kelas, String kelasAktif);
+//    void setCountData(String pengajar, String murid, String waliMurid, String mataPelajaran, String kelas, String kelasAktif);
 
     void showDialog();
 
