@@ -13,14 +13,9 @@
         android:layout_marginRight="10sp"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/colorPrimary2"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/background_menu_2"
-            android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="match_parent"
