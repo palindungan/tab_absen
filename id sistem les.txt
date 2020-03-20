@@ -13,33 +13,33 @@ CREATE VIEW list_kelas AS
 SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee , kp.harga_spp , kp.id_sharing , kp.nama_sharing , kp.status ,pe.id_pengajar , pe.nama AS nama_pengajar, mp.id_mata_pelajaran,mp.nama  AS nama_pelajaran
 FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar pe USING(id_pengajar)
 ORDER BY kp.id_kelas_p ASC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_murid AS
 SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto
 FROM murid m JOIN wali_murid wm USING(id_wali_murid)
 ORDER BY m.nama ASC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_pertemuan AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran
 FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran)
 ORDER BY pr.id_pertemuan DESC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_pertemuan_belum_selesai AS
 SELECT *
 FROM list_pertemuan lp
 WHERE lp.status_pertemuan = 'Belum Selesai'
 ORDER BY lp.id_pertemuan DESC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_pertemuan_selesai AS
 SELECT *
 FROM list_pertemuan lp
 WHERE lp.status_pertemuan = 'Selesai'
 ORDER BY lp.id_pertemuan DESC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_detail_penggajian AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran , dpg.id_penggajian , dpg.id_detail_penggajian
@@ -50,7 +50,7 @@ CREATE VIEW list_penggajian AS
 SELECT pg.id_penggajian , pg.waktu , pg.total_pertemuan , pg.total_harga_fee , pe.id_pengajar , pe.nama AS nama_pengajar , ad.id_admin , ad.nama AS nama_admin
 FROM penggajian pg JOIN pengajar pe USING(id_pengajar) JOIN admin ad USING(id_admin)
 ORDER BY pg.id_penggajian DESC
-LIMIT 120;
+LIMIT 200;
 
 CREATE VIEW list_pertemuan_spp AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran, wm.id_wali_murid , wm.nama AS nama_wali_murid
