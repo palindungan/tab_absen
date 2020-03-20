@@ -12,55 +12,57 @@ id_bayar_spp(BS191218-0001)
 CREATE VIEW list_kelas AS
 SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee , kp.harga_spp , kp.id_sharing , kp.nama_sharing , kp.status ,pe.id_pengajar , pe.nama AS nama_pengajar, mp.id_mata_pelajaran,mp.nama  AS nama_pelajaran
 FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar pe USING(id_pengajar)
-ORDER BY kp.id_kelas_p ASC
-LIMIT 200;
+ORDER BY kp.id_kelas_p ASC;
+
+CREATE VIEW list_kelas_detail AS
+SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto, dkp.id_kelas_p, dkp.id_detail_kelas_p
+FROM murid m JOIN wali_murid wm USING(id_wali_murid) JOIN detail_kelas_pertemuan dkp USING(id_murid)
+ORDER BY m.nama ASC;
 
 CREATE VIEW list_murid AS
 SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto
 FROM murid m JOIN wali_murid wm USING(id_wali_murid)
-ORDER BY m.nama ASC
-LIMIT 200;
+ORDER BY m.nama ASC;
 
 CREATE VIEW list_pertemuan AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran
 FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran)
-ORDER BY pr.id_pertemuan DESC
-LIMIT 200;
-
-CREATE VIEW list_pertemuan_belum_selesai AS
-SELECT *
-FROM list_pertemuan lp
-WHERE lp.status_pertemuan = 'Belum Selesai'
-ORDER BY lp.id_pertemuan DESC
-LIMIT 200;
-
-CREATE VIEW list_pertemuan_selesai AS
-SELECT *
-FROM list_pertemuan lp
-WHERE lp.status_pertemuan = 'Selesai'
-ORDER BY lp.id_pertemuan DESC
-LIMIT 200;
-
-CREATE VIEW list_detail_penggajian AS
-SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran , dpg.id_penggajian , dpg.id_detail_penggajian
-FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN detail_penggajian dpg USING(id_pertemuan)
 ORDER BY pr.id_pertemuan DESC;
-
-CREATE VIEW list_penggajian AS
-SELECT pg.id_penggajian , pg.waktu , pg.total_pertemuan , pg.total_harga_fee , pe.id_pengajar , pe.nama AS nama_pengajar , ad.id_admin , ad.nama AS nama_admin
-FROM penggajian pg JOIN pengajar pe USING(id_pengajar) JOIN admin ad USING(id_admin)
-ORDER BY pg.id_penggajian DESC
-LIMIT 200;
 
 CREATE VIEW list_pertemuan_spp AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran, wm.id_wali_murid , wm.nama AS nama_wali_murid
 FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN detail_pertemuan dp USING(id_pertemuan) JOIN murid m USING(id_murid) JOIN wali_murid wm USING(id_wali_murid)
 GROUP BY pr.id_pertemuan,wm.id_wali_murid;
 
-CREATE VIEW list_detail_bayar_spp AS
+CREATE VIEW list_bayar_spp_detail AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran,dbs.id_detail_bayar_spp, dbs.id_bayar_spp
 FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN detail_bayar_spp dbs USING(id_pertemuan) 
 ORDER BY pr.id_pertemuan DESC;
+
+CREATE VIEW list_penggajian AS
+SELECT pg.id_penggajian , pg.waktu , pg.total_pertemuan , pg.total_harga_fee , pe.id_pengajar , pe.nama AS nama_pengajar , ad.id_admin , ad.nama AS nama_admin
+FROM penggajian pg JOIN pengajar pe USING(id_pengajar) JOIN admin ad USING(id_admin)
+ORDER BY pg.id_penggajian DESC;
+
+CREATE VIEW list_penggajian_detail AS
+SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran , dpg.id_penggajian , dpg.id_detail_penggajian
+FROM pertemuan pr JOIN pengajar pn USING(id_pengajar) JOIN kelas_pertemuan kp USING(id_kelas_p) JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN detail_penggajian dpg USING(id_pertemuan)
+ORDER BY pr.id_pertemuan DESC;
+
+
+// tidak dipakai dibawah
+
+CREATE VIEW list_pertemuan_belum_selesai AS
+SELECT *
+FROM list_pertemuan lp
+WHERE lp.status_pertemuan = 'Belum Selesai'
+ORDER BY lp.id_pertemuan DESC;
+
+CREATE VIEW list_pertemuan_selesai AS
+SELECT *
+FROM list_pertemuan lp
+WHERE lp.status_pertemuan = 'Selesai'
+ORDER BY lp.id_pertemuan DESC;
 
 uIK;RWS8*]oc
 
