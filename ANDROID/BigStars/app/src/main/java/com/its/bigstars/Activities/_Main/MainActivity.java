@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.its.bigstars.Activities._Login.LoginActivity;
 import com.its.bigstars.Activities._Main.view.IMainView;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
@@ -49,12 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             hakAkses = "wali_murid";
         }
 
-        if (!hakAkses.equals("")){
-            toastMessage.onSuccessMessage(hakAkses);
+        if (!hakAkses.equals("")) {
+            intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.putExtra(LoginActivity.EXTRA_HAK_AKSES, hakAkses);
+            startActivity(intent);
         }
-
-//        intent = new Intent(MainActivity.this, LoginActivity.class);
-//        intent.putExtra(LoginActivity.EXTRA_HAK_AKSES, hakAkses);
-//        startActivity(intent);
     }
 }
