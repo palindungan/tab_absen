@@ -2,8 +2,11 @@ package com.its.bigstars.Activities.Akun.Admin.presenter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Base64;
 
 import com.its.bigstars.Activities.Akun.Admin.view.IAkunAdminView;
+
+import java.io.ByteArrayOutputStream;
 
 public class AkunAdminPresenter implements IAkunAdminPresenter {
     Context context;
@@ -26,6 +29,12 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
 
     @Override
     public String getStringImage(Bitmap bitmap) {
-        return null;
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+
+        byte[] imageByteArray = byteArrayOutputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(imageByteArray, Base64.DEFAULT);
+
+        return encodedImage;
     }
 }
