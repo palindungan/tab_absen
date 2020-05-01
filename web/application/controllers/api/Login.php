@@ -11,7 +11,7 @@ class Login extends REST_Controller
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/M_login");
+        $this->load->model("api/M_universal");
     }
 
     function masuk_post()
@@ -31,7 +31,7 @@ class Login extends REST_Controller
         );
 
         // mengambil data
-        $query = $this->M_login->get_data($hak_akses, $where);
+        $query = $this->M_universal->get_data($hak_akses, $where);
 
         // cek apakah ada data dari username
         if ($query->num_rows() > 0) {
