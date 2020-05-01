@@ -2,12 +2,15 @@ package com.its.bigstars.Activities.Home.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,17 +20,19 @@ import com.its.bigstars.Activities.Home.Admin.presenter.HomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.presenter.IHomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.view.IHomeAdminView;
 import com.its.bigstars.Controllers.SessionManager;
+import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
 
 public class HomeAdminActivity extends AppCompatActivity implements View.OnClickListener, IHomeAdminView {
 
     IHomeAdminPresenter homeAdminPresenter;
     SessionManager sessionManager;
+    ToastMessage toastMessage;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-    
+
     CardView linkAdminPengajar, linkAdminMurid, linkAdminWaliMurid, linkAdminMataPelajaran, linkAdminKelas, linkAdminKelasAktif;
 
     @Override
@@ -37,6 +42,7 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
 
         homeAdminPresenter = new HomeAdminPresenter(this, this);
         sessionManager = new SessionManager(this);
+        toastMessage = new ToastMessage(this);
 
         drawerLayout = findViewById(R.id.drawerLayout_admin);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
@@ -94,8 +100,96 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
         linkAdminKelasAktif.setOnClickListener(this);
     }
 
+    private void showDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Logout ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Keluar Aplikasi !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            sessionManager.logout();
+                        } catch (Exception e) {
+                            toastMessage.onErrorMessage("Terjadi Kesalahan " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.link_admin_pengajar) {
+//            Intent intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
+//            intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_pengajar");
+//            startActivity(intent);
+            toastMessage.onSuccessMessage("pengajar");
+        } else if (v.getId() == R.id.link_admin_murid) {
+//            Intent intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
+//            intent.putExtra(AdminMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_murid");
+//            startActivity(intent);
+            toastMessage.onSuccessMessage("murid");
+        } else if (v.getId() == R.id.link_admin_wali_murid) {
+//            Intent intent = new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class);
+//            intent.putExtra(AdminWaliMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_wali_murid");
+//            startActivity(intent);
+            toastMessage.onSuccessMessage("wali murid");
+        } else if (v.getId() == R.id.link_admin_mata_pelajaran) {
+//            startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
+            toastMessage.onSuccessMessage("mata pelajaran");
+        } else if (v.getId() == R.id.link_admin_kelas) {
+//            onSuccessMessage("Pilih Pengajar");
+//            startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
+            toastMessage.onSuccessMessage("kelas");
+        } else if (v.getId() == R.id.link_admin_kelas_aktif) {
+//            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
+//            String id_pengajar = "Semua";
+//            intent.putExtra(PengajarKelasTampilAktifActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+//            startActivity(intent);
+            toastMessage.onSuccessMessage("kelas aktif");
+        }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar_home_admin, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+        } else if (id == R.id.menu_riwayat) {
+//            Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+//            String id_pengajar = "Semua";
+//            intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+//            startActivity(intent);
+            toastMessage.onSuccessMessage("riwayat");
+        } else if (id == R.id.menu_akun_saya) {
+//            startActivity(new Intent(getApplicationContext(), AdminAkunSayaActivity.class));
+            toastMessage.onSuccessMessage("akun saya");
+        } else if (id == R.id.menu_keluar) {
+            showDialog();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

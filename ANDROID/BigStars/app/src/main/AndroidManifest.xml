@@ -22,8 +22,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        
+        <!-- untuk api ID google -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAAPUvdjy8dcI9skIiiYgWcc3jjKo8UIjM" />
+
         <activity android:name=".Activities.Home.Pengajar.HomePengajarActivity"></activity>
-        <activity android:name=".Activities.Home.Admin.HomeAdminActivity" />
+        <activity
+            android:name=".Activities.Home.Admin.HomeAdminActivity"
+            android:theme="@style/AppThemeHome" />
         <activity android:name=".Activities._Login.LoginActivity" />
         <activity android:name=".Activities._Main.MainActivity">
             <intent-filter>
