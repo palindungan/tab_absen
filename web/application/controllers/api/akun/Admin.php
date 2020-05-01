@@ -5,19 +5,19 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Akun_saya extends REST_Controller
+class Admin extends REST_Controller
 {
 
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model("api/admin/M_akun_saya");
+        $this->load->model("api/admin/M_universal");
     }
 
     function tambah_admin_post()
     {
         // ambil data
-        $id_admin = $this->M_akun_saya->get_no();
+        $id_admin = $this->M_universal->get_no();
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
@@ -37,7 +37,7 @@ class Akun_saya extends REST_Controller
             'foto'          => $nama_foto
         );
 
-        $insert =  $this->M_akun_saya->input_data('admin', $data);
+        $insert =  $this->M_universal->input_data('admin', $data);
         if ($insert) {
 
             if (!empty($foto)) {
@@ -70,7 +70,7 @@ class Akun_saya extends REST_Controller
         );
 
         // mengambil data dari database
-        $query = $this->M_akun_saya->get_data('admin', $data_id);
+        $query = $this->M_universal->get_data('admin', $data_id);
         if ($query->num_rows() > 0) {
 
             // mengeluarkan data dari database
@@ -135,7 +135,7 @@ class Akun_saya extends REST_Controller
             $cek_foto = "";
 
             // mengambil data dari database
-            $query = $this->M_akun_saya->get_data('admin', $where);
+            $query = $this->M_universal->get_data('admin', $where);
             foreach ($query->result_array() as $row) {
 
                 $cek_foto = $row["foto"];
@@ -152,7 +152,7 @@ class Akun_saya extends REST_Controller
             file_put_contents($path2, base64_decode($foto));
         }
 
-        $update =  $this->M_akun_saya->update_data($where, 'admin', $data);
+        $update =  $this->M_universal->update_data($where, 'admin', $data);
         if ($update) {
 
             // membuat array untuk di transfer ke API

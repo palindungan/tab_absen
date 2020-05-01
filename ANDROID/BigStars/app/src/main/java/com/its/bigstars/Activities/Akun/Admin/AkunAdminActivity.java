@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import com.its.bigstars.Activities.Akun.Admin.presenter.AkunAdminPresenter;
 import com.its.bigstars.Activities.Akun.Admin.presenter.IAkunAdminPresenter;
 import com.its.bigstars.Activities.Akun.Admin.view.IAkunAdminView;
+import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
@@ -36,6 +37,7 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
     IAkunAdminPresenter akunAdminPresenter;
     SessionManager sessionManager;
     ToastMessage toastMessage;
+    BaseUrl baseUrl;
 
     Toolbar toolbar;
     EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword;
@@ -55,6 +57,7 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         akunAdminPresenter = new AkunAdminPresenter(this, this);
         sessionManager = new SessionManager(this);
         toastMessage = new ToastMessage(this);
+        baseUrl = new BaseUrl();
 
         toolbar = findViewById(R.id.toolbar);
         edtNama = findViewById(R.id.edt_nama);
@@ -72,7 +75,11 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
 
         initActionBar();
 
-        setNilaiDefault(nama, username, foto);
+        if (!id_admin.isEmpty() && !nama.isEmpty() && !username.isEmpty() && !foto.isEmpty()) {
+            setNilaiDefault(nama, username, foto);
+        } else {
+            sessionManager.logout();
+        }
 
         ivFoto.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
@@ -88,7 +95,8 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
     private void setNilaiDefault(String nama, String username, String foto) {
         edtNama.setText(nama);
         edtUsername.setText(username);
-        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
+        String alamat_foto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
+        Picasso.get().load(alamat_foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialogUpdate() {

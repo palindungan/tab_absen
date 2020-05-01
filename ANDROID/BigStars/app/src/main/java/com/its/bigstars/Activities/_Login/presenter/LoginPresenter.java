@@ -76,17 +76,13 @@ public class LoginPresenter implements ILoginPresenter {
 
                                         foto = object.getString("foto").trim();
                                         intent = new Intent(context, HomeAdminActivity.class);
-                                        toastMessage.onSuccessMessage(id_user);
 
                                     } else if (hakAkses.equals("pengajar")) {
 
                                         foto = object.getString("foto").trim();
                                         intent = new Intent(context, HomePengajarActivity.class);
-                                        toastMessage.onSuccessMessage(id_user);
 
                                     } else if (hakAkses.equals("wali_murid")) {
-
-                                        toastMessage.onSuccessMessage(id_user);
 
                                     } else {
                                         sessionManager.logout();

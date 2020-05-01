@@ -4,22 +4,86 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Base64;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.its.bigstars.Activities.Akun.Admin.view.IAkunAdminView;
+import com.its.bigstars.Controllers.BaseUrl;
+import com.its.bigstars.Controllers.GlobalValue;
+import com.its.bigstars.Controllers.ToastMessage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AkunAdminPresenter implements IAkunAdminPresenter {
     Context context;
     IAkunAdminView akunAdminView;
 
+    BaseUrl baseUrl;
+    GlobalValue globalValue;
+    ToastMessage toastMessage;
+
     public AkunAdminPresenter(Context context, IAkunAdminView akunAdminView) {
         this.context = context;
         this.akunAdminView = akunAdminView;
+
+        baseUrl = new BaseUrl();
+        globalValue = new GlobalValue();
+        toastMessage = new ToastMessage(context);
     }
 
     @Override
     public void onUpdate(String id_admin, String nama, String username, String password, String foto) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "admin/akun_saya/update_admin"; // url http request
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
+
+                    if (success.equals("1")) {
+                        toastMessage.onSuccessMessage("Berhasil Mengupdate Data");
+                        akunAdminView.backPressed();
+                    } else {
+                        toastMessage.onErrorMessage("Gagal Mengupdate Data !");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    toastMessage.onErrorMessage(globalValue.getMessageResponseError() + e.toString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                toastMessage.onErrorMessage(globalValue.getMessageConnectionError());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_admin", id_admin);
+                params.put("nama", nama);
+                params.put("username", username);
+                params.put("password", password);
+                params.put("foto", foto);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 
     @Override

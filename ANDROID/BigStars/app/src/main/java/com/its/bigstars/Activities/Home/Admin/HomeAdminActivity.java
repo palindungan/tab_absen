@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
 import com.its.bigstars.Activities.Home.Admin.presenter.HomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.presenter.IHomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.view.IHomeAdminView;
@@ -170,21 +171,25 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        Intent intent = new Intent();
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-        } else if (id == R.id.menu_riwayat) {
+            return true;
+        }
+
+        if (id == R.id.menu_riwayat) {
 //            Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //            String id_pengajar = "Semua";
 //            intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
 //            startActivity(intent);
             toastMessage.onSuccessMessage("riwayat");
         } else if (id == R.id.menu_akun_saya) {
-//            startActivity(new Intent(getApplicationContext(), AdminAkunSayaActivity.class));
-            toastMessage.onSuccessMessage("akun saya");
+            intent = new Intent(getApplicationContext(), AkunAdminActivity.class);
         } else if (id == R.id.menu_keluar) {
             showDialog();
         }
 
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
