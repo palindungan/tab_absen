@@ -6,9 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- permission untuk google maps api -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- permission untuk google maps api -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -22,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        
-        <!-- untuk api ID google -->
+        <activity android:name=".Activities.Akun.Pengajar.AkunPengajarActivity"></activity>
+        <activity android:name=".Activities.Akun.Admin.AkunAdminActivity" /> <!-- untuk api ID google -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAPUvdjy8dcI9skIiiYgWcc3jjKo8UIjM" />
 
-        <activity android:name=".Activities.Home.Pengajar.HomePengajarActivity"></activity>
+        <activity android:name=".Activities.Home.Pengajar.HomePengajarActivity" />
         <activity
             android:name=".Activities.Home.Admin.HomeAdminActivity"
             android:theme="@style/AppThemeHome" />
