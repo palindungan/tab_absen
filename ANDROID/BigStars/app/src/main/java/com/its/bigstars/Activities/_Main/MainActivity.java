@@ -17,16 +17,12 @@ import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, IMainView {
 
-    ToastMessage toastMessage;
-
     Button btnLoginAdmin, btnLoginPengajar, btnLoginWaliMurid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toastMessage = new ToastMessage(this);
 
         btnLoginAdmin = findViewById(R.id.btn_login_admin);
         btnLoginPengajar = findViewById(R.id.btn_login_pengajar);
