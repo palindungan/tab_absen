@@ -43,7 +43,7 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
     @Override
     public void onUpdate(String id_admin, String nama, String username, String password, String foto) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/akun_saya/update_admin"; // url http request
+        String URL_DATA = base_url + "akun/admin/update"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA, new Response.Listener<String>() {
             @Override
@@ -51,12 +51,13 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
+                    String message = jsonObject.getString("message");
 
                     if (success.equals("1")) {
-                        toastMessage.onSuccessMessage("Berhasil Mengupdate Data");
+                        toastMessage.onSuccessMessage(message);
                         akunAdminView.backPressed();
                     } else {
-                        toastMessage.onErrorMessage("Gagal Mengupdate Data !");
+                        toastMessage.onErrorMessage(message);
                     }
 
                 } catch (JSONException e) {

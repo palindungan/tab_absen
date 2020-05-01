@@ -178,18 +178,20 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
         }
 
         if (id == R.id.menu_riwayat) {
-//            Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //            String id_pengajar = "Semua";
+//            intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //            intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
 //            startActivity(intent);
-            toastMessage.onSuccessMessage("riwayat");
+            return true;
         } else if (id == R.id.menu_akun_saya) {
             intent = new Intent(getApplicationContext(), AkunAdminActivity.class);
+            startActivity(intent);
+            return true;
         } else if (id == R.id.menu_keluar) {
             showDialog();
+            return true;
         }
 
-        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
