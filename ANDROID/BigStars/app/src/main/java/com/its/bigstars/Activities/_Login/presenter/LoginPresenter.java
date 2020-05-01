@@ -68,16 +68,19 @@ public class LoginPresenter implements ILoginPresenter {
                                     String id_user = object.getString("id_user").trim();
                                     String nama = object.getString("nama").trim();
                                     String username = object.getString("username").trim();
+                                    String foto = "";
 
                                     Intent intent = new Intent();
 
                                     if (hakAkses.equals("admin")) {
 
+                                        foto = object.getString("foto").trim();
                                         intent = new Intent(context, HomeAdminActivity.class);
                                         toastMessage.onSuccessMessage(id_user);
 
                                     } else if (hakAkses.equals("pengajar")) {
 
+                                        foto = object.getString("foto").trim();
                                         intent = new Intent(context, HomePengajarActivity.class);
                                         toastMessage.onSuccessMessage(id_user);
 
@@ -89,7 +92,12 @@ public class LoginPresenter implements ILoginPresenter {
                                         sessionManager.logout();
                                     }
 
-                                    sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+                                    sessionManager.setSessionLogin(
+                                            "" + id_user,
+                                            "" + nama,
+                                            "" + username,
+                                            "" + foto,
+                                            "" + hakAkses);
 
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     context.startActivity(intent);

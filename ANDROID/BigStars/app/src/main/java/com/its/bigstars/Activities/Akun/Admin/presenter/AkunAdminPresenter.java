@@ -18,11 +18,6 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
     }
 
     @Override
-    public void inisiasiAwal(String id_admin) {
-
-    }
-
-    @Override
     public void onUpdate(String id_admin, String nama, String username, String password, String foto) {
 
     }

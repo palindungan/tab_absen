@@ -42,7 +42,7 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
     ImageView ivFoto;
     Button btnUpdate;
 
-    String id_admin = "";
+    String id_admin, nama, username, foto;
 
     private Bitmap bitmap;
     String data_photo = "";
@@ -66,10 +66,13 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
 
         HashMap<String, String> user = sessionManager.getDataUser();
         id_admin = user.get(sessionManager.ID_USER);
+        nama = user.get(sessionManager.NAMA);
+        username = user.get(sessionManager.USERNAME);
+        foto = user.get(sessionManager.FOTO);
 
         initActionBar();
 
-        akunAdminPresenter.inisiasiAwal(id_admin);
+        setNilaiDefault(nama, username, foto);
 
         ivFoto.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
@@ -80,6 +83,12 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setNilaiDefault(String nama, String username, String foto) {
+        edtNama.setText(nama);
+        edtUsername.setText(username);
+        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialogUpdate() {
@@ -116,7 +125,12 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
                         try {
 
                             if (!isEmpty && !isInvalidKonfirmasi) {
-                                akunAdminPresenter.onUpdate(id_admin, inputNama, inputUsername, inputPassword, inputFoto);
+                                akunAdminPresenter.onUpdate(
+                                        "" + id_admin,
+                                        "" + inputNama,
+                                        "" + inputUsername,
+                                        "" + inputPassword,
+                                        "" + inputFoto);
                             }
 
                         } catch (Exception e) {
@@ -146,13 +160,6 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         if (v.getId() == R.id.btn_update) {
             showDialogUpdate();
         }
-    }
-
-    @Override
-    public void setNilaiDefault(String nama, String username, String foto) {
-        edtNama.setText(nama);
-        edtUsername.setText(username);
-        Picasso.get().load(foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     @Override

@@ -48,13 +48,15 @@ class Login extends REST_Controller
                         $data = array(
                             'id_user' => $row["id_admin"],
                             'nama' => $row["nama"],
-                            'username' => $row["username"]
+                            'username' => $row["username"],
+                            'foto' => $row["foto"]
                         );
                     } elseif ($hak_akses == "pengajar") {
                         $data = array(
                             'id_user' => $row["id_pengajar"],
                             'nama' => $row["nama"],
-                            'username' => $row["username"]
+                            'username' => $row["username"],
+                            'foto' => $row["foto"]
                         );
                     } elseif ($hak_akses == "wali_murid") {
                         $data = array(
