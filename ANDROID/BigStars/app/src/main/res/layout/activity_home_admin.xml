@@ -23,52 +23,43 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:orientation="horizontal">
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp">
 
-                    <androidx.cardview.widget.CardView
-
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="0dp"
-                        app:cardElevation="0dp">
+                        android:layout_height="match_parent">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/tv_judul"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Bimbel Bigstars"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tv_judul"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
-                                android:layout_marginTop="10dp"
-                                android:text="Bimbel Bigstars"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="30dp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_judul"
+                            android:layout_marginLeft="25dp"
+                            android:text="Selamat Datang Administrasi Data !"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/tv_judul"
-                                android:layout_marginLeft="25dp"
-                                android:text="Selamat Datang Administrasi Data !"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/link_admin_pengajar"
@@ -111,16 +102,6 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txt_jml_pengajar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_pengajar"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -132,7 +113,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -168,16 +148,6 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txt_jml_murid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_murid"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -188,7 +158,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -224,16 +193,6 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txt_jml_wali_murid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_wali_murid"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -245,7 +204,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -281,16 +239,6 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txt_jml_mata_pelajaran"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_mata_pelajaran"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -301,7 +249,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -326,7 +273,6 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/bg_menu_5" />
 
-
                         <TextView
                             android:id="@+id/txt_kelas"
                             android:layout_width="wrap_content"
@@ -338,15 +284,6 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_kelas"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -359,7 +296,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -395,20 +331,12 @@
                             android:textSize="25dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_kelas_aktif"
-                            android:layout_marginLeft="10dp"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="50dp"
-                            android:visibility="gone" />
                     </RelativeLayout>
+
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-
+            
         </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
@@ -419,8 +347,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header_admin"
-        app:menu="@menu/navigation_admin">
-
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/navigation_admin" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
