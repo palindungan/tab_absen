@@ -10,6 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.its.bigstars.Activities.Home.Admin.HomeAdminActivity;
+import com.its.bigstars.Activities.Home.Pengajar.HomePengajarActivity;
 import com.its.bigstars.Activities._Login.view.ILoginView;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.GlobalValue;
@@ -67,16 +69,16 @@ public class LoginPresenter implements ILoginPresenter {
                                     String nama = object.getString("nama").trim();
                                     String username = object.getString("username").trim();
 
-                                    // Intent intent = new Intent();
+                                    Intent intent = new Intent();
 
                                     if (hakAkses.equals("admin")) {
 
-                                        // intent = new Intent(context, AdminHomeActivity.class);
+                                        intent = new Intent(context, HomeAdminActivity.class);
                                         toastMessage.onSuccessMessage(id_user);
 
                                     } else if (hakAkses.equals("pengajar")) {
 
-                                        // intent = new Intent(context, PengajarHomeActivity.class);
+                                        intent = new Intent(context, HomePengajarActivity.class);
                                         toastMessage.onSuccessMessage(id_user);
 
                                     } else if (hakAkses.equals("wali_murid")) {
@@ -87,10 +89,10 @@ public class LoginPresenter implements ILoginPresenter {
                                         sessionManager.logout();
                                     }
 
-                                    // sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
+                                    sessionManager.setSessionLogin(id_user, nama, username, hakAkses);
 
-                                    // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    // context.startActivity(intent);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    context.startActivity(intent);
                                 }
 
                             } else {
