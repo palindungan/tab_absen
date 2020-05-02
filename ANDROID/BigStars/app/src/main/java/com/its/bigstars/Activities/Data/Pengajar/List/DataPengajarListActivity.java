@@ -114,16 +114,16 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 //                    intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    startActivity(intent);
                 } else if (status_activity.equals("to_transaksi_gaji")) {
-//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
+//                    intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
 //                    startActivity(intent);
                 } else if (status_activity.equals("to_riwayat_gaji")) {
-//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
+//                    intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    startActivity(intent);
                 } else if (status_activity.equals("to_monitoring")) {
-//                    Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+//                    intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
 //                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
 //                    startActivity(intent);

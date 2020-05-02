@@ -42,7 +42,7 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
     @Override
     public void onLoadDataList() {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "admin/pengajar/list_pengajar"; // url http request
+        String URL_DATA = base_url + "data/pengajar/list_pengajar"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
             @Override
@@ -57,7 +57,7 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
                     if (success.equals("1")) {
 
                         dataModelArrayList = new ArrayList<>();
-                        JSONArray dataArray = obj.getJSONArray("pengajar");
+                        JSONArray dataArray = obj.getJSONArray("data_result");
                         for (int i = 0; i < dataArray.length(); i++) {
 
                             Pengajar playerModel = new Pengajar();
