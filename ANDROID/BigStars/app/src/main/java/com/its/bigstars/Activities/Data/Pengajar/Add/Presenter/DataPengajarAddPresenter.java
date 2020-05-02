@@ -1,8 +1,6 @@
 package com.its.bigstars.Activities.Data.Pengajar.Add.Presenter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Base64;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;

@@ -22,6 +22,7 @@ import com.its.bigstars.Activities.Akun.Admin.presenter.AkunAdminPresenter;
 import com.its.bigstars.Activities.Akun.Admin.presenter.IAkunAdminPresenter;
 import com.its.bigstars.Activities.Akun.Admin.view.IAkunAdminView;
 import com.its.bigstars.Controllers.BaseUrl;
+import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
@@ -38,6 +39,7 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
     SessionManager sessionManager;
     ToastMessage toastMessage;
     BaseUrl baseUrl;
+    GlobalProcess globalProcess;
 
     Toolbar toolbar;
     EditText edtNama, edtUsername, edtPassword, edtKonfirmasiPassword;
@@ -58,6 +60,7 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         sessionManager = new SessionManager(this);
         toastMessage = new ToastMessage(this);
         baseUrl = new BaseUrl();
+        globalProcess = new GlobalProcess();
 
         toolbar = findViewById(R.id.toolbar);
         edtNama = findViewById(R.id.edt_nama);
@@ -192,7 +195,8 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
                 toastMessage.onErrorMessage("Gambar Error " + e.toString());
             }
 
-            data_photo = akunAdminPresenter.getStringImage(bitmap);
+            globalProcess.setBitmap(bitmap);
+            data_photo = globalProcess.getStringImage();
         }
     }
 
