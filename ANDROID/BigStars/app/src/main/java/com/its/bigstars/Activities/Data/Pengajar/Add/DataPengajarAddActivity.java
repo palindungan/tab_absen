@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import com.its.bigstars.Activities.Data.Pengajar.Add.Presenter.DataPengajarAddPresenter;
 import com.its.bigstars.Activities.Data.Pengajar.Add.Presenter.IDataPengajarAddPresenter;
 import com.its.bigstars.Activities.Data.Pengajar.Add.View.IDataPengajarAddView;
+import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
 
@@ -30,6 +31,7 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
 
     IDataPengajarAddPresenter dataPengajarAddPresenter;
     ToastMessage toastMessage;
+    GlobalProcess globalProcess;
 
     Toolbar toolbar;
     ImageView ivFoto;
@@ -46,6 +48,7 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
 
         dataPengajarAddPresenter = new DataPengajarAddPresenter(this, this);
         toastMessage = new ToastMessage(this);
+        globalProcess = new GlobalProcess();
 
         toolbar = findViewById(R.id.toolbar);
         ivFoto = findViewById(R.id.iv_foto);
@@ -183,7 +186,8 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
                 toastMessage.onErrorMessage("Gambar Error " + e.toString());
             }
 
-            data_photo = dataPengajarAddPresenter.getStringImage(bitmap);
+            globalProcess.setBitmap(bitmap);
+            data_photo = globalProcess.getStringImage();
         }
     }
 }
