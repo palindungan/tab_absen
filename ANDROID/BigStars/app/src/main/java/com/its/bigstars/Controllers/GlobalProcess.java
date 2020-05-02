@@ -7,10 +7,10 @@ import java.io.ByteArrayOutputStream;
 
 public class GlobalProcess {
 
+    // start of image process
     Bitmap bitmap;
     String stringImage;
 
-    // start of image process
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
