@@ -110,9 +110,14 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                 Intent intent;
 
                 if (status_activity.equals("to_edit_pengajar")) {
-//                    intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_USERNAME, dataModelArrayList.get(position).getUsername());
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
+                    intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
+                    startActivity(intent);
                 } else if (status_activity.equals("to_transaksi_gaji")) {
 //                    intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
@@ -128,7 +133,6 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 //                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
 //                    startActivity(intent);
                 }
-
             }
         });
     }
