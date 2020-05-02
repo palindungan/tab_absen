@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
+import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
 import com.its.bigstars.Activities.Home.Admin.presenter.HomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.presenter.IHomeAdminPresenter;
 import com.its.bigstars.Activities.Home.Admin.view.IHomeAdminView;
@@ -130,34 +131,29 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         if (v.getId() == R.id.link_admin_pengajar) {
-//            Intent intent = new Intent(getApplicationContext(), AdminPengajarTampilActivity.class);
-//            intent.putExtra(AdminPengajarTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_pengajar");
-//            startActivity(intent);
-            toastMessage.onSuccessMessage("pengajar");
+            intent = new Intent(getApplicationContext(), DataPengajarListActivity.class);
+            intent.putExtra(DataPengajarListActivity.EXTRA_STATUS_ACTIVITY, "to_edit_pengajar");
+            startActivity(intent);
         } else if (v.getId() == R.id.link_admin_murid) {
 //            Intent intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
 //            intent.putExtra(AdminMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_murid");
 //            startActivity(intent);
-            toastMessage.onSuccessMessage("murid");
         } else if (v.getId() == R.id.link_admin_wali_murid) {
 //            Intent intent = new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class);
 //            intent.putExtra(AdminWaliMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_wali_murid");
 //            startActivity(intent);
-            toastMessage.onSuccessMessage("wali murid");
         } else if (v.getId() == R.id.link_admin_mata_pelajaran) {
 //            startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
-            toastMessage.onSuccessMessage("mata pelajaran");
         } else if (v.getId() == R.id.link_admin_kelas) {
 //            onSuccessMessage("Pilih Pengajar");
 //            startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
-            toastMessage.onSuccessMessage("kelas");
         } else if (v.getId() == R.id.link_admin_kelas_aktif) {
 //            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
 //            String id_pengajar = "Semua";
 //            intent.putExtra(PengajarKelasTampilAktifActivity.EXTRA_ID_PENGAJAR, id_pengajar);
 //            startActivity(intent);
-            toastMessage.onSuccessMessage("kelas aktif");
         }
     }
 
@@ -171,7 +167,7 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        Intent intent = new Intent();
+        Intent intent;
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
