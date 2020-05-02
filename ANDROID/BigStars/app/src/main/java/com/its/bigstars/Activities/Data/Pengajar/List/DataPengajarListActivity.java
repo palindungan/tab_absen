@@ -2,6 +2,7 @@ package com.its.bigstars.Activities.Data.Pengajar.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -13,6 +14,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.bigstars.Activities.Data.Pengajar.Add.DataPengajarAddActivity;
+import com.its.bigstars.Activities.Data.Pengajar.Edit.DataPengajarEditActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.presenter.DataPengajarListPresenter;
 import com.its.bigstars.Activities.Data.Pengajar.List.presenter.IDataPengajarListPresenter;
 import com.its.bigstars.Activities.Data.Pengajar.List.view.IDataPengajarListView;
@@ -73,7 +75,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 
         status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
         if (!status_activity.equals("to_edit_pengajar")) {
-            fab.hide();
+            fab.show();
         }
 
         fab.setOnClickListener(this);
@@ -95,7 +97,40 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 
     @Override
     public void onSetupListView(ArrayList<Pengajar> dataModelArrayList) {
+        adapterDataPengajarList = new AdapterDataPengajarList(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(adapterDataPengajarList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(true);
+        adapterDataPengajarList.notifyDataSetChanged();
 
+        adapterDataPengajarList.setOnItemClickListener(new AdapterDataPengajarList.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent;
+
+                if (status_activity.equals("to_edit_pengajar")) {
+//                    intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
+//                    intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//                    startActivity(intent);
+                } else if (status_activity.equals("to_transaksi_gaji")) {
+//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
+//                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
+//                    startActivity(intent);
+                } else if (status_activity.equals("to_riwayat_gaji")) {
+//                    Intent intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
+//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+//                    startActivity(intent);
+                } else if (status_activity.equals("to_monitoring")) {
+//                    Intent intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
+//                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
+//                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
+//                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     @Override

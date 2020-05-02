@@ -6,16 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.its.bigstars.Activities._Login.LoginActivity;
-import com.its.bigstars.Activities._Main.view.IMainView;
-import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
 
-import es.dmoral.toasty.Toasty;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, IMainView {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLoginAdmin, btnLoginPengajar, btnLoginWaliMurid;
 

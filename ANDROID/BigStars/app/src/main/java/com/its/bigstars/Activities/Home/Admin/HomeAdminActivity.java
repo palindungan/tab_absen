@@ -13,21 +13,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
-import com.its.bigstars.Activities.Home.Admin.presenter.HomeAdminPresenter;
-import com.its.bigstars.Activities.Home.Admin.presenter.IHomeAdminPresenter;
-import com.its.bigstars.Activities.Home.Admin.view.IHomeAdminView;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
 
-public class HomeAdminActivity extends AppCompatActivity implements View.OnClickListener, IHomeAdminView {
+public class HomeAdminActivity extends AppCompatActivity implements View.OnClickListener {
 
-    IHomeAdminPresenter homeAdminPresenter;
     SessionManager sessionManager;
     ToastMessage toastMessage;
 
@@ -42,7 +37,6 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_admin);
 
-        homeAdminPresenter = new HomeAdminPresenter(this, this);
         sessionManager = new SessionManager(this);
         toastMessage = new ToastMessage(this);
 
