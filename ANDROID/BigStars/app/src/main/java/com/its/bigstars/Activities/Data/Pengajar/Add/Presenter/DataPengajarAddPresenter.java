@@ -13,7 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.its.bigstars.Activities.Data.Pengajar.Add.View.IDataPengajarAddView;
 import com.its.bigstars.Controllers.BaseUrl;
-import com.its.bigstars.Controllers.GlobalValue;
+import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.ToastMessage;
 
 import org.json.JSONException;
@@ -28,7 +28,7 @@ public class DataPengajarAddPresenter implements IDataPengajarAddPresenter {
     IDataPengajarAddView dataPengajarAddView;
 
     BaseUrl baseUrl;
-    GlobalValue globalValue;
+    GlobalMessage globalMessage;
     ToastMessage toastMessage;
 
     public DataPengajarAddPresenter(Context context, IDataPengajarAddView dataPengajarAddView) {
@@ -36,7 +36,7 @@ public class DataPengajarAddPresenter implements IDataPengajarAddPresenter {
         this.dataPengajarAddView = dataPengajarAddView;
 
         baseUrl = new BaseUrl();
-        globalValue = new GlobalValue();
+        globalMessage = new GlobalMessage();
         toastMessage = new ToastMessage(context);
     }
 
@@ -63,14 +63,14 @@ public class DataPengajarAddPresenter implements IDataPengajarAddPresenter {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            toastMessage.onErrorMessage(globalValue.getMessageResponseError() + e.toString());
+                            toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        toastMessage.onErrorMessage(globalValue.getMessageConnectionError());
+                        toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
                     }
                 }) {
             @Override

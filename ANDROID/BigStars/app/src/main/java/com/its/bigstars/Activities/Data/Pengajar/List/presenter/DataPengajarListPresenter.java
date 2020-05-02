@@ -10,7 +10,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.its.bigstars.Activities.Data.Pengajar.List.view.IDataPengajarListView;
 import com.its.bigstars.Controllers.BaseUrl;
-import com.its.bigstars.Controllers.GlobalValue;
+import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Pengajar;
 
@@ -25,7 +25,7 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
     IDataPengajarListView dataPengajarListView;
 
     BaseUrl baseUrl;
-    GlobalValue globalValue;
+    GlobalMessage globalMessage;
     ToastMessage toastMessage;
 
     ArrayList<Pengajar> dataModelArrayList;
@@ -35,7 +35,7 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
         this.dataPengajarListView = dataPengajarListView;
 
         baseUrl = new BaseUrl();
-        globalValue = new GlobalValue();
+        globalMessage = new GlobalMessage();
         toastMessage = new ToastMessage(context);
     }
 
@@ -88,13 +88,13 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    toastMessage.onErrorMessage(globalValue.getMessageResponseError() + e.toString());
+                    toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                toastMessage.onErrorMessage(globalValue.getMessageConnectionError());
+                toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
             }
         });
 

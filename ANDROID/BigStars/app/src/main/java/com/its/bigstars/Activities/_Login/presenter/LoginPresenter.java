@@ -14,7 +14,7 @@ import com.its.bigstars.Activities.Home.Admin.HomeAdminActivity;
 import com.its.bigstars.Activities.Home.Pengajar.HomePengajarActivity;
 import com.its.bigstars.Activities._Login.view.ILoginView;
 import com.its.bigstars.Controllers.BaseUrl;
-import com.its.bigstars.Controllers.GlobalValue;
+import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 
@@ -31,7 +31,7 @@ public class LoginPresenter implements ILoginPresenter {
     ILoginView loginView;
 
     BaseUrl baseUrl;
-    GlobalValue globalValue;
+    GlobalMessage globalMessage;
     SessionManager sessionManager;
     ToastMessage toastMessage;
 
@@ -40,7 +40,7 @@ public class LoginPresenter implements ILoginPresenter {
         this.loginView = loginView;
 
         baseUrl = new BaseUrl();
-        globalValue = new GlobalValue();
+        globalMessage = new GlobalMessage();
         sessionManager = new SessionManager(context);
         toastMessage = new ToastMessage(context);
     }
@@ -105,14 +105,14 @@ public class LoginPresenter implements ILoginPresenter {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            toastMessage.onErrorMessage(globalValue.getMessageResponseError() + e.toString());
+                            toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        toastMessage.onErrorMessage(globalValue.getMessageConnectionError());
+                        toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
                     }
                 }) {
             @Override

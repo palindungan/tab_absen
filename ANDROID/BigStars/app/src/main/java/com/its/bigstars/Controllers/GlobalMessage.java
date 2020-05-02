@@ -1,11 +1,11 @@
 package com.its.bigstars.Controllers;
 
-public class GlobalValue {
+public class GlobalMessage {
 
     String messageConnectionError;
     String messageResponseError;
 
-    public GlobalValue() {
+    public GlobalMessage() {
         messageConnectionError = "Tidak Ada Koneksi Ke Server !, Periksa Kembali Koneksi Anda";
         messageResponseError = "Kesalahan Menerima Data : ";
     }
