@@ -36,16 +36,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginPresenter = new LoginPresenter(this, this);
         toastMessage = new ToastMessage(this);
 
+        toolbar = findViewById(R.id.toolbar);
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btn_login);
-        toolbar = findViewById(R.id.toolbar);
+
+        initActionBar();
 
         hakAkses = getIntent().getStringExtra(EXTRA_HAK_AKSES);
 
         btnLogin.setOnClickListener(this);
-
-        initActionBar();
     }
 
     private void initActionBar() {
