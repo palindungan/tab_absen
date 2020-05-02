@@ -12,6 +12,7 @@ class Pengajar extends REST_Controller
     {
         parent::__construct($config);
         $this->load->model("api/M_universal");
+        $this->load->model("api/M_kode");
     }
 
     function list_pengajar_get()
@@ -53,10 +54,10 @@ class Pengajar extends REST_Controller
         }
     }
 
-    function tambah_pengajar_post()
+    function add_pengajar_post()
     {
         // ambil data
-        $id_pengajar = $this->M_universal->get_no();
+        $id_pengajar = $this->M_kode->get_id_pengajar();
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
@@ -90,12 +91,12 @@ class Pengajar extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menambah Data";
             $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
+            $result["message"] = "Gagal Menambah Data";
             $this->response(array($result, 502));
         }
     }

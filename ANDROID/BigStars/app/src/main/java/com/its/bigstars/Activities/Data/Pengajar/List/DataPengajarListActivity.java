@@ -74,7 +74,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
         });
 
         status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
-        if (!status_activity.equals("to_edit_pengajar")) {
+        if (status_activity.equals("to_edit_pengajar")) {
             fab.show();
         }
 
