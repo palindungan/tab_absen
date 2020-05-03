@@ -122,7 +122,13 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
                         try {
 
                             if (!isEmpty && !isInvalidKonfirmasi) {
-                                dataPengajarAddPresenter.onSubmit(inputNama, inputUsername, inputPassword, inputAlamat, inputNo_hp, inputFoto);
+                                dataPengajarAddPresenter.onSubmit(
+                                        "" + inputNama,
+                                        "" + inputUsername,
+                                        "" + inputPassword,
+                                        "" + inputAlamat,
+                                        "" + inputNo_hp,
+                                        "" + inputFoto);
                             }
 
                         } catch (Exception e) {
@@ -161,7 +167,6 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case android.R.id.home:
                 onBackPressed();
                 break;
