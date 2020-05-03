@@ -107,8 +107,8 @@ public class DataPengajarEditActivity extends AppCompatActivity implements View.
         edtUsername.setText(username);
         edtAlamat.setText(alamat);
         edtNoHp.setText(no_hp);
-        String alamat_foto = baseUrl.getUrlUpload() + "image/pengajar/" + foto + ".jpg";
-        Picasso.get().load(alamat_foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
+        String alamatFoto = baseUrl.getUrlUpload() + "image/pengajar/" + foto + ".jpg";
+        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialogUpdate() {

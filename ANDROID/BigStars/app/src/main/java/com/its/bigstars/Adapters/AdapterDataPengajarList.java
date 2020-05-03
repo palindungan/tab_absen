@@ -48,10 +48,15 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
         holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
         holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
         holder.txtNoHP.setText("No : " + dataModelArrayList.get(position).getNo_hp());
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        String alamat = baseUrl.getUrlUpload() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
-        Picasso.get().load(alamat).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
+            }
+        });
 
+        String alamatFoto = baseUrl.getUrlUpload() + "image/pengajar/" + dataModelArrayList.get(position).getFoto() + ".jpg";
+        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
     }
 
     @Override
@@ -62,7 +67,7 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
     public class DataPengajarListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView txtNama, txtUsername, txtNoHP;
-        protected ImageView ivFoto;
+        protected ImageView ivFoto, ivDelete;
 
         public DataPengajarListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +76,7 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
             txtUsername = itemView.findViewById(R.id.txt_username);
             txtNoHP = itemView.findViewById(R.id.txt_no_hp);
             ivFoto = itemView.findViewById(R.id.iv_foto);
+            ivDelete = itemView.findViewById(R.id.iv_delete);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

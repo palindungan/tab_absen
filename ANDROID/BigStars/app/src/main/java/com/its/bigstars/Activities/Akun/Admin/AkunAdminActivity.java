@@ -98,8 +98,8 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
     private void setNilaiDefault(String nama, String username, String foto) {
         edtNama.setText(nama);
         edtUsername.setText(username);
-        String alamat_foto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
-        Picasso.get().load(alamat_foto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
+        String alamatFoto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
+        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialogUpdate() {
