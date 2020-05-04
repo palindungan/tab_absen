@@ -1,11 +1,13 @@
 package com.its.bigstars.Activities.Data.Pengajar.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -121,16 +123,16 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                     startActivity(intent);
-                } else if (statusActivity.equals("to_transaksi_gaji")) {
+                } else if (statusActivity.equals("home->view->gaji")) {
 //                    intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
 //                    startActivity(intent);
-                } else if (statusActivity.equals("to_riwayat_gaji")) {
+                } else if (statusActivity.equals("home->view->riwayat_gaji")) {
 //                    intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    startActivity(intent);
-                } else if (statusActivity.equals("to_monitoring")) {
+                } else if (statusActivity.equals("home->view->monitoring")) {
 //                    intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
 //                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
@@ -138,6 +140,34 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                 }
             }
         });
+    }
+
+    @Override
+    public void showDialogDelete(String kode, String nama) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Akun " + nama + " ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Menghapus !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            dataPengajarListPresenter.onDelete(kode);
+                        } catch (Exception e) {
+                            toastMessage.onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override

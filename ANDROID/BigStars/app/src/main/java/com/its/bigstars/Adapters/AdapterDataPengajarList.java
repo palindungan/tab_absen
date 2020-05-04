@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Models.Pengajar;
@@ -52,13 +53,19 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataPengajarList.DataPengajarListViewHolder holder, int position) {
-        holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
+        String kode = dataModelArrayList.get(position).getId_pengajar();
+        String nama = dataModelArrayList.get(position).getNama();
+
+        holder.txtNama.setText("Nama : " + nama);
         holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
         holder.txtNoHP.setText("No : " + dataModelArrayList.get(position).getNo_hp());
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DataPengajarListActivity dataPengajarListActivity = (DataPengajarListActivity) context;
+                dataPengajarListActivity.showDialogDelete(
+                        "" + kode,
+                        "" + nama);
             }
         });
 
@@ -85,7 +92,7 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
             ivFoto = itemView.findViewById(R.id.iv_foto);
             ivDelete = itemView.findViewById(R.id.iv_delete);
 
-            if (statusActivity.equals("home->view->edit")){
+            if (statusActivity.equals("home->view->edit")) {
                 ivDelete.setVisibility(View.VISIBLE);
             }
 

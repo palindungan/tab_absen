@@ -101,4 +101,9 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
+
+    @Override
+    public void onDelete(String id) {
+
+    }
 }
