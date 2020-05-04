@@ -26,6 +26,8 @@ public class SessionManager {
     public static final String FOTO = "FOTO";
     public static final String HAK_AKSES = "HAK_AKSES";
 
+    public static final String STATUS_ACTIVITY = "STATUS_ACTIVITY";
+
     public SessionManager(Context context) {
         this.context = context;
 
@@ -76,5 +78,14 @@ public class SessionManager {
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+    }
+
+    public void setStatusActivity(String statusActivity) {
+        editor.putString(STATUS_ACTIVITY, statusActivity);
+        editor.apply();
+    }
+
+    public String getStatusActivity() {
+        return sharedPreferences.getString(STATUS_ACTIVITY, "kosong");
     }
 }
