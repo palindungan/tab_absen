@@ -38,8 +38,8 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
-        sessionManager = new SessionManager(context);
         baseUrl = new BaseUrl();
+        sessionManager = new SessionManager(context);
 
         statusActivity = sessionManager.getStatusActivity();
     }
