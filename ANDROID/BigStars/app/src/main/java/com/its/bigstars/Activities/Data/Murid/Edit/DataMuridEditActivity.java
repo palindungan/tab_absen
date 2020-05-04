@@ -37,7 +37,7 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
 
     Toolbar toolbar;
     EditText edtNama, edtNamaWaliMurid, edtAlamat;
-    Button btnNext;
+    Button btnEdit, btnNext;
     ImageView ivFoto;
 
     public static final String EXTRA_ID_MURID = "EXTRA_ID_MURID";
@@ -67,6 +67,7 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
         edtNama = findViewById(R.id.edt_nama);
         edtNamaWaliMurid = findViewById(R.id.edt_nama_wali_murid);
         edtAlamat = findViewById(R.id.edt_alamat);
+        btnEdit = findViewById(R.id.btn_edit);
         btnNext = findViewById(R.id.btn_next);
         ivFoto = findViewById(R.id.iv_foto);
 
@@ -85,6 +86,7 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
                 "" + foto);
 
         ivFoto.setOnClickListener(this);
+        btnEdit.setOnClickListener(this);
         btnNext.setOnClickListener(this);
     }
 
@@ -122,6 +124,8 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_next) {
+
+        } else if (v.getId() == R.id.btn_edit) {
             showDialog();
         }
     }
