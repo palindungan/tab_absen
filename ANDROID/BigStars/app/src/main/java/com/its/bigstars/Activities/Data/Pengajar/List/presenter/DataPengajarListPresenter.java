@@ -2,6 +2,7 @@ package com.its.bigstars.Activities.Data.Pengajar.List.presenter;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataPengajarListPresenter implements IDataPengajarListPresenter {
     Context context;
@@ -104,6 +107,46 @@ public class DataPengajarListPresenter implements IDataPengajarListPresenter {
 
     @Override
     public void onDelete(String id) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "data/pengajar/delete_pengajar"; // url http request
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
+
+                            if (success.equals("1")) {
+                                toastMessage.onSuccessMessage(message);
+                                onLoadDataList();
+                            } else {
+                                toastMessage.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }

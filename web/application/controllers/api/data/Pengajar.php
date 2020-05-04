@@ -186,11 +186,13 @@ class Pengajar extends REST_Controller
         );
 
         $cek_foto = "";
+        $nama = "";
 
         // mengambil data dari database
         $query = $this->M_universal->get_data('pengajar', $where);
         foreach ($query->result_array() as $row) {
             $cek_foto = $row["foto"];
+            $nama = $row["nama"];
         }
 
         if ($cek_foto != "DEFFPE") {
@@ -208,13 +210,13 @@ class Pengajar extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menghapus Data " . $nama;
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
+            $result["message"] = "Gagal Menghapus Data";
             $this->response(array($result, 502));
         }
     }
