@@ -13,4 +13,14 @@ public class DataMuridListPresenter implements IDataMuridListPresenter {
         this.context = context;
         this.dataMuridListView = dataMuridListView;
     }
+
+    @Override
+    public void onLoadDataList() {
+
+    }
+
+    @Override
+    public void onDelete(String id) {
+
+    }
 }
