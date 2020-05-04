@@ -54,8 +54,8 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
 
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
-        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         recyclerView = findViewById(R.id.recycle_view);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
         initActionBar();
         dataMuridListPresenter.onLoadDataList();
