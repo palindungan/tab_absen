@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.SessionManager;
+import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Murid;
 import com.its.bigstars.R;
 import com.squareup.picasso.MemoryPolicy;
@@ -30,6 +31,7 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
     private static ClickListener clickListener;
 
     BaseUrl baseUrl;
+    ToastMessage toastMessage;
     SessionManager sessionManager;
 
     String statusActivity;
@@ -39,6 +41,7 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
         this.dataModelArrayList = dataModelArrayList;
 
         baseUrl = new BaseUrl();
+        toastMessage = new ToastMessage(context);
         sessionManager = new SessionManager(context);
 
         statusActivity = sessionManager.getStatusActivity();
@@ -53,9 +56,17 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataMuridList.DataMuridListViewHolder holder, int position) {
+        String kode = dataModelArrayList.get(position).getId_murid();
+
         holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
         holder.txtNamaWaliMurid.setText("Wali Murid : " + dataModelArrayList.get(position).getNama_wali_murid());
         holder.txtAlamat.setText("Alamat : " + dataModelArrayList.get(position).getAlamat());
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toastMessage.onSuccessMessage(kode);
+            }
+        });
 
         String alamatFoto = baseUrl.getUrlUpload() + "image/murid/" + dataModelArrayList.get(position).getFoto() + ".jpg";
         Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(holder.ivFoto);
@@ -69,7 +80,7 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
     public class DataMuridListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView txtNama, txtNamaWaliMurid, txtAlamat;
-        protected ImageView ivFoto;
+        protected ImageView ivFoto, ivDelete;
 
         public DataMuridListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +89,11 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
             txtNamaWaliMurid = itemView.findViewById(R.id.txt_nama_wali_murid);
             txtAlamat = itemView.findViewById(R.id.txt_alamat);
             ivFoto = itemView.findViewById(R.id.iv_foto);
+            ivDelete = itemView.findViewById(R.id.iv_delete);
+
+            if (statusActivity.equals("home->view->editMurid")) {
+                ivDelete.setVisibility(View.VISIBLE);
+            }
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

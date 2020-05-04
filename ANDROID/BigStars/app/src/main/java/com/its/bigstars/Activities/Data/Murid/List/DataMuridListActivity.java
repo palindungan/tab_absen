@@ -49,6 +49,8 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_data_murid_list);
 
         dataMuridListPresenter = new DataMuridListPresenter(this, this);
+        toastMessage = new ToastMessage(this);
+        sessionManager = new SessionManager(this);
 
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
