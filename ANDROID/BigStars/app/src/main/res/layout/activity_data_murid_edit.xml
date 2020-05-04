@@ -13,11 +13,11 @@
         android:layout_alignParentTop="true">
 
         <androidx.appcompat.widget.Toolbar
-            app:theme="@style/ToolbarTheme"
-            app:titleTextColor="@color/white"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/ToolbarTheme"
+            app:titleTextColor="@color/white">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -83,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next" />
+
     </LinearLayout>
 
 </RelativeLayout>
