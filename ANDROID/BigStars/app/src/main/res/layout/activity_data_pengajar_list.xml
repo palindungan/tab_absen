@@ -43,13 +43,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:contentDescription="Tambah Data"
-        android:src="@drawable/ic_add_circle_24dp" />
+        android:src="@drawable/ic_add_circle_24dp"
+        android:visibility="gone" />
 
 </RelativeLayout>
