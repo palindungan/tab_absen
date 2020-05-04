@@ -97,7 +97,7 @@ class Pengajar extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Gagal Menambah Data";
-            $this->response(array($result, 502));
+            $this->response($result, 200);
         }
     }
 
@@ -173,7 +173,7 @@ class Pengajar extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Gagal Mengupdate Data";
-            $this->response(array($result, 502));
+            $this->response($result, 200);
         }
     }
 
@@ -217,7 +217,7 @@ class Pengajar extends REST_Controller
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Gagal Menghapus Data";
-            $this->response(array($result, 502));
+            $this->response($result, 200);
         }
     }
 }
