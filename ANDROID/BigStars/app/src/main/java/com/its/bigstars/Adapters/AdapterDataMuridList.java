@@ -27,9 +27,12 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
     Context context;
     ArrayList<Murid> dataModelArrayList;
 
-    SessionManager sessionManager;
-    BaseUrl baseUrl;
     private static ClickListener clickListener;
+
+    BaseUrl baseUrl;
+    SessionManager sessionManager;
+
+    String statusActivity;
 
     public AdapterDataMuridList(Context context, ArrayList<Murid> dataModelArrayList) {
         this.context = context;
@@ -37,6 +40,8 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
 
         sessionManager = new SessionManager(context);
         baseUrl = new BaseUrl();
+
+        statusActivity = sessionManager.getStatusActivity();
     }
 
     @NonNull

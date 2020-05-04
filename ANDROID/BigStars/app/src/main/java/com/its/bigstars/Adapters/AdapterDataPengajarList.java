@@ -39,8 +39,8 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
-        baseUrl = new BaseUrl();
         sessionManager = new SessionManager(context);
+        baseUrl = new BaseUrl();
 
         statusActivity = sessionManager.getStatusActivity();
     }
