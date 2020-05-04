@@ -109,6 +109,18 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
         recyclerView.setNestedScrollingEnabled(true);
         adapterDataPengajarList.notifyDataSetChanged();
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
+            }
+        });
+
         adapterDataPengajarList.setOnItemClickListener(new AdapterDataPengajarList.ClickListener() {
             @Override
             public void onClick(View view, int position) {
