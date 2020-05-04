@@ -12,4 +12,9 @@ public class DataMuridEditPresenter implements IDataMuridEditPresenter {
         this.context = context;
         this.dataMuridEditView = dataMuridEditView;
     }
+
+    @Override
+    public void onLoadDataListWaliMurid() {
+
+    }
 }
