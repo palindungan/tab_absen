@@ -64,7 +64,6 @@ public class DataPengajarAddActivity extends AppCompatActivity implements View.O
 
         ivFoto.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
-
     }
 
     private void initActionBar() {
