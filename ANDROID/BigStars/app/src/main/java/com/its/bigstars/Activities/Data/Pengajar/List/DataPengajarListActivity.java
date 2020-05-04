@@ -19,6 +19,7 @@ import com.its.bigstars.Activities.Data.Pengajar.List.presenter.DataPengajarList
 import com.its.bigstars.Activities.Data.Pengajar.List.presenter.IDataPengajarListPresenter;
 import com.its.bigstars.Activities.Data.Pengajar.List.view.IDataPengajarListView;
 import com.its.bigstars.Adapters.AdapterDataPengajarList;
+import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Pengajar;
 import com.its.bigstars.R;
@@ -29,6 +30,8 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 
     IDataPengajarListPresenter dataPengajarListPresenter;
     ToastMessage toastMessage;
+    SessionManager sessionManager;
+
     private AdapterDataPengajarList adapterDataPengajarList;
 
     Toolbar toolbar;
@@ -36,8 +39,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    public final static String EXTRA_STATUS_ACTIVITY = "EXTRA_STATUS_ACTIVITY";
-    String status_activity = "";
+    String statusActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
 
         dataPengajarListPresenter = new DataPengajarListPresenter(this, this);
         toastMessage = new ToastMessage(this);
+        sessionManager = new SessionManager(this);
 
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
@@ -73,8 +76,8 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
             }
         });
 
-        status_activity = getIntent().getStringExtra(EXTRA_STATUS_ACTIVITY);
-        if (status_activity.equals("to_edit_pengajar")) {
+        statusActivity = sessionManager.getStatusActivity();
+        if (statusActivity.equals("home->view->edit")) {
             fab.show();
         }
 
@@ -109,7 +112,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
             public void onClick(View view, int position) {
                 Intent intent;
 
-                if (status_activity.equals("to_edit_pengajar")) {
+                if (statusActivity.equals("home->view->edit")) {
                     intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
                     intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
@@ -118,16 +121,16 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                     startActivity(intent);
-                } else if (status_activity.equals("to_transaksi_gaji")) {
+                } else if (statusActivity.equals("to_transaksi_gaji")) {
 //                    intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
 //                    startActivity(intent);
-                } else if (status_activity.equals("to_riwayat_gaji")) {
+                } else if (statusActivity.equals("to_riwayat_gaji")) {
 //                    intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
 //                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
 //                    startActivity(intent);
-                } else if (status_activity.equals("to_monitoring")) {
+                } else if (statusActivity.equals("to_monitoring")) {
 //                    intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
 //                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
 //                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.bigstars.Controllers.BaseUrl;
+import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Models.Pengajar;
 import com.its.bigstars.R;
 import com.squareup.picasso.MemoryPolicy;
@@ -28,12 +29,18 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
     private static ClickListener clickListener;
 
     BaseUrl baseUrl;
+    SessionManager sessionManager;
+
+    String statusActivity;
 
     public AdapterDataPengajarList(Context context, ArrayList<Pengajar> dataModelArrayList) {
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
         baseUrl = new BaseUrl();
+        sessionManager = new SessionManager(context);
+
+        statusActivity = sessionManager.getStatusActivity();
     }
 
     @NonNull
@@ -77,6 +84,10 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
             txtNoHP = itemView.findViewById(R.id.txt_no_hp);
             ivFoto = itemView.findViewById(R.id.iv_foto);
             ivDelete = itemView.findViewById(R.id.iv_delete);
+
+            if (statusActivity.equals("home->view->edit")){
+                ivDelete.setVisibility(View.VISIBLE);
+            }
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

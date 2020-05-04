@@ -127,8 +127,8 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         Intent intent;
         if (v.getId() == R.id.link_admin_pengajar) {
+            sessionManager.setStatusActivity("home->view->edit");
             intent = new Intent(getApplicationContext(), DataPengajarListActivity.class);
-            intent.putExtra(DataPengajarListActivity.EXTRA_STATUS_ACTIVITY, "to_edit_pengajar");
             startActivity(intent);
         } else if (v.getId() == R.id.link_admin_murid) {
 //            Intent intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
