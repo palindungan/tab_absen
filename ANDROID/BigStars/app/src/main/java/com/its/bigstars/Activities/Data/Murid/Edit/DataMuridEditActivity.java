@@ -22,6 +22,9 @@ import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.WaliMurid;
 import com.its.bigstars.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,17 +42,15 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
 
     public static final String EXTRA_ID_MURID = "EXTRA_ID_MURID";
     public static final String EXTRA_NAMA = "EXTRA_NAMA";
+    public static final String EXTRA_ID_WALI_MURID = "EXTRA_ID_WALI_MURID";
     public static final String EXTRA_NAMA_WALI_MURID = "EXTRA_NAMA_WALI_MURID";
     public static final String EXTRA_ALAMAT = "EXTRA_ALAMAT";
     public static final String EXTRA_FOTO = "EXTRA_FOTO";
-    String id_murid, nama, nama_wali_murid, alamat, foto;
+    String id_murid, nama, id_wali_murid, nama_wali_murid, alamat, foto;
 
     private Bitmap bitmap;
     String data_photo = "";
 
-    private String[] myImageNameList = new String[]{
-            "Benz", "Bike", "Car", "Carrera", "Ferrari", "Harly", "Lamborghini", "Silver"
-    };
     public static Dialog dialog;
 
     @Override
@@ -71,13 +72,13 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
 
         id_murid = getIntent().getStringExtra(EXTRA_ID_MURID);
         nama = getIntent().getStringExtra(EXTRA_NAMA);
+        id_wali_murid = getIntent().getStringExtra(EXTRA_ID_WALI_MURID);
         nama_wali_murid = getIntent().getStringExtra(EXTRA_NAMA_WALI_MURID);
         alamat = getIntent().getStringExtra(EXTRA_ALAMAT);
         foto = getIntent().getStringExtra(EXTRA_FOTO);
 
         initActionBar();
         inisiasiAwal(
-                "" + id_murid,
                 "" + nama,
                 "" + nama_wali_murid,
                 "" + alamat,
@@ -88,9 +89,18 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initActionBar() {
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
-    private void inisiasiAwal(String id_murid, String nama, String nama_wali_murid, String alamat, String foto) {
+    private void inisiasiAwal(String nama, String nama_wali_murid, String alamat, String foto) {
+        edtNama.setText(nama);
+        edtNamaWaliMurid.setText(nama_wali_murid);
+        edtAlamat.setText(alamat);
+        String alamatFoto = baseUrl.getUrlUpload() + "image/pengajar/" + foto + ".jpg";
+        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialog() {
