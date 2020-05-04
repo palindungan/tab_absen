@@ -91,7 +91,6 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
     }
 
     private void inisiasiAwal(String id_murid, String nama, String nama_wali_murid, String alamat, String foto) {
-
     }
 
     private void showDialog() {
@@ -107,9 +106,20 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
                 dialog.dismiss();
             }
         });
+        dataMuridEditPresenter.onLoadDataListWaliMurid();
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_next) {
+            showDialog();
+        }
+    }
+
+    @Override
+    public void onSetupListView(ArrayList<WaliMurid> dataModelArrayList) {
         RecyclerView recyclerView = dialog.findViewById(R.id.recycler);
-        AdapterDialogListWaliMurid adapterDialogListWaliMurid = new AdapterDialogListWaliMurid(this, myImageNameList);
+        AdapterDialogListWaliMurid adapterDialogListWaliMurid = new AdapterDialogListWaliMurid(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
 
         recyclerView.setAdapter(adapterDialogListWaliMurid);
@@ -124,32 +134,5 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
         });
 
         dialog.show();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btn_next) {
-            showDialog();
-        }
-    }
-
-    @Override
-    public void onSetupListView(ArrayList<WaliMurid> dataModelArrayList) {
-//        RecyclerView recyclerView = dialog.findViewById(R.id.recycler);
-//        AdapterDialogListWaliMurid adapterDialogListWaliMurid = new AdapterDialogListWaliMurid(this, dataModelArrayList);
-//        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
-//
-//        recyclerView.setAdapter(adapterDialogListWaliMurid);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setNestedScrollingEnabled(true);
-//
-//        adapterDialogListWaliMurid.setOnItemClickListener(new AdapterDialogListWaliMurid.ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//
-//            }
-//        });
-//
-//        dialog.show();
     }
 }

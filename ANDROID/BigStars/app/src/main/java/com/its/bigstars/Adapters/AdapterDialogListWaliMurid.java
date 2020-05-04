@@ -32,11 +32,9 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     String statusActivity;
 
-    private String[] myImageNameList;
-
-    public AdapterDialogListWaliMurid(Context context, String[] myImageNameList) {
+    public AdapterDialogListWaliMurid(Context context, ArrayList<WaliMurid> dataModelArrayList) {
         this.context = context;
-        this.myImageNameList = myImageNameList;
+        this.dataModelArrayList = dataModelArrayList;
 
         baseUrl = new BaseUrl();
         sessionManager = new SessionManager(context);
@@ -55,7 +53,7 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
     @Override
     public void onBindViewHolder(@NonNull AdapterDialogListWaliMurid.DialogListWaliMuridViewHolder holder, int position) {
 
-        String nama = myImageNameList[position];
+        String nama = dataModelArrayList.get(position).getNama();
 
         holder.tvNama.setText(nama);
         holder.tvNama.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +66,7 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     @Override
     public int getItemCount() {
-        // return dataModelArrayList.size();
-        return myImageNameList.length;
+        return dataModelArrayList.size();
     }
 
     public class DialogListWaliMuridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
