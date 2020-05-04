@@ -52,16 +52,9 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDialogListWaliMurid.DialogListWaliMuridViewHolder holder, int position) {
-
-        String nama = dataModelArrayList.get(position).getNama();
-
-        holder.tvNama.setText(nama);
-        holder.tvNama.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toastMessage.onSuccessMessage(nama);
-            }
-        });
+        holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
+        holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
+        holder.txtNoHp.setText("No. Hp : " + dataModelArrayList.get(position).getNo_hp());
     }
 
     @Override
@@ -71,12 +64,14 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     public class DialogListWaliMuridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvNama;
+        protected TextView txtNama, txtUsername, txtNoHp;
 
         public DialogListWaliMuridViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvNama = itemView.findViewById(R.id.tv_nama);
+            txtNama = itemView.findViewById(R.id.txt_nama);
+            txtUsername = itemView.findViewById(R.id.txt_username);
+            txtNoHp = itemView.findViewById(R.id.txt_no_hp);
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
