@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
+import com.its.bigstars.Activities.Data.Murid.List.DataMuridListActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
@@ -127,13 +128,13 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         Intent intent;
         if (v.getId() == R.id.link_admin_pengajar) {
-            sessionManager.setStatusActivity("home->view->edit");
+            sessionManager.setStatusActivity("home->view->editPengajar");
             intent = new Intent(getApplicationContext(), DataPengajarListActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.link_admin_murid) {
-//            Intent intent = new Intent(getApplicationContext(), AdminMuridTampilActivity.class);
-//            intent.putExtra(AdminMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_murid");
-//            startActivity(intent);
+            sessionManager.setStatusActivity("home->view->editMurid");
+            intent = new Intent(getApplicationContext(), DataMuridListActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.link_admin_wali_murid) {
 //            Intent intent = new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class);
 //            intent.putExtra(AdminWaliMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_wali_murid");

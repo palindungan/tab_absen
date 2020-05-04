@@ -79,7 +79,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
         });
 
         statusActivity = sessionManager.getStatusActivity();
-        if (statusActivity.equals("home->view->edit")) {
+        if (statusActivity.equals("home->view->editPengajar")) {
             fab.show();
         }
 
@@ -126,7 +126,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
             public void onClick(View view, int position) {
                 Intent intent;
 
-                if (statusActivity.equals("home->view->edit")) {
+                if (statusActivity.equals("home->view->editPengajar")) {
                     intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
                     intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());

@@ -22,7 +22,7 @@ class Murid extends REST_Controller
 
         // variable array
         $result = array();
-        $result['murid'] = array();
+        $result['data_result'] = array();
 
         if ($query->num_rows() > 0) {
 
@@ -33,22 +33,25 @@ class Murid extends REST_Controller
                 $data = array(
                     'id_murid' => $row["id_murid"],
                     'nama' => $row["nama"],
+                    'foto' => $row["foto"],
+                    'id_wali_murid' => $row["id_wali_murid"],
                     'nama_wali_murid' => $row["nama_wali_murid"],
+                    'username' => $row["username"],
                     'alamat' => $row["alamat"],
-                    'foto' => $row["foto"]
+                    'no_hp' => $row["no_hp"]
                 );
 
-                array_push($result['murid'], $data);
+                array_push($result['data_result'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
+                $result["message"] = "Success Berhasil Mengambil Data";
                 $this->response($result, 200);
             }
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
+            $result["message"] = "Data Masih Kosong";
             $this->response($result, 200);
         }
     }
@@ -100,7 +103,7 @@ class Murid extends REST_Controller
 
         // variable array
         $result = array();
-        $result['murid'] = array();
+        $result['data_result'] = array();
 
         $data_id = array(
             'id_murid' => $id_murid
@@ -122,7 +125,7 @@ class Murid extends REST_Controller
                     'foto' => $row["foto"]
                 );
 
-                array_push($result['murid'], $data);
+                array_push($result['data_result'], $data);
 
                 // membuat array untuk di transfer
                 $result["success"] = "1";

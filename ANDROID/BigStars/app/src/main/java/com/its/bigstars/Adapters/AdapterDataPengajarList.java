@@ -93,7 +93,7 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
             ivFoto = itemView.findViewById(R.id.iv_foto);
             ivDelete = itemView.findViewById(R.id.iv_delete);
 
-            if (statusActivity.equals("home->view->edit")) {
+            if (statusActivity.equals("home->view->editPengajar")) {
                 ivDelete.setVisibility(View.VISIBLE);
             }
 
