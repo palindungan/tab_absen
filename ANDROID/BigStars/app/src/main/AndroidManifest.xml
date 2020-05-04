@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Data.Pengajar.Add.DataPengajarAddActivity"></activity>
+        <activity android:name=".Activities.Data.Murid.List.DataMuridListActivity"></activity>
+        <activity android:name=".Activities.Data.Pengajar.Add.DataPengajarAddActivity" />
         <activity android:name=".Activities.Data.Pengajar.Edit.DataPengajarEditActivity" />
         <activity android:name=".Activities.Data.Pengajar.List.DataPengajarListActivity" />
         <activity android:name=".Activities.Akun.Pengajar.AkunPengajarActivity" />
