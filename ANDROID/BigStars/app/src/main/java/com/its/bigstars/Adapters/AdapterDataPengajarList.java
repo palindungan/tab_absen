@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
+import com.its.bigstars.Activities.Data.Pengajar.List.view.IDataPengajarListView;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Models.Pengajar;
@@ -62,8 +63,8 @@ public class AdapterDataPengajarList extends RecyclerView.Adapter<AdapterDataPen
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataPengajarListActivity dataPengajarListActivity = (DataPengajarListActivity) context;
-                dataPengajarListActivity.showDialogDelete(
+                IDataPengajarListView dataPengajarListView = (DataPengajarListActivity) context;
+                dataPengajarListView.showDialogDelete(
                         "" + kode,
                         "" + nama);
             }
