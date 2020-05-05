@@ -56,7 +56,7 @@ class Murid extends REST_Controller
         }
     }
 
-    function tambah_murid_post()
+    function add_murid_post()
     {
         // ambil data
         $id_murid = $this->M_kode->get_id_murid();
@@ -87,12 +87,12 @@ class Murid extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menambah Data";
             $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
+            $result["message"] = "Gagal Menambah Data";
             $this->response($result, 200);
         }
     }
