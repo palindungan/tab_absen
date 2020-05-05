@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDialogListWaliMurid.DialogListWaliMuridViewHolder> {
+public class AdapterDataWaliMuridList extends RecyclerView.Adapter<AdapterDataWaliMuridList.DataWaliMuridListViewHolder> {
 
     Context context;
     ArrayList<WaliMurid> dataModelArrayList;
@@ -32,7 +32,7 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     String statusActivity;
 
-    public AdapterDialogListWaliMurid(Context context, ArrayList<WaliMurid> dataModelArrayList) {
+    public AdapterDataWaliMuridList(Context context, ArrayList<WaliMurid> dataModelArrayList) {
         this.context = context;
         this.dataModelArrayList = dataModelArrayList;
 
@@ -45,13 +45,13 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
 
     @NonNull
     @Override
-    public AdapterDialogListWaliMurid.DialogListWaliMuridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_dialog_list_wali_murid, parent, false);
-        return new DialogListWaliMuridViewHolder(itemView);
+    public DataWaliMuridListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_adapter_data_wali_murid_list, parent, false);
+        return new DataWaliMuridListViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterDialogListWaliMurid.DialogListWaliMuridViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DataWaliMuridListViewHolder holder, int position) {
         holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
         holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
         holder.txtNoHp.setText("No. Hp : " + dataModelArrayList.get(position).getNo_hp());
@@ -62,11 +62,11 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
         return dataModelArrayList.size();
     }
 
-    public class DialogListWaliMuridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class DataWaliMuridListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView txtNama, txtUsername, txtNoHp;
 
-        public DialogListWaliMuridViewHolder(@NonNull View itemView) {
+        public DataWaliMuridListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtNama = itemView.findViewById(R.id.txt_nama);
@@ -88,6 +88,6 @@ public class AdapterDialogListWaliMurid extends RecyclerView.Adapter<AdapterDial
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        AdapterDialogListWaliMurid.clickListener = clickListener;
+        AdapterDataWaliMuridList.clickListener = clickListener;
     }
 }
