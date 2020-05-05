@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import com.its.bigstars.Activities.Data.Murid.Edit.presenter.DataMuridEditPresenter;
 import com.its.bigstars.Activities.Data.Murid.Edit.presenter.IDataMuridEditPresenter;
 import com.its.bigstars.Activities.Data.Murid.Edit.view.IDataMuridEditView;
-import com.its.bigstars.Adapters.AdapterDialogListWaliMurid;
+import com.its.bigstars.Adapters.AdapterDataWaliMuridList;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.ToastMessage;
@@ -44,7 +44,10 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
     GlobalProcess globalProcess;
     ToastMessage toastMessage;
 
+    AdapterDataWaliMuridList adapterDataWaliMuridList;
+
     Toolbar toolbar;
+    RecyclerView recyclerView;
     EditText edtNama, edtNamaWaliMurid, edtAlamat;
     Button btnEdit, btnUpdate;
     ImageView ivFoto;
@@ -201,15 +204,15 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onSetupListView(ArrayList<WaliMurid> dataModelArrayList) {
-        RecyclerView recyclerView = dialog.findViewById(R.id.recycler);
-        AdapterDialogListWaliMurid adapterDialogListWaliMurid = new AdapterDialogListWaliMurid(this, dataModelArrayList);
+        recyclerView = dialog.findViewById(R.id.recycler);
+        adapterDataWaliMuridList = new AdapterDataWaliMuridList(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
 
-        recyclerView.setAdapter(adapterDialogListWaliMurid);
+        recyclerView.setAdapter(adapterDataWaliMuridList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
 
-        adapterDialogListWaliMurid.setOnItemClickListener(new AdapterDialogListWaliMurid.ClickListener() {
+        adapterDataWaliMuridList.setOnItemClickListener(new AdapterDataWaliMuridList.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 id_wali_murid = dataModelArrayList.get(position).getId_wali_murid();
