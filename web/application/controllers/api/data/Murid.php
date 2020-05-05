@@ -97,49 +97,6 @@ class Murid extends REST_Controller
         }
     }
 
-    function ambil_data_murid_post()
-    {
-        $id_murid = $this->post('id_murid');
-
-        // variable array
-        $result = array();
-        $result['data_result'] = array();
-
-        $data_id = array(
-            'id_murid' => $id_murid
-        );
-
-        // mengambil data dari database
-        $query = $this->M_universal->get_data('list_murid', $data_id);
-        if ($query->num_rows() > 0) {
-
-            // mengeluarkan data dari database
-            foreach ($query->result_array() as $row) {
-
-                // ambil detail data db
-                $data = array(
-                    'nama' => $row["nama"],
-                    'id_wali_murid' => $row["id_wali_murid"],
-                    'nama_wali_murid' => $row["nama_wali_murid"],
-                    'alamat' => $row["alamat"],
-                    'foto' => $row["foto"]
-                );
-
-                array_push($result['data_result'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
-                $this->response($result, 200);
-            }
-        } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
-            $this->response($result, 502);
-        }
-    }
-
     function update_murid_post()
     {
         $id_murid = $this->post('id_murid');
@@ -208,11 +165,14 @@ class Murid extends REST_Controller
         );
 
         $cek_foto = "";
+        $nama = "";
 
         // mengambil data dari database
         $query = $this->M_universal->get_data('murid', $where);
+
         foreach ($query->result_array() as $row) {
             $cek_foto = $row["foto"];
+            $nama = $row["nama"];
         }
 
         if ($cek_foto != "DEFFMR") {
@@ -230,13 +190,13 @@ class Murid extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menghapus Data " . $nama;
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
+            $result["message"] = "Gagal Menghapus Data";
             $this->response($result, 200);
         }
     }
