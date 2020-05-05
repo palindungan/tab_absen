@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
 import com.its.bigstars.Activities.Data.Murid.List.DataMuridListActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
+import com.its.bigstars.Activities.Data.WaliMurid.List.DataWaliMuridListActivity;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.R;
@@ -136,9 +137,9 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
             intent = new Intent(getApplicationContext(), DataMuridListActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.link_admin_wali_murid) {
-//            Intent intent = new Intent(getApplicationContext(), AdminWaliMuridTampilActivity.class);
-//            intent.putExtra(AdminWaliMuridTampilActivity.EXTRA_STATUS_ACTIVITY, "to_edit_wali_murid");
-//            startActivity(intent);
+            sessionManager.setStatusActivity("home->view->editWaliMurid");
+            intent = new Intent(getApplicationContext(), DataWaliMuridListActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.link_admin_mata_pelajaran) {
 //            startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
         } else if (v.getId() == R.id.link_admin_kelas) {
