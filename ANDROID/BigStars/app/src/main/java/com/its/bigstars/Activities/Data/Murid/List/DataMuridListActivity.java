@@ -79,6 +79,9 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
         });
 
         statusActivity = sessionManager.getStatusActivity();
+        if (statusActivity.equals("home->view->editMurid")) {
+            fab.show();
+        }
 
         fab.setOnClickListener(this);
     }
@@ -112,7 +115,9 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
                 if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
                     fab.hide();
                 } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
-                    fab.show();
+                    if (statusActivity.equals("home->view->editMurid")) {
+                        fab.show();
+                    }
                 }
             }
         });

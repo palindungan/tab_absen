@@ -116,7 +116,9 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                 if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
                     fab.hide();
                 } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
-                    fab.show();
+                    if (statusActivity.equals("home->view->editPengajar")) {
+                        fab.show();
+                    }
                 }
             }
         });
