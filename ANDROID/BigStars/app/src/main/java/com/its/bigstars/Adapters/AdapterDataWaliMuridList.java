@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,7 @@ public class AdapterDataWaliMuridList extends RecyclerView.Adapter<AdapterDataWa
     public class DataWaliMuridListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView txtNama, txtUsername, txtNoHp;
+        protected ImageView ivDelete;
 
         public DataWaliMuridListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +74,11 @@ public class AdapterDataWaliMuridList extends RecyclerView.Adapter<AdapterDataWa
             txtNama = itemView.findViewById(R.id.txt_nama);
             txtUsername = itemView.findViewById(R.id.txt_username);
             txtNoHp = itemView.findViewById(R.id.txt_no_hp);
+            ivDelete = itemView.findViewById(R.id.iv_delete);
+
+            if (statusActivity.equals("home->view->editWaliMurid")) {
+                ivDelete.setVisibility(View.VISIBLE);
+            }
 
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
