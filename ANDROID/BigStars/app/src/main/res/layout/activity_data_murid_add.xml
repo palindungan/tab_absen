@@ -72,12 +72,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_edit"
+                android:id="@+id/btn_pilih"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="9"
-                android:text="edit" />
+                android:text="pilih" />
 
         </LinearLayout>
 

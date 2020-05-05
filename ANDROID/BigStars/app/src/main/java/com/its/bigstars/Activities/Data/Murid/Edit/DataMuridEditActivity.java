@@ -76,9 +76,9 @@ public class DataMuridEditActivity extends AppCompatActivity implements View.OnC
         edtNama = findViewById(R.id.edt_nama);
         edtNamaWaliMurid = findViewById(R.id.edt_nama_wali_murid);
         edtAlamat = findViewById(R.id.edt_alamat);
+        ivFoto = findViewById(R.id.iv_foto);
         btnEdit = findViewById(R.id.btn_edit);
         btnUpdate = findViewById(R.id.btn_update);
-        ivFoto = findViewById(R.id.iv_foto);
 
         id_murid = getIntent().getStringExtra(EXTRA_ID_MURID);
         nama = getIntent().getStringExtra(EXTRA_NAMA);
