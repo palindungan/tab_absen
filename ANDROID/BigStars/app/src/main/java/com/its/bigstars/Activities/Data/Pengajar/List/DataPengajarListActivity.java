@@ -137,20 +137,12 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                     startActivity(intent);
-                } else if (statusActivity.equals("home->view->gaji")) {
-//                    intent = new Intent(getApplicationContext(), AdminTransaksiGajiTampilActivity.class);
-//                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    intent.putExtra(AdminTransaksiGajiTampilActivity.EXTRA_ID_PENGGAJIAN, "kosong");
-//                    startActivity(intent);
-                } else if (statusActivity.equals("home->view->riwayat_gaji")) {
-//                    intent = new Intent(getApplicationContext(), AdminTransaksiRiwayatGajiTampilActivity.class);
-//                    intent.putExtra(AdminTransaksiRiwayatGajiTampilActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    startActivity(intent);
-                } else if (statusActivity.equals("home->view->monitoring")) {
-//                    intent = new Intent(getApplicationContext(), PengajarRiwayatAbsenActivity.class);
-//                    String id_pengajar = dataModelArrayList.get(position).getId_pengajar();
-//                    intent.putExtra(PengajarRiwayatAbsenActivity.EXTRA_ID_PENGAJAR, id_pengajar);
-//                    startActivity(intent);
+                } else if (statusActivity.equals("xx->view->yy")) {
+
+                } else if (statusActivity.equals("xx->view->yy")) {
+
+                } else if (statusActivity.equals("xx->view->yy")) {
+
                 }
             }
         });
