@@ -33,7 +33,6 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
     private static ClickListener clickListener;
 
     BaseUrl baseUrl;
-    ToastMessage toastMessage;
     SessionManager sessionManager;
 
     String statusActivity;
@@ -43,7 +42,6 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
         this.dataModelArrayList = dataModelArrayList;
 
         baseUrl = new BaseUrl();
-        toastMessage = new ToastMessage(context);
         sessionManager = new SessionManager(context);
 
         statusActivity = sessionManager.getStatusActivity();
