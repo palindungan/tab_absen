@@ -123,6 +123,7 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
                 Intent intent = new Intent(getApplicationContext(), DataMuridEditActivity.class);
                 intent.putExtra(DataMuridEditActivity.EXTRA_ID_MURID, dataModelArrayList.get(position).getId_murid());
                 intent.putExtra(DataMuridEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
+                intent.putExtra(DataMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
                 intent.putExtra(DataMuridEditActivity.EXTRA_NAMA_WALI_MURID, dataModelArrayList.get(position).getNama_wali_murid());
                 intent.putExtra(DataMuridEditActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
                 intent.putExtra(DataMuridEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());

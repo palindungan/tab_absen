@@ -6,4 +6,6 @@ import java.util.ArrayList;
 
 public interface IDataMuridEditView {
     void onSetupListView(ArrayList<WaliMurid> dataModelArrayList);
+
+    void backPressed();
 }

@@ -69,12 +69,14 @@ public class DataMuridListPresenter implements IDataMuridListPresenter {
 
                             String id_murid = dataobj.getString("id_murid");
                             String nama = dataobj.getString("nama");
+                            String id_wali_murid = dataobj.getString("id_wali_murid");
                             String nama_wali_murid = dataobj.getString("nama_wali_murid");
                             String alamat = dataobj.getString("alamat");
                             String foto = dataobj.getString("foto");
 
                             playerModel.setId_murid(id_murid);
                             playerModel.setNama(nama);
+                            playerModel.setId_wali_murid(id_wali_murid);
                             playerModel.setNama_wali_murid(nama_wali_murid);
                             playerModel.setAlamat(alamat);
                             playerModel.setFoto(foto);

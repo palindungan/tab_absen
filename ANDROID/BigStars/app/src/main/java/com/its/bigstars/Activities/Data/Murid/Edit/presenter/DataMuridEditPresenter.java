@@ -2,6 +2,7 @@ package com.its.bigstars.Activities.Data.Murid.Edit.presenter;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataMuridEditPresenter implements IDataMuridEditPresenter {
     Context context;
@@ -95,6 +98,54 @@ public class DataMuridEditPresenter implements IDataMuridEditPresenter {
                 toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
             }
         });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onUpdate(String id_murid, String id_wali_murid, String nama, String foto) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "data/murid/update_murid"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
+
+                            if (success.equals("1")) {
+                                toastMessage.onSuccessMessage(message);
+                                dataMuridEditView.backPressed();
+                            } else {
+                                toastMessage.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_murid", id_murid);
+                params.put("id_wali_murid", id_wali_murid);
+                params.put("nama", nama);
+                params.put("foto", foto);
+                return params;
+            }
+        };
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
