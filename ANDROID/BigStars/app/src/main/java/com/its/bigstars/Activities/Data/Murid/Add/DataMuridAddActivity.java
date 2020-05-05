@@ -4,7 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,11 +24,14 @@ import android.widget.ImageView;
 import com.its.bigstars.Activities.Data.Murid.Add.presenter.DataMuridAddPresenter;
 import com.its.bigstars.Activities.Data.Murid.Add.presenter.IDataMuridAddPresenter;
 import com.its.bigstars.Activities.Data.Murid.Add.view.IDataMuridAddView;
+import com.its.bigstars.Adapters.AdapterDialogListWaliMurid;
 import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.ToastMessage;
+import com.its.bigstars.Models.WaliMurid;
 import com.its.bigstars.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DataMuridAddActivity extends AppCompatActivity implements View.OnClickListener, IDataMuridAddView {
 
@@ -39,7 +45,9 @@ public class DataMuridAddActivity extends AppCompatActivity implements View.OnCl
     ImageView ivFoto;
 
     private Bitmap bitmap;
-    String data_photo, id_wali_murid;
+    String data_photo, id_wali_murid, nama_wali_murid, alamat;
+
+    public static Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +133,22 @@ public class DataMuridAddActivity extends AppCompatActivity implements View.OnCl
         alertDialog.show();
     }
 
+    private void showDialogPilih() {
+        dialog = new Dialog(this);
+        // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_list_wali_murid);
+
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dataMuridAddPresenter.onLoadDataListWaliMurid();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.iv_foto) {
@@ -133,7 +157,7 @@ public class DataMuridAddActivity extends AppCompatActivity implements View.OnCl
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 1);
         } else if (v.getId() == R.id.btn_pilih) {
-            toastMessage.onSuccessMessage("pilih wali");
+            showDialogPilih();
         } else if (v.getId() == R.id.btn_submit) {
             showDialog();
         }
@@ -142,6 +166,32 @@ public class DataMuridAddActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void backPressed() {
         onBackPressed();
+    }
+
+    @Override
+    public void onSetupListView(ArrayList<WaliMurid> dataModelArrayList) {
+        RecyclerView recyclerView = dialog.findViewById(R.id.recycler);
+        AdapterDialogListWaliMurid adapterDialogListWaliMurid = new AdapterDialogListWaliMurid(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+
+        recyclerView.setAdapter(adapterDialogListWaliMurid);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(true);
+
+        adapterDialogListWaliMurid.setOnItemClickListener(new AdapterDialogListWaliMurid.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                id_wali_murid = dataModelArrayList.get(position).getId_wali_murid();
+                nama_wali_murid = dataModelArrayList.get(position).getNama();
+                alamat = dataModelArrayList.get(position).getAlamat();
+
+                edtNamaWaliMurid.setText(nama_wali_murid);
+                edtAlamat.setText(alamat);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
