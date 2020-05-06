@@ -136,14 +136,14 @@ class Mata_pelajaran extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Mengupdate Data";
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
+            $result["message"] = "Gagal Mengupdate Data";
+            $this->response($result, 200);
         }
     }
 
@@ -160,14 +160,14 @@ class Mata_pelajaran extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menghapus Data ";
             $this->response($result, 200);
         } else {
 
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
+            $result["message"] = "Gagal Menghapus Data";
+            $this->response($result, 200);
         }
     }
 }
