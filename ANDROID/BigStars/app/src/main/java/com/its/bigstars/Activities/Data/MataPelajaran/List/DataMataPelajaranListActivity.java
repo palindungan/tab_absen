@@ -115,7 +115,7 @@ public class DataMataPelajaranListActivity extends AppCompatActivity implements 
                 if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
                     fab.hide();
                 } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
-                    if (statusActivity.equals("home->view->editWaliMurid")) {
+                    if (statusActivity.equals("home->view->editMataPelajaran")) {
                         fab.show();
                     }
                 }
@@ -127,7 +127,7 @@ public class DataMataPelajaranListActivity extends AppCompatActivity implements 
             public void onClick(View view, int position) {
                 Intent intent;
 
-                if (statusActivity.equals("home->view->editWaliMurid")) {
+                if (statusActivity.equals("home->view->editMataPelajaran")) {
 //                    intent = new Intent(getApplicationContext(), DataWaliMuridEditActivity.class);
 //                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
 //                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());

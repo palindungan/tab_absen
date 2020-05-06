@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.its.bigstars.Activities.Akun.Admin.AkunAdminActivity;
+import com.its.bigstars.Activities.Data.MataPelajaran.List.DataMataPelajaranListActivity;
 import com.its.bigstars.Activities.Data.Murid.List.DataMuridListActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.DataPengajarListActivity;
 import com.its.bigstars.Activities.Data.WaliMurid.List.DataWaliMuridListActivity;
@@ -141,7 +142,9 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
             intent = new Intent(getApplicationContext(), DataWaliMuridListActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.link_admin_mata_pelajaran) {
-//            startActivity(new Intent(getApplicationContext(), AdminMataPelajaranTampilActivity.class));
+            sessionManager.setStatusActivity("home->view->editMataPelajaran");
+            intent = new Intent(getApplicationContext(), DataMataPelajaranListActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.link_admin_kelas) {
 //            onSuccessMessage("Pilih Pengajar");
 //            startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
