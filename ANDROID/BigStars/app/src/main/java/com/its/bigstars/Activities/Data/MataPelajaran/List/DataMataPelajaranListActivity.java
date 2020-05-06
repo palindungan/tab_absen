@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.bigstars.Activities.Data.MataPelajaran.Add.DataMataPelajaranAddActivity;
+import com.its.bigstars.Activities.Data.MataPelajaran.Edit.DataMataPelajaranEditActivity;
 import com.its.bigstars.Activities.Data.MataPelajaran.List.presenter.DataMataPelajaranListPresenter;
 import com.its.bigstars.Activities.Data.MataPelajaran.List.presenter.IDataMataPelajaranListPresenter;
 import com.its.bigstars.Activities.Data.MataPelajaran.List.view.IDataMataPelajaranListView;
@@ -128,13 +129,10 @@ public class DataMataPelajaranListActivity extends AppCompatActivity implements 
                 Intent intent;
 
                 if (statusActivity.equals("home->view->editMataPelajaran")) {
-//                    intent = new Intent(getApplicationContext(), DataWaliMuridEditActivity.class);
-//                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_ID_WALI_MURID, dataModelArrayList.get(position).getId_wali_murid());
-//                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
-//                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_USERNAME, dataModelArrayList.get(position).getUsername());
-//                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
-//                    intent.putExtra(DataWaliMuridEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
-//                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), DataMataPelajaranEditActivity.class);
+                    intent.putExtra(DataMataPelajaranEditActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
+                    intent.putExtra(DataMataPelajaranEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
+                    startActivity(intent);
                 } else if (statusActivity.equals("xx->view->yy")) {
 
                 }
