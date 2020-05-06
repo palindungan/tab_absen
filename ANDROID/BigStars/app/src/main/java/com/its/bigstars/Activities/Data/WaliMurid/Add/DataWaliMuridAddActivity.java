@@ -50,7 +50,6 @@ public class DataWaliMuridAddActivity extends AppCompatActivity implements View.
         initActionBar();
 
         btnSubmit.setOnClickListener(this);
-
     }
 
     private void initActionBar() {
