@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.its.bigstars.Activities.Data.MataPelajaran.List.view.IDataMataPelajaranEditView;
+import com.its.bigstars.Activities.Data.MataPelajaran.List.view.IDataMataPelajaranListView;
 import com.its.bigstars.R;
 
-public class DataMataPelajaranListActivity extends AppCompatActivity implements View.OnClickListener, IDataMataPelajaranEditView {
+public class DataMataPelajaranListActivity extends AppCompatActivity implements View.OnClickListener, IDataMataPelajaranListView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,6 @@ public class DataMataPelajaranListActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View v) {
-        
+
     }
 }
