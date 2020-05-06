@@ -53,10 +53,10 @@ class Wali_murid extends REST_Controller
         }
     }
 
-    function tambah_wali_murid_post()
+    function add_wali_murid_post()
     {
         // ambil data
-        $id_wali_murid = $this->M_universal->get_no();
+        $id_wali_murid = $this->M_kode->get_id_wali_murid();
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
@@ -77,55 +77,13 @@ class Wali_murid extends REST_Controller
 
             // membuat array untuk di transfer ke API
             $result["success"] = "1";
-            $result["message"] = "success";
+            $result["message"] = "Berhasil Menambah Data";
             $this->response($result, 200);
         } else {
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
-            $result["message"] = "error";
-            $this->response(array($result, 502));
-        }
-    }
-
-    function ambil_data_wali_murid_post()
-    {
-        $id_wali_murid = $this->post('id_wali_murid');
-
-        // variable array
-        $result = array();
-        $result['data_result'] = array();
-
-        $data_id = array(
-            'id_wali_murid' => $id_wali_murid
-        );
-
-        // mengambil data dari database
-        $query = $this->M_universal->get_data('wali_murid', $data_id);
-        if ($query->num_rows() > 0) {
-
-            // mengeluarkan data dari database
-            foreach ($query->result_array() as $row) {
-
-                // ambil detail data db
-                $data = array(
-                    'nama' => $row["nama"],
-                    'username' => $row["username"],
-                    'alamat' => $row["alamat"],
-                    'no_hp' => $row["no_hp"]
-                );
-
-                array_push($result['data_result'], $data);
-
-                // membuat array untuk di transfer
-                $result["success"] = "1";
-                $result["message"] = "success berhasil mengambil data";
-                $this->response($result, 200);
-            }
-        } else {
-            // membuat array untuk di transfer ke API
-            $result["success"] = "0";
-            $result["message"] = "error data tidak ada";
-            $this->response($result, 502);
+            $result["message"] = "Gagal Menambah Data";
+            $this->response($result, 200);
         }
     }
 

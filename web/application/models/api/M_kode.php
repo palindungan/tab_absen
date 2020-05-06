@@ -41,4 +41,24 @@ class M_kode extends CI_Model
         }
         return $kd;
     }
+
+    function get_id_wali_murid()
+    {
+        $field = "id_wali_murid";
+        $tabel = "wali_murid";
+        $digit = "3";
+        $kode = "WM";
+
+        $q = $this->db->query("SELECT MAX(RIGHT($field,$digit)) AS kd_max FROM $tabel");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int) $k->kd_max) + 1;
+                $kd = $kode . sprintf('%0' . $digit . 's',  $tmp);
+            }
+        } else {
+            $kd = "WM001";
+        }
+        return $kd;
+    }
 }
