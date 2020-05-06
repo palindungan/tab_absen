@@ -129,7 +129,13 @@ public class DataWaliMuridEditActivity extends AppCompatActivity implements View
                         try {
 
                             if (!isEmpty && !isInvalidKonfirmasi) {
-                                dataWaliMuridEditPresenter.onUpdate(id_wali_murid, inputNama, inputUsername, inputPassword, inputAlamat, inputNo_hp);
+                                dataWaliMuridEditPresenter.onUpdate(
+                                        "" + id_wali_murid,
+                                        "" + inputNama,
+                                        "" + inputUsername,
+                                        "" + inputPassword,
+                                        "" + inputAlamat,
+                                        "" + inputNo_hp);
                             }
 
                         } catch (Exception e) {
