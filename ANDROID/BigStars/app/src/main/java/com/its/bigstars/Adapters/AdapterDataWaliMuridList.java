@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.its.bigstars.Activities.Data.WaliMurid.List.DataWaliMuridListActivity;
+import com.its.bigstars.Activities.Data.WaliMurid.List.view.IDataWaliMuridListView;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
@@ -53,9 +55,22 @@ public class AdapterDataWaliMuridList extends RecyclerView.Adapter<AdapterDataWa
 
     @Override
     public void onBindViewHolder(@NonNull DataWaliMuridListViewHolder holder, int position) {
+
+        String kode = dataModelArrayList.get(position).getId_wali_murid();
+        String nama = dataModelArrayList.get(position).getNama();
+
         holder.txtNama.setText("Nama : " + dataModelArrayList.get(position).getNama());
         holder.txtUsername.setText("Username : " + dataModelArrayList.get(position).getUsername());
         holder.txtNoHp.setText("No. Hp : " + dataModelArrayList.get(position).getNo_hp());
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IDataWaliMuridListView dataWaliMuridListView = (DataWaliMuridListActivity) context;
+                dataWaliMuridListView.showDialogDelete(
+                        "" + kode,
+                        "" + nama);
+            }
+        });
     }
 
     @Override
