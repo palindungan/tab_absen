@@ -38,7 +38,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAPUvdjy8dcI9skIiiYgWcc3jjKo8UIjM" />
 
-        <activity android:name=".Activities.Home.Pengajar.HomePengajarActivity" />
+        <activity
+            android:name=".Activities.Home.Pengajar.HomePengajarActivity"
+            android:theme="@style/AppThemeHome" />
         <activity
             android:name=".Activities.Home.Admin.HomeAdminActivity"
             android:theme="@style/AppThemeHome" />
