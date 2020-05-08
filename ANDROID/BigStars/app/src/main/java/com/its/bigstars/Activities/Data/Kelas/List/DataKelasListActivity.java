@@ -10,6 +10,8 @@ import com.its.bigstars.R;
 
 public class DataKelasListActivity extends AppCompatActivity implements View.OnClickListener, IDataKelasListView {
 
+    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

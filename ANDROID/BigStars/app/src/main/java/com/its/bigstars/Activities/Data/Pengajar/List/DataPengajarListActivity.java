@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.its.bigstars.Activities.Data.Kelas.List.DataKelasListActivity;
 import com.its.bigstars.Activities.Data.Pengajar.Add.DataPengajarAddActivity;
 import com.its.bigstars.Activities.Data.Pengajar.Edit.DataPengajarEditActivity;
 import com.its.bigstars.Activities.Data.Pengajar.List.presenter.DataPengajarListPresenter;
@@ -96,9 +97,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            if (statusActivity.equals("home->view->editPengajar")) {
-                startActivity(new Intent(getApplicationContext(), DataPengajarAddActivity.class));
-            }
+            startActivity(new Intent(getApplicationContext(), DataPengajarAddActivity.class));
         }
     }
 
@@ -140,7 +139,10 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                     intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                     startActivity(intent);
                 } else if (statusActivity.equals("home->view->listKelasPertemuan")) {
-
+                    sessionManager.setStatusActivity("listPengajar->view->editKelasPertemuan");
+                    intent = new Intent(getApplicationContext(), DataKelasListActivity.class);
+                    intent.putExtra(DataKelasListActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    startActivity(intent);
                 } else if (statusActivity.equals("xx->view->yy")) {
 
                 } else if (statusActivity.equals("xx->view->yy")) {
