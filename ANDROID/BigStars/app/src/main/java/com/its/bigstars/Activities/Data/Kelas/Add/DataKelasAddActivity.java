@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.its.bigstars.Activities.Data.Kelas.Add.view.IDataKelasAddView;
 import com.its.bigstars.R;
 
-public class DataKelasAddActivity extends AppCompatActivity implements View.OnClickListener {
+public class DataKelasAddActivity extends AppCompatActivity implements View.OnClickListener, IDataKelasAddView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
