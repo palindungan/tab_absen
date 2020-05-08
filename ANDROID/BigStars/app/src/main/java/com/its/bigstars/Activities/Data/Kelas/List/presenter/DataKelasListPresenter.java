@@ -47,7 +47,7 @@ public class DataKelasListPresenter implements IDataKelasListPresenter {
     @Override
     public void onLoadDataList(String id) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "data/kelas/list_kelas"; // url http request
+        String URL_DATA = base_url + "data/kelas_pertemuan/list_kelas"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {
@@ -135,7 +135,7 @@ public class DataKelasListPresenter implements IDataKelasListPresenter {
     @Override
     public void onDelete(String id) {
         String base_url = baseUrl.getUrlData();
-        String URL_DATA = base_url + "data/kelas/delete_kelas"; // url http request
+        String URL_DATA = base_url + "data/kelas_pertemuan/delete_kelas"; // url http request
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>() {

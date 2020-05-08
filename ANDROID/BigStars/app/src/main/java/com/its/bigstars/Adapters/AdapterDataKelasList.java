@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -82,7 +82,7 @@ public class AdapterDataKelasList extends RecyclerView.Adapter<AdapterDataKelasL
     public class DataKelasListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView tvNamaPelajaran, tvHari, tvJam;
-        protected ImageButton ivDelete;
+        protected ImageView ivDelete;
 
         public DataKelasListViewHolder(@NonNull View itemView) {
             super(itemView);
