@@ -146,8 +146,10 @@ public class HomeAdminActivity extends AppCompatActivity implements View.OnClick
             intent = new Intent(getApplicationContext(), DataMataPelajaranListActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.link_admin_kelas) {
-//            onSuccessMessage("Pilih Pengajar");
-//            startActivity(new Intent(getApplicationContext(), AdminKelasTampilPengajarActivity.class));
+            toastMessage.onSuccessMessage("Pilih Pengajar");
+            sessionManager.setStatusActivity("home->view->listKelasPertemuan");
+            intent = new Intent(getApplicationContext(), DataPengajarListActivity.class);
+            startActivity(intent);
         } else if (v.getId() == R.id.link_admin_kelas_aktif) {
 //            Intent intent = new Intent(getApplicationContext(), PengajarKelasTampilAktifActivity.class);
 //            String id_pengajar = "Semua";

@@ -96,7 +96,9 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            startActivity(new Intent(getApplicationContext(), DataPengajarAddActivity.class));
+            if (statusActivity.equals("home->view->editPengajar")) {
+                startActivity(new Intent(getApplicationContext(), DataPengajarAddActivity.class));
+            }
         }
     }
 
@@ -137,7 +139,7 @@ public class DataPengajarListActivity extends AppCompatActivity implements View.
                     intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
                     intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
                     startActivity(intent);
-                } else if (statusActivity.equals("xx->view->yy")) {
+                } else if (statusActivity.equals("home->view->listKelasPertemuan")) {
 
                 } else if (statusActivity.equals("xx->view->yy")) {
 
