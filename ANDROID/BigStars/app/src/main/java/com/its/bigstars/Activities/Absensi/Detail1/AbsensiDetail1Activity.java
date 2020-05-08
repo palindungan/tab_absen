@@ -19,6 +19,6 @@ public class AbsensiDetail1Activity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        
+
     }
 }
