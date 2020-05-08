@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Data.MataPelajaran.Add.DataMataPelajaranAddActivity"></activity>
+        <activity android:name=".Activities.Absensi.Detail2.AbsensiDetail2Activity"></activity>
+        <activity android:name=".Activities.Absensi.Detail1.AbsensiDetail1Activity" />
+        <activity android:name=".Activities.Data.MataPelajaran.Add.DataMataPelajaranAddActivity" />
         <activity android:name=".Activities.Data.MataPelajaran.Edit.DataMataPelajaranEditActivity" />
         <activity android:name=".Activities.Data.MataPelajaran.List.DataMataPelajaranListActivity" />
         <activity android:name=".Activities.Data.WaliMurid.Add.DataWaliMuridAddActivity" />
