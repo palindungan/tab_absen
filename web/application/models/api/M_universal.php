@@ -41,6 +41,14 @@ class M_universal extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
+    function get_data_or($table, $id, $where1, $where2)
+    {
+        $this->db->limit(60);  // Produces: LIMIT
+        $this->db->where('' . $where1 . ' =', $id);
+        $this->db->or_where('' . $where2 . ' =', $id);
+        return $this->db->get($table);
+    }
+
     function update_data($where, $table, $data)
     {
         $this->db->where($where);
