@@ -41,8 +41,7 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
     Toolbar toolbar;
     RecyclerView recyclerView;
-    TextView tvNamaPelajaran;
-    EditText edtHari, edtHargaFee, edtHargaSpp;
+    EditText edtNamaPelajaran, edtHari, edtHargaFee, edtHargaSpp;
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnSubmit;
 
     String id_pengajar, id_mata_pelajaran, nama_mata_pelajaran;
@@ -61,7 +60,7 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         globalProcess = new GlobalProcess();
 
         toolbar = findViewById(R.id.toolbar);
-        tvNamaPelajaran = findViewById(R.id.tv_nama_pelajaran);
+        edtNamaPelajaran = findViewById(R.id.edt_nama_pelajaran);
         edtHari = findViewById(R.id.edt_hari);
         edtHargaFee = findViewById(R.id.edt_harga_fee);
         edtHargaSpp = findViewById(R.id.edt_harga_spp);
@@ -96,7 +95,7 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String inputNamaPelajaran = tvNamaPelajaran.getText().toString().trim();
+                        String inputNamaPelajaran = edtNamaPelajaran.getText().toString().trim();
                         String inputHari = edtHari.getText().toString().trim();
                         String inputJamMulai = jam_mulai;
                         String inputJamBerakhir = jam_berakhir;
@@ -105,9 +104,9 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
                         boolean isEmpty = false;
 
-                        if (inputNamaPelajaran.equals("Pilih Mata pelajaran : --")) {
+                        if (TextUtils.isEmpty(inputNamaPelajaran)) {
                             isEmpty = true;
-                            tvNamaPelajaran.setError("Isi Data Dengan Lengkap");
+                            edtNamaPelajaran.setError("Isi Data Dengan Lengkap");
                             toastMessage.onErrorMessage("Pilih Mata Pelajaran");
                         } else if (TextUtils.isEmpty(inputHari)) {
                             isEmpty = true;
@@ -187,9 +186,9 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
                         btn.setText(result);
 
-                        if (kode.equals("jam_mulai")){
+                        if (kode.equals("jam_mulai")) {
                             jam_mulai = result;
-                        } else if (kode.equals("jam_berakhir")){
+                        } else if (kode.equals("jam_berakhir")) {
                             jam_berakhir = result;
                         }
 
@@ -203,7 +202,7 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         if (v.getId() == R.id.btn_pilih) {
             showDialogPilih();
         } else if (v.getId() == R.id.btn_jam_mulai) {
-            showDialogTimePicker(btnJamMulai,"jam_mulai");
+            showDialogTimePicker(btnJamMulai, "jam_mulai");
         } else if (v.getId() == R.id.btn_jam_berakhir) {
             showDialogTimePicker(btnJamBerakhir, "jam_berakhir");
         } else if (v.getId() == R.id.btn_submit) {
@@ -232,7 +231,7 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
                 id_mata_pelajaran = dataModelArrayList.get(position).getId_mata_pelajaran();
                 nama_mata_pelajaran = dataModelArrayList.get(position).getNama();
 
-                tvNamaPelajaran.setText(nama_mata_pelajaran);
+                edtNamaPelajaran.setText(nama_mata_pelajaran);
                 dialog.dismiss();
             }
         });

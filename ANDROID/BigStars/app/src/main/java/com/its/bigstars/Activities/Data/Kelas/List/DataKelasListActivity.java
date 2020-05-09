@@ -101,7 +101,6 @@ public class DataKelasListActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         Intent intent;
         if (v.getId() == R.id.fab) {
-            startActivity(new Intent(getApplicationContext(), DataKelasAddActivity.class));
             intent = new Intent(getApplicationContext(), DataKelasAddActivity.class);
             intent.putExtra(DataKelasAddActivity.EXTRA_ID_PENGAJAR, id_pengajar);
             startActivity(intent);
