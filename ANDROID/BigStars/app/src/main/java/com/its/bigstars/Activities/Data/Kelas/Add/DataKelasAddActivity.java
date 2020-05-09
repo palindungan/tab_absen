@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.its.bigstars.Activities.Data.Kelas.Add.presenter.DataKelasAddPresenter;
 import com.its.bigstars.Activities.Data.Kelas.Add.presenter.IDataKelasAddPresenter;
@@ -27,9 +28,11 @@ import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DataKelasAddActivity extends AppCompatActivity implements View.OnClickListener, IDataKelasAddView {
 
+    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
     IDataKelasAddPresenter dataKelasAddPresenter;
     ToastMessage toastMessage;
     GlobalProcess globalProcess;
@@ -38,13 +41,19 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
     Toolbar toolbar;
     RecyclerView recyclerView;
-    EditText edtNama, edtNamaWaliMurid, edtAlamat;
-    Button btnPilih, btnSubmit;
+    TextView tvNamaPelajaran;
+    EditText edtHari, edtHargaFee, edtHargaSpp;
+    Button btnPilih, btnJamMulai, btnJamBerakhir, btnSubmit;
 
-    private Bitmap bitmap;
-    String data_photo, id_wali_murid, nama_wali_murid, alamat;
+    String id_pengajar, id_mata_pelajaran, nama_mata_pelajaran;
+    String jam_mulai = "";
+    String jam_berakhir = "";
 
     public static Dialog dialog;
+
+    final Calendar c = Calendar.getInstance();
+    int hour = c.get(Calendar.HOUR_OF_DAY);
+    int minute = c.get(Calendar.MINUTE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +65,22 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         globalProcess = new GlobalProcess();
 
         toolbar = findViewById(R.id.toolbar);
-        edtNama = findViewById(R.id.edt_nama);
-        edtNamaWaliMurid = findViewById(R.id.edt_nama_wali_murid);
-        edtAlamat = findViewById(R.id.edt_alamat);
+        tvNamaPelajaran = findViewById(R.id.tv_nama_pelajaran);
+        edtHari = findViewById(R.id.edt_hari);
+        edtHargaFee = findViewById(R.id.edt_harga_fee);
+        edtHargaSpp = findViewById(R.id.edt_harga_spp);
         btnPilih = findViewById(R.id.btn_pilih);
+        btnJamMulai = findViewById(R.id.btn_jam_mulai);
+        btnJamBerakhir = findViewById(R.id.btn_jam_berakhir);
         btnSubmit = findViewById(R.id.btn_submit);
+
+        id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
 
         initActionBar();
 
         btnPilih.setOnClickListener(this);
+        btnJamMulai.setOnClickListener(this);
+        btnJamBerakhir.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
     }
 
@@ -84,32 +100,48 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String inputNama = edtNama.getText().toString().trim();
-                        String inputNamaWaliMurid = edtNamaWaliMurid.getText().toString().trim();
-                        String inputAlamat = edtAlamat.getText().toString().trim();
-                        String inputFoto = data_photo;
+                        String inputNamaPelajaran = tvNamaPelajaran.getText().toString().trim();
+                        String inputHari = edtHari.getText().toString().trim();
+                        String inputJamMulai = jam_mulai;
+                        String inputJamBerakhir = jam_berakhir;
+                        String inputHargaFee = edtHargaFee.getText().toString().trim();
+                        String inputHargaSpp = edtHargaSpp.getText().toString().trim();
 
                         boolean isEmpty = false;
 
-                        if (TextUtils.isEmpty(inputNama)) {
+                        if (TextUtils.isEmpty(inputNamaPelajaran)) {
                             isEmpty = true;
-                            edtNama.setError("Isi Data Dengan Lengkap");
-                        } else if (TextUtils.isEmpty(inputNamaWaliMurid)) {
+                            tvNamaPelajaran.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputHari)) {
                             isEmpty = true;
-                            edtNamaWaliMurid.setError("Isi Data Dengan Lengkap");
-                            toastMessage.onErrorMessage("Pilih Wali Murid");
-                        } else if (TextUtils.isEmpty(inputAlamat)) {
+                            edtHari.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputJamMulai)) {
                             isEmpty = true;
-                            edtAlamat.setError("Isi Data Dengan Lengkap");
+                            btnJamMulai.setError("Isi Data Dengan Lengkap");
+                            toastMessage.onErrorMessage("Isi Jam Mulai Kelas");
+                        } else if (TextUtils.isEmpty(inputJamBerakhir)) {
+                            isEmpty = true;
+                            btnJamBerakhir.setError("Isi Data Dengan Lengkap");
+                            toastMessage.onErrorMessage("Isi Jam Berakhir Kelas");
+                        } else if (TextUtils.isEmpty(inputHargaFee)) {
+                            isEmpty = true;
+                            edtHargaFee.setError("Isi Data Dengan Lengkap");
+                        } else if (TextUtils.isEmpty(inputHargaSpp)) {
+                            isEmpty = true;
+                            edtHargaSpp.setError("Isi Data Dengan Lengkap");
                         }
 
                         try {
 
                             if (!isEmpty) {
-//                                dataKelasAddPresenter.onSubmit(
-//                                        "" + id_wali_murid,
-//                                        "" + inputNama,
-//                                        "" + inputFoto);
+                                dataKelasAddPresenter.onSubmit(
+                                        "" + id_pengajar,
+                                        "" + id_mata_pelajaran,
+                                        "" + inputHari,
+                                        "" + inputJamMulai,
+                                        "" + inputJamBerakhir,
+                                        "" + inputHargaFee,
+                                        "" + inputHargaSpp);
                             }
 
                         } catch (Exception e) {
@@ -171,12 +203,10 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         adapterDataMataPelajaranList.setOnItemClickListener(new AdapterDataMataPelajaranList.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                id_wali_murid = dataModelArrayList.get(position).getId_wali_murid();
-//                nama_wali_murid = dataModelArrayList.get(position).getNama();
-//                alamat = dataModelArrayList.get(position).getAlamat();
-//
-//                edtNamaWaliMurid.setText(nama_wali_murid);
-//                edtAlamat.setText(alamat);
+                id_mata_pelajaran = dataModelArrayList.get(position).getId_mata_pelajaran();
+                nama_mata_pelajaran = dataModelArrayList.get(position).getNama();
+
+                tvNamaPelajaran.setText(nama_mata_pelajaran);
                 dialog.dismiss();
             }
         });
