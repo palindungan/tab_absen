@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.its.bigstars.Activities.Data.Kelas.Add.presenter.DataKelasAddPresenter;
 import com.its.bigstars.Activities.Data.Kelas.Add.presenter.IDataKelasAddPresenter;
@@ -46,14 +46,10 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnSubmit;
 
     String id_pengajar, id_mata_pelajaran, nama_mata_pelajaran;
-    String jam_mulai = "";
-    String jam_berakhir = "";
+    String jam_mulai = "kosong";
+    String jam_berakhir = "kosong";
 
     public static Dialog dialog;
-
-    final Calendar c = Calendar.getInstance();
-    int hour = c.get(Calendar.HOUR_OF_DAY);
-    int minute = c.get(Calendar.MINUTE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,17 +105,18 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
                         boolean isEmpty = false;
 
-                        if (TextUtils.isEmpty(inputNamaPelajaran)) {
+                        if (inputNamaPelajaran.equals("Pilih Mata pelajaran : --")) {
                             isEmpty = true;
                             tvNamaPelajaran.setError("Isi Data Dengan Lengkap");
+                            toastMessage.onErrorMessage("Pilih Mata Pelajaran");
                         } else if (TextUtils.isEmpty(inputHari)) {
                             isEmpty = true;
                             edtHari.setError("Isi Data Dengan Lengkap");
-                        } else if (TextUtils.isEmpty(inputJamMulai)) {
+                        } else if (inputJamMulai.equals("kosong")) {
                             isEmpty = true;
                             btnJamMulai.setError("Isi Data Dengan Lengkap");
                             toastMessage.onErrorMessage("Isi Jam Mulai Kelas");
-                        } else if (TextUtils.isEmpty(inputJamBerakhir)) {
+                        } else if (inputJamBerakhir.equals("kosong")) {
                             isEmpty = true;
                             btnJamBerakhir.setError("Isi Data Dengan Lengkap");
                             toastMessage.onErrorMessage("Isi Jam Berakhir Kelas");
@@ -176,10 +173,39 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         dataKelasAddPresenter.onLoadDataList();
     }
 
+    private void showDialogTimePicker(Button btn, String kode) {
+        final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        String result = hourOfDay + ":" + minute;
+
+                        btn.setText(result);
+
+                        if (kode.equals("jam_mulai")){
+                            jam_mulai = result;
+                        } else if (kode.equals("jam_berakhir")){
+                            jam_berakhir = result;
+                        }
+
+                    }
+                }, hour, minute, true);
+        timePickerDialog.show();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_pilih) {
             showDialogPilih();
+        } else if (v.getId() == R.id.btn_jam_mulai) {
+            showDialogTimePicker(btnJamMulai,"jam_mulai");
+        } else if (v.getId() == R.id.btn_jam_berakhir) {
+            showDialogTimePicker(btnJamBerakhir, "jam_berakhir");
         } else if (v.getId() == R.id.btn_submit) {
             showDialog();
         }
