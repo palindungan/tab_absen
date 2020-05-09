@@ -5,7 +5,7 @@ import com.its.bigstars.Models.MataPelajaran;
 import java.util.ArrayList;
 
 public interface IDataKelasAddView {
-    void backPressed();
-
     void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList);
+
+    void backPressed();
 }

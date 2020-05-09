@@ -211,11 +211,6 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void backPressed() {
-        onBackPressed();
-    }
-
-    @Override
     public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
         recyclerView = dialog.findViewById(R.id.recycler);
         adapterDataMataPelajaranList = new AdapterDataMataPelajaranList(this, dataModelArrayList);
@@ -237,6 +232,11 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
         });
 
         dialog.show();
+    }
+
+    @Override
+    public void backPressed() {
+        onBackPressed();
     }
 
     @Override
