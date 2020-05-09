@@ -140,7 +140,7 @@ public class DataMuridAddActivity extends AppCompatActivity implements View.OnCl
         dialog = new Dialog(this);
         // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_list_wali_murid);
+        dialog.setContentView(R.layout.dialog_list);
 
         Button btnCancel = dialog.findViewById(R.id.btn_cancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
