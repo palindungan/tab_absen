@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.its.bigstars.Activities.Data.Kelas.Add.view.IDataKelasAddView;
+import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.R;
+
+import java.util.ArrayList;
 
 public class DataKelasAddActivity extends AppCompatActivity implements View.OnClickListener, IDataKelasAddView {
 
@@ -18,6 +21,16 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void backPressed() {
+
+    }
+
+    @Override
+    public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
 
     }
 }
