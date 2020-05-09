@@ -43,6 +43,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     EditText edtNamaPelajaran, edtHari, edtHargaFee, edtHargaSpp;
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnUpdate;
 
+    public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
     public static final String EXTRA_ID_MATA_PELAJARAN = "EXTRA_ID_MATA_PELAJARAN";
     public static final String EXTRA_NAMA_PELAJARAN = "EXTRA_NAMA_PELAJARAN";
@@ -52,7 +53,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     public static final String EXTRA_HARGA_FEE = "EXTRA_HARGA_FEE";
     public static final String EXTRA_HARGA_SPP = "EXTRA_HARGA_SPP";
 
-    String id_pengajar, id_mata_pelajaran, nama_pelajaran, hari, jam_mulai, jam_berakhir, harga_fee, harga_spp;
+    String id_kelas_p, id_pengajar, id_mata_pelajaran, nama_pelajaran, hari, jam_mulai, jam_berakhir, harga_fee, harga_spp;
 
     public static Dialog dialog;
 
@@ -75,6 +76,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         btnJamBerakhir = findViewById(R.id.btn_jam_berakhir);
         btnUpdate = findViewById(R.id.btn_update);
 
+        id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
         id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
         nama_pelajaran = getIntent().getStringExtra(EXTRA_NAMA_PELAJARAN);
@@ -162,6 +164,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
                             if (!isEmpty) {
                                 dataKelasEditPresenter.onUpdate(
+                                        "" + id_kelas_p,
                                         "" + id_pengajar,
                                         "" + id_mata_pelajaran,
                                         "" + inputHari,

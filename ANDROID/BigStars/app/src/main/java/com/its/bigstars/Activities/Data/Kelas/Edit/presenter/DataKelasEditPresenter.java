@@ -44,7 +44,7 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
     }
 
     @Override
-    public void onUpdate(String id_pengajar, String id_mata_pelajaran, String hari, String jam_mulai, String jam_berakhir, String harga_fee, String harga_spp) {
+    public void onUpdate(String id_kelas_p, String id_pengajar, String id_mata_pelajaran, String hari, String jam_mulai, String jam_berakhir, String harga_fee, String harga_spp) {
         String base_url = baseUrl.getUrlData();
         String URL_DATA = base_url + "data/kelas_pertemuan/update_kelas"; // url http request
 
@@ -79,6 +79,7 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("id_kelas_p", id_kelas_p);
                 params.put("id_pengajar", id_pengajar);
                 params.put("id_mata_pelajaran", id_mata_pelajaran);
                 params.put("hari", hari);

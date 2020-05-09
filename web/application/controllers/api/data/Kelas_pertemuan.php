@@ -133,4 +133,45 @@ class Kelas_pertemuan extends REST_Controller
             $this->response($result, 200);
         }
     }
+
+    function update_kelas_pertemuan_post()
+    {
+        $id_kelas_p = $this->post('id_kelas_p');
+        $id_pengajar = $this->post('id_pengajar');
+        $id_mata_pelajaran = $this->post('id_mata_pelajaran');
+        $hari = $this->post('hari');
+        $jam_mulai = $this->post('jam_mulai');
+        $jam_berakhir = $this->post('jam_berakhir');
+        $harga_fee = $this->post('harga_fee');
+        $harga_spp = $this->post('harga_spp');
+
+        $data = array(
+            'id_pengajar'   => $id_pengajar,
+            'id_mata_pelajaran'   => $id_mata_pelajaran,
+            'hari'   => $hari,
+            'jam_mulai'   => $jam_mulai,
+            'jam_berakhir'   => $jam_berakhir,
+            'harga_fee'   => $harga_fee,
+            'harga_spp'   => $harga_spp,
+        );
+
+        $where = array(
+            'id_kelas_p' => $id_kelas_p
+        );
+
+        $update =  $this->M_universal->update_data($where, 'kelas_pertemuan', $data);
+        if ($update) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Mengupdate Data";
+            $this->response($result, 200);
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Mengupdate Data";
+            $this->response($result, 200);
+        }
+    }
 }

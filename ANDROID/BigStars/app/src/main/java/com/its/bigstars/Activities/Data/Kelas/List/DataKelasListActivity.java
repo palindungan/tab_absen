@@ -137,6 +137,7 @@ public class DataKelasListActivity extends AppCompatActivity implements View.OnC
                 Intent intent;
                 if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
                     intent = new Intent(getApplicationContext(), DataKelasEditActivity.class);
+                    intent.putExtra(DataKelasEditActivity.EXTRA_ID_KELAS_P, dataModelArrayList.get(position).getId_kelas_p());
                     intent.putExtra(DataKelasEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
                     intent.putExtra(DataKelasEditActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
                     intent.putExtra(DataKelasEditActivity.EXTRA_NAMA_PELAJARAN, dataModelArrayList.get(position).getNama_pelajaran());
