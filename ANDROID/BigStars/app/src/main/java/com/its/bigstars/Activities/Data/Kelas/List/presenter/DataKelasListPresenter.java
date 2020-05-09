@@ -14,7 +14,6 @@ import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Kelas;
-import com.its.bigstars.Models.Pengajar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +72,7 @@ public class DataKelasListPresenter implements IDataKelasListPresenter {
                                     String jam_mulai = dataobj.getString("jam_mulai");
                                     String jam_berakhir = dataobj.getString("jam_berakhir");
                                     String harga_fee = dataobj.getString("harga_fee");
+                                    String harga_spp = dataobj.getString("harga_spp");
                                     String nama_pelajaran = dataobj.getString("nama_pelajaran");
                                     String nama_sharing = dataobj.getString("nama_sharing");
 
@@ -88,6 +88,7 @@ public class DataKelasListPresenter implements IDataKelasListPresenter {
                                     playerModel.setJam_mulai(jam_mulai);
                                     playerModel.setJam_berakhir(jam_berakhir);
                                     playerModel.setHarga_fee(harga_fee);
+                                    playerModel.setHarga_spp(harga_spp);
                                     playerModel.setNama_pelajaran(nama_pelajaran);
                                     playerModel.setNama_sharing(nama_sharing);
 
