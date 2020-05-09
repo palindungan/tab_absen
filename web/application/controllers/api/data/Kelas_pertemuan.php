@@ -134,7 +134,7 @@ class Kelas_pertemuan extends REST_Controller
         }
     }
 
-    function update_kelas_pertemuan_post()
+    function update_kelas_post()
     {
         $id_kelas_p = $this->post('id_kelas_p');
         $id_pengajar = $this->post('id_pengajar');
