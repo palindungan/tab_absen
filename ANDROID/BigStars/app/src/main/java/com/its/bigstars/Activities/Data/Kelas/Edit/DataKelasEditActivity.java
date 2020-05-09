@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.its.bigstars.Activities.Data.Kelas.Edit.view.IDataKelasEditView;
 import com.its.bigstars.Models.Kelas;
+import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.R;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onSetupListView(ArrayList<Kelas> dataModelArrayList) {
+    public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
 
     }
 
