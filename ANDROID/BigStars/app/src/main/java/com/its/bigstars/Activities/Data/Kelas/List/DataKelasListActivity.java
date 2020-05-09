@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.bigstars.Activities.Data.Kelas.Add.DataKelasAddActivity;
+import com.its.bigstars.Activities.Data.Kelas.Edit.DataKelasEditActivity;
 import com.its.bigstars.Activities.Data.Kelas.List.presenter.DataKelasListPresenter;
 import com.its.bigstars.Activities.Data.Kelas.List.presenter.IDataKelasListPresenter;
 import com.its.bigstars.Activities.Data.Kelas.List.view.IDataKelasListView;
@@ -134,16 +135,17 @@ public class DataKelasListActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View view, int position) {
                 Intent intent;
-
                 if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
-//                    intent = new Intent(getApplicationContext(), DataPengajarEditActivity.class);
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_NAMA, dataModelArrayList.get(position).getNama());
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_USERNAME, dataModelArrayList.get(position).getUsername());
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_ALAMAT, dataModelArrayList.get(position).getAlamat());
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_NO_HP, dataModelArrayList.get(position).getNo_hp());
-//                    intent.putExtra(DataPengajarEditActivity.EXTRA_FOTO, dataModelArrayList.get(position).getFoto());
-//                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), DataKelasEditActivity.class);
+                    intent.putExtra(DataKelasEditActivity.EXTRA_ID_PENGAJAR, dataModelArrayList.get(position).getId_pengajar());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_ID_MATA_PELAJARAN, dataModelArrayList.get(position).getId_mata_pelajaran());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_NAMA_PELAJARAN, dataModelArrayList.get(position).getNama_pelajaran());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_HARI, dataModelArrayList.get(position).getHari());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_JAM_MULAI, dataModelArrayList.get(position).getJam_mulai());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_JAM_BERAKHIR, dataModelArrayList.get(position).getJam_berakhir());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_HARGA_FEE, dataModelArrayList.get(position).getHarga_fee());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_HARGA_SPP, dataModelArrayList.get(position).getHarga_spp());
+                    startActivity(intent);
                 }
             }
         });

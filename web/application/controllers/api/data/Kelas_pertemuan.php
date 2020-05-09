@@ -43,6 +43,7 @@ class Kelas_pertemuan extends REST_Controller
                     'jam_mulai' => $row["jam_mulai"],
                     'jam_berakhir' => $row["jam_berakhir"],
                     'harga_fee' => $row["harga_fee"],
+                    'harga_spp' => $row["harga_spp"],
                     'id_mata_pelajaran' => $row["id_mata_pelajaran"],
                     'nama_pelajaran' => $row["nama_pelajaran"],
                     'id_pengajar' => $row["id_pengajar"],

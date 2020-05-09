@@ -1,9 +1,9 @@
 package com.its.bigstars.Models;
 
 public class Kelas {
-    String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, nama_pelajaran, nama_sharing;
+    String id_kelas_p, hari, jam_mulai, jam_berakhir, harga_fee, harga_spp, nama_pelajaran, nama_sharing;
 
-    String id_mata_pelajaran, id_pengajar,nama_pengajar,id_sharing,jumlah_murid;
+    String id_mata_pelajaran, id_pengajar, nama_pengajar, id_sharing, jumlah_murid;
 
     public String getId_kelas_p() {
         return id_kelas_p;
@@ -45,6 +45,14 @@ public class Kelas {
         this.harga_fee = harga_fee;
     }
 
+    public String getHarga_spp() {
+        return harga_spp;
+    }
+
+    public void setHarga_spp(String harga_spp) {
+        this.harga_spp = harga_spp;
+    }
+
     public String getNama_pelajaran() {
         return nama_pelajaran;
     }
@@ -77,20 +85,20 @@ public class Kelas {
         this.id_pengajar = id_pengajar;
     }
 
-    public String getId_sharing() {
-        return id_sharing;
-    }
-
-    public void setId_sharing(String id_sharing) {
-        this.id_sharing = id_sharing;
-    }
-
     public String getNama_pengajar() {
         return nama_pengajar;
     }
 
     public void setNama_pengajar(String nama_pengajar) {
         this.nama_pengajar = nama_pengajar;
+    }
+
+    public String getId_sharing() {
+        return id_sharing;
+    }
+
+    public void setId_sharing(String id_sharing) {
+        this.id_sharing = id_sharing;
     }
 
     public String getJumlah_murid() {
