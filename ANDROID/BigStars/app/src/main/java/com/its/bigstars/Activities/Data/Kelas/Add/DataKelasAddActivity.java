@@ -31,7 +31,6 @@ import java.util.Calendar;
 
 public class DataKelasAddActivity extends AppCompatActivity implements View.OnClickListener, IDataKelasAddView {
 
-    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
     IDataKelasAddPresenter dataKelasAddPresenter;
     ToastMessage toastMessage;
     GlobalProcess globalProcess;
@@ -42,6 +41,8 @@ public class DataKelasAddActivity extends AppCompatActivity implements View.OnCl
     RecyclerView recyclerView;
     EditText edtNamaPelajaran, edtHari, edtHargaFee, edtHargaSpp;
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnSubmit;
+
+    public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
 
     String id_pengajar, id_mata_pelajaran, nama_mata_pelajaran;
     String jam_mulai = "kosong";
