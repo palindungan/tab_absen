@@ -67,6 +67,48 @@ class Kelas_pertemuan extends REST_Controller
         }
     }
 
+    function add_kelas_post()
+    {
+        // ambil data
+        $id_kelas_p = $this->M_kode->get_id_kelas_p();
+        $id_pengajar = $this->post('id_pengajar');
+        $id_mata_pelajaran = $this->post('id_mata_pelajaran');
+        $hari = $this->post('hari');
+        $jam_mulai = $this->post('jam_mulai');
+        $jam_berakhir = $this->post('jam_berakhir');
+        $harga_fee = $this->post('harga_fee');
+        $harga_spp = $this->post('harga_spp');
+        $id_sharing = "null";
+        $nama_sharing = "kosong";
+
+        $data = array(
+            'id_kelas_p'   => $id_kelas_p,
+            'id_pengajar'   => $id_pengajar,
+            'id_mata_pelajaran'   => $id_mata_pelajaran,
+            'hari'   => $hari,
+            'jam_mulai'   => $jam_mulai,
+            'jam_berakhir'   => $jam_berakhir,
+            'harga_fee'   => $harga_fee,
+            'harga_spp'   => $harga_spp,
+            'id_sharing'   => $id_sharing,
+            'nama_sharing'   => $nama_sharing,
+        );
+
+        $insert =  $this->M_universal->input_data('kelas_pertemuan', $data);
+        if ($insert) {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "1";
+            $result["message"] = "Berhasil Menambah Data";
+            $this->response($result, 200);
+        } else {
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Gagal Menambah Data";
+            $this->response($result, 200);
+        }
+    }
+
     function delete_kelas_post()
     {
         $id_kelas_p = $this->post('id');

@@ -145,7 +145,7 @@ public class DataMuridListActivity extends AppCompatActivity implements View.OnC
     public void showDialogDelete(String kode, String nama) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Akun " + nama + " ?");
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Data " + nama + " ?");
         alertDialogBuilder
                 .setMessage("Klik Ya untuk Menghapus !")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
