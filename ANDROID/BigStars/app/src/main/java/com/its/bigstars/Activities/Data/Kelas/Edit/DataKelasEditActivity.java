@@ -130,12 +130,13 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
             edtHari.setFocusable(true);
             edtHargaFee.setFocusable(true);
             edtHargaSpp.setFocusable(true);
+
+            btnJamMulai.setOnClickListener(this);
+            btnJamBerakhir.setOnClickListener(this);
+            btnUpdate.setOnClickListener(this);
         }
 
         btnPilih.setOnClickListener(this);
-        btnJamMulai.setOnClickListener(this);
-        btnJamBerakhir.setOnClickListener(this);
-        btnUpdate.setOnClickListener(this);
     }
 
     private void initActionBar() {
