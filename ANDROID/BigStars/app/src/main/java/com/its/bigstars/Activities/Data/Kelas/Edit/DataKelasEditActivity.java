@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.its.bigstars.Activities.Data.Kelas.Edit.presenter.DataKelasEditPresenter;
@@ -22,6 +24,7 @@ import com.its.bigstars.Activities.Data.Kelas.Edit.presenter.IDataKelasEditPrese
 import com.its.bigstars.Activities.Data.Kelas.Edit.view.IDataKelasEditView;
 import com.its.bigstars.Adapters.AdapterDataMataPelajaranList;
 import com.its.bigstars.Controllers.GlobalProcess;
+import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Kelas;
 import com.its.bigstars.Models.MataPelajaran;
@@ -35,6 +38,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     IDataKelasEditPresenter dataKelasEditPresenter;
     ToastMessage toastMessage;
     GlobalProcess globalProcess;
+    SessionManager sessionManager;
 
     AdapterDataMataPelajaranList adapterDataMataPelajaranList;
 
@@ -42,6 +46,8 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     RecyclerView recyclerView;
     EditText edtNamaPelajaran, edtHari, edtHargaFee, edtHargaSpp;
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnUpdate;
+    TextView tvStatus;
+    ImageButton btnSharing, btnDeleteSharing;
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
@@ -53,7 +59,10 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     public static final String EXTRA_HARGA_FEE = "EXTRA_HARGA_FEE";
     public static final String EXTRA_HARGA_SPP = "EXTRA_HARGA_SPP";
 
+    String statusActivity;
+
     String id_kelas_p, id_pengajar, id_mata_pelajaran, nama_pelajaran, hari, jam_mulai, jam_berakhir, harga_fee, harga_spp;
+    String status_kelas;
 
     public static Dialog dialog;
 
@@ -65,6 +74,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         dataKelasEditPresenter = new DataKelasEditPresenter(this, this);
         toastMessage = new ToastMessage(this);
         globalProcess = new GlobalProcess();
+        sessionManager = new SessionManager(this);
 
         toolbar = findViewById(R.id.toolbar);
         edtNamaPelajaran = findViewById(R.id.edt_nama_pelajaran);
@@ -75,6 +85,9 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         btnJamMulai = findViewById(R.id.btn_jam_mulai);
         btnJamBerakhir = findViewById(R.id.btn_jam_berakhir);
         btnUpdate = findViewById(R.id.btn_update);
+        tvStatus = findViewById(R.id.tv_status);
+        btnSharing = findViewById(R.id.btn_sharing);
+        btnDeleteSharing = findViewById(R.id.btn_delete_sharing);
 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
@@ -86,6 +99,8 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         harga_fee = getIntent().getStringExtra(EXTRA_HARGA_FEE);
         harga_spp = getIntent().getStringExtra(EXTRA_HARGA_SPP);
 
+        status_kelas = tvStatus.getText().toString().trim();
+
         initActionBar();
         inisiasiAwal(
                 "" + id_pengajar,
@@ -96,6 +111,26 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                 "" + jam_berakhir,
                 "" + harga_fee,
                 "" + harga_spp);
+
+        statusActivity = sessionManager.getStatusActivity();
+        if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+            btnPilih.setVisibility(View.VISIBLE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+            if (status_kelas.equals("Status : Tidak Dibagikan")) {
+                btnSharing.setVisibility(View.VISIBLE);
+            } else {
+                btnDeleteSharing.setVisibility(View.VISIBLE);
+            }
+
+            edtHari.setFocusableInTouchMode(true);
+            edtHargaFee.setFocusableInTouchMode(true);
+            edtHargaSpp.setFocusableInTouchMode(true);
+
+            edtHari.setFocusable(true);
+            edtHargaFee.setFocusable(true);
+            edtHargaSpp.setFocusable(true);
+        }
 
         btnPilih.setOnClickListener(this);
         btnJamMulai.setOnClickListener(this);
