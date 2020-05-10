@@ -370,6 +370,13 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         adapterDataMuridList.setOnItemClickListener(new AdapterDataMuridList.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+
+                String id_murid = dataModelArrayList.get(position).getId_murid();
+
+                dataKelasEditPresenter.onAddMurid(
+                        "" + id_kelas_p,
+                        "" + id_murid);
+
                 dialog.dismiss();
             }
         });
