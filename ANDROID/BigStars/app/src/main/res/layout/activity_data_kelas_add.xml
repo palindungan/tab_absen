@@ -71,7 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="9"
-                        android:text="pilih" />
+                        android:text="pilih"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
