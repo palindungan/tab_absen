@@ -250,6 +250,7 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
                             Murid playerModel = new Murid();
                             JSONObject dataobj = dataArray.getJSONObject(i);
 
+                            String id_detail_kelas_p = "kosong";
                             String id_murid = dataobj.getString("id_murid");
                             String nama = dataobj.getString("nama");
                             String id_wali_murid = dataobj.getString("id_wali_murid");
@@ -257,6 +258,7 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
                             String alamat = dataobj.getString("alamat");
                             String foto = dataobj.getString("foto");
 
+                            playerModel.setId_detail_kelas_p(id_detail_kelas_p);
                             playerModel.setId_murid(id_murid);
                             playerModel.setNama(nama);
                             playerModel.setId_wali_murid(id_wali_murid);

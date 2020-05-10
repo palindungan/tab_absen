@@ -58,6 +58,14 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
 
     @Override
     public void onBindViewHolder(@NonNull AdapterDataMuridList.DataMuridListViewHolder holder, int position) {
+
+        if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+            String id_detail_kelas_p = dataModelArrayList.get(position).getId_detail_kelas_p();
+            if (!id_detail_kelas_p.equals("kosong")) {
+                holder.ivDelete.setVisibility(View.VISIBLE);
+            }
+        }
+
         String kode = dataModelArrayList.get(position).getId_murid();
         String nama = dataModelArrayList.get(position).getNama();
 
@@ -106,7 +114,7 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
             ivFoto = itemView.findViewById(R.id.iv_foto);
             ivDelete = itemView.findViewById(R.id.iv_delete);
 
-            if (statusActivity.equals("home->view->editMurid") || statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+            if (statusActivity.equals("home->view->editMurid")) {
                 ivDelete.setVisibility(View.VISIBLE);
             }
 
