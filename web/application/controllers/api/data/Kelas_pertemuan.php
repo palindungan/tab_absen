@@ -34,7 +34,7 @@ class Kelas_pertemuan extends REST_Controller
                     'id_kelas_p' => $row["id_kelas_p"]
                 );
 
-                $count = $this->M_universal->get_data('detail_kelas_pertemuan', $data_id)->num_rows();
+                $count = $this->M_universal->get_data('list_kelas_murid', $data_id)->num_rows();
 
                 // ambil detail data db
                 $data = array(
