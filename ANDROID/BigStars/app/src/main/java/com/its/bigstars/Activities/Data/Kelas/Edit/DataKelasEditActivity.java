@@ -3,6 +3,7 @@ package com.its.bigstars.Activities.Data.Kelas.Edit;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -57,6 +58,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
     FloatingActionButton fab;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private NestedScrollView nestedScrollView;
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
@@ -100,6 +102,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
         fab = findViewById(R.id.fab);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        nestedScrollView = findViewById(R.id.nested_scroll_view);
 
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
@@ -141,6 +144,19 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                         }
                     }
                 }, 1000);
+            }
+        });
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (scrollY < 0 && fab.getVisibility() != View.VISIBLE) {
+                    if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+                        fab.show();
+                    }
+                }
+                //Do something
             }
         });
 
@@ -392,20 +408,6 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         recyclerView.setAdapter(adapterDataMuridList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setNestedScrollingEnabled(true);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
-                    fab.hide();
-                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
-                    if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
-                        fab.show();
-                    }
-                }
-            }
-        });
 
         adapterDataMuridList.setOnItemClickListener(new AdapterDataMuridList.ClickListener() {
             @Override
