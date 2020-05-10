@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.its.bigstars.Activities.Data.Kelas.Edit.DataKelasEditActivity;
+import com.its.bigstars.Activities.Data.Kelas.Edit.view.IDataKelasEditView;
 import com.its.bigstars.Activities.Data.Murid.List.DataMuridListActivity;
 import com.its.bigstars.Activities.Data.Murid.List.view.IDataMuridListView;
 import com.its.bigstars.Controllers.BaseUrl;
@@ -65,10 +67,19 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IDataMuridListView dataMuridListView = (DataMuridListActivity) context;
-                dataMuridListView.showDialogDelete(
-                        "" + kode,
-                        "" + nama);
+                if (statusActivity.equals("home->view->editMurid")) {
+                    IDataMuridListView dataMuridListView = (DataMuridListActivity) context;
+                    dataMuridListView.showDialogDelete(
+                            "" + kode,
+                            "" + nama);
+                } else if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+                    String id_detail_kelas_p = dataModelArrayList.get(position).getId_detail_kelas_p();
+                    IDataKelasEditView dataKelasEditView = (DataKelasEditActivity) context;
+                    dataKelasEditView.showDialogDeleteMurid(
+                            "" + id_detail_kelas_p,
+                            "" + nama);
+                }
+
             }
         });
 
@@ -95,7 +106,7 @@ public class AdapterDataMuridList extends RecyclerView.Adapter<AdapterDataMuridL
             ivFoto = itemView.findViewById(R.id.iv_foto);
             ivDelete = itemView.findViewById(R.id.iv_delete);
 
-            if (statusActivity.equals("home->view->editMurid")) {
+            if (statusActivity.equals("home->view->editMurid") || statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
                 ivDelete.setVisibility(View.VISIBLE);
             }
 
