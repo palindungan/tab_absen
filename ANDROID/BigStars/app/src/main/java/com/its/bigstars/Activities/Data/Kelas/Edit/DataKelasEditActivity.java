@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -149,13 +150,14 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY > 0 && fab.getVisibility() == View.VISIBLE) {
+                if (scrollY > oldScrollY && fab.getVisibility() == View.VISIBLE) {
                     fab.hide();
-                } else if (scrollY < 0 && fab.getVisibility() != View.VISIBLE) {
+                } else if (scrollY < oldScrollY && fab.getVisibility() != View.VISIBLE) {
                     if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
                         fab.show();
                     }
                 }
+                // Log.d("ScrollView","scrollX_"+scrollX+"_scrollY_"+scrollY+"_oldScrollX_"+oldScrollX+"_oldScrollY_"+oldScrollY);
                 //Do something
             }
         });
