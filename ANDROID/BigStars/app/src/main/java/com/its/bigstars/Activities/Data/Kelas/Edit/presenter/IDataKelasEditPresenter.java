@@ -11,9 +11,13 @@ public interface IDataKelasEditPresenter {
             String harga_fee,
             String harga_spp);
 
-    void onLoadDataList();
+    void onLoadDataListPelajaran();
 
     void onLoadDataListMurid(String id_kelas_p);
 
-    void onDelete(String id);
+    void onLoadDataListSemuaMurid();
+
+    void onAddMurid(String id_kelas_p, String id_murid);
+
+    void onDeleteMurid(String id_detail_kelas_p);
 }

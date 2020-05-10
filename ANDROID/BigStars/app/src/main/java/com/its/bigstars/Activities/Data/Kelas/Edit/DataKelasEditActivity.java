@@ -274,7 +274,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                 dialog.dismiss();
             }
         });
-        dataKelasEditPresenter.onLoadDataList();
+        dataKelasEditPresenter.onLoadDataListPelajaran();
     }
 
     private void showDialogTimePicker(Button btn, String kode) {
@@ -302,6 +302,22 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         timePickerDialog.show();
     }
 
+    private void showDialogPilihMurid() {
+        dialog = new Dialog(this);
+        // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_list);
+
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dataKelasEditPresenter.onLoadDataListSemuaMurid();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_pilih) {
@@ -313,12 +329,12 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         } else if (v.getId() == R.id.btn_update) {
             showDialog();
         } else if (v.getId() == R.id.fab) {
-
+            showDialogPilihMurid();
         }
     }
 
     @Override
-    public void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList) {
+    public void onSetupListViewPelajaranDialog(ArrayList<MataPelajaran> dataModelArrayList) {
         recyclerView = dialog.findViewById(R.id.recycler);
         adapterDataMataPelajaranList = new AdapterDataMataPelajaranList(this, dataModelArrayList);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
@@ -342,8 +358,23 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void backPressed() {
-        onBackPressed();
+    public void onSetupListViewMuridDialog(ArrayList<Murid> dataModelArrayList) {
+        recyclerView = dialog.findViewById(R.id.recycler);
+        adapterDataMuridList = new AdapterDataMuridList(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+
+        recyclerView.setAdapter(adapterDataMuridList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(true);
+
+        adapterDataMuridList.setOnItemClickListener(new AdapterDataMuridList.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
@@ -382,7 +413,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void showDialogDeleteMurid(String kode, String nama) {
+    public void showDialogDeleteMurid(String id_detail_kelas_p, String nama) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
         alertDialogBuilder.setTitle("Yakin Ingin Menghapus Data " + nama + " ?");
@@ -392,7 +423,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                     public void onClick(DialogInterface dialog, int id) {
 
                         try {
-                            dataKelasEditPresenter.onDelete(kode);
+                            dataKelasEditPresenter.onDeleteMurid(id_detail_kelas_p);
                         } catch (Exception e) {
                             toastMessage.onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
                         }
@@ -407,6 +438,11 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void backPressed() {
+        onBackPressed();
     }
 
     @Override

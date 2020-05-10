@@ -19,22 +19,12 @@ SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee ,
 FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar pe USING(id_pengajar)
 ORDER BY kp.id_kelas_p ASC;
 
+CREATE VIEW list_kelas_murid AS
+SELECT m.id_murid , m.nama, m.foto, wm.id_wali_murid, wm.nama AS nama_wali_murid, wm.username, wm.alamat, wm.no_hp, dkp.id_detail_kelas_p, dkp.id_kelas_p
+FROM detail_kelas_pertemuan dkp JOIN murid m USING(id_murid) JOIN wali_murid wm USING(id_wali_murid)
+ORDER BY m.nama ASC;
+
 ///////////
-
-CREATE VIEW list_kelas AS
-SELECT kp.id_kelas_p , kp.hari , kp.jam_mulai , kp.jam_berakhir , kp.harga_fee , kp.harga_spp , kp.id_sharing , kp.nama_sharing , kp.status ,pe.id_pengajar , pe.nama AS nama_pengajar, mp.id_mata_pelajaran,mp.nama  AS nama_pelajaran
-FROM kelas_pertemuan kp JOIN mata_pelajaran mp USING(id_mata_pelajaran) JOIN pengajar pe USING(id_pengajar)
-ORDER BY kp.id_kelas_p ASC;
-
-CREATE VIEW list_kelas_detail AS
-SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto, dkp.id_kelas_p, dkp.id_detail_kelas_p
-FROM murid m JOIN wali_murid wm USING(id_wali_murid) JOIN detail_kelas_pertemuan dkp USING(id_murid)
-ORDER BY m.nama ASC;
-
-CREATE VIEW list_murid AS
-SELECT m.id_murid , m.nama,wm.id_wali_murid, wm.nama AS nama_wali_murid , wm.alamat ,m.foto
-FROM murid m JOIN wali_murid wm USING(id_wali_murid)
-ORDER BY m.nama ASC;
 
 CREATE VIEW list_pertemuan AS
 SELECT pr.id_pertemuan , pn.id_pengajar , pn.nama AS nama_pengajar, pn.username , pn.foto , pr.hari AS hari_btn , pr.waktu_mulai , pr.waktu_berakhir, pr.lokasi_mulai_la,pr.lokasi_mulai_lo ,  pr.lokasi_berakhir_la , pr.lokasi_berakhir_lo ,pr.status_pertemuan, pr.status_konfirmasi , pr.status_fee , pr.status_spp , pr.deskripsi,kp.id_kelas_p , kp.hari AS hari_jadwal , kp.jam_mulai , kp.jam_berakhir , pr.harga_fee,kp.harga_spp ,mp.id_mata_pelajaran, mp.nama AS nama_mata_pelajaran

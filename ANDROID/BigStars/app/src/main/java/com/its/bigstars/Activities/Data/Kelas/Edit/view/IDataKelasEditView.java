@@ -6,13 +6,15 @@ import com.its.bigstars.Models.Murid;
 import java.util.ArrayList;
 
 public interface IDataKelasEditView {
-    void onSetupListView(ArrayList<MataPelajaran> dataModelArrayList);
+    void onSetupListViewPelajaranDialog(ArrayList<MataPelajaran> dataModelArrayList);
 
-    void backPressed();
+    void onSetupListViewMuridDialog(ArrayList<Murid> dataModelArrayList);
 
     void onSetupListViewMurid(ArrayList<Murid> dataModelArrayList);
 
-    void showDialogDeleteMurid(String kode, String nama);
+    void showDialogDeleteMurid(String id_detail_kelas_p, String nama);
+
+    void backPressed();
 
     void onRefreshDataListMurid();
 }
