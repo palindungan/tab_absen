@@ -149,4 +149,14 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
+
+    @Override
+    public void onLoadDataListMurid(String id_kelas_p) {
+
+    }
+
+    @Override
+    public void onDelete(String id) {
+
+    }
 }

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,15 +21,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.its.bigstars.Activities.Data.Kelas.Edit.presenter.DataKelasEditPresenter;
 import com.its.bigstars.Activities.Data.Kelas.Edit.presenter.IDataKelasEditPresenter;
 import com.its.bigstars.Activities.Data.Kelas.Edit.view.IDataKelasEditView;
 import com.its.bigstars.Adapters.AdapterDataMataPelajaranList;
+import com.its.bigstars.Adapters.AdapterDataMuridList;
 import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Kelas;
 import com.its.bigstars.Models.MataPelajaran;
+import com.its.bigstars.Models.Murid;
 import com.its.bigstars.R;
 
 import java.util.ArrayList;
@@ -41,6 +46,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     SessionManager sessionManager;
 
     AdapterDataMataPelajaranList adapterDataMataPelajaranList;
+    AdapterDataMuridList adapterDataMuridList;
 
     Toolbar toolbar;
     RecyclerView recyclerView;
@@ -48,6 +54,9 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     Button btnPilih, btnJamMulai, btnJamBerakhir, btnUpdate;
     TextView tvStatus;
     ImageButton btnSharing, btnDeleteSharing;
+
+    FloatingActionButton fab;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static final String EXTRA_ID_KELAS_P = "EXTRA_ID_KELAS_P";
     public static final String EXTRA_ID_PENGAJAR = "EXTRA_ID_PENGAJAR";
@@ -89,6 +98,9 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         btnSharing = findViewById(R.id.btn_sharing);
         btnDeleteSharing = findViewById(R.id.btn_delete_sharing);
 
+        fab = findViewById(R.id.fab);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
         id_kelas_p = getIntent().getStringExtra(EXTRA_ID_KELAS_P);
         id_pengajar = getIntent().getStringExtra(EXTRA_ID_PENGAJAR);
         id_mata_pelajaran = getIntent().getStringExtra(EXTRA_ID_MATA_PELAJARAN);
@@ -112,10 +124,32 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                 "" + harga_fee,
                 "" + harga_spp);
 
+        dataKelasEditPresenter.onLoadDataListMurid(id_kelas_p);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to make your refresh action
+                dataKelasEditPresenter.onLoadDataListMurid(id_kelas_p);
+
+                // CallYourRefreshingMethod();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefreshLayout.isRefreshing()) {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 1000);
+            }
+        });
+
         statusActivity = sessionManager.getStatusActivity();
         if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
             btnPilih.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.VISIBLE);
+
+            fab.show();
 
             if (status_kelas.equals("Status : Tidak Dibagikan")) {
                 btnSharing.setVisibility(View.VISIBLE);
@@ -134,6 +168,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
             btnJamMulai.setOnClickListener(this);
             btnJamBerakhir.setOnClickListener(this);
             btnUpdate.setOnClickListener(this);
+            fab.setOnClickListener(this);
         }
 
         btnPilih.setOnClickListener(this);
@@ -277,6 +312,8 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
             showDialogTimePicker(btnJamBerakhir, "jam_berakhir");
         } else if (v.getId() == R.id.btn_update) {
             showDialog();
+        } else if (v.getId() == R.id.fab) {
+
         }
     }
 
@@ -310,6 +347,74 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
+    public void onSetupListViewMurid(ArrayList<Murid> dataModelArrayList) {
+        recyclerView = findViewById(R.id.recycle_view);
+        adapterDataMuridList = new AdapterDataMuridList(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(adapterDataMuridList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(true);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+                        fab.show();
+                    }
+                }
+            }
+        });
+
+        adapterDataMuridList.setOnItemClickListener(new AdapterDataMuridList.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                if (statusActivity.equals("listPengajar->view->editKelasPertemuan")) {
+
+                } else if (statusActivity.equals("xx->view->yy")) {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void showDialogDeleteMurid(String kode, String nama) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Yakin Ingin Menghapus Data " + nama + " ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk Menghapus !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            dataKelasEditPresenter.onDelete(kode);
+                        } catch (Exception e) {
+                            toastMessage.onErrorMessage("Terjadi Kesalahan Hapus " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void onRefreshDataListMurid() {
+        dataKelasEditPresenter.onLoadDataListMurid(id_kelas_p);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -317,5 +422,11 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dataKelasEditPresenter.onLoadDataListMurid(id_kelas_p);
     }
 }
