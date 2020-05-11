@@ -369,6 +369,36 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         dataKelasEditPresenter.onLoadDataListSemuaPengajar();
     }
 
+    private void showDialogDeleteSharing() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+        alertDialogBuilder.setTitle("Ingin Menghapus Sharing ?");
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk melakukan hapus !")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        try {
+                            dataKelasEditPresenter.onUpdateSharingKelas(
+                                    "" + id_kelas_p,
+                                    "null",
+                                    "kosong");
+                        } catch (Exception e) {
+                            toastMessage.onErrorMessage("Terjadi Kesalahan Submit " + e.toString());
+                        }
+
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_pilih) {
@@ -384,7 +414,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         } else if (v.getId() == R.id.btn_sharing) {
             showDialogPilihPengajar();
         } else if (v.getId() == R.id.btn_delete_sharing) {
-
+            showDialogDeleteSharing();
         }
     }
 
