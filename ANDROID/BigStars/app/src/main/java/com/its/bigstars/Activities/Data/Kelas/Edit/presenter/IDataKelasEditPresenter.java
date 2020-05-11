@@ -17,7 +17,11 @@ public interface IDataKelasEditPresenter {
 
     void onLoadDataListSemuaMurid();
 
+    void onLoadDataListSemuaPengajar();
+
     void onAddMurid(String id_kelas_p, String id_murid);
 
     void onDeleteMurid(String id_detail_kelas_p);
+
+    void onUpdateSharingKelas(String id_kelas_p, String id_sharing, String nama_sharing);
 }

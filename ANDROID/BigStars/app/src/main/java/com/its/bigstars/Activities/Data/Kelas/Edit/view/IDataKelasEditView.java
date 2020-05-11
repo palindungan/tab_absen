@@ -2,6 +2,7 @@ package com.its.bigstars.Activities.Data.Kelas.Edit.view;
 
 import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.Models.Murid;
+import com.its.bigstars.Models.Pengajar;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ public interface IDataKelasEditView {
     void onSetupListViewPelajaranDialog(ArrayList<MataPelajaran> dataModelArrayList);
 
     void onSetupListViewMuridDialog(ArrayList<Murid> dataModelArrayList);
+
+    void onSetupListViewPengajarDialog(ArrayList<Pengajar> dataModelArrayList);
 
     void onSetupListViewMurid(ArrayList<Murid> dataModelArrayList);
 

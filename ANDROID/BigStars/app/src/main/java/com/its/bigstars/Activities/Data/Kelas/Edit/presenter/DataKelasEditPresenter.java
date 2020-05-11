@@ -15,6 +15,7 @@ import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.Models.Murid;
+import com.its.bigstars.Models.Pengajar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
 
     ArrayList<MataPelajaran> dataModelArrayListPelajaran;
     ArrayList<Murid> dataModelArrayListMurid;
+    ArrayList<Pengajar> dataModelArrayListPengajar;
 
     public DataKelasEditPresenter(Context context, IDataKelasEditView dataKelasEditView) {
         this.context = context;
@@ -292,6 +294,69 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
     }
 
     @Override
+    public void onLoadDataListSemuaPengajar() {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "data/pengajar/list_pengajar"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject obj = new JSONObject(response);
+
+                    String success = obj.getString("success");
+                    String message = obj.getString("message");
+
+                    if (success.equals("1")) {
+
+                        dataModelArrayListPengajar = new ArrayList<>();
+                        JSONArray dataArray = obj.getJSONArray("data_result");
+                        for (int i = 0; i < dataArray.length(); i++) {
+
+                            Pengajar playerModel = new Pengajar();
+                            JSONObject dataobj = dataArray.getJSONObject(i);
+
+                            String id_pengajar = dataobj.getString("id_pengajar");
+                            String nama = dataobj.getString("nama");
+                            String username = dataobj.getString("username");
+                            String alamat = dataobj.getString("alamat");
+                            String no_hp = dataobj.getString("no_hp");
+                            String foto = dataobj.getString("foto");
+
+                            playerModel.setId_pengajar(id_pengajar);
+                            playerModel.setNama(nama);
+                            playerModel.setUsername(username);
+                            playerModel.setAlamat(alamat);
+                            playerModel.setNo_hp(no_hp);
+                            playerModel.setFoto(foto);
+
+                            dataModelArrayListPengajar.add(playerModel);
+                        }
+                        dataKelasEditView.onSetupListViewPengajarDialog(dataModelArrayListPengajar);
+
+                    } else {
+                        dataModelArrayListPengajar = new ArrayList<>();
+                        dataKelasEditView.onSetupListViewPengajarDialog(dataModelArrayListPengajar);
+                        toastMessage.onErrorMessage(message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
     public void onAddMurid(String id_kelas_p, String id_murid) {
         String base_url = baseUrl.getUrlData();
         String URL_DATA = base_url + "data/kelas_pertemuan/add_murid"; // url http request
@@ -374,6 +439,53 @@ public class DataKelasEditPresenter implements IDataKelasEditPresenter {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("id_detail_kelas_p", id_detail_kelas_p);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onUpdateSharingKelas(String id_kelas_p, String id_sharing, String nama_sharing) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "data/kelas_pertemuan/update_sharing"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
+
+                            if (success.equals("1")) {
+                                toastMessage.onSuccessMessage(message);
+                                dataKelasEditView.backPressed();
+                            } else {
+                                toastMessage.onErrorMessage(message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_kelas_p", id_kelas_p);
+                params.put("id_sharing", id_sharing);
+                params.put("nama_sharing", nama_sharing);
                 return params;
             }
         };

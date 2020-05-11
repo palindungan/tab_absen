@@ -146,6 +146,8 @@ public class DataKelasListActivity extends AppCompatActivity implements View.OnC
                     intent.putExtra(DataKelasEditActivity.EXTRA_JAM_BERAKHIR, dataModelArrayList.get(position).getJam_berakhir());
                     intent.putExtra(DataKelasEditActivity.EXTRA_HARGA_FEE, dataModelArrayList.get(position).getHarga_fee());
                     intent.putExtra(DataKelasEditActivity.EXTRA_HARGA_SPP, dataModelArrayList.get(position).getHarga_spp());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_ID_SHARING, dataModelArrayList.get(position).getId_sharing());
+                    intent.putExtra(DataKelasEditActivity.EXTRA_NAMA_SHARING, dataModelArrayList.get(position).getNama_sharing());
                     startActivity(intent);
                 }
             }

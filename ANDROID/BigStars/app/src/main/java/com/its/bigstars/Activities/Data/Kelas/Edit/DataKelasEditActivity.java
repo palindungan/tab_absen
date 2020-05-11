@@ -29,12 +29,14 @@ import com.its.bigstars.Activities.Data.Kelas.Edit.presenter.IDataKelasEditPrese
 import com.its.bigstars.Activities.Data.Kelas.Edit.view.IDataKelasEditView;
 import com.its.bigstars.Adapters.AdapterDataMataPelajaranList;
 import com.its.bigstars.Adapters.AdapterDataMuridList;
+import com.its.bigstars.Adapters.AdapterDataPengajarList;
 import com.its.bigstars.Controllers.GlobalProcess;
 import com.its.bigstars.Controllers.SessionManager;
 import com.its.bigstars.Controllers.ToastMessage;
 import com.its.bigstars.Models.Kelas;
 import com.its.bigstars.Models.MataPelajaran;
 import com.its.bigstars.Models.Murid;
+import com.its.bigstars.Models.Pengajar;
 import com.its.bigstars.R;
 
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
     AdapterDataMataPelajaranList adapterDataMataPelajaranList;
     AdapterDataMuridList adapterDataMuridList;
+    AdapterDataPengajarList adapterDataPengajarList;
 
     Toolbar toolbar;
     RecyclerView recyclerView;
@@ -70,10 +73,13 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
     public static final String EXTRA_JAM_BERAKHIR = "EXTRA_JAM_BERAKHIR";
     public static final String EXTRA_HARGA_FEE = "EXTRA_HARGA_FEE";
     public static final String EXTRA_HARGA_SPP = "EXTRA_HARGA_SPP";
+    public static final String EXTRA_ID_SHARING = "EXTRA_ID_SHARING";
+    public static final String EXTRA_NAMA_SHARING = "EXTRA_NAMA_SHARING";
 
     String statusActivity;
 
-    String id_kelas_p, id_pengajar, id_mata_pelajaran, nama_pelajaran, hari, jam_mulai, jam_berakhir, harga_fee, harga_spp;
+    String id_kelas_p, id_pengajar, id_mata_pelajaran, nama_pelajaran, hari, jam_mulai,
+            jam_berakhir, harga_fee, harga_spp, id_sharing, nama_sharing;
     String status_kelas;
 
     public static Dialog dialog;
@@ -114,6 +120,8 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         jam_berakhir = getIntent().getStringExtra(EXTRA_JAM_BERAKHIR);
         harga_fee = getIntent().getStringExtra(EXTRA_HARGA_FEE);
         harga_spp = getIntent().getStringExtra(EXTRA_HARGA_SPP);
+        id_sharing = getIntent().getStringExtra(EXTRA_ID_SHARING);
+        nama_sharing = getIntent().getStringExtra(EXTRA_NAMA_SHARING);
 
         status_kelas = tvStatus.getText().toString().trim();
 
@@ -169,7 +177,7 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
 
             fab.show();
 
-            if (status_kelas.equals("Status : Tidak Dibagikan")) {
+            if (id_sharing.equals("null")) {
                 btnSharing.setVisibility(View.VISIBLE);
             } else {
                 btnDeleteSharing.setVisibility(View.VISIBLE);
@@ -187,6 +195,9 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
             btnJamBerakhir.setOnClickListener(this);
             btnUpdate.setOnClickListener(this);
             fab.setOnClickListener(this);
+
+            btnSharing.setOnClickListener(this);
+            btnDeleteSharing.setOnClickListener(this);
         }
 
         btnPilih.setOnClickListener(this);
@@ -206,6 +217,12 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         btnJamBerakhir.setText(jam_berakhir);
         edtHargaFee.setText(harga_fee);
         edtHargaSpp.setText(harga_spp);
+
+        if (id_sharing.equals("null")) {
+            tvStatus.setText("Status : Tidak Sedang Dibagikan");
+        } else {
+            tvStatus.setText("Status : Dibagikan Kepada " + nama_sharing);
+        }
     }
 
     private void showDialog() {
@@ -336,6 +353,22 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
         dataKelasEditPresenter.onLoadDataListSemuaMurid();
     }
 
+    private void showDialogPilihPengajar() {
+        dialog = new Dialog(this);
+        // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_list);
+
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dataKelasEditPresenter.onLoadDataListSemuaPengajar();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_pilih) {
@@ -348,6 +381,10 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
             showDialog();
         } else if (v.getId() == R.id.fab) {
             showDialogPilihMurid();
+        } else if (v.getId() == R.id.btn_sharing) {
+            showDialogPilihPengajar();
+        } else if (v.getId() == R.id.btn_delete_sharing) {
+
         }
     }
 
@@ -394,6 +431,35 @@ public class DataKelasEditActivity extends AppCompatActivity implements View.OnC
                 dataKelasEditPresenter.onAddMurid(
                         "" + id_kelas_p,
                         "" + id_murid);
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    @Override
+    public void onSetupListViewPengajarDialog(ArrayList<Pengajar> dataModelArrayList) {
+        recyclerView = dialog.findViewById(R.id.recycler);
+        adapterDataPengajarList = new AdapterDataPengajarList(this, dataModelArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+
+        recyclerView.setAdapter(adapterDataPengajarList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(true);
+
+        adapterDataPengajarList.setOnItemClickListener(new AdapterDataPengajarList.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                String id_sharing = dataModelArrayList.get(position).getId_pengajar();
+                String nama_sharing = dataModelArrayList.get(position).getNama();
+
+                dataKelasEditPresenter.onUpdateSharingKelas(
+                        "" + id_kelas_p,
+                        "" + id_sharing,
+                        "" + nama_sharing);
 
                 dialog.dismiss();
             }
