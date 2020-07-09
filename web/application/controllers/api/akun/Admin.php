@@ -21,7 +21,7 @@ class Admin extends REST_Controller
         $username = $this->post('username');
         $password = $this->post('password');
         $foto = $this->post('foto');
-        $nama_foto = 'F' . $id_admin;
+        $nama_foto = 'AD' . $id_admin;
 
         $data = array();
 
@@ -57,7 +57,7 @@ class Admin extends REST_Controller
                 $cek_foto = $row["foto"];
             }
 
-            if ($cek_foto != "DEFFAD") {
+            if ($cek_foto != "NONE") {
                 // lokasi gambar berada
                 $path = './upload/image/admin/';
                 $format = '.jpg';
@@ -81,6 +81,50 @@ class Admin extends REST_Controller
             $result["success"] = "0";
             $result["message"] = "Gagal Update Data";
             $this->response(array($result, 502));
+        }
+    }
+
+    function list_admin_get()
+    {
+        $id_admin = $this->post('id_admin');
+
+        $where = array(
+            'id_admin' => $id_admin
+        );
+
+        // mengambil data dari database
+        $query = $this->M_universal->get_data('admin', $where);
+
+        // variable array
+        $result = array();
+        $result['data_result'] = array();
+
+        if ($query->num_rows() > 0) {
+
+            // mengeluarkan data dari database
+            foreach ($query->result_array() as $row) {
+
+                // ambil detail data db
+                $data = array(
+                    'id_admin'      => $row["id_admin"],
+                    'nama'          => $row["nama"],
+                    'username'      => $row["username"],
+                    'foto'          => $row["foto"],
+                );
+
+                array_push($result['data_result'], $data);
+
+                // membuat array untuk di transfer
+                $result["success"] = "1";
+                $result["message"] = "Success Berhasil Mengambil Data";
+                $this->response($result, 200);
+            }
+        } else {
+
+            // membuat array untuk di transfer ke API
+            $result["success"] = "0";
+            $result["message"] = "Data Masih Kosong";
+            $this->response($result, 200);
         }
     }
 }

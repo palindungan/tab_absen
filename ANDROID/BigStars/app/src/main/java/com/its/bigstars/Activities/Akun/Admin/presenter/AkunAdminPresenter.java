@@ -84,4 +84,47 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
+
+    @Override
+    public void onLoadData(String id_admin) {
+        String base_url = baseUrl.getUrlData();
+        String URL_DATA = base_url + "akun/admin/list_admin"; // url http request
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
+                    String message = jsonObject.getString("message");
+
+                    if (success.equals("1")) {
+                        toastMessage.onSuccessMessage(message);
+                        akunAdminView.backPressed();
+                    } else {
+                        toastMessage.onErrorMessage(message);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    toastMessage.onErrorMessage(globalMessage.getMessageResponseError() + e.toString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                toastMessage.onErrorMessage(globalMessage.getMessageConnectionError());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_admin", id_admin);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    }
 }
