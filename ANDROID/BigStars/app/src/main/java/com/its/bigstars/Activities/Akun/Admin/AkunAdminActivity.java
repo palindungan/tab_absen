@@ -72,14 +72,11 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
 
         HashMap<String, String> user = sessionManager.getDataUser();
         id_admin = user.get(sessionManager.ID_USER);
-        nama = user.get(sessionManager.NAMA);
-        username = user.get(sessionManager.USERNAME);
-        foto = user.get(sessionManager.FOTO);
 
         initActionBar();
 
-        if (!id_admin.isEmpty() && !nama.isEmpty() && !username.isEmpty() && !foto.isEmpty()) {
-            setNilaiDefault(nama, username, foto);
+        if (!id_admin.isEmpty()) {
+            akunAdminPresenter.onLoadData("" + id_admin);
         } else {
             sessionManager.logout();
         }
@@ -93,13 +90,6 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    private void setNilaiDefault(String nama, String username, String foto) {
-        edtNama.setText(nama);
-        edtUsername.setText(username);
-        String alamatFoto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
-        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     private void showDialogUpdate() {
@@ -171,6 +161,14 @@ public class AkunAdminActivity extends AppCompatActivity implements View.OnClick
         if (v.getId() == R.id.btn_update) {
             showDialogUpdate();
         }
+    }
+
+    @Override
+    public void setNilaiDefault(String nama, String username, String foto) {
+        edtNama.setText(nama);
+        edtUsername.setText(username);
+        String alamatFoto = baseUrl.getUrlUpload() + "image/admin/" + foto + ".jpg";
+        Picasso.get().load(alamatFoto).placeholder(R.drawable.ic_default_account_circle_24dp).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE).into(ivFoto);
     }
 
     @Override

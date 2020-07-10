@@ -13,11 +13,14 @@ import com.its.bigstars.Activities.Akun.Admin.view.IAkunAdminView;
 import com.its.bigstars.Controllers.BaseUrl;
 import com.its.bigstars.Controllers.GlobalMessage;
 import com.its.bigstars.Controllers.ToastMessage;
+import com.its.bigstars.Models.Pengajar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,13 +97,24 @@ public class AkunAdminPresenter implements IAkunAdminPresenter {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("success");
-                    String message = jsonObject.getString("message");
+                    JSONObject obj = new JSONObject(response);
+
+                    String success = obj.getString("success");
+                    String message = obj.getString("message");
 
                     if (success.equals("1")) {
-                        toastMessage.onSuccessMessage(message);
-                        akunAdminView.backPressed();
+
+                        JSONArray dataArray = obj.getJSONArray("data_result");
+                        for (int i = 0; i < dataArray.length(); i++) {
+
+                            JSONObject dataobj = dataArray.getJSONObject(i);
+
+                            String nama = dataobj.getString("nama");
+                            String username = dataobj.getString("username");
+                            String foto = dataobj.getString("foto");
+
+                            akunAdminView.setNilaiDefault("" + nama, "" + username, "" + foto);
+                        }
                     } else {
                         toastMessage.onErrorMessage(message);
                     }
