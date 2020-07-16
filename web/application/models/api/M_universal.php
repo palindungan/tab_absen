@@ -55,4 +55,18 @@ class M_universal extends CI_Model
         $status = $this->db->update($table, $data);
         return $status;
     }
+
+    function get_max_data_kolom($field, $table)
+    {
+        $q = $this->db->query("SELECT MAX($field) AS kd_max FROM $table");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $kd = $k->kd_max;
+            }
+        } else {
+            $kd = "99999";
+        }
+        return $kd;
+    }
 }

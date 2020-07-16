@@ -57,7 +57,6 @@ class Pengajar extends REST_Controller
     function add_pengajar_post()
     {
         // ambil data
-        $id_pengajar = $this->M_kode->get_id_pengajar();
         $nama = $this->post('nama');
         $username = $this->post('username');
         $password = $this->post('password');
@@ -65,14 +64,9 @@ class Pengajar extends REST_Controller
         $no_hp = $this->post('no_hp');
         $foto = $this->post('foto');
 
-        $nama_foto = "DEFFPE";
-
-        if (!empty($foto)) {
-            $nama_foto = 'F' . $id_pengajar;
-        }
+        $nama_foto = "NONE";
 
         $data = array(
-            'id_pengajar'   => $id_pengajar,
             'nama'          => $nama,
             'username'      => $username,
             'password'      => password_hash($password, PASSWORD_DEFAULT),
@@ -85,8 +79,23 @@ class Pengajar extends REST_Controller
         if ($insert) {
 
             if (!empty($foto)) {
+
+                // mengambil data dari database
+                $id_pengajar = $this->M_universal->get_max_data_kolom('id_pengajar', 'pengajar');
+                $nama_foto  = 'PE' . $id_pengajar;
+
                 $path = "./upload/image/pengajar/$nama_foto.jpg";
                 file_put_contents($path, base64_decode($foto));
+
+                $where = array(
+                    'id_pengajar' => $id_pengajar
+                );
+
+                $data = array(
+                    'foto'          => $nama_foto
+                );
+
+                $update =  $this->M_universal->update_data($where, 'pengajar', $data);
             }
 
             // membuat array untuk di transfer ke API
@@ -94,6 +103,7 @@ class Pengajar extends REST_Controller
             $result["message"] = "Berhasil Menambah Data";
             $this->response($result, 200);
         } else {
+
             // membuat array untuk di transfer ke API
             $result["success"] = "0";
             $result["message"] = "Gagal Menambah Data";
